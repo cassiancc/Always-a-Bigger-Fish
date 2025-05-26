@@ -5,10 +5,12 @@ import cc.cassian.bigger_fish.items.CopperRodItem;
 import cc.cassian.bigger_fish.items.LeechItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.BundleContents;
 
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
@@ -35,7 +37,7 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> WORM = createFish("worm");
     public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech").arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
 
-    public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").arch$tab(CreativeModeTabs.TOOLS_AND_UTILITIES)));
+    public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).arch$tab(CreativeModeTabs.TOOLS_AND_UTILITIES)));
 
     private static DeferredSupplier<Item> createFish(String id) {
         return ITEMS.register(id, ()-> new Item(properties(id)));

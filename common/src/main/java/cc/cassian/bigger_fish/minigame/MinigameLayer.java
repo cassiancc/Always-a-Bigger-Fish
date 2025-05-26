@@ -13,7 +13,7 @@ public class MinigameLayer implements LayeredDraw.Layer {
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         var mc = Minecraft.getInstance();
-        if (mc.player.getMainHandItem().is(BiggerFishItems.COPPER_ROD.get())) {
+        if (mc.player != null && mc.player.getMainHandItem().is(BiggerFishItems.COPPER_ROD.get())) {
             int rectangleX = Minecraft.getInstance().getWindow().getGuiScaledWidth()-100;
             int rectangleY = 110;
             int rectangleWidth = 10;
