@@ -22,12 +22,12 @@ public class FishingHookMixin {
     @Shadow private int nibble;
 
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0))
-    private boolean mixin(ItemStack instance, Item item, Operation<Boolean> original) {
+    private boolean allowModdedRodsInMainhand(ItemStack instance, Item item, Operation<Boolean> original) {
         return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
     }
 
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
-    private boolean mixin1(ItemStack instance, Item item, Operation<Boolean> original) {
+    private boolean allowModdedRodsInOffhand(ItemStack instance, Item item, Operation<Boolean> original) {
         return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
     }
 
@@ -35,9 +35,7 @@ public class FishingHookMixin {
     private int retrieveWithMinigame(ItemStack stack, Operation<Integer> original) {
         if (this.hookedIn == null && this.nibble > 0 && stack.is(BiggerFishTags.REQUIRES_MINIGAME_TO_CATCH)) {
             System.out.println("fishing with copper rod");
-            return original.call(stack);
-        } else {
-            return original.call(stack);
         }
+        return original.call(stack);
     }
 }
