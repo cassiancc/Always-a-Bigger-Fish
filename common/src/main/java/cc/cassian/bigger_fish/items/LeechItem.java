@@ -22,7 +22,7 @@ public class LeechItem extends Item {
     public InteractionResult useOn(UseOnContext useOnContext) {
         Player player = useOnContext.getPlayer();
         var result = this.calculateHitResult(player);
-        if (player instanceof ServerPlayer serverPlayer && result.getType() == HitResult.Type.ENTITY) {
+        if (player != null && result.getType() == HitResult.Type.ENTITY) {
            if (result instanceof EntityHitResult hitResult) {
                // TODO unique effect
                if (hitResult.getEntity() instanceof LivingEntity livingEntity && livingEntity.isAffectedByPotions()) {

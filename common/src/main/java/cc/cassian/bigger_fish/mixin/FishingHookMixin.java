@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.mixin;
 
+import cc.cassian.bigger_fish.PlatformMethods;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.entity.projectile.FishingHook;
@@ -13,11 +14,11 @@ import org.spongepowered.asm.mixin.injection.At;
 public class FishingHookMixin {
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0))
     private boolean mixin(ItemStack instance, Item item, Operation<Boolean> original) {
-        return instance.getItem() instanceof FishingRodItem || original.call(instance, item);
+        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
     }
 
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
     private boolean mixin1(ItemStack instance, Item item, Operation<Boolean> original) {
-        return instance.getItem() instanceof FishingRodItem || original.call(instance, item);
+        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
     }
 }

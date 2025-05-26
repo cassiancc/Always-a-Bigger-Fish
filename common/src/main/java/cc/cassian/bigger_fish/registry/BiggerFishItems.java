@@ -37,13 +37,13 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> WORM = createFish("worm");
     public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech").arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
 
-    public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).arch$tab(CreativeModeTabs.TOOLS_AND_UTILITIES)));
+    public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
 
     private static DeferredSupplier<Item> createFish(String id) {
-        return ITEMS.register(id, ()-> new Item(properties(id)));
+        return ITEMS.register(id, ()-> new Item(properties(id).arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
     }
 
     private static Item.Properties properties(String id) {
-        return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id))).arch$tab(CreativeModeTabs.FOOD_AND_DRINKS);
+        return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)));
     }
 }
