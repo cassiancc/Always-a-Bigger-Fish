@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "bigger_fish",
+  "version": "${version}",
+  "name": "Always a Bigger Fish",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "cassiancc"
+  ],
+  "contact": {
+    "homepage": "https://github.com/cassiancc/Always-A-Bigger-Fish",
+    "sources": "https://github.com/cassiancc/Always-A-Bigger-Fish",
+    "issues": "https://github.com/cassiancc/Always-A-Bigger-Fish/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/bigger_fish/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "cc.cassian.bigger_fish.fabric.BiggerFishFabric"
+    ],
+    "client": [
+      "cc.cassian.bigger_fish.fabric.client.BiggerFishFabricClient"
+    ]
+  },
+  "mixins": [
+    "bigger_fish.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "~1.21.5",
+    "java": ">=21",
+    "architectury": ">=16.1.4"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
