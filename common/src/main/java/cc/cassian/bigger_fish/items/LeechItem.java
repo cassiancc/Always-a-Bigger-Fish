@@ -27,10 +27,12 @@ public class LeechItem extends Item {
                // TODO unique effect
                if (hitResult.getEntity() instanceof LivingEntity livingEntity && livingEntity.isAffectedByPotions()) {
                    livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 5, 1, true, true));
+                   useOnContext.getItemInHand().consume(1, player);
+                   return InteractionResult.CONSUME;
                }
            }
         }
-        useOnContext.getItemInHand().consume(1, player);
+
 
         return InteractionResult.PASS;
     }

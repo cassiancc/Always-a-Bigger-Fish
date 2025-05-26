@@ -8,6 +8,7 @@ import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
@@ -40,7 +41,7 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
 
     private static DeferredSupplier<Item> createFish(String id) {
-        return ITEMS.register(id, ()-> new Item(properties(id).arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
+        return ITEMS.register(id, ()-> new Item(properties(id).food(Foods.COD).arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
     }
 
     private static Item.Properties properties(String id) {

@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 
 public class BiggerFishTags {
     public static TagKey<Item> BAIT = itemTagKey("bait");
+    public static TagKey<Item> REQUIRES_MINIGAME_TO_CATCH = itemTagKey("requires_minigame_to_catch");
 
     public static TagKey<Item> itemTagKey(String id) {
         return TagKey.create(Registries.ITEM, BiggerFishMod.of(id));

@@ -22,7 +22,7 @@ public class MinigameLayer implements LayeredDraw.Layer {
             int y = guiGraphics.guiHeight() - 74;
             int x = guiGraphics.guiWidth() / 2 + 97;
             if (mainhand) {
-                x = guiGraphics.guiWidth() / 2 - 69;
+                x = guiGraphics.guiWidth() / 2 - 117;
             }
 
             guiGraphics.blitSprite(RenderType::guiTextured, ResourceLocation.withDefaultNamespace("hud/hotbar_selection"), x, y, 18, 72);
