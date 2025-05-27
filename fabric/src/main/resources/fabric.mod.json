@@ -21,6 +21,9 @@
     ],
     "client": [
       "cc.cassian.bigger_fish.fabric.client.BiggerFishFabricClient"
+    ],
+    "modmenu": [
+      "cc.cassian.bigger_fish.config.fabric.ModMenuIntegration"
     ]
   },
   "mixins": [
