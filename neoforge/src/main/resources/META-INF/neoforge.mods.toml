@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/cassiancc/Always-A-Bigger-Fish/issues"
 license = "MIT"
 
 [[mods]]
@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Always a Bigger Fish"
 authors = "cassiancc"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+This mod reworks fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!
 '''
 #logoFile = ""
 

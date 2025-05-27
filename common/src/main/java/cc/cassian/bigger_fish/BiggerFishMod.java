@@ -1,6 +1,8 @@
 package cc.cassian.bigger_fish;
 
+import cc.cassian.bigger_fish.compat.CompostCompat;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
+import dev.architectury.platform.Platform;
 import net.minecraft.resources.ResourceLocation;
 
 public final class BiggerFishMod {
@@ -9,6 +11,9 @@ public final class BiggerFishMod {
     public static void init() {
         // Write common init code here.
         BiggerFishItems.ITEMS.register();
+        if (Platform.isModLoaded("compost")) {
+            CompostCompat.register();
+        }
     }
 
     public static ResourceLocation of(String path) {

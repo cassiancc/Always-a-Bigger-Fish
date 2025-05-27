@@ -3,7 +3,7 @@
   "id": "bigger_fish",
   "version": "${version}",
   "name": "Always a Bigger Fish",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "This mod reworks fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!",
   "authors": [
     "cassiancc"
   ],
@@ -32,7 +32,12 @@
     "java": ">=21",
     "architectury": ">=16.1.4"
   },
+  "recommends": {
+    "compost": "*"
+  },
   "suggests": {
-    "another-mod": "*"
+    "item-descriptions": "*",
+    "cloth-config": "*",
+    "modmenu": "*"
   }
 }
