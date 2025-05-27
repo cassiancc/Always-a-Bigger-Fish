@@ -17,7 +17,8 @@ Always a Bigger Fish is a client and server mod for Fabric 1.21.5. Its dependenc
 
 - To successfully fish a fish, you must complete a brief minigame (not yet implemented).
 - The fish you catch are determined by where in the world you're fishing from. To make this system more varied, the mod adds over 20 extra fish items for you to fish up.
-- To make caught fish more unique, they'll be assigned minor stats like size (not yet implemented). Boasting about big fish is encouraged and part of the intended experience.
+- To make caught fish more unique, they'll be assigned a random size. Boasting about big fish is encouraged and part of the intended experience.
+- This mod introduces a new fishing rod, the Copper Rod, which can have bait attached in the inventory like a Bundle! Bait can be used to increase the speed you catch fish.
 
 
 ## License

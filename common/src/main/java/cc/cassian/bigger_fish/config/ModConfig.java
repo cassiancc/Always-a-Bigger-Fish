@@ -22,6 +22,7 @@ public class ModConfig {
     private static ModConfig INSTANCE = new ModConfig();
 
     public boolean biomeFishing = true;
+    public boolean fishSizes = true;
 
     public static void load() {
         if (!Files.exists(configPath())) {

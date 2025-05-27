@@ -1,0 +1,70 @@
+{
+  "parent": "minecraft:husbandry/fishy_business",
+  "criteria": {
+    "fried_fish": {
+      "conditions": {
+        "recipe_id": "bigger_fish:fried_fish"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "cooked_cod": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:cooked_cod"
+      }
+    },
+    "cooked_cod_from_campfire_cooking": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:cooked_cod_from_campfire_cooking"
+      }
+    },
+    "cooked_cod_from_smoking": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:cooked_cod_from_smoking"
+      }
+    },
+    "cooked_salmon": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:cooked_salmon"
+      }
+    },
+    "cooked_salmon_from_campfire_cooking": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:cooked_salmon_from_campfire_cooking"
+      }
+    },
+    "cooked_salmon_from_smoking": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:cooked_salmon_from_smoking"
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.bigger_fish.fried_fish.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bigger_fish:fried_fish"
+    },
+    "title": {
+      "translate": "advancements.bigger_fish.fried_fish.title"
+    }
+  },
+  "requirements": [
+    [
+      "fried_fish",
+      "cooked_cod_from_campfire_cooking",
+      "cooked_cod_from_smoking",
+      "cooked_cod",
+      "cooked_salmon_from_campfire_cooking",
+      "cooked_salmon_from_smoking",
+      "cooked_salmon"
+    ]
+  ]
+}

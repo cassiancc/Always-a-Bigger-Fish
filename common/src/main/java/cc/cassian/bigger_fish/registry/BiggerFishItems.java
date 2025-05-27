@@ -18,6 +18,7 @@ import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 public class BiggerFishItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
 
+    // Fish
     public static DeferredSupplier<Item> BASS = createFish("bass");
     public static DeferredSupplier<Item> BUTTERFLYFISH = createFish("butterflyfish");
     public static DeferredSupplier<Item> BLUEGILL = createFish("bluegill");
@@ -43,9 +44,14 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> WALLEYE = createFish("walleye");
 
 
+    // Bait
     public static DeferredSupplier<Item> WORM = createFish("worm");
     public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech").arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
 
+    // Food
+    public static DeferredSupplier<Item> FRIED_FISH = createFish("fried_fish");
+
+    // Tools
     public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
 
     private static DeferredSupplier<Item> createFish(String id) {
