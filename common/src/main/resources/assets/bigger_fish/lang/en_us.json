@@ -1,6 +1,8 @@
 {
  "item.bigger_fish.copper_rod": "Copper Rod",
- "modmenu.nameTranslation.bigger_fish": "Bigger Fish",
+ "modmenu.nameTranslation.bigger_fish": "Always a Bigger Fish",
+ "config.bigger_fish.config.biomeFishing": "Biome Fishing",
+ "config.bigger_fish.config.biomeFishing.tooltip": "Replace vanilla's fishing loot table with biome specific fishing.",
  "item.bigger_fish.bass": "Bass",
  "item.bigger_fish.butterflyfish": "Butterflyfish",
  "item.bigger_fish.bluegill": "Bluegill",
