@@ -1,1 +1,1 @@
-{"replace":false,"values":[{"id":"minecraft:salmon","required":false},{"id":"minecraft:cod","required":false},{"id":"bigger_fish:herring","required":false},{"id":"bigger_fish:mackerel","required":false}]}
+{"replace":false,"values":[{"id":"minecraft:salmon","required":false},{"id":"minecraft:cod","required":false},{"id":"bigger_fish:herring","required":false},{"id":"bigger_fish:mackerel","required":false},{"id":"upgrade_aquatic:lionfish","required":false}]}
