@@ -42,6 +42,24 @@
       "conditions": {
         "recipe_id": "minecraft:cooked_salmon_from_smoking"
       }
+    },
+    "fried_fish_tropical": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "bigger_fish:fried_fish_tropical"
+      }
+    },
+    "fried_fish_tropical_from_campfire_cooking": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "bigger_fish:fried_fish_tropical_from_campfire_cooking"
+      }
+    },
+    "fried_fish_tropical_from_smoking": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "bigger_fish:fried_fish_tropical_from_smoking"
+      }
     }
   },
   "display": {
