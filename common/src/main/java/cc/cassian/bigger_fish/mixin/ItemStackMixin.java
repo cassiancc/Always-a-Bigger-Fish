@@ -1,8 +1,10 @@
 package cc.cassian.bigger_fish.mixin;
 
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -28,7 +30,7 @@ public abstract class ItemStackMixin {
     private void randomizedFish(Item.TooltipContext context, TooltipDisplay tooltipDisplay, Player playef, TooltipFlag tooltipFlag, Consumer<Component> tooltipAdder, CallbackInfo ci) {
         var stack = (ItemStack) (Object) this;
         if (stack.has(BiggerFishComponentTypes.SIZE.get()) && tooltipDisplay.shows(BiggerFishComponentTypes.SIZE.get())) {
-            tooltipAdder.accept(Component.translatable("component.bigger_fish.size", stack.get(BiggerFishComponentTypes.SIZE.get())));
+            tooltipAdder.accept(Component.translatable("component.bigger_fish.size", ModHelpers.getFishSize(stack), ModHelpers.getUnit()));
         }
     }
 }

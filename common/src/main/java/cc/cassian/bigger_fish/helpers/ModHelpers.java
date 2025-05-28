@@ -1,6 +1,8 @@
 package cc.cassian.bigger_fish.helpers;
 
+import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
@@ -59,5 +61,23 @@ public class ModHelpers {
     public static ItemStack setRandomFishSize(ItemStack itemStack, Entity hook) {
         itemStack.set(BiggerFishComponentTypes.SIZE.get(), ModHelpers.getRandomFishSize(hook));
         return itemStack;
+    }
+
+    public static String getUnit() {
+        if (ModConfig.get().centimeters) {
+            return I18n.get("component.bigger_fish.size.cm");
+        } else {
+            return I18n.get("component.bigger_fish.size.inch");
+        }
+    }
+
+    public static String getFishSize(ItemStack stack) {
+        Float size = stack.get(BiggerFishComponentTypes.SIZE.get());
+        if (size == null) return "0";
+        if (ModConfig.get().centimeters) {
+            return "%s".formatted(Math.round(size * 2.54 * 10d) / 10d);
+        } else {
+            return "%s".formatted(size);
+        }
     }
 }

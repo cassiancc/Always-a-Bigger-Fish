@@ -7,5 +7,7 @@
  "config.bigger_fish.config.fishSizes.tooltip": "sǝzᴉs ɥsᴉɟ ʇɥᵷnɐɔ ǝzᴉɯopuɐᴚ",
  "advancements.bigger_fish.fried_fish.title": "ɥsᴉℲ snoᴉɔᴉןǝᗡ",
  "advancements.bigger_fish.fried_fish.description": "ɥsᴉɟ ɐ ʞooɔ puɐ ɥɔʇɐƆ",
- "component.bigger_fish.size": "sǝɥɔuᴉ s% :ǝzᴉS"
+ "component.bigger_fish.size": "s% s% :ǝzᴉS",
+ "component.bigger_fish.size.inch": "sǝɥɔuᴉ",
+ "component.bigger_fish.size.cm": "ɯɔ"
 }

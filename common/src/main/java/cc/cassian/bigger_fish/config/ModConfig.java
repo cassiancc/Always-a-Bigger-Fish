@@ -23,6 +23,7 @@ public class ModConfig {
 
     public boolean biomeFishing = true;
     public boolean fishSizes = true;
+    public boolean centimeters = true;
 
     public static void load() {
         if (!Files.exists(configPath())) {
