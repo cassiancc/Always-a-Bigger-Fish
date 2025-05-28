@@ -6,7 +6,7 @@
  "config.bigger_fish.config.fishSizes": "Fish Sizes",
  "config.bigger_fish.config.fishSizes.tooltip": "Randomize caught fish sizes",
  "config.bigger_fish.config.centimeters": "Show fish size in centimeters",
- "config.bigger_fish.config.centimeters.tooltip": "Show fish size in centimers instead of inches",
+ "config.bigger_fish.config.centimeters.tooltip": "Show fish size in centimeters instead of inches",
  "config.bigger_fish.config.showFishSizesAlways": "Show fish size always",
  "config.bigger_fish.config.showFishSizesAlways.tooltip": "When disabled, shift is required to show fish size.",
  "advancements.bigger_fish.fried_fish.title": "Delicious Fish",
