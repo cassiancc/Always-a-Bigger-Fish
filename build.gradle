@@ -43,6 +43,10 @@ subprojects {
             name = "TerraformersMC"
             url = "https://maven.terraformersmc.com/"
         }
+        maven {
+            name = "cassian's maven"
+            url = "https://maven.cassian.cc/"
+        }
     }
 
     loom {
