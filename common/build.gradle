@@ -12,5 +12,7 @@ dependencies {
     modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
     modImplementation "maven.modrinth:compost:${compost_version}"
     modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}")
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version"
 
 }
