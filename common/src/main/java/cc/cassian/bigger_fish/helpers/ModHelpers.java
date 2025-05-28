@@ -2,12 +2,16 @@ package cc.cassian.bigger_fish.helpers;
 
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
@@ -79,5 +83,14 @@ public class ModHelpers {
         } else {
             return "%s".formatted(size);
         }
+    }
+
+    public static List<ItemStack> toCollection(ArrayList<DeferredSupplier<Item>> fish) {
+        List<ItemStack> list = new ArrayList<>();
+        for (DeferredSupplier<Item> itemDeferredSupplier : fish) {
+            list.add(itemDeferredSupplier.get().getDefaultInstance());
+        }
+        return list;
+
     }
 }

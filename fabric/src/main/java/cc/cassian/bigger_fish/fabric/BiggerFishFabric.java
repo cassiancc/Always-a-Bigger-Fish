@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.fabric;
 
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -20,6 +21,9 @@ public final class BiggerFishFabric implements ModInitializer {
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
             itemGroup.addAfter(Items.FISHING_ROD, BiggerFishItems.COPPER_ROD.get());
+        });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register((itemGroup) -> {
+            itemGroup.addAfter(Items.PUFFERFISH, ModHelpers.toCollection(BiggerFishItems.FISH));
         });
     }
 }

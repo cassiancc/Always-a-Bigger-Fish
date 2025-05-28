@@ -5,6 +5,7 @@ import cc.cassian.bigger_fish.items.CopperRodItem;
 import cc.cassian.bigger_fish.items.LeechItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -13,11 +14,13 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
 
+import java.util.ArrayList;
+
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
 public class BiggerFishItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
-
+    public static ArrayList<DeferredSupplier<Item>> FISH = new ArrayList<>();
     // Fish
     public static DeferredSupplier<Item> BASS = createFish("bass");
     public static DeferredSupplier<Item> BUTTERFLYFISH = createFish("butterflyfish");
@@ -55,7 +58,9 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
 
     private static DeferredSupplier<Item> createFish(String id) {
-        return ITEMS.register(id, ()-> new Item(properties(id).food(Foods.COD).arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
+        RegistrySupplier<Item> fish = ITEMS.register(id, () -> new Item(properties(id).food(Foods.COD)));
+        FISH.add(fish);
+        return fish;
     }
 
     private static Item.Properties properties(String id) {
