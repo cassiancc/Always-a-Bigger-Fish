@@ -3,7 +3,7 @@
   "id": "bigger_fish",
   "version": "${version}",
   "name": "Always a Bigger Fish",
-  "description": "This mod reworks fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!",
+  "description": "A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!",
   "authors": [
     "cassiancc"
   ],
@@ -27,7 +27,8 @@
     ]
   },
   "mixins": [
-    "bigger_fish.mixins.json"
+    "bigger_fish.mixins.json",
+    "bigger_fish_fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.14",

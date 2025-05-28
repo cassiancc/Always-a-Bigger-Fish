@@ -37,16 +37,6 @@ public class FishingHookMixin {
 
     @Shadow private int nibble;
 
-    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0))
-    private boolean allowModdedRodsInMainhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
-    }
-
-    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
-    private boolean allowModdedRodsInOffhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
-    }
-
     @WrapMethod(method = "retrieve")
     private int retrieveWithMinigame(ItemStack stack, Operation<Integer> original) {
         if (this.hookedIn == null && this.nibble > 0 && stack.is(BiggerFishTags.REQUIRES_MINIGAME_TO_CATCH)) {

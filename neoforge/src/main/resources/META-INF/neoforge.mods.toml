@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Always a Bigger Fish"
 authors = "cassiancc"
 description = '''
-This mod reworks fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!
+A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!
 '''
 #logoFile = ""
 

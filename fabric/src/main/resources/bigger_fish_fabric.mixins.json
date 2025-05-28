@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "cc.cassian.bigger_fish.mixin.fabric",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+
+  ],
+  "mixins": [
+    "FishingHookMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
