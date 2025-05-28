@@ -45,8 +45,8 @@ public class BiggerFishItems {
 
 
     // Bait
-    public static DeferredSupplier<Item> WORM = createFish("worm");
-    public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech").arch$tab(CreativeModeTabs.FOOD_AND_DRINKS)));
+    public static DeferredSupplier<Item> WORM = ITEMS.register("worm", ()->new Item(properties("worm").arch$tab(CreativeModeTabs.INGREDIENTS)));
+    public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech").arch$tab(CreativeModeTabs.INGREDIENTS)));
 
     // Food
     public static DeferredSupplier<Item> FRIED_FISH = createFish("fried_fish");

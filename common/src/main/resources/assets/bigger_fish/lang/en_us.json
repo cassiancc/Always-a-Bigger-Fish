@@ -50,6 +50,7 @@
  "lore.bigger_fish.copper_rod": "A fishing rod that can have bait attached to catch fish faster.",
  "lore.bigger_fish.leeches": "A basic bait that can be attached to a Copper Rod.",
  "lore.bigger_fish.worm": "A basic bait that can be attached to a Copper Rod or fed to Chickens.",
+ "item.bigger_fish.copper_rod.empty.description": "Can hold a mixed stack of bait.",
  "item.bigger_fish.bass": "Bass",
  "item.bigger_fish.butterflyfish": "Butterflyfish",
  "item.bigger_fish.bluegill": "Bluegill",
