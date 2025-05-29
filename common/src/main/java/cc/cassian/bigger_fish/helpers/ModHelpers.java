@@ -61,7 +61,12 @@ public class ModHelpers {
     }
 
     public static Float getRandomFishSize(Entity hook) {
-        return Float.parseFloat(hook.getRandom().nextIntBetweenInclusive(2, 8) + "." + hook.getRandom().nextIntBetweenInclusive(0, 9));
+        var random = hook.getRandom();
+        var size = random.nextIntBetweenInclusive(1, 15)*Math.log(random.nextIntBetweenInclusive(1, 160));
+        if (random.nextIntBetweenInclusive(0, 100) > 60) {
+            size = size*.5;
+        }
+        return (float) (Math.round(size * 10d) / 10d);
     }
 
     public static ItemStack setRandomFishSize(ItemStack itemStack, Entity hook) {
