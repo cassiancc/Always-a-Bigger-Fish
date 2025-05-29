@@ -1,0 +1,1 @@
+{"parent":"minecraft:item/generated","textures":{"layer0":"bigger_fish:item/goldeye"},"display":{"firstperson_righthand":{"scale":[2.45,2.45,2.45]},"firstperson_lefthand":{"scale":[2.45,2.45,2.45]},"thirdperson_righthand":{"scale":[2.45,2.45,2.45]},"thirdperson_lefthand":{"scale":[2.45,2.45,2.45]},"fixed":{"scale":[2.45,2.45,2.45]},"ground":{"scale":[2.45,2.45,2.45]}}}

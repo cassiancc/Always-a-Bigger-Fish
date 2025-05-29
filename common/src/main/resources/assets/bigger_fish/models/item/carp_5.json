@@ -1,0 +1,1 @@
+{"parent":"minecraft:item/generated","textures":{"layer0":"bigger_fish:item/carp"},"display":{"firstperson_righthand":{"scale":[0.95,0.95,0.95]},"firstperson_lefthand":{"scale":[0.95,0.95,0.95]},"thirdperson_righthand":{"scale":[0.95,0.95,0.95]},"thirdperson_lefthand":{"scale":[0.95,0.95,0.95]},"fixed":{"scale":[0.95,0.95,0.95]},"ground":{"scale":[0.95,0.95,0.95]}}}
