@@ -2,12 +2,16 @@ package cc.cassian.bigger_fish.fabric;
 
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
+import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import net.fabricmc.api.ModInitializer;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 
 public final class BiggerFishFabric implements ModInitializer {
     @Override
