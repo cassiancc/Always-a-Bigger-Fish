@@ -29,5 +29,12 @@ public final class BiggerFishFabric implements ModInitializer {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register((itemGroup) -> {
             itemGroup.addAfter(Items.PUFFERFISH, ModHelpers.toCollection(BiggerFishItems.FISH));
         });
+        LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
+            if (key == BuiltInLootTables.FISHING_JUNK) {
+                tableBuilder.modifyPools((builder -> {
+                    builder.add(LootItem.lootTableItem(BiggerFishItems.FISH_BONES.get()).setWeight(15)).add(LootItem.lootTableItem(BiggerFishItems.CAN.get()).setWeight(15)).build();
+                }));
+            }
+        }));
     }
 }
