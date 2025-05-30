@@ -79,7 +79,7 @@ public class CopperRodItem extends FishingRodItem {
                 if (itemStack.has(DataComponents.BUNDLE_CONTENTS)) {
                     BundleContents bundleContents = itemStack.get(DataComponents.BUNDLE_CONTENTS);
                     if (bundleContents != null && !bundleContents.isEmpty()) {
-                        j+=20;
+                        j=300;
                     }
                 }
                 Projectile.spawnProjectile(new FishingHook(player, level, k, j), serverLevel, itemStack);
