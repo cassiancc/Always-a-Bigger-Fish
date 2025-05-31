@@ -27,8 +27,11 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> BLUEGILL = createFish("bluegill");
     public static DeferredSupplier<Item> BREAM = createFish("bream");
     public static DeferredSupplier<Item> BUTTERFLYFISH = createFish("butterflyfish");
+    public static DeferredSupplier<Item> CATFISH = createFish("catfish");
+    public static DeferredSupplier<Item> CAPELIN = createFish("capelin");
     public static DeferredSupplier<Item> CARP = createFish("carp");
     public static DeferredSupplier<Item> CHAR = createFish("char");
+    public static DeferredSupplier<Item> CLINGFISH = createFish("clingfish");
     public static DeferredSupplier<Item> FLOUNDER = createFish("flounder");
     public static DeferredSupplier<Item> GAR = createFish("gar");
     public static DeferredSupplier<Item> GOLDEYE = createFish("goldeye");
