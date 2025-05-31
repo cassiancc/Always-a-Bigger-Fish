@@ -10,6 +10,7 @@
   "mixins": [
     "ComposterMixin",
     "FishingHookMixin",
+    "ItemEntityMixin",
     "ItemStackMixin"
   ],
   "injectors": {

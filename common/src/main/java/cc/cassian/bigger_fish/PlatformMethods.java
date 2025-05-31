@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 
 public class PlatformMethods {
@@ -10,5 +11,13 @@ public class PlatformMethods {
         throw new AssertionError();
     }
 
+    @ExpectPlatform
+    public static void makeFireproof(ItemEntity itemEntity) {
+        throw new AssertionError();
+    }
 
+    @ExpectPlatform
+    public static Boolean isFireproof(ItemEntity itemEntity) {
+        throw new AssertionError();
+    }
 }

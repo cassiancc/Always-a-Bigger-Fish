@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.neoforge;
 import cc.cassian.bigger_fish.config.neoforge.ModConfigFactory;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
+import com.mojang.serialization.Codec;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
@@ -15,14 +16,27 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-@Mod(BiggerFishMod.MOD_ID)
+import java.util.function.Supplier;
+
+import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
+
+@Mod(MOD_ID)
 public final class BiggerFishNeoForge {
+    private static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MOD_ID);
+    public static final Supplier<AttachmentType<Boolean>> FIREPROOF = ATTACHMENT_TYPES.register(
+            "fireproof", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+    );
+
     public BiggerFishNeoForge(IEventBus eventBus, ModContainer container) {
         // Run our common setup.
         BiggerFishMod.init();
+        ATTACHMENT_TYPES.register(eventBus);
         eventBus.addListener(BiggerFishNeoForge::registerCreativeTabs);
         registerModsPage();
     }
@@ -30,6 +44,7 @@ public final class BiggerFishNeoForge {
     @SubscribeEvent
     public static void registerCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
+            event.insertAfter(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.NETHERITE_ROD.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.insertAfter(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.COPPER_ROD.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
         if (event.getTabKey().equals(CreativeModeTabs.FOOD_AND_DRINKS)) {

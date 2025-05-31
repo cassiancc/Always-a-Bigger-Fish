@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_wart"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "bigger_fish:fish_bones"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "bigger_fish:fish_bones"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

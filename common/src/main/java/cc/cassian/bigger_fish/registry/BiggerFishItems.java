@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.registry;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.items.CopperRodItem;
+import cc.cassian.bigger_fish.items.BaitedRodItem;
 import cc.cassian.bigger_fish.items.LeechItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
@@ -70,7 +70,8 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> SUSHI = createFood("sushi", 5, 0.6f);
 
     // Tools
-    public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new CopperRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
+    public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
+    public static DeferredSupplier<Item> NETHERITE_ROD = ITEMS.register("netherite_rod", ()->new BaitedRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
 
     // JUNK
     public static DeferredSupplier<Item> CAN = createItem("can");

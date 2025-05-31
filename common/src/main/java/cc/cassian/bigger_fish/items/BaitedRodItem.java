@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.items;
 
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import cc.cassian.bigger_fish.tooltip.CopperRodTooltip;
+import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -21,7 +21,6 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
@@ -33,8 +32,8 @@ import org.apache.commons.lang3.math.Fraction;
 
 import java.util.Optional;
 
-public class CopperRodItem extends FishingRodItem {
-    public CopperRodItem(Properties properties) {
+public class BaitedRodItem extends FishingRodItem {
+    public BaitedRodItem(Properties properties) {
         super(properties);
     }
 
@@ -203,7 +202,7 @@ public class CopperRodItem extends FishingRodItem {
         TooltipDisplay tooltipDisplay = stack.getOrDefault(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT);
         return !tooltipDisplay.shows(DataComponents.BUNDLE_CONTENTS)
                 ? Optional.empty()
-                : Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(CopperRodTooltip::new);
+                : Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BaitedRodTooltip::new);
     }
 
     @Override

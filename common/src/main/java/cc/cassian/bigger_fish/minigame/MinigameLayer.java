@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.minigame;
 
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
+import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -16,8 +17,8 @@ public class MinigameLayer implements LayeredDraw.Layer {
         var mc = Minecraft.getInstance();
         var player = mc.player;
         if (player == null) return;;
-        var mainhand = player.getMainHandItem().is(BiggerFishItems.COPPER_ROD.get());
-        var offhand = player.getOffhandItem().is(BiggerFishItems.COPPER_ROD.get());
+        var mainhand = player.getMainHandItem().is(BiggerFishTags.REQUIRES_MINIGAME_TO_CATCH);
+        var offhand = player.getOffhandItem().is(BiggerFishTags.REQUIRES_MINIGAME_TO_CATCH);
         if (mainhand || offhand) {
             int y = guiGraphics.guiHeight() - 74;
             int x = guiGraphics.guiWidth() / 2 + 97;
