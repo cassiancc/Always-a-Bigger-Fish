@@ -57,10 +57,10 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> WALLEYE = createFish("walleye");
 
     // Lava fish
-    public static DeferredSupplier<Item> CINDER_EEL = createFish("cinder_eel");
-    public static DeferredSupplier<Item> FIRE_BASS = createFish("fire_bass");
-    public static DeferredSupplier<Item> FIRE_MACKEREL = createFish("fire_mackerel");
-    public static DeferredSupplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish");
+    public static DeferredSupplier<Item> CINDER_EEL = createFish("cinder_eel", true);
+    public static DeferredSupplier<Item> FIRE_BASS = createFish("fire_bass", true);
+    public static DeferredSupplier<Item> FIRE_MACKEREL = createFish("fire_mackerel", true);
+    public static DeferredSupplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish", true);
 
     // Cave fish
     public static DeferredSupplier<Item> BLIND_CAVEFISH = createFish("blind_cavefish");
@@ -84,7 +84,7 @@ public class BiggerFishItems {
 
     // Tools
     public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
-    public static DeferredSupplier<Item> NETHERITE_ROD = ITEMS.register("netherite_rod", ()->new BaitedRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
+    public static DeferredSupplier<Item> NETHERITE_ROD = ITEMS.register("netherite_rod", ()->new BaitedRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
 
     // JUNK
     public static DeferredSupplier<Item> CAN = createItem("can");
@@ -98,6 +98,16 @@ public class BiggerFishItems {
         DeferredSupplier<Item> fish = registerItem(id, properties(id).food(Foods.COD));
         FISH.add(fish);
         return fish;
+    }
+
+    private static DeferredSupplier<Item> createFish(String id, boolean fireproof) {
+        if (!fireproof) {
+            return createFish(id);
+        } else {
+            DeferredSupplier<Item> fish = registerItem(id, properties(id).fireResistant().food(Foods.COD));
+            FISH.add(fish);
+            return fish;
+        }
     }
 
     private static DeferredSupplier<Item> createFood(String id, int nutrition, float saturation) {

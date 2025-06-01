@@ -51,13 +51,18 @@ public class FishingHookMixin {
     @WrapOperation(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;"))
     private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original) {
         var hook = (FishingHook) (Object) this;
-        FluidState fluidstate = hook.level().getFluidState(hook.blockPosition());
-        FluidState fluidstateBelow = hook.level().getFluidState(hook.blockPosition().below());
+        var pos = hook.blockPosition();
+        FluidState fluidstate = hook.level().getFluidState(pos);
+        FluidState fluidstateBelow = hook.level().getFluidState(pos.below());
         if (fluidstate.is(FluidTags.LAVA) || fluidstateBelow.is(FluidTags.LAVA)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
         if (ModConfig.get().biomeFishing) {
-            return instance.getLootTable(BiggerFishLootTables.FISHING);
+            if (pos.getY() > 32) {
+                return instance.getLootTable(BiggerFishLootTables.FISHING);
+            } else {
+                return instance.getLootTable(BiggerFishLootTables.CAVE_FISHING);
+            }
         } else {
             return original.call(instance, lootTableKey);
         }
