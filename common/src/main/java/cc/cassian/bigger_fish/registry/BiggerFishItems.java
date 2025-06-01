@@ -48,13 +48,12 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> RUDD = createFish("rudd");
     public static DeferredSupplier<Item> SARDINE = createFish("sardine");
     public static DeferredSupplier<Item> SHAD = createFish("shad");
-    public static DeferredSupplier<Item> SOULFISH = createFish("soulfish");
+    public static DeferredSupplier<Item> SCULKFISH = createFish("sculkfish");
     public static DeferredSupplier<Item> SURGEONFISH = createFish("surgeonfish");
     public static DeferredSupplier<Item> SWORDFISH = createFish("swordfish");
     public static DeferredSupplier<Item> TILAPIA = createFish("tilapia");
     public static DeferredSupplier<Item> TROUT = createFish("trout");
     public static DeferredSupplier<Item> TUNA = createFish("tuna");
-    public static DeferredSupplier<Item> TWAIT_SHAD = createFish("twait_shad");
     public static DeferredSupplier<Item> WALLEYE = createFish("walleye");
 
     // Lava fish
@@ -62,6 +61,14 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> FIRE_BASS = createFish("fire_bass");
     public static DeferredSupplier<Item> FIRE_MACKEREL = createFish("fire_mackerel");
     public static DeferredSupplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish");
+
+    // Cave fish
+    public static DeferredSupplier<Item> BLIND_CAVEFISH = createFish("blind_cavefish");
+    public static DeferredSupplier<Item> CAVE_ANGEL_FISH = createFish("cave_angel_fish");
+    public static DeferredSupplier<Item> CAVE_PUPFISH = createFish("cave_pupfish");
+    public static DeferredSupplier<Item> NORTHERN_CAVEFISH = createFish("northern_cavefish");
+    public static DeferredSupplier<Item> RED_CAVEFISH = createFish("red_cavefish");
+    public static DeferredSupplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
     public static DeferredSupplier<Item> WORM = ITEMS.register("worm", ()->new Item(properties("worm").arch$tab(CreativeModeTabs.INGREDIENTS)));
