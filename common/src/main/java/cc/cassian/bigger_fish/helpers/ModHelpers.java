@@ -94,7 +94,7 @@ public class ModHelpers {
         }
     }
 
-    public static List<ItemStack> toCollection(ArrayList<DeferredSupplier<Item>> fish) {
+    public static List<ItemStack> toCollection(List<DeferredSupplier<Item>> fish) {
         List<ItemStack> list = new ArrayList<>();
         for (DeferredSupplier<Item> itemDeferredSupplier : fish) {
             list.add(itemDeferredSupplier.get().getDefaultInstance());

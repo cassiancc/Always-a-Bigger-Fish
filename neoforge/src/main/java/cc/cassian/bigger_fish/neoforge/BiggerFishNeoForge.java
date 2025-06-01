@@ -50,9 +50,14 @@ public final class BiggerFishNeoForge {
             event.insertAfter(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.NETHERITE_ROD.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.insertAfter(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.COPPER_ROD.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
-        if (event.getTabKey().equals(CreativeModeTabs.FOOD_AND_DRINKS)) {
+        else if (event.getTabKey().equals(CreativeModeTabs.FOOD_AND_DRINKS)) {
             for (ItemStack itemStack : ModHelpers.toCollection(BiggerFishItems.FISH).reversed()) {
                 event.insertAfter(Items.PUFFERFISH.getDefaultInstance(), itemStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            }
+        }
+        else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
+            for (ItemStack itemStack : ModHelpers.toCollection(BiggerFishItems.INGREDIENTS).reversed()) {
+                event.insertAfter(Items.BONE_MEAL.getDefaultInstance(), itemStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
         }
     }

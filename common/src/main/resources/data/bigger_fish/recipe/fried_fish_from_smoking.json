@@ -1,1 +1,1 @@
-{"type":"minecraft:food","category":"smoking","cookingtime":100,"experience":0.1,"ingredient":"#bigger_fish:fish","result":{"id":"bigger_fish:fried_fish"}}
+{"type":"minecraft:smoking","category":"food","cookingtime":100,"experience":0.1,"ingredient":"#bigger_fish:fish","result":{"id":"bigger_fish:fried_fish"}}

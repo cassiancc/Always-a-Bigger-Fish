@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.registry;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.items.BaitedRodItem;
 import cc.cassian.bigger_fish.items.LeechItem;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
@@ -71,15 +73,17 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
-    public static DeferredSupplier<Item> WORM = ITEMS.register("worm", ()->new Item(properties("worm").arch$tab(CreativeModeTabs.INGREDIENTS)));
-    public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech").arch$tab(CreativeModeTabs.INGREDIENTS)));
+    public static DeferredSupplier<Item> WORM = ITEMS.register("worm", ()->new Item(properties("worm")));
+    public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech")));
 
     // Food
     public static DeferredSupplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
     public static DeferredSupplier<Item> FISH_KEBAB = createFood("fish_kebab", 7, 0.6f);
     public static DeferredSupplier<Item> FISH_STEW = createFood("fish_stew", 7, 0.6f);
-    public static DeferredSupplier<Item> FISH_TACO = createFood("fish_taco", 7, 0.6f);
-    public static DeferredSupplier<Item> SASHIMI = createFood("sashimi", 5, 0.6f);
+    public static DeferredSupplier<Item> FISH_FINGERS = createFood("fish_fingers", 5, 0.6f, true);
+    public static DeferredSupplier<Item> FISH_TACO = createFood("fish_taco", 7, 0.6f, true);
+
+    public static DeferredSupplier<Item> SASHIMI = createFood("sashimi", 5, 0.6f, true);
     public static DeferredSupplier<Item> SUSHI = createFood("sushi", 5, 0.6f);
 
     // Tools
@@ -90,8 +94,10 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> CAN = createItem("can");
     public static DeferredSupplier<Item> FISH_BONES = createItem("fish_bones");
 
+    public static List<DeferredSupplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
+
     private static DeferredSupplier<Item> createItem(String id) {
-        return registerItem(id, properties(id).arch$tab(CreativeModeTabs.INGREDIENTS));
+        return registerItem(id, properties(id));
     }
 
     private static DeferredSupplier<Item> createFish(String id) {
@@ -111,8 +117,13 @@ public class BiggerFishItems {
     }
 
     private static DeferredSupplier<Item> createFood(String id, int nutrition, float saturation) {
+        return createFood(id, nutrition, saturation, false);
+    }
+
+    private static DeferredSupplier<Item> createFood(String id, int nutrition, float saturation, boolean requiresFarmersDelight) {
         DeferredSupplier<Item> fish = registerItem(id, properties(id).food(new FoodProperties(nutrition, saturation, false)));
-        FISH.add(fish);
+        if (!requiresFarmersDelight || ModCompat.FARMERS_DELIGHT)
+            FISH.add(fish);
         return fish;
     }
 

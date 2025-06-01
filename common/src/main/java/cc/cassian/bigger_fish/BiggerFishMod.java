@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish;
 
 import cc.cassian.bigger_fish.compat.CompostCompat;
+import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
@@ -18,7 +19,7 @@ public final class BiggerFishMod {
         ModConfig.load();
         BiggerFishComponentTypes.COMPONENT_TYPES.register();
         BiggerFishItems.ITEMS.register();
-        if (Platform.isModLoaded("compost")) {
+        if (ModCompat.COMPOST) {
             CompostCompat.register();
         }
     }
