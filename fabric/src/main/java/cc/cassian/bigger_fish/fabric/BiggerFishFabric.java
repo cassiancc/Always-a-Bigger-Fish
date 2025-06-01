@@ -25,6 +25,10 @@ public final class BiggerFishFabric implements ModInitializer {
             ResourceLocation.fromNamespaceAndPath(MOD_ID, "fireproof"), Codec.BOOL
     );
 
+    public static final AttachmentType<Boolean> LAVA_HOOK = AttachmentRegistry.createPersistent(
+            ResourceLocation.fromNamespaceAndPath(MOD_ID, "lava_hook"), Codec.BOOL
+    );
+
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.

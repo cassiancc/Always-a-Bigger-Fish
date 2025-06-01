@@ -11,18 +11,21 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.ReloadableServerRegistries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -51,14 +54,11 @@ public class FishingHookMixin {
     @WrapOperation(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;"))
     private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original) {
         var hook = (FishingHook) (Object) this;
-        var pos = hook.blockPosition();
-        FluidState fluidstate = hook.level().getFluidState(pos);
-        FluidState fluidstateBelow = hook.level().getFluidState(pos.below());
-        if (fluidstate.is(FluidTags.LAVA) || fluidstateBelow.is(FluidTags.LAVA)) {
+        if (PlatformMethods.isLavaHook(hook)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
         if (ModConfig.get().biomeFishing) {
-            if (pos.getY() > 32) {
+            if (hook.blockPosition().getY() > 32) {
                 return instance.getLootTable(BiggerFishLootTables.FISHING);
             } else {
                 return instance.getLootTable(BiggerFishLootTables.CAVE_FISHING);
@@ -72,10 +72,16 @@ public class FishingHookMixin {
     private boolean biomeSpecificFish(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
         var hook = (FishingHook) (Object) this;
         if ((hook.getPlayerOwner().getMainHandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA) || hook.getPlayerOwner().getOffhandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA)) && instance.is(FluidTags.LAVA)) {
+            PlatformMethods.makeLavaHook(hook);
             return true;
         } else {
             return original.call(instance, tag);
         }
+    }
+
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+    private boolean alwaysBubbleInFluids(BlockState instance, Block block, Operation<Boolean> original) {
+        return instance.getFluidState().is(FluidTags.LAVA) || instance.getFluidState().is(FluidTags.WATER) || original.call(instance, block);
     }
 
     @Inject(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;<init>(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V"))
@@ -88,6 +94,7 @@ public class FishingHookMixin {
             }
         }
     }
+
     @Inject(method = "retrieve", at = @At(value = "RETURN", target = "Lnet/minecraft/world/entity/item/ItemEntity;<init>(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V"))
     private void removeBait(ItemStack fishingRod, CallbackInfoReturnable<Integer> cir) {
         if (fishingRod.has(DataComponents.BUNDLE_CONTENTS)) {
@@ -109,6 +116,66 @@ public class FishingHookMixin {
         var hook = (FishingHook) (Object) this;
         if ((hook.getPlayerOwner().getMainHandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA) || hook.getPlayerOwner().getOffhandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA)) && hook.level().getFluidState(hook.blockPosition()).is(FluidTags.LAVA)) {
             PlatformMethods.makeFireproof(itemEntity);
+        }
+    }
+
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;sendParticles(Lnet/minecraft/core/particles/ParticleOptions;DDDIDDDD)I", ordinal = 0))
+    private int lavaBubble0(ServerLevel instance, ParticleOptions type, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed, Operation<Integer> original) {
+        var hook = (FishingHook) (Object) this;
+        if (PlatformMethods.isLavaHook(hook)) {
+            return original.call(instance, ParticleTypes.LAVA, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        } else {
+            return original.call(instance, type, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        }
+    }
+
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;sendParticles(Lnet/minecraft/core/particles/ParticleOptions;DDDIDDDD)I", ordinal = 1))
+    private int lavaFishing1(ServerLevel instance, ParticleOptions type, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed, Operation<Integer> original) {
+        var hook = (FishingHook) (Object) this;
+        if (PlatformMethods.isLavaHook(hook)) {
+            return original.call(instance, ParticleTypes.LAVA, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        } else {
+            return original.call(instance, type, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        }
+    }
+
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;sendParticles(Lnet/minecraft/core/particles/ParticleOptions;DDDIDDDD)I", ordinal = 2))
+    private int lavaFishing2(ServerLevel instance, ParticleOptions type, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed, Operation<Integer> original) {
+        var hook = (FishingHook) (Object) this;
+        if (PlatformMethods.isLavaHook(hook)) {
+            return original.call(instance, ParticleTypes.LAVA, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        } else {
+            return original.call(instance, type, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        }
+    }
+
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;sendParticles(Lnet/minecraft/core/particles/ParticleOptions;DDDIDDDD)I", ordinal = 3))
+    private int lavaBubble3(ServerLevel instance, ParticleOptions type, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed, Operation<Integer> original) {
+        var hook = (FishingHook) (Object) this;
+        if (PlatformMethods.isLavaHook(hook)) {
+            return original.call(instance, ParticleTypes.LAVA, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        } else {
+            return original.call(instance, type, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        }
+    }
+
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;sendParticles(Lnet/minecraft/core/particles/ParticleOptions;DDDIDDDD)I", ordinal = 4))
+    private int lavaFishing4(ServerLevel instance, ParticleOptions type, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed, Operation<Integer> original) {
+        var hook = (FishingHook) (Object) this;
+        if (PlatformMethods.isLavaHook(hook)) {
+            return original.call(instance, ParticleTypes.LAVA, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        } else {
+            return original.call(instance, type, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        }
+    }
+
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;sendParticles(Lnet/minecraft/core/particles/ParticleOptions;DDDIDDDD)I", ordinal = 5))
+    private int lavaSplash5(ServerLevel instance, ParticleOptions type, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed, Operation<Integer> original) {
+        var hook = (FishingHook) (Object) this;
+        if (PlatformMethods.isLavaHook(hook)) {
+            return original.call(instance, ParticleTypes.LAVA, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        } else {
+            return original.call(instance, type, posX, posY, posZ, particleCount, xOffset, yOffset, zOffset, speed);
         }
     }
 }
