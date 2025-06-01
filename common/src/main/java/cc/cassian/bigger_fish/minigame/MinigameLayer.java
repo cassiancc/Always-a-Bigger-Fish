@@ -1,6 +1,5 @@
 package cc.cassian.bigger_fish.minigame;
 
-import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
