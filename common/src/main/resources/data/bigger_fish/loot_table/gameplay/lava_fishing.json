@@ -5,16 +5,20 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "minecraft:nether_wart"
+          "type": "minecraft:tag",
+          "name": "bigger_fish:lava_fish",
+          "weight": 85,
+          "expand": true
         },
         {
           "type": "minecraft:item",
-          "name": "bigger_fish:fish_bones"
+          "name": "minecraft:nether_wart",
+          "weight": 5
         },
         {
           "type": "minecraft:item",
-          "name": "bigger_fish:fish_bones"
+          "name": "bigger_fish:fish_bones",
+          "weight": 5
         }
       ],
       "rolls": 1

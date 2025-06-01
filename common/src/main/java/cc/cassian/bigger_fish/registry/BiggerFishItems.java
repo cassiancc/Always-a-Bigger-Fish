@@ -57,6 +57,12 @@ public class BiggerFishItems {
     public static DeferredSupplier<Item> TWAIT_SHAD = createFish("twait_shad");
     public static DeferredSupplier<Item> WALLEYE = createFish("walleye");
 
+    // Lava fish
+    public static DeferredSupplier<Item> CINDER_EEL = createFish("cinder_eel");
+    public static DeferredSupplier<Item> FIRE_BASS = createFish("fire_bass");
+    public static DeferredSupplier<Item> FIRE_MACKEREL = createFish("fire_mackerel");
+    public static DeferredSupplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish");
+
     // Bait
     public static DeferredSupplier<Item> WORM = ITEMS.register("worm", ()->new Item(properties("worm").arch$tab(CreativeModeTabs.INGREDIENTS)));
     public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech").arch$tab(CreativeModeTabs.INGREDIENTS)));

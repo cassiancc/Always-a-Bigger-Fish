@@ -1,0 +1,1 @@
+{"parent":"minecraft:item/generated","textures":{"layer0":"bigger_fish:item/fire_bass"},"display":{"firstperson_righthand":{"scale":[1.85,1.85,1.85]},"firstperson_lefthand":{"scale":[1.85,1.85,1.85]},"thirdperson_righthand":{"scale":[1.85,1.85,1.85]},"thirdperson_lefthand":{"scale":[1.85,1.85,1.85]},"fixed":{"scale":[1.85,1.85,1.85]},"ground":{"scale":[1.85,1.85,1.85]}}}

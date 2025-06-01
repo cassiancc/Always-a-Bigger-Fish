@@ -52,7 +52,8 @@ public class FishingHookMixin {
     private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original) {
         var hook = (FishingHook) (Object) this;
         FluidState fluidstate = hook.level().getFluidState(hook.blockPosition());
-        if (fluidstate.is(FluidTags.LAVA)) {
+        FluidState fluidstateBelow = hook.level().getFluidState(hook.blockPosition().below());
+        if (fluidstate.is(FluidTags.LAVA) || fluidstateBelow.is(FluidTags.LAVA)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
         if (ModConfig.get().biomeFishing) {
