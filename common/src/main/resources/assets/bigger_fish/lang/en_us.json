@@ -87,10 +87,16 @@
  "lore.minecraft.salmon": "A fresh and saltwater fish found in all biomes.",
  "lore.minecraft.tropical_fish": "A saltwater fish found in hot biomes.",
  "modmenu.nameTranslation.bigger_fish": "Always a Bigger Fish",
+ "tag.bigger_fish.cold_freshwater_fish.eiv": "This fish can be found while fishing in Taigas, Mountains, and other cold inland biomes.",
+ "tag.bigger_fish.cold_saltwater_fish.eiv": "This fish can be found while fishing in Cold and Frozen Oceans, and other cold ocean biomes.",
+ "tag.bigger_fish.hot_freshwater_fish.eiv": "This fish can be found while fishing in Deserts and Jungles, and other hot inland biomes.",
+ "tag.bigger_fish.hot_saltwater_fish.eiv": "This fish can be found while fishing in Warm Oceans, and other hot ocean biomes.",
+ "tag.bigger_fish.temperate_freshwater_fish.eiv": "This fish can be found while fishing in Plains and Forests, and other temperate inland biomes.",
+ "tag.bigger_fish.temperate_saltwater_fish.eiv": "This fish can be found while fishing in Lukewarm Oceans, and other temperate ocean biomes.",
  "tag.bigger_fish.cold_freshwater_fish.description": "A freshwater fish found in cold biomes.",
  "tag.bigger_fish.cold_saltwater_fish.description": "A saltwater fish found in cold biomes.",
  "tag.bigger_fish.hot_freshwater_fish.description": "A freshwater fish found in hot biomes.",
- "tag.bigger_fish.hot_saltwaterfish.description": "A saltwater fish found in hot biomes.",
+ "tag.bigger_fish.hot_saltwater_fish.description": "A saltwater fish found in hot biomes.",
  "tag.bigger_fish.temperate_freshwater_fish.description": "A freshwater fish found in temperate biomes.",
  "tag.bigger_fish.temperate_saltwater_fish.description": "A saltwater fish found in temperate biomes."
 }

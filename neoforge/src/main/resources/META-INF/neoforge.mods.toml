@@ -36,3 +36,5 @@ side = "BOTH"
 
 [[mixins]]
 config = "bigger_fish.mixins.json"
+
+eiv = "cc.cassian.bigger_fish.compat.eiv.EivIntegration"
