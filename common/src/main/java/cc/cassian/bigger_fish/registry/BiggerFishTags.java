@@ -16,6 +16,7 @@ public class BiggerFishTags {
     public static final TagKey<Item> HOT_SALTWATER_FISH = itemTagKey("hot_saltwater_fish");
     public static final TagKey<Item> SHROOMY_FISH = itemTagKey("shroomy_fish");
     public static final TagKey<Item> JUNK = itemTagKey("junk");
+    public static final TagKey<Item> TREASURE = itemTagKey("treasure");
     public static final TagKey<Item> TEMPERATE_FRESHWATER_FISH = itemTagKey("temperate_freshwater_fish");
     public static final TagKey<Item> TEMPERATE_SALTWATER_FISH = itemTagKey("temperate_saltwater_fish");
     public static final TagKey<Item> FISH = itemTagKey("fish");
