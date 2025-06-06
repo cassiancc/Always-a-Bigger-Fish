@@ -4,6 +4,8 @@ import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import de.crafty.eiv.common.api.IExtendedItemViewIntegration;
 import de.crafty.eiv.common.api.recipe.ItemView;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 
 import java.util.List;
 
@@ -28,7 +30,10 @@ public class EivIntegration implements IExtendedItemViewIntegration {
                     new FishingViewRecipe(BiggerFishTags.TEMPERATE_FRESHWATER_FISH),
                     new FishingViewRecipe(BiggerFishTags.TEMPERATE_SALTWATER_FISH),
                     new FishingViewRecipe(BiggerFishTags.HOT_FRESHWATER_FISH),
-                    new FishingViewRecipe(BiggerFishTags.HOT_SALTWATER_FISH)
+                    new FishingViewRecipe(BiggerFishTags.HOT_SALTWATER_FISH),
+                    new FishingViewRecipe(BiggerFishTags.CAVE_FISH),
+                    new FishingViewRecipe(BiggerFishTags.DEEP_DARK_FISH),
+                    new FishingViewRecipe(BiggerFishTags.JUNK)
             );
         });
 

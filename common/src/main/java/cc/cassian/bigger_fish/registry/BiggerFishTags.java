@@ -15,9 +15,11 @@ public class BiggerFishTags {
     public static final TagKey<Item> HOT_FRESHWATER_FISH = itemTagKey("hot_freshwater_fish");
     public static final TagKey<Item> HOT_SALTWATER_FISH = itemTagKey("hot_saltwater_fish");
     public static final TagKey<Item> SHROOMY_FISH = itemTagKey("shroomy_fish");
+    public static final TagKey<Item> JUNK = itemTagKey("junk");
     public static final TagKey<Item> TEMPERATE_FRESHWATER_FISH = itemTagKey("temperate_freshwater_fish");
     public static final TagKey<Item> TEMPERATE_SALTWATER_FISH = itemTagKey("temperate_saltwater_fish");
     public static final TagKey<Item> FISH = itemTagKey("fish");
+    public static final TagKey<Item> CAVE_FISH = itemTagKey("cave_fish");;
 
     public static TagKey<Item> itemTagKey(String id) {
         return TagKey.create(Registries.ITEM, BiggerFishMod.of(id));
