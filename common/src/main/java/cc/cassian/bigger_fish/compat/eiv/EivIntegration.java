@@ -7,8 +7,10 @@ import de.crafty.eiv.common.api.recipe.ItemView;
 import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EivIntegration implements IExtendedItemViewIntegration {
@@ -27,20 +29,11 @@ public class EivIntegration implements IExtendedItemViewIntegration {
             //Here you tell EIV how to process incoming server recipes
             //Requires you to return a list of client-side view-recipes (IEivViewRecipe)
 
-            return List.of(
-                    new FishingViewRecipe(BiggerFishTags.COLD_FRESHWATER_FISH),
-                    new FishingViewRecipe(BiggerFishTags.COLD_SALTWATER_FISH),
-                    new FishingViewRecipe(BiggerFishTags.TEMPERATE_FRESHWATER_FISH),
-                    new FishingViewRecipe(BiggerFishTags.TEMPERATE_SALTWATER_FISH),
-                    new FishingViewRecipe(BiggerFishTags.HOT_FRESHWATER_FISH),
-                    new FishingViewRecipe(BiggerFishTags.HOT_SALTWATER_FISH),
-                    new FishingViewRecipe(BiggerFishTags.BRACKISH_FISH),
-                    new FishingViewRecipe(BiggerFishTags.BRACKISH_CAVE_FISH),
-                    new FishingViewRecipe(BiggerFishTags.CAVE_FISH),
-                    new FishingViewRecipe(BiggerFishTags.DEEP_DARK_FISH),
-                    new FishingViewRecipe(BiggerFishTags.JUNK),
-                    new FishingViewRecipe(BiggerFishTags.TREASURE)
-            );
+            ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
+            for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
+                recipes.add(new FishingViewRecipe(itemTagKey));
+            }
+            return recipes;
         });
         ItemView.registerRecipeWrapper(LavaFishingServerRecipe.TYPE,
                 modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)));

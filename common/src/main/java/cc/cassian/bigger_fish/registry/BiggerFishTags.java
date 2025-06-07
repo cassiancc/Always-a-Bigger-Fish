@@ -4,8 +4,14 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BiggerFishTags {
+
+
     public static final TagKey<Item> BAIT = itemTagKey("bait");
     public static final TagKey<Item> REQUIRES_MINIGAME_TO_CATCH = itemTagKey("requires_minigame_to_catch");
     public static final TagKey<Item> CAN_FISH_IN_LAVA = itemTagKey("can_fish_in_lava");;
@@ -24,6 +30,8 @@ public class BiggerFishTags {
     public static final TagKey<Item> BRACKISH_CAVE_FISH = itemTagKey("brackish_cave_fish");
     public static final TagKey<Item> CAVE_FISH = itemTagKey("cave_fish");
     public static final TagKey<Item> LAVA_FISH = itemTagKey("lava_fish");
+
+    public static final List<TagKey<Item>> FISHING_TAGS_FOR_DISPLAY = List.of(COLD_FRESHWATER_FISH, COLD_SALTWATER_FISH, DEEP_DARK_FISH, HOT_FRESHWATER_FISH, HOT_SALTWATER_FISH, SHROOMY_FISH, JUNK, TREASURE, TEMPERATE_FRESHWATER_FISH, TEMPERATE_SALTWATER_FISH, BRACKISH_FISH, BRACKISH_CAVE_FISH, CAVE_FISH);
 
     public static TagKey<Item> itemTagKey(String id) {
         return TagKey.create(Registries.ITEM, BiggerFishMod.of(id));

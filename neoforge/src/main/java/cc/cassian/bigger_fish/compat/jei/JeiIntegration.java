@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.compat.jei;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
+import cc.cassian.bigger_fish.compat.eiv.FishingViewRecipe;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import dev.architectury.registry.registries.DeferredSupplier;
@@ -30,19 +31,10 @@ public class JeiIntegration implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        addTagInfo(registration, BiggerFishTags.COLD_FRESHWATER_FISH);
-        addTagInfo(registration, BiggerFishTags.COLD_SALTWATER_FISH);
-        addTagInfo(registration, BiggerFishTags.TEMPERATE_FRESHWATER_FISH);
-        addTagInfo(registration, BiggerFishTags.TEMPERATE_SALTWATER_FISH);
-        addTagInfo(registration, BiggerFishTags.HOT_FRESHWATER_FISH);
-        addTagInfo(registration, BiggerFishTags.HOT_SALTWATER_FISH);
-        addTagInfo(registration, BiggerFishTags.BRACKISH_FISH);
-        addTagInfo(registration, BiggerFishTags.BRACKISH_CAVE_FISH);
-        addTagInfo(registration, BiggerFishTags.CAVE_FISH);
-        addTagInfo(registration, BiggerFishTags.DEEP_DARK_FISH);
+        for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
+            addTagInfo(registration, itemTagKey);
+        }
         addTagInfo(registration, BiggerFishTags.LAVA_FISH);
-        addTagInfo(registration, BiggerFishTags.JUNK);
-        addTagInfo(registration, BiggerFishTags.TREASURE);
 
         if (!ModCompat.FARMERS_DELIGHT) {
             ArrayList<ItemStack> objects = new ArrayList<>();
