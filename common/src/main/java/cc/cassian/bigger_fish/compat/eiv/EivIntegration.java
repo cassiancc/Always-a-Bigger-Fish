@@ -16,6 +16,7 @@ public class EivIntegration implements IExtendedItemViewIntegration {
         ItemView.addRecipeProvider(list -> {
             //Here you can add all your server recipes
             list.add(new FishingServerRecipe());
+            list.add(new LavaFishingServerRecipe());
         });
 
         //For the client
@@ -37,6 +38,8 @@ public class EivIntegration implements IExtendedItemViewIntegration {
                     new FishingViewRecipe(BiggerFishTags.TREASURE)
             );
         });
+        ItemView.registerRecipeWrapper(LavaFishingServerRecipe.TYPE,
+                modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)));
 
     }
 }

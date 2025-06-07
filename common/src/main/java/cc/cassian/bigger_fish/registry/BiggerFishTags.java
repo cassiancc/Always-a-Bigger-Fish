@@ -21,6 +21,7 @@ public class BiggerFishTags {
     public static final TagKey<Item> TEMPERATE_SALTWATER_FISH = itemTagKey("temperate_saltwater_fish");
     public static final TagKey<Item> FISH = itemTagKey("fish");
     public static final TagKey<Item> CAVE_FISH = itemTagKey("cave_fish");;
+    public static final TagKey<Item> LAVA_FISH = itemTagKey("lava_fish");
 
     public static TagKey<Item> itemTagKey(String id) {
         return TagKey.create(Registries.ITEM, BiggerFishMod.of(id));
