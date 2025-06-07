@@ -58,11 +58,7 @@ public class FishingHookMixin {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
         if (ModConfig.get().biomeFishing) {
-            if (hook.blockPosition().getY() > 32) {
-                return instance.getLootTable(BiggerFishLootTables.FISHING);
-            } else {
-                return instance.getLootTable(BiggerFishLootTables.CAVE_FISHING);
-            }
+            return instance.getLootTable(BiggerFishLootTables.FISHING);
         } else {
             return original.call(instance, lootTableKey);
         }

@@ -12,26 +12,17 @@
               "entity": "this",
               "predicate": {
                 "location": {
-                  "biomes": "#c:is_cold/freshwater"
-                }
-              }
-            },
-            {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "location": {
-                    "biomes": "#c:is_cold/saltwater"
+                  "position": {
+                    "y": {
+                      "min": 32
+                    }
                   }
                 }
               }
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/cold/freshwater",
-          "weight": 85
+          "value": "bigger_fish:gameplay/fishing/aboveground"
         },
         {
           "type": "minecraft:loot_table",
@@ -41,157 +32,17 @@
               "entity": "this",
               "predicate": {
                 "location": {
-                  "biomes": "#c:is_cold/saltwater"
-                }
-              }
-            }
-          ],
-          "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/cold/saltwater",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "biomes": "#c:is_hot/freshwater"
-                }
-              }
-            },
-            {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "location": {
-                    "biomes": "#c:is_hot/saltwater"
+                  "position": {
+                    "y": {
+                      "max": 32
+                    }
                   }
                 }
               }
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/hot/freshwater",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "biomes": "#c:is_hot/saltwater"
-                }
-              }
-            }
-          ],
-          "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/hot/saltwater",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "biomes": "#c:is_temperate/freshwater"
-                }
-              }
-            },
-            {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
-                "predicate": {
-                  "location": {
-                    "biomes": "#c:is_temperate/saltwater"
-                  }
-                }
-              }
-            }
-          ],
-          "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/temperate/freshwater",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "biomes": "#c:is_temperate/saltwater"
-                }
-              }
-            }
-          ],
-          "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/temperate/saltwater",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "biomes": "#c:is_mushroom"
-                }
-              }
-            }
-          ],
-          "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/mushroom",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "biomes": "#c:is_brackish"
-                }
-              }
-            }
-          ],
-          "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/brackish",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:loot_table",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "biomes": "minecraft:deep_dark"
-                }
-              }
-            }
-          ],
-          "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/deep_dark",
-          "weight": 85
+          "value": "bigger_fish:gameplay/fishing/caves"
         }
       ],
       "rolls": 1
