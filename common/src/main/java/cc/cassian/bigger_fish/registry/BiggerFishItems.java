@@ -23,6 +23,7 @@ import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 public class BiggerFishItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
     public static ArrayList<DeferredSupplier<Item>> FISH = new ArrayList<>();
+    public static ArrayList<DeferredSupplier<Item>> HIDDEN_FOOD = new ArrayList<>();
 
     // Fish
     public static DeferredSupplier<Item> BASS = createFish("bass");
@@ -122,8 +123,11 @@ public class BiggerFishItems {
 
     private static DeferredSupplier<Item> createFood(String id, int nutrition, float saturation, boolean requiresFarmersDelight) {
         DeferredSupplier<Item> fish = registerItem(id, properties(id).food(new FoodProperties(nutrition, saturation, false)));
-        if (!requiresFarmersDelight || ModCompat.FARMERS_DELIGHT)
+        if (!requiresFarmersDelight || ModCompat.FARMERS_DELIGHT) {
             FISH.add(fish);
+        } else {
+            HIDDEN_FOOD.add(fish);
+        }
         return fish;
     }
 

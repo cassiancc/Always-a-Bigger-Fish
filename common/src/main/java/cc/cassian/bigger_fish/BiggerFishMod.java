@@ -2,11 +2,15 @@ package cc.cassian.bigger_fish;
 
 import cc.cassian.bigger_fish.compat.CompostCompat;
 import cc.cassian.bigger_fish.compat.ModCompat;
+import cc.cassian.bigger_fish.compat.eiv.EivIntegration;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
+import de.crafty.eiv.common.api.recipe.ItemView;
 import dev.architectury.platform.Platform;
+import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +25,9 @@ public final class BiggerFishMod {
         BiggerFishItems.ITEMS.register();
         if (ModCompat.COMPOST) {
             CompostCompat.register();
+        }
+        if (ModCompat.EIV) {
+            EivIntegration.hideStacks();
         }
     }
 

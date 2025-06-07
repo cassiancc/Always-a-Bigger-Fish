@@ -4,8 +4,10 @@ import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import de.crafty.eiv.common.api.IExtendedItemViewIntegration;
 import de.crafty.eiv.common.api.recipe.ItemView;
+import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.Item;
 
 import java.util.List;
 
@@ -40,6 +42,11 @@ public class EivIntegration implements IExtendedItemViewIntegration {
         });
         ItemView.registerRecipeWrapper(LavaFishingServerRecipe.TYPE,
                 modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)));
+    }
 
+    public static void hideStacks() {
+        for (DeferredSupplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
+            ItemView.excludeItem(item.get());
+        }
     }
 }
