@@ -16,6 +16,7 @@ public class ReiClient implements REIClientPlugin {
         for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
             addTagInfo(registry, itemTagKey);
         }
+        addTagInfo(registry, BiggerFishTags.LAVA_FISH);
     }
 
     private static void addTagInfo(DisplayRegistry registry, TagKey<Item> itemTag) {
