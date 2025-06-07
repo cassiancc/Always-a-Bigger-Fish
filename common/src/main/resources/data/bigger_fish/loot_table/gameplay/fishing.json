@@ -167,6 +167,23 @@
               "entity": "this",
               "predicate": {
                 "location": {
+                  "biomes": "#c:is_brackish"
+                }
+              }
+            }
+          ],
+          "quality": -1,
+          "value": "bigger_fish:gameplay/fishing/brackish",
+          "weight": 85
+        },
+        {
+          "type": "minecraft:loot_table",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "location": {
                   "biomes": "minecraft:deep_dark"
                 }
               }

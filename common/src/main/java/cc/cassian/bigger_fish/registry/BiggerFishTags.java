@@ -20,7 +20,9 @@ public class BiggerFishTags {
     public static final TagKey<Item> TEMPERATE_FRESHWATER_FISH = itemTagKey("temperate_freshwater_fish");
     public static final TagKey<Item> TEMPERATE_SALTWATER_FISH = itemTagKey("temperate_saltwater_fish");
     public static final TagKey<Item> FISH = itemTagKey("fish");
-    public static final TagKey<Item> CAVE_FISH = itemTagKey("cave_fish");;
+    public static final TagKey<Item> BRACKISH_FISH = itemTagKey("brackish_fish");
+    public static final TagKey<Item> BRACKISH_CAVE_FISH = itemTagKey("brackish_cave_fish");
+    public static final TagKey<Item> CAVE_FISH = itemTagKey("cave_fish");
     public static final TagKey<Item> LAVA_FISH = itemTagKey("lava_fish");
 
     public static TagKey<Item> itemTagKey(String id) {

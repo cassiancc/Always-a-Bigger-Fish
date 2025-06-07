@@ -22,6 +22,23 @@
           "weight": 85
         },
         {
+          "type": "minecraft:loot_table",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "location": {
+                  "biomes": "minecraft:dripstone_caves"
+                }
+              }
+            }
+          ],
+          "quality": -1,
+          "value": "bigger_fish:gameplay/fishing/brackish_caves",
+          "weight": 85
+        },
+        {
           "type": "minecraft:tag",
           "name": "bigger_fish:cave_fish",
           "expand": true

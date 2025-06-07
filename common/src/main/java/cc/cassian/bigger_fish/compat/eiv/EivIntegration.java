@@ -34,6 +34,8 @@ public class EivIntegration implements IExtendedItemViewIntegration {
                     new FishingViewRecipe(BiggerFishTags.TEMPERATE_SALTWATER_FISH),
                     new FishingViewRecipe(BiggerFishTags.HOT_FRESHWATER_FISH),
                     new FishingViewRecipe(BiggerFishTags.HOT_SALTWATER_FISH),
+                    new FishingViewRecipe(BiggerFishTags.BRACKISH_FISH),
+                    new FishingViewRecipe(BiggerFishTags.BRACKISH_CAVE_FISH),
                     new FishingViewRecipe(BiggerFishTags.CAVE_FISH),
                     new FishingViewRecipe(BiggerFishTags.DEEP_DARK_FISH),
                     new FishingViewRecipe(BiggerFishTags.JUNK),
