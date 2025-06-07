@@ -23,7 +23,7 @@ Always a Bigger Fish is a client and server mod for Fabric 1.21.5. Its dependenc
 
 ## Mod Compatibility
 
-- Fishing information has been added to [Extended Item View](https://modrinth.com/mod/eiv), a 1.21.5 recipe viewer. Support for other recipe viewers is planned. 
+- Fishing information has been added to [Extended Item View](https://modrinth.com/mod/eiv) and [Just Enough Items](https://modrinth.com/mod/jei) on NeoForge.
 - This mod replaces vanilla's fishing loot tables with its own. Where possible, modded fish have been added to this mod's item tags, which makes them fishable with our biome fishing system. The following mods are currently supported.
   - Aquaculture 2
   - Upgrade Aquatic
