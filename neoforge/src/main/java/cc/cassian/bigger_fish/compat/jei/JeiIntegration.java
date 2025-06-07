@@ -40,6 +40,7 @@ public class JeiIntegration implements IModPlugin {
         addTagInfo(registration, BiggerFishTags.BRACKISH_CAVE_FISH);
         addTagInfo(registration, BiggerFishTags.CAVE_FISH);
         addTagInfo(registration, BiggerFishTags.DEEP_DARK_FISH);
+        addTagInfo(registration, BiggerFishTags.LAVA_FISH);
         addTagInfo(registration, BiggerFishTags.JUNK);
         addTagInfo(registration, BiggerFishTags.TREASURE);
 
