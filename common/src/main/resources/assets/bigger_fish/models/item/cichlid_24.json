@@ -1,0 +1,1 @@
+{"parent":"minecraft:item/generated","textures":{"layer0":"bigger_fish:item/cichlid"},"display":{"firstperson_righthand":{"scale":[3.8,3.8,3.8]},"firstperson_lefthand":{"scale":[3.8,3.8,3.8]},"thirdperson_righthand":{"scale":[3.8,3.8,3.8]},"thirdperson_lefthand":{"scale":[3.8,3.8,3.8]},"fixed":{"scale":[3.8,3.8,3.8]},"ground":{"scale":[3.8,3.8,3.8]}}}

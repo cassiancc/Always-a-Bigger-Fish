@@ -1,0 +1,1 @@
+{"parent":"minecraft:item/generated","textures":{"layer0":"bigger_fish:item/bowfin"},"display":{"firstperson_righthand":{"scale":[3.2,3.2,3.2]},"firstperson_lefthand":{"scale":[3.2,3.2,3.2]},"thirdperson_righthand":{"scale":[3.2,3.2,3.2]},"thirdperson_lefthand":{"scale":[3.2,3.2,3.2]},"fixed":{"scale":[3.2,3.2,3.2]},"ground":{"scale":[3.2,3.2,3.2]}}}
