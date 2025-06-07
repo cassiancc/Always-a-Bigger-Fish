@@ -55,6 +55,12 @@ dependencies {
     // at runtime, use the full JEI jar for NeoForge
     runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 
+    // compile against the REI API but do not include it at runtime
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-neoforge:$rei_version"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-neoforge:$rei_version"
+    // at runtime, use the full REI jar for NeoForge
+//    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
+
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 }

@@ -27,6 +27,9 @@
     ],
     "eiv": [
       "cc.cassian.bigger_fish.compat.eiv.EivIntegration"
+    ],
+    "rei_client": [
+      "cc.cassian.bigger_fish.compat.fabric.rei.ReiClient"
     ]
   },
   "mixins": [
