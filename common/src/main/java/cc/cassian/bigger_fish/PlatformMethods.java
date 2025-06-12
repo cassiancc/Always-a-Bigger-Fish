@@ -9,6 +9,11 @@ import net.minecraft.world.item.ItemStack;
 public class PlatformMethods {
 
     @ExpectPlatform
+    public static boolean isModLoaded(String modID) {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
     public static boolean isFishingRod(ItemStack stack) {
         throw new AssertionError();
     }

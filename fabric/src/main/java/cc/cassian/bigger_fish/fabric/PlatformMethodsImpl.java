@@ -1,12 +1,17 @@
 package cc.cassian.bigger_fish.fabric;
 
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.world.entity.Entity;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
 
 public class PlatformMethodsImpl {
+
+    public static boolean isModLoaded(String modID) {
+        return FabricLoader.getInstance().isModLoaded(modID);
+    }
+
     public static boolean isFishingRod(ItemStack stack) {
         return stack.is(ConventionalItemTags.FISHING_ROD_TOOLS);
     }

@@ -4,149 +4,144 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.items.BaitedRodItem;
 import cc.cassian.bigger_fish.items.LeechItem;
-import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
+import java.util.function.Supplier;
 
 public class BiggerFishItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
-    public static ArrayList<DeferredSupplier<Item>> FISH = new ArrayList<>();
-    public static ArrayList<DeferredSupplier<Item>> HIDDEN_FOOD = new ArrayList<>();
+    public static ArrayList<Supplier<Item>> FISH = new ArrayList<>();
+    public static ArrayList<Supplier<Item>> HIDDEN_FOOD = new ArrayList<>();
 
     // Fish
-    public static DeferredSupplier<Item> ARAPAIMA = createFish("arapaima");
-    public static DeferredSupplier<Item> BASS = createFish("bass");
-    public static DeferredSupplier<Item> BLUE_BLANQUILLO = createFish("blue_blanquillo");
-    public static DeferredSupplier<Item> BLUEGILL = createFish("bluegill");
-    public static DeferredSupplier<Item> BOWFIN = createFish("bowfin");
-    public static DeferredSupplier<Item> BRACKISH_GOBY = createFish("brackish_goby");
-    public static DeferredSupplier<Item> BRACKISH_MUDSKIPPER = createFish("brackish_mudskipper");
-    public static DeferredSupplier<Item> BRACKISH_TIGERFISH = createFish("brackish_tigerfish");
-    public static DeferredSupplier<Item> BREAM = createFish("bream");
-    public static DeferredSupplier<Item> BUTTERFLYFISH = createFish("butterflyfish");
-    public static DeferredSupplier<Item> CATFISH = createFish("catfish");
-    public static DeferredSupplier<Item> CAPELIN = createFish("capelin");
-    public static DeferredSupplier<Item> CARP = createFish("carp");
-    public static DeferredSupplier<Item> CHAR = createFish("char");
-    public static DeferredSupplier<Item> CICHLID = createFish("cichlid");
-    public static DeferredSupplier<Item> CLINGFISH = createFish("clingfish");
-    public static DeferredSupplier<Item> DARTER = createFish("darter");
-    public static DeferredSupplier<Item> DRIPSTONE_GARRA = createFish("dripstone_garra");
-    public static DeferredSupplier<Item> FLOUNDER = createFish("flounder");
-    public static DeferredSupplier<Item> GAR = createFish("gar");
-    public static DeferredSupplier<Item> GOLDEYE = createFish("goldeye");
-    public static DeferredSupplier<Item> GOLDFISH = createFish("goldfish");
-    public static DeferredSupplier<Item> GREEN_CHROMIDE = createFish("green_chromide");
-    public static DeferredSupplier<Item> GROUPER = createFish("grouper");
-    public static DeferredSupplier<Item> HADDOCK = createFish("haddock");
-    public static DeferredSupplier<Item> HERRING = createFish("herring");
-    public static DeferredSupplier<Item> KOI = createFish("koi");
-    public static DeferredSupplier<Item> KNIFEFISH = createFish("knifefish");
-    public static DeferredSupplier<Item> LOACH = createFish("loach");
-    public static DeferredSupplier<Item> MACKEREL = createFish("mackerel");
-    public static DeferredSupplier<Item> MANGROVE_MOONY = createFish("mangrove_moony");
-    public static DeferredSupplier<Item> OARFISH = createFish("oarfish");
-    public static DeferredSupplier<Item> PACU = createFish("pacu");
-    public static DeferredSupplier<Item> PERCH = createFish("perch");
-    public static DeferredSupplier<Item> PIKE = createFish("pike");
-    public static DeferredSupplier<Item> PIRANHA = createFish("piranha");
-    public static DeferredSupplier<Item> POLAR_COD = createFish("polar_cod");
-    public static DeferredSupplier<Item> RAINBOW_TROUT = createFish("rainbow_trout");
-    public static DeferredSupplier<Item> ROACH = createFish("roach");
-    public static DeferredSupplier<Item> RUDD = createFish("rudd");
-    public static DeferredSupplier<Item> SARDINE = createFish("sardine");
-    public static DeferredSupplier<Item> SHAD = createFish("shad");
-    public static DeferredSupplier<Item> SHARK_CATFISH = createFish("shark_catfish");
-    public static DeferredSupplier<Item> SCULKFISH = createFish("sculkfish");
-    public static DeferredSupplier<Item> SHORTFIN_MOLLY = createFish("shortfin_molly");
-    public static DeferredSupplier<Item> SPINY_LUMPSUCKER = createFish("spiny_lumpsucker");
-    public static DeferredSupplier<Item> STURGEON = createFish("sturgeon");
-    public static DeferredSupplier<Item> SURGEONFISH = createFish("surgeonfish");
-    public static DeferredSupplier<Item> SWORDFISH = createFish("swordfish");
-    public static DeferredSupplier<Item> TARPON = createFish("tarpon");
-    public static DeferredSupplier<Item> TILAPIA = createFish("tilapia");
-    public static DeferredSupplier<Item> TROUT = createFish("trout");
-    public static DeferredSupplier<Item> TUNA = createFish("tuna");
-    public static DeferredSupplier<Item> TWOHORN_SCULPIN = createFish("twohorn_sculpin");
-    public static DeferredSupplier<Item> WALLEYE = createFish("walleye");
-    public static DeferredSupplier<Item> WHITE_SUCKER = createFish("white_sucker");
+    public static Supplier<Item> ARAPAIMA = createFish("arapaima");
+    public static Supplier<Item> BASS = createFish("bass");
+    public static Supplier<Item> BLUE_BLANQUILLO = createFish("blue_blanquillo");
+    public static Supplier<Item> BLUEGILL = createFish("bluegill");
+    public static Supplier<Item> BOWFIN = createFish("bowfin");
+    public static Supplier<Item> BRACKISH_GOBY = createFish("brackish_goby");
+    public static Supplier<Item> BRACKISH_MUDSKIPPER = createFish("brackish_mudskipper");
+    public static Supplier<Item> BRACKISH_TIGERFISH = createFish("brackish_tigerfish");
+    public static Supplier<Item> BREAM = createFish("bream");
+    public static Supplier<Item> BUTTERFLYFISH = createFish("butterflyfish");
+    public static Supplier<Item> CATFISH = createFish("catfish");
+    public static Supplier<Item> CAPELIN = createFish("capelin");
+    public static Supplier<Item> CARP = createFish("carp");
+    public static Supplier<Item> CHAR = createFish("char");
+    public static Supplier<Item> CICHLID = createFish("cichlid");
+    public static Supplier<Item> CLINGFISH = createFish("clingfish");
+    public static Supplier<Item> DARTER = createFish("darter");
+    public static Supplier<Item> DRIPSTONE_GARRA = createFish("dripstone_garra");
+    public static Supplier<Item> FLOUNDER = createFish("flounder");
+    public static Supplier<Item> GAR = createFish("gar");
+    public static Supplier<Item> GOLDEYE = createFish("goldeye");
+    public static Supplier<Item> GOLDFISH = createFish("goldfish");
+    public static Supplier<Item> GREEN_CHROMIDE = createFish("green_chromide");
+    public static Supplier<Item> GROUPER = createFish("grouper");
+    public static Supplier<Item> HADDOCK = createFish("haddock");
+    public static Supplier<Item> HERRING = createFish("herring");
+    public static Supplier<Item> KOI = createFish("koi");
+    public static Supplier<Item> KNIFEFISH = createFish("knifefish");
+    public static Supplier<Item> LOACH = createFish("loach");
+    public static Supplier<Item> MACKEREL = createFish("mackerel");
+    public static Supplier<Item> MANGROVE_MOONY = createFish("mangrove_moony");
+    public static Supplier<Item> OARFISH = createFish("oarfish");
+    public static Supplier<Item> PACU = createFish("pacu");
+    public static Supplier<Item> PERCH = createFish("perch");
+    public static Supplier<Item> PIKE = createFish("pike");
+    public static Supplier<Item> PIRANHA = createFish("piranha");
+    public static Supplier<Item> POLAR_COD = createFish("polar_cod");
+    public static Supplier<Item> RAINBOW_TROUT = createFish("rainbow_trout");
+    public static Supplier<Item> ROACH = createFish("roach");
+    public static Supplier<Item> RUDD = createFish("rudd");
+    public static Supplier<Item> SARDINE = createFish("sardine");
+    public static Supplier<Item> SHAD = createFish("shad");
+    public static Supplier<Item> SHARK_CATFISH = createFish("shark_catfish");
+    public static Supplier<Item> SCULKFISH = createFish("sculkfish");
+    public static Supplier<Item> SHORTFIN_MOLLY = createFish("shortfin_molly");
+    public static Supplier<Item> SPINY_LUMPSUCKER = createFish("spiny_lumpsucker");
+    public static Supplier<Item> STURGEON = createFish("sturgeon");
+    public static Supplier<Item> SURGEONFISH = createFish("surgeonfish");
+    public static Supplier<Item> SWORDFISH = createFish("swordfish");
+    public static Supplier<Item> TARPON = createFish("tarpon");
+    public static Supplier<Item> TILAPIA = createFish("tilapia");
+    public static Supplier<Item> TROUT = createFish("trout");
+    public static Supplier<Item> TUNA = createFish("tuna");
+    public static Supplier<Item> TWOHORN_SCULPIN = createFish("twohorn_sculpin");
+    public static Supplier<Item> WALLEYE = createFish("walleye");
+    public static Supplier<Item> WHITE_SUCKER = createFish("white_sucker");
 
     // Lava fish
-    public static DeferredSupplier<Item> CINDER_EEL = createFish("cinder_eel", true);
-    public static DeferredSupplier<Item> FIRE_BASS = createFish("fire_bass", true);
-    public static DeferredSupplier<Item> FIRE_MACKEREL = createFish("fire_mackerel", true);
-    public static DeferredSupplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish", true);
+    public static Supplier<Item> CINDER_EEL = createFish("cinder_eel", true);
+    public static Supplier<Item> FIRE_BASS = createFish("fire_bass", true);
+    public static Supplier<Item> FIRE_MACKEREL = createFish("fire_mackerel", true);
+    public static Supplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish", true);
 
     // Cave fish
-    public static DeferredSupplier<Item> BLIND_CAVEFISH = createFish("blind_cavefish");
-    public static DeferredSupplier<Item> CAVE_ANGEL_FISH = createFish("cave_angel_fish");
-    public static DeferredSupplier<Item> CAVE_PUPFISH = createFish("cave_pupfish");
-    public static DeferredSupplier<Item> NORTHERN_CAVEFISH = createFish("northern_cavefish");
-    public static DeferredSupplier<Item> RED_CAVEFISH = createFish("red_cavefish");
-    public static DeferredSupplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
+    public static Supplier<Item> BLIND_CAVEFISH = createFish("blind_cavefish");
+    public static Supplier<Item> CAVE_ANGEL_FISH = createFish("cave_angel_fish");
+    public static Supplier<Item> CAVE_PUPFISH = createFish("cave_pupfish");
+    public static Supplier<Item> NORTHERN_CAVEFISH = createFish("northern_cavefish");
+    public static Supplier<Item> RED_CAVEFISH = createFish("red_cavefish");
+    public static Supplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
-    public static DeferredSupplier<Item> WORM = ITEMS.register("worm", ()->new Item(properties("worm")));
-    public static DeferredSupplier<Item> LEECH = ITEMS.register("leech", ()->new LeechItem(properties("leech")));
+    public static Supplier<Item> WORM = CommonRegistry.registerItem("worm", ()->new Item(properties("worm")));
+    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")));
 
     // Food
-    public static DeferredSupplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
-    public static DeferredSupplier<Item> FISH_KEBAB = createFood("fish_kebab", 7, 0.6f);
-    public static DeferredSupplier<Item> FISH_STEW = createFood("fish_stew", 7, 0.6f);
-    public static DeferredSupplier<Item> FISH_FINGERS = createFood("fish_fingers", 5, 0.6f, true);
-    public static DeferredSupplier<Item> FISH_TACO = createFood("fish_taco", 7, 0.6f, true);
+    public static Supplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
+    public static Supplier<Item> FISH_KEBAB = createFood("fish_kebab", 7, 0.6f);
+    public static Supplier<Item> FISH_STEW = createFood("fish_stew", 7, 0.6f);
+    public static Supplier<Item> FISH_FINGERS = createFood("fish_fingers", 5, 0.6f, true);
+    public static Supplier<Item> FISH_TACO = createFood("fish_taco", 7, 0.6f, true);
 
-    public static DeferredSupplier<Item> SASHIMI = createFood("sashimi", 5, 0.6f, true);
-    public static DeferredSupplier<Item> SUSHI = createFood("sushi", 5, 0.6f);
+    public static Supplier<Item> SASHIMI = createFood("sashimi", 5, 0.6f, true);
+    public static Supplier<Item> SUSHI = createFood("sushi", 5, 0.6f);
 
     // Tools
-    public static DeferredSupplier<Item> COPPER_ROD = ITEMS.register("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
-    public static DeferredSupplier<Item> NETHERITE_ROD = ITEMS.register("netherite_rod", ()->new BaitedRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
+    public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
+    public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new BaitedRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
 
     // JUNK
-    public static DeferredSupplier<Item> CAN = createItem("can");
-    public static DeferredSupplier<Item> FISH_BONES = createItem("fish_bones");
+    public static Supplier<Item> CAN = createItem("can");
+    public static Supplier<Item> FISH_BONES = createItem("fish_bones");
 
-    public static List<DeferredSupplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
+    public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
 
-    private static DeferredSupplier<Item> createItem(String id) {
+    private static Supplier<Item> createItem(String id) {
         return registerItem(id, properties(id));
     }
 
-    private static DeferredSupplier<Item> createFish(String id) {
-        DeferredSupplier<Item> fish = registerItem(id, properties(id).food(Foods.COD));
+    private static Supplier<Item> createFish(String id) {
+        Supplier<Item> fish = registerItem(id, properties(id).food(Foods.COD));
         FISH.add(fish);
         return fish;
     }
 
-    private static DeferredSupplier<Item> createFish(String id, boolean fireproof) {
+    private static Supplier<Item> createFish(String id, boolean fireproof) {
         if (!fireproof) {
             return createFish(id);
         } else {
-            DeferredSupplier<Item> fish = registerItem(id, properties(id).fireResistant().food(Foods.COD));
+            Supplier<Item> fish = registerItem(id, properties(id).fireResistant().food(Foods.COD));
             FISH.add(fish);
             return fish;
         }
     }
 
-    private static DeferredSupplier<Item> createFood(String id, int nutrition, float saturation) {
+    private static Supplier<Item> createFood(String id, int nutrition, float saturation) {
         return createFood(id, nutrition, saturation, false);
     }
 
-    private static DeferredSupplier<Item> createFood(String id, int nutrition, float saturation, boolean requiresFarmersDelight) {
-        DeferredSupplier<Item> fish = registerItem(id, properties(id).food(new FoodProperties(nutrition, saturation, false)));
+    private static Supplier<Item> createFood(String id, int nutrition, float saturation, boolean requiresFarmersDelight) {
+        Supplier<Item> fish = registerItem(id, properties(id).food(new FoodProperties(nutrition, saturation, false)));
         if (!requiresFarmersDelight || ModCompat.FARMERS_DELIGHT) {
             FISH.add(fish);
         } else {
@@ -155,11 +150,15 @@ public class BiggerFishItems {
         return fish;
     }
 
-    private static DeferredSupplier<Item> registerItem(String id, Item.Properties properties) {
-        return ITEMS.register(id, () -> new Item(properties));
+    private static Supplier<Item> registerItem(String id, Item.Properties properties) {
+        return CommonRegistry.registerItem(id, () -> new Item(properties));
     }
 
     private static Item.Properties properties(String id) {
         return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)));
+    }
+
+    public static void touch() {
+
     }
 }

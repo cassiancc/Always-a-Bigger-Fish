@@ -2,10 +2,8 @@ package cc.cassian.bigger_fish.compat.jei;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
-import cc.cassian.bigger_fish.compat.eiv.FishingViewRecipe;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import dev.architectury.registry.registries.DeferredSupplier;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -16,10 +14,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 @JeiPlugin
 public class JeiIntegration implements IModPlugin {
@@ -38,7 +36,7 @@ public class JeiIntegration implements IModPlugin {
 
         if (!ModCompat.FARMERS_DELIGHT) {
             ArrayList<ItemStack> objects = new ArrayList<>();
-            for (DeferredSupplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
+            for (Supplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
                 objects.add(item.get().getDefaultInstance());
             }
 

@@ -3,9 +3,15 @@ package cc.cassian.bigger_fish.neoforge;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 
 public class PlatformMethodsImpl {
+
+    public static boolean isModLoaded(String modID) {
+        return ModList.get().isLoaded(modID);
+    }
+
     public static boolean isFishingRod(ItemStack stack) {
         return stack.is(Tags.Items.TOOLS_FISHING_ROD);
     }

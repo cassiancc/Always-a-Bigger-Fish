@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.neoforge;
 import cc.cassian.bigger_fish.config.neoforge.ModConfigFactory;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
+import cc.cassian.bigger_fish.registry.neoforge.CommonRegistryImpl;
 import com.mojang.serialization.Codec;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -39,6 +40,7 @@ public final class BiggerFishNeoForge {
     public BiggerFishNeoForge(IEventBus eventBus, ModContainer container) {
         // Run our common setup.
         BiggerFishMod.init();
+        CommonRegistryImpl.register(eventBus);
         ATTACHMENT_TYPES.register(eventBus);
         eventBus.addListener(BiggerFishNeoForge::registerCreativeTabs);
         registerModsPage();

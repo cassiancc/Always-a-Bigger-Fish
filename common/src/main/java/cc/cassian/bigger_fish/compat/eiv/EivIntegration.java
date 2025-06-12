@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class EivIntegration implements IExtendedItemViewIntegration {
     @Override
@@ -40,7 +41,7 @@ public class EivIntegration implements IExtendedItemViewIntegration {
     }
 
     public static void hideStacks() {
-        for (DeferredSupplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
+        for (Supplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
             ItemView.excludeItem(item.get());
         }
     }

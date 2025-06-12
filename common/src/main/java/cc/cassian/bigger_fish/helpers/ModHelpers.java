@@ -15,6 +15,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
@@ -94,9 +95,9 @@ public class ModHelpers {
         }
     }
 
-    public static List<ItemStack> toCollection(List<DeferredSupplier<Item>> fish) {
+    public static List<ItemStack> toCollection(List<Supplier<Item>> fish) {
         List<ItemStack> list = new ArrayList<>();
-        for (DeferredSupplier<Item> itemDeferredSupplier : fish) {
+        for (Supplier<Item> itemDeferredSupplier : fish) {
             list.add(itemDeferredSupplier.get().getDefaultInstance());
         }
         return list;
