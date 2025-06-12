@@ -47,6 +47,27 @@ subprojects {
             name = "cassian's maven"
             url = "https://maven.cassian.cc/"
         }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = "Greenhouse Maven"
+                    url = "https://repo.greenhouse.house/releases/"
+                }
+            }
+            filter {
+                includeGroup "vectorwing"
+            }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    url = "https://jitpack.io"
+                }
+            }
+            filter {
+                includeGroup "com.github.Chocohead"
+            }
+        }
     }
 
     loom {

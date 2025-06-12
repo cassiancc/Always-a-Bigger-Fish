@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:bread",
+    "#c:foods/cooked_fish",
+    "#c:foods/leafy_green",
+    "#c:crops/onion"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bigger_fish:fish_taco"
+  }
+}

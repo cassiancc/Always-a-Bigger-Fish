@@ -36,7 +36,10 @@ dependencies {
     modImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}")
     modImplementation "maven.modrinth:compost:${compost_version}"
     modImplementation "cc.cassian.item-descriptions:item-descriptions-fabric:${item_descriptions_version}+${minecraft_version}"
-
+    modImplementation("vectorwing:FarmersDelight:${fdrf_version}+refabricated") {
+        exclude(group: "net.fabricmc")
+        exclude(group: "me.shedaniel")
+    }
     // Developer tools
     modRuntimeOnly "maven.modrinth:eiv:${eiv_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"
