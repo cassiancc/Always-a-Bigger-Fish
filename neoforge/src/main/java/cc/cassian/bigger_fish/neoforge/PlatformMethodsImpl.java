@@ -4,9 +4,17 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.Tags;
 
+import java.nio.file.Path;
+
 public class PlatformMethodsImpl {
+
+    public static Path getConfigFolder() {
+        return FMLPaths.CONFIGDIR.get();
+    }
 
     public static boolean isModLoaded(String modID) {
         return ModList.get().isLoaded(modID);

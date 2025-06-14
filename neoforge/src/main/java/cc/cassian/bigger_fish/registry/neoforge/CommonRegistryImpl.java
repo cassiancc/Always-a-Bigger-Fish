@@ -1,18 +1,12 @@
 package cc.cassian.bigger_fish.registry.neoforge;
 
-import cc.cassian.bigger_fish.BiggerFishMod;
-import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 

@@ -2,7 +2,6 @@ package cc.cassian.bigger_fish.mixin;
 
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
-import dev.architectury.platform.Platform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;

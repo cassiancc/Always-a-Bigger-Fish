@@ -2,7 +2,6 @@ package cc.cassian.bigger_fish.helpers;
 
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
-import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
