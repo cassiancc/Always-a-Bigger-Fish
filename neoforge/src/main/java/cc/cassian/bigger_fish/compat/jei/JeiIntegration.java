@@ -28,11 +28,14 @@ public class JeiIntegration implements IModPlugin {
     }
 
     @Override
-    public void registerRecipes(IRecipeRegistration registration) {
+    public void registerRecipes(IRecipeRegistration registry) {
         for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
-            addTagInfo(registration, itemTagKey);
+            addTagInfo(registry, itemTagKey);
         }
-        addTagInfo(registration, BiggerFishTags.LAVA_FISH);
+        addTagInfo(registry, BiggerFishTags.LAVA_FISH);
+        addTagInfo(registry, BiggerFishTags.TIER_ONE_BAIT);
+        addTagInfo(registry, BiggerFishTags.TIER_TWO_BAIT);
+        addTagInfo(registry, BiggerFishTags.TIER_THREE_BAIT);
 
         if (!ModCompat.FARMERS_DELIGHT) {
             ArrayList<ItemStack> objects = new ArrayList<>();
@@ -40,7 +43,7 @@ public class JeiIntegration implements IModPlugin {
                 objects.add(item.get().getDefaultInstance());
             }
 
-            registration.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, objects);
+            registry.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, objects);
         }
     }
 
