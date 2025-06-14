@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "bigger_fish:tier_three_brackish_cave_fish",
+          "expand": true
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

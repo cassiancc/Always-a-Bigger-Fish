@@ -100,6 +100,7 @@ public class BiggerFishItems {
     public static Supplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
     public static Supplier<Item> FISH_KEBAB = createFood("fish_kebab", 7, 0.6f);
     public static Supplier<Item> FISH_STEW = createFood("fish_stew", 7, 0.6f);
+    public static Supplier<Item> CANNED_FISH = createFood("canned_fish", 5, 0.6f);
     public static Supplier<Item> FISH_FINGERS = createFood("fish_fingers", 5, 0.6f, true);
     public static Supplier<Item> FISH_TACO = createFood("fish_taco", 7, 0.6f, true);
 

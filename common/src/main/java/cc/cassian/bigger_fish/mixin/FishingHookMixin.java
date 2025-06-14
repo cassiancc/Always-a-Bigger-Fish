@@ -52,12 +52,27 @@ public class FishingHookMixin {
     }
 
     @WrapOperation(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;"))
-    private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original) {
+    private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original, ItemStack stack) {
         var hook = (FishingHook) (Object) this;
         if (PlatformMethods.isLavaHook(hook)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
         if (ModConfig.get().biomeFishing) {
+            if (stack.has(DataComponents.BUNDLE_CONTENTS)) {
+                BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
+                if (bundleContents != null && !bundleContents.isEmpty()) {
+                    ItemStack itemUnsafe = bundleContents.getItemUnsafe(0);
+                    if (itemUnsafe.is(BiggerFishTags.TIER_ONE_BAIT)) {
+                        return instance.getLootTable(BiggerFishLootTables.TIER_ONE_FISHING);
+                    } else if (itemUnsafe.is(BiggerFishTags.TIER_TWO_BAIT)) {
+                        return instance.getLootTable(BiggerFishLootTables.TIER_TWO_FISHING);
+                    } else if (itemUnsafe.is(BiggerFishTags.TIER_THREE_BAIT)) {
+                        return instance.getLootTable(BiggerFishLootTables.TIER_THREE_FISHING);
+                    } else {
+                        return instance.getLootTable(BiggerFishLootTables.FISHING);
+                    }
+                }
+            }
             return instance.getLootTable(BiggerFishLootTables.FISHING);
         } else {
             return original.call(instance, lootTableKey);
@@ -110,7 +125,7 @@ public class FishingHookMixin {
     @Inject(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;setDeltaMovement(DDD)V"))
     private void fireproofItems(ItemStack fishingRod, CallbackInfoReturnable<Integer> cir, @Local ItemEntity itemEntity) {
         var hook = (FishingHook) (Object) this;
-        if ((hook.getPlayerOwner().getMainHandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA) || hook.getPlayerOwner().getOffhandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA)) && hook.level().getFluidState(hook.blockPosition()).is(FluidTags.LAVA)) {
+        if (fishingRod.is(BiggerFishTags.CAN_FISH_IN_LAVA) && hook.level().getFluidState(hook.blockPosition()).is(FluidTags.LAVA)) {
             PlatformMethods.makeFireproof(itemEntity);
         }
     }

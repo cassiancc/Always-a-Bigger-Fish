@@ -30,7 +30,7 @@
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/cold/freshwater",
+          "value": "bigger_fish:gameplay/fishing/cold/freshwater/tier_three",
           "weight": 85
         },
         {
@@ -47,7 +47,7 @@
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/cold/saltwater",
+          "value": "bigger_fish:gameplay/fishing/cold/saltwater/tier_three",
           "weight": 85
         },
         {
@@ -76,7 +76,7 @@
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/hot/freshwater",
+          "value": "bigger_fish:gameplay/fishing/hot/freshwater/tier_three",
           "weight": 85
         },
         {
@@ -93,7 +93,7 @@
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/hot/saltwater",
+          "value": "bigger_fish:gameplay/fishing/hot/saltwater/tier_three",
           "weight": 85
         },
         {
@@ -134,7 +134,7 @@
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/temperate/freshwater",
+          "value": "bigger_fish:gameplay/fishing/temperate/freshwater/tier_three",
           "weight": 85
         },
         {
@@ -151,7 +151,7 @@
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/temperate/saltwater",
+          "value": "bigger_fish:gameplay/fishing/temperate/saltwater/tier_three",
           "weight": 85
         },
         {
@@ -185,7 +185,7 @@
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/brackish",
+          "value": "bigger_fish:gameplay/fishing/brackish/tier_three",
           "weight": 85
         },
         {

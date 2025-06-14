@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "bigger_fish:hot_saltwater_fish",
+          "name": "bigger_fish:tier_one_cold_saltwater_fish",
           "expand": true
         }
       ],

@@ -41,57 +41,6 @@ public class BaitedRodItem extends FishingRodItem {
     private static final int BAR_COLOR = ARGB.colorFromFloat(1.0F, 0.44F, 0.53F, 1.0F);
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        ItemStack itemStack = player.getItemInHand(hand);
-        if (player.fishing != null) {
-            if (!level.isClientSide) {
-                int i = player.fishing.retrieve(itemStack);
-                itemStack.hurtAndBreak(i, player, LivingEntity.getSlotForHand(hand));
-            }
-
-            level.playSound(
-                    null,
-                    player.getX(),
-                    player.getY(),
-                    player.getZ(),
-                    SoundEvents.FISHING_BOBBER_RETRIEVE,
-                    SoundSource.NEUTRAL,
-                    1.0F,
-                    0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
-            );
-            player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
-        } else {
-            level.playSound(
-                    null,
-                    player.getX(),
-                    player.getY(),
-                    player.getZ(),
-                    SoundEvents.FISHING_BOBBER_THROW,
-                    SoundSource.NEUTRAL,
-                    0.5F,
-                    0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
-            );
-            if (level instanceof ServerLevel serverLevel) {
-                int j = (int)(EnchantmentHelper.getFishingTimeReduction(serverLevel, itemStack, player) * 20.0F);
-                int k = EnchantmentHelper.getFishingLuckBonus(serverLevel, itemStack, player);
-                // todo might move this to a mixin
-                if (itemStack.has(DataComponents.BUNDLE_CONTENTS)) {
-                    BundleContents bundleContents = itemStack.get(DataComponents.BUNDLE_CONTENTS);
-                    if (bundleContents != null && !bundleContents.isEmpty()) {
-                        j=300;
-                    }
-                }
-                Projectile.spawnProjectile(new FishingHook(player, level, k, j), serverLevel, itemStack);
-            }
-
-            player.awardStat(Stats.ITEM_USED.get(this));
-            player.gameEvent(GameEvent.ITEM_INTERACT_START);
-        }
-
-        return InteractionResult.SUCCESS;
-    }
-
-    @Override
     public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {
         BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
         if (bundleContents == null) {

@@ -82,7 +82,10 @@
       "cooked_cod",
       "cooked_salmon_from_campfire_cooking",
       "cooked_salmon_from_smoking",
-      "cooked_salmon"
+      "cooked_salmon",
+      "fried_fish_tropical",
+      "fried_fish_tropical_from_smoking",
+      "fried_fish_tropical_from_campfire_cooking"
     ]
   ]
 }

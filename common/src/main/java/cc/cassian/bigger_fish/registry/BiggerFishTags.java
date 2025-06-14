@@ -11,7 +11,9 @@ import java.util.List;
 
 public class BiggerFishTags {
 
-
+    public static final TagKey<Item> TIER_ONE_BAIT = itemTagKey("level_one_bait");
+    public static final TagKey<Item> TIER_TWO_BAIT = itemTagKey("level_two_bait");
+    public static final TagKey<Item> TIER_THREE_BAIT = itemTagKey("level_three_bait");
     public static final TagKey<Item> BAIT = itemTagKey("bait");
     public static final TagKey<Item> REQUIRES_MINIGAME_TO_CATCH = itemTagKey("requires_minigame_to_catch");
     public static final TagKey<Item> CAN_FISH_IN_LAVA = itemTagKey("can_fish_in_lava");;

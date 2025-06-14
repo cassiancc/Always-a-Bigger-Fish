@@ -1,0 +1,15 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+   "bigger_fish:fried_fish"
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 2,
+        "id": "bigger_fish:fish_fingers"
+      }
+    }
+  ],
+  "tool": "#c:tools/knife"
+}

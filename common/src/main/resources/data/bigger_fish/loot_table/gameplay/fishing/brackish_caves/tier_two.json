@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "bigger_fish:cold_freshwater_fish",
+          "name": "bigger_fish:tier_two_brackish_cave_fish",
           "expand": true
         }
       ],

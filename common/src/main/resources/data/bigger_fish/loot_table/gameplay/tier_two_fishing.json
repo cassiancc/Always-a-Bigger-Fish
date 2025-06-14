@@ -12,14 +12,17 @@
               "entity": "this",
               "predicate": {
                 "location": {
-                  "biomes": "minecraft:deep_dark"
+                  "position": {
+                    "y": {
+                      "min": 32
+                    }
+                  }
                 }
               }
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/deep_dark",
-          "weight": 85
+          "value": "bigger_fish:gameplay/fishing/tier_two_aboveground"
         },
         {
           "type": "minecraft:loot_table",
@@ -29,19 +32,17 @@
               "entity": "this",
               "predicate": {
                 "location": {
-                  "biomes": "minecraft:dripstone_caves"
+                  "position": {
+                    "y": {
+                      "max": 32
+                    }
+                  }
                 }
               }
             }
           ],
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/brackish_caves",
-          "weight": 85
-        },
-        {
-          "type": "minecraft:tag",
-          "name": "bigger_fish:cave_fish",
-          "expand": true
+          "value": "bigger_fish:gameplay/fishing/caves/tier_two"
         }
       ],
       "rolls": 1
