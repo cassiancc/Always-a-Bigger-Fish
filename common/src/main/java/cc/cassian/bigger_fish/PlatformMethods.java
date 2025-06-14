@@ -1,8 +1,6 @@
 package cc.cassian.bigger_fish;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
