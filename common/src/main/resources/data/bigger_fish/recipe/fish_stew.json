@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shapeless","category":"building","ingredients":["#c:foods/cooked_fish","minecraft:bowl","minecraft:carrot","minecraft:potato"],"result":{"id":"bigger_fish:fish_stew","count":1}}
+{"type":"minecraft:crafting_shapeless","category":"food","ingredients":["#c:foods/cooked_fish","minecraft:bowl","minecraft:carrot","minecraft:potato"],"result":{"id":"bigger_fish:fish_stew","count":1}}
