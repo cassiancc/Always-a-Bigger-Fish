@@ -1,5 +1,6 @@
-package cc.cassian.bigger_fish.compat.eiv;
+package cc.cassian.bigger_fish.compat.eiv.lava_fishing;
 
+import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewRecipe;
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
 import de.crafty.eiv.common.recipe.inventory.SlotContent;
 import net.minecraft.tags.TagKey;
@@ -8,7 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 
-public class LavaFishingViewRecipe extends FishingViewRecipe{
+public class LavaFishingViewRecipe extends FishingViewRecipe {
     public LavaFishingViewRecipe(TagKey<Item> output) {
         super(output);
     }

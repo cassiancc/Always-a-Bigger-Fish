@@ -1,4 +1,4 @@
-package cc.cassian.bigger_fish.compat.eiv;
+package cc.cassian.bigger_fish.compat.eiv.fishing;
 
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
 import de.crafty.eiv.common.api.recipe.IEivViewRecipe;
@@ -8,17 +8,11 @@ import de.crafty.eiv.common.recipe.inventory.SlotContent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.CommonColors;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluids;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FishingViewRecipe implements IEivViewRecipe {

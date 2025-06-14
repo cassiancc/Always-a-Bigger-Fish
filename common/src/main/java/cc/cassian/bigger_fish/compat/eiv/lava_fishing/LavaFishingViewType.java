@@ -1,11 +1,11 @@
-package cc.cassian.bigger_fish.compat.eiv;
+package cc.cassian.bigger_fish.compat.eiv.lava_fishing;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import java.util.List;
 

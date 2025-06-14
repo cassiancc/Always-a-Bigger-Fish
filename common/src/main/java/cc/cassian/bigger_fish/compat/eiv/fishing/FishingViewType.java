@@ -1,4 +1,4 @@
-package cc.cassian.bigger_fish.compat.eiv;
+package cc.cassian.bigger_fish.compat.eiv.fishing;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;

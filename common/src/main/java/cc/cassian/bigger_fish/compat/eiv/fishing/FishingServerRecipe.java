@@ -1,17 +1,17 @@
-package cc.cassian.bigger_fish.compat.eiv;
+package cc.cassian.bigger_fish.compat.eiv.fishing;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import de.crafty.eiv.common.api.recipe.EivRecipeType;
 import de.crafty.eiv.common.api.recipe.IEivServerRecipe;
 import net.minecraft.nbt.CompoundTag;
 
-public class LavaFishingServerRecipe implements IEivServerRecipe {
+public class FishingServerRecipe implements IEivServerRecipe {
 
 
         //Create a server recipe type (the id does not have to match your client side viewtype id)
-        public static final EivRecipeType<LavaFishingServerRecipe> TYPE = EivRecipeType.register(
-                BiggerFishMod.of("lava_fishing"),
-                () -> new LavaFishingServerRecipe()
+        public static final EivRecipeType<FishingServerRecipe> TYPE = EivRecipeType.register(
+                BiggerFishMod.of("fishing"),
+                () -> new FishingServerRecipe()
         );
 
         @Override
@@ -25,7 +25,7 @@ public class LavaFishingServerRecipe implements IEivServerRecipe {
         }
 
         @Override
-        public EivRecipeType<? extends LavaFishingServerRecipe> getRecipeType() {
+        public EivRecipeType<? extends FishingServerRecipe> getRecipeType() {
             return TYPE;
         }
 }
