@@ -11,7 +11,10 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -37,6 +40,10 @@ public final class BiggerFishFabric implements ModInitializer {
 
         // Run our common setup.
         BiggerFishMod.init();
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 1, (factories, rebalanced) -> {
+            factories.add(new VillagerTrades.EmeraldForItems(BiggerFishItems.LEECH.get(), 2, 12, 4));
+        });
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
             itemGroup.addAfter(Items.FISHING_ROD, BiggerFishItems.NETHERITE_ROD.get());

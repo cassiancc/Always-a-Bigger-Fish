@@ -5,6 +5,8 @@ import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.neoforge.CommonRegistryImpl;
 import com.mojang.serialization.Codec;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
@@ -19,7 +21,9 @@ import net.neoforged.fml.common.Mod;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
@@ -43,6 +47,7 @@ public final class BiggerFishNeoForge {
         CommonRegistryImpl.register(eventBus);
         ATTACHMENT_TYPES.register(eventBus);
         eventBus.addListener(BiggerFishNeoForge::registerCreativeTabs);
+        NeoForge.EVENT_BUS.addListener(BiggerFishNeoForge::registerVillageTrades);
         registerModsPage();
     }
 
@@ -62,6 +67,12 @@ public final class BiggerFishNeoForge {
                 event.insertAfter(Items.BONE_MEAL.getDefaultInstance(), itemStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void registerVillageTrades(VillagerTradesEvent event) {
+        if (event.getType() == VillagerProfession.FISHERMAN)
+            event.getTrades().get(1).add(new VillagerTrades.EmeraldForItems(BiggerFishItems.LEECH.get(), 2, 12, 4));
     }
 
     public void registerModsPage() {
