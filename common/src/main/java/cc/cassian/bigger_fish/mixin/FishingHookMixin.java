@@ -57,7 +57,7 @@ public class FishingHookMixin {
         if (PlatformMethods.isLavaHook(hook)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
-        if (ModConfig.get().biomeFishing) {
+        if (ModConfig.get().biomeFishing || stack.is(BiggerFishTags.CATCHES_BIGGER_FISH)) {
             if (stack.has(DataComponents.BUNDLE_CONTENTS)) {
                 BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
                 if (bundleContents != null && !bundleContents.isEmpty()) {
