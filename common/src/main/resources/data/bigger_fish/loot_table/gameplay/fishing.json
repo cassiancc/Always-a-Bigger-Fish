@@ -47,7 +47,7 @@
           ],
           "weight": 60,
           "quality": -1,
-          "value": "bigger_fish:gameplay/fishing/aboveground/tier_one"
+          "value": "bigger_fish:gameplay/fishing/tier_one_aboveground"
         },
         {
           "type": "minecraft:loot_table",
