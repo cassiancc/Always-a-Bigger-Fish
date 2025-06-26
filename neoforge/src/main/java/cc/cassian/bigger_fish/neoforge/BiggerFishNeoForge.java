@@ -72,7 +72,7 @@ public final class BiggerFishNeoForge {
     @SubscribeEvent
     public static void registerVillageTrades(VillagerTradesEvent event) {
         if (event.getType() == VillagerProfession.FISHERMAN)
-            event.getTrades().get(1).add(new VillagerTrades.EmeraldForItems(BiggerFishItems.LEECH.get(), 2, 12, 4));
+            event.getTrades().get(1).add(new VillagerTrades.ItemsForEmeralds(BiggerFishItems.LEECH.get(), 1, 2, 4));
     }
 
     public void registerModsPage() {

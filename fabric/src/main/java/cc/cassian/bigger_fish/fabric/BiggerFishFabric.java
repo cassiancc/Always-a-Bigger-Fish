@@ -42,7 +42,7 @@ public final class BiggerFishFabric implements ModInitializer {
         BiggerFishMod.init();
 
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 1, (factories, rebalanced) -> {
-            factories.add(new VillagerTrades.EmeraldForItems(BiggerFishItems.LEECH.get(), 2, 12, 4));
+            factories.add(new VillagerTrades.ItemsForEmeralds(BiggerFishItems.LEECH.get(), 1, 2, 4));
         });
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
