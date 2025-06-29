@@ -1,7 +1,10 @@
 package cc.cassian.bigger_fish.compat.eiv;
 
-import cc.cassian.bigger_fish.compat.eiv.bait.BaitServerRecipe;
-import cc.cassian.bigger_fish.compat.eiv.bait.BaitViewRecipe;
+import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.compat.eiv.bait.BaitUsageServerRecipe;
+import cc.cassian.bigger_fish.compat.eiv.bait.BaitUsageViewRecipe;
+import cc.cassian.bigger_fish.compat.eiv.bait_info.BaitInfoServerRecipe;
+import cc.cassian.bigger_fish.compat.eiv.bait_info.BaitInfoViewRecipe;
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingServerRecipe;
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewRecipe;
 import cc.cassian.bigger_fish.compat.eiv.lava_fishing.LavaFishingServerRecipe;
@@ -25,10 +28,12 @@ public class EivIntegration implements IExtendedItemViewIntegration {
             //Here you can add all your server recipes
             list.add(new FishingServerRecipe());
             list.add(new LavaFishingServerRecipe());
-            list.add(new BaitServerRecipe());
+            list.add(new BaitInfoServerRecipe());
+            list.add(new BaitUsageServerRecipe());
         });
 
         //For the client
+
         // Fishing
         ItemView.registerRecipeWrapper(FishingServerRecipe.TYPE,  modRecipe -> {
 
@@ -44,15 +49,21 @@ public class EivIntegration implements IExtendedItemViewIntegration {
 
         // Lava Fishing
         ItemView.registerRecipeWrapper(LavaFishingServerRecipe.TYPE,
-                modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)));
+                modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)
+        ));
 
         // Bait
-        ItemView.registerRecipeWrapper(BaitServerRecipe.TYPE,
+        ItemView.registerRecipeWrapper(BaitInfoServerRecipe.TYPE,
                 modRecipe -> List.of(
-                        new BaitViewRecipe(BiggerFishTags.TIER_ONE_BAIT),
-                        new BaitViewRecipe(BiggerFishTags.TIER_TWO_BAIT),
-                        new BaitViewRecipe(BiggerFishTags.TIER_THREE_BAIT)
-                ));
+                        new BaitInfoViewRecipe(BiggerFishItems.WORM, BiggerFishMod.of("worm"))
+        ));
+
+        ItemView.registerRecipeWrapper(BaitUsageServerRecipe.TYPE,
+                modRecipe -> List.of(
+                        new BaitUsageViewRecipe(BiggerFishTags.TIER_ONE_BAIT),
+                        new BaitUsageViewRecipe(BiggerFishTags.TIER_TWO_BAIT),
+                        new BaitUsageViewRecipe(BiggerFishTags.TIER_THREE_BAIT)
+        ));
     }
 
     public static void hideStacks() {

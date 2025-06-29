@@ -1,4 +1,4 @@
-package cc.cassian.bigger_fish.compat.eiv.bait;
+package cc.cassian.bigger_fish.compat.eiv.bait_info;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewType;
@@ -9,8 +9,8 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-public class BaitFishingViewType extends FishingViewType {
-    protected static final BaitFishingViewType INSTANCE = new BaitFishingViewType();
+public class BaitInfoViewType extends FishingViewType {
+    protected static final BaitInfoViewType INSTANCE = new BaitInfoViewType();
 
     @Override
     public Component getDisplayName() {
@@ -24,7 +24,7 @@ public class BaitFishingViewType extends FishingViewType {
 
     @Override
     public ResourceLocation getId() {
-        return BiggerFishMod.of("bait");
+        return BiggerFishMod.of("bait_info");
     }
 
     @Override

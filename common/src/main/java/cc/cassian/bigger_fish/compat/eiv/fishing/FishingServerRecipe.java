@@ -11,7 +11,7 @@ public class FishingServerRecipe implements IEivServerRecipe {
         //Create a server recipe type (the id does not have to match your client side viewtype id)
         public static final EivRecipeType<FishingServerRecipe> TYPE = EivRecipeType.register(
                 BiggerFishMod.of("fishing"),
-                () -> new FishingServerRecipe()
+                FishingServerRecipe::new
         );
 
         @Override

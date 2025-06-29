@@ -8,12 +8,16 @@ import de.crafty.eiv.common.recipe.inventory.SlotContent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.FormattedText;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class FishingViewRecipe implements IEivViewRecipe {
     private final SlotContent output;
@@ -25,7 +29,16 @@ public class FishingViewRecipe implements IEivViewRecipe {
 
         //Define your inputs and outputs here
         this.output = SlotContent.of(output);
-        this.translationKey = "tag."+ output.location().toLanguageKey() + ".eiv";
+        this.translationKey = "tag." + output.location().toLanguageKey() + ".eiv";
+
+    }
+
+    //You can design your constructor to suit your needs
+    public FishingViewRecipe(Supplier<Item> itemSupplier, ResourceLocation id) {
+
+        //Define your inputs and outputs here
+        this.output = SlotContent.of(itemSupplier.get());
+        this.translationKey = "item." + id.toLanguageKey() + ".eiv";
 
     }
 
