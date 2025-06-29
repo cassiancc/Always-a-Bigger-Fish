@@ -52,7 +52,7 @@ public class JeiIntegration implements IModPlugin {
         BuiltInRegistries.ITEM.get(itemTag).ifPresent((holders) -> holders.forEach((holder) -> items.add(holder.value())));
         List<ItemStack> stacks = new ArrayList<>();
         items.forEach((item) -> stacks.add(new ItemStack(item)));
-        registration.addItemStackInfo(stacks, Component.translatable("tag."+ itemTag.location().toLanguageKey() + ".eiv"));
+        registration.addItemStackInfo(stacks, Component.translatable("tag."+ itemTag.location().toLanguageKey() + ".description"));
     }
 
 }

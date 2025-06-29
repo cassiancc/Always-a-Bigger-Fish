@@ -23,6 +23,6 @@ public class ReiClient implements REIClientPlugin {
     }
 
     private static void addTagInfo(DisplayRegistry registry, TagKey<Item> itemTag) {
-        registry.add(DefaultInformationDisplay.createFromEntries(EntryIngredients.ofItemTag(itemTag), Component.translatable("tag."+ itemTag.location().toLanguageKey())).lines(Component.translatable("tag."+ itemTag.location().toLanguageKey() + ".eiv")));
+        registry.add(DefaultInformationDisplay.createFromEntries(EntryIngredients.ofItemTag(itemTag), Component.translatable("tag."+ itemTag.location().toLanguageKey())).lines(Component.translatable("tag."+ itemTag.location().toLanguageKey() + ".description")));
     }
 }

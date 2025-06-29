@@ -29,7 +29,7 @@ public class FishingViewRecipe implements IEivViewRecipe {
 
         //Define your inputs and outputs here
         this.output = SlotContent.of(output);
-        this.translationKey = "tag." + output.location().toLanguageKey() + ".eiv";
+        this.translationKey = "tag." + output.location().toLanguageKey() + ".description";
 
     }
 
@@ -38,7 +38,7 @@ public class FishingViewRecipe implements IEivViewRecipe {
 
         //Define your inputs and outputs here
         this.output = SlotContent.of(itemSupplier.get());
-        this.translationKey = "item." + id.toLanguageKey() + ".eiv";
+        this.translationKey = "item." + id.toLanguageKey() + ".description";
 
     }
 
