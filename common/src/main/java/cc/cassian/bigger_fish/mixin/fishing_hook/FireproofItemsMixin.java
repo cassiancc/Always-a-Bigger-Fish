@@ -1,4 +1,4 @@
-package cc.cassian.bigger_fish.mixin.fabric;
+package cc.cassian.bigger_fish.mixin.fishing_hook;
 
 import cc.cassian.bigger_fish.PlatformMethods;
 import cc.cassian.bigger_fish.config.ModConfig;
@@ -13,12 +13,18 @@ import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.ReloadableServerRegistries;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.FishingHook;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.storage.loot.LootTable;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,15 +34,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FishingHook.class)
-public class FishingHookMixin {
+public class FireproofItemsMixin {
 
-    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0))
-    private boolean allowModdedRodsInMainhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
-    }
-
-    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
-    private boolean allowModdedRodsInOffhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
+    @Inject(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;setDeltaMovement(DDD)V"))
+    private void fireproofItems(ItemStack fishingRod, CallbackInfoReturnable<Integer> cir, @Local ItemEntity itemEntity) {
+        var hook = (FishingHook) (Object) this;
+        if (fishingRod.is(BiggerFishTags.CAN_FISH_IN_LAVA) && hook.level().getFluidState(hook.blockPosition()).is(FluidTags.LAVA)) {
+            PlatformMethods.makeFireproof(itemEntity);
+        }
     }
 }
