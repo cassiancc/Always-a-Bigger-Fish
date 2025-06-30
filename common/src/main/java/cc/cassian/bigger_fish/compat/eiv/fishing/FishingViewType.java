@@ -22,7 +22,7 @@ public class FishingViewType implements IEivRecipeViewType {
 
     @Override
     public int getDisplayWidth() {
-        return 120;
+        return 140;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class FishingViewType implements IEivRecipeViewType {
         //Tell EIV where your slots are located by calling slotDefinition.addItemSlot();
         //NOTE: Slot position is relative to your gui texture
 
-        slotDefinition.addItemSlot(0, 55, 65);
+        slotDefinition.addItemSlot(0, (getDisplayWidth()/2)-5, 65);
 
     }
 

@@ -23,7 +23,7 @@ public class ClothConfigFactory {
         } else {
             section += "_";
         }
-        return builder.getOrCreateCategory(Component.translatable("config.item-descriptions.%stitle".formatted(section)));
+        return builder.getOrCreateCategory(Component.translatable("config.bigger_fish.%stitle".formatted(section)));
     }
 
     private static boolean is(Field field, String name) {

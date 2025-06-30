@@ -57,7 +57,7 @@ public class FishingViewRecipe implements IEivViewRecipe {
 
     @Override
     public void renderRecipe(RecipeViewScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        guiGraphics.drawWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, 112, 1842204, false);
+        guiGraphics.drawWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, FishingViewType.INSTANCE.getDisplayWidth()-8, 1842204, false);
     }
 
     @Override
