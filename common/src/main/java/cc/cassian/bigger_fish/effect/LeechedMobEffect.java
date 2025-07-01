@@ -16,9 +16,9 @@ public class LeechedMobEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.getHealth() > 1.0F) {
-            entity.hurtServer(level, entity.damageSources().magic(), 1.0F);
+            entity.hurt(entity.damageSources().magic(), 1.0F);
             if (entity.getRandom().nextBoolean() && entity.getActiveEffects().size() > 1) {
                 List<MobEffectInstance> activeEffects = entity.getActiveEffects().stream().toList();
                 var effect = getRandomEffectToRemove(activeEffects, entity);

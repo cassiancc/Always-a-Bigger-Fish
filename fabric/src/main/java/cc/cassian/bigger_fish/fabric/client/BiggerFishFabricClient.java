@@ -4,6 +4,7 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.minigame.MinigameLayer;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;

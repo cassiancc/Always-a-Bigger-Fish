@@ -15,7 +15,7 @@ public class BiggerFishEntityTypes {
                     .sized(0.25F, 0.25F)
                     .clientTrackingRange(4)
                     .updateInterval(10)
-                    .build(ResourceKey.create(Registries.ENTITY_TYPE, BiggerFishMod.of("leech")))));
+                    .build(BiggerFishMod.of("leech").toString())));
 
     public static void touch() {
 

@@ -25,11 +25,8 @@
     "modmenu": [
       "cc.cassian.bigger_fish.config.fabric.ModMenuIntegration"
     ],
-    "eiv": [
-      "cc.cassian.bigger_fish.compat.eiv.EivIntegration"
-    ],
-    "rei_client": [
-      "cc.cassian.bigger_fish.compat.fabric.rei.ReiClient"
+    "emi": [
+      "cc.cassian.bigger_fish.compat.emi.EmiCompat"
     ]
   },
   "mixins": [

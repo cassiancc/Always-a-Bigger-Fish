@@ -1,10 +1,18 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "minecraft:bread",
-    "#c:foods/cooked_fish",
-    "#c:foods/leafy_green",
-    "#c:crops/onion"
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "tag": "c:foods/leafy_green"
+    },
+    {
+      "tag": "c:foods/cooked_fish"
+    },
+    {
+      "tag": "c:crops/onion"
+    }
   ],
   "result": {
     "count": 1,

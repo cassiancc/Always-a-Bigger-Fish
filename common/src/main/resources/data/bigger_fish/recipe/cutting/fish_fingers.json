@@ -1,7 +1,9 @@
 {
   "type": "farmersdelight:cutting",
   "ingredients": [
-   "bigger_fish:fried_fish"
+    {
+      "item": "bigger_fish:fried_fish"
+    }
   ],
   "result": [
     {
