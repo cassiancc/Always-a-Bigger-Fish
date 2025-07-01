@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish;
 
 import cc.cassian.bigger_fish.compat.CompostCompat;
+import cc.cassian.bigger_fish.compat.iteminteractions.ItemInteractionsCompat;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
@@ -20,6 +21,9 @@ public final class BiggerFishMod {
         BiggerFishItems.touch();
         if (ModCompat.COMPOST) {
             CompostCompat.register();
+        }
+        if (ModCompat.ITEMINTERACTIONS) {
+            ItemInteractionsCompat.touch();
         }
     }
 

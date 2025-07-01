@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.items;
 
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -13,6 +14,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
 import org.apache.commons.lang3.math.Fraction;
+
+import java.util.List;
 
 import static net.minecraft.util.FastColor.ARGB32.colorFromFloat;
 
@@ -116,5 +119,13 @@ public class BaitedRodItem extends FishingRodItem {
 
     private static void playInsertSound(Entity entity) {
         entity.playSound(SoundEvents.BUNDLE_INSERT, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        var contents = stack.get(DataComponents.BUNDLE_CONTENTS);
+        if (contents == null || contents.isEmpty()) {
+            tooltipComponents.add(Component.translatable("item.bigger_fish.baited_rod.empty.description"));
+        }
     }
 }

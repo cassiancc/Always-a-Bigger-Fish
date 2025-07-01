@@ -6,4 +6,5 @@ public class ModCompat {
     public static final boolean EMI = PlatformMethods.isModLoaded("emi");
     public static final boolean FARMERS_DELIGHT = PlatformMethods.isModLoaded("farmersdelight");
     public static final boolean COMPOST = PlatformMethods.isModLoaded("compost");
+    public static final boolean ITEMINTERACTIONS = PlatformMethods.isModLoaded("iteminteractions");
 }

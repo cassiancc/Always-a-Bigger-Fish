@@ -1,0 +1,7 @@
+{
+  "type": "bigger_fish:baited_rod",
+  "background_color": "orange",
+  "capacity_multiplier": 1,
+  "disallowed_item_contents": [],
+  "supported_items": "bigger_fish:copper_rod"
+}

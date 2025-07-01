@@ -67,6 +67,10 @@ subprojects {
             filter {
                 includeGroup "com.github.Chocohead"
             }
+            maven {
+                name = "Fuzs Mod Resources"
+                url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+            }
         }
     }
 

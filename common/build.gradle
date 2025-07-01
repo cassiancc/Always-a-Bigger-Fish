@@ -13,4 +13,5 @@ dependencies {
     modImplementation "maven.modrinth:compost:${compost_version}"
     modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}")
     modLocalRuntime "dev.emi:emi-fabric:$emi_version+$minecraft_version"
+    modApi("fuzs.iteminteractions:iteminteractions-fabric:$iteminteractions_version")
 }
