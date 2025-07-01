@@ -1,0 +1,8 @@
+{
+  "entity.leech.throw": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.bigger_fish.leech.throw"
+  }
+}

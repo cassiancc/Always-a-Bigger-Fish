@@ -1,43 +1,46 @@
 package cc.cassian.bigger_fish.items;
 
-import net.minecraft.server.level.ServerPlayer;
+import cc.cassian.bigger_fish.entity.LeechEntity;
+import cc.cassian.bigger_fish.registry.BiggerFishSoundEvents;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileItem;
+import net.minecraft.world.level.Level;
 
-public class LeechItem extends Item {
+public class LeechItem extends Item implements ProjectileItem {
+
+    public static float PROJECTILE_SHOOT_POWER = 0.5F;
+
     public LeechItem(Properties properties) {
         super(properties);
     }
 
-    @Override
-    public InteractionResult useOn(UseOnContext useOnContext) {
-        Player player = useOnContext.getPlayer();
-        var result = this.calculateHitResult(player);
-        if (player != null && result.getType() == HitResult.Type.ENTITY) {
-           if (result instanceof EntityHitResult hitResult) {
-               // TODO unique effect
-               if (hitResult.getEntity() instanceof LivingEntity livingEntity && livingEntity.isAffectedByPotions()) {
-                   livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 5, 1, true, true));
-                   useOnContext.getItemInHand().consume(1, player);
-                   return InteractionResult.CONSUME;
-               }
-           }
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), BiggerFishSoundEvents.LEECH_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+        if (level instanceof ServerLevel serverLevel) {
+            Projectile.spawnProjectileFromRotation(LeechEntity::new, serverLevel, itemStack, player, 0.0F, PROJECTILE_SHOOT_POWER, 1.0F);
         }
 
-
-        return InteractionResult.PASS;
+        player.awardStat(Stats.ITEM_USED.get(this));
+        itemStack.consume(1, player);
+        return InteractionResult.SUCCESS;
     }
 
-    private HitResult calculateHitResult(Player player) {
-        return ProjectileUtil.getHitResultOnViewVector(player, EntitySelector.CAN_BE_PICKED, player.blockInteractionRange());
+
+    @Override
+    public Projectile asProjectile(Level level, Position pos, ItemStack stack, Direction direction) {
+        LeechEntity leech = new LeechEntity(level, pos.x(), pos.y(), pos.z());
+        leech.setItem(stack);
+        return leech;
     }
 }

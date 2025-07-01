@@ -4,8 +4,7 @@ import cc.cassian.bigger_fish.compat.CompostCompat;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.compat.eiv.EivIntegration;
 import cc.cassian.bigger_fish.config.ModConfig;
-import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
-import cc.cassian.bigger_fish.registry.BiggerFishItems;
+import cc.cassian.bigger_fish.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +18,11 @@ public final class BiggerFishMod {
         ModConfig.load();
         BiggerFishComponentTypes.touch();
         BiggerFishItems.touch();
+        BiggerFishEntityTypes.touch();
+        BiggerFishSoundEvents.touch();
+        BiggerFishMobEffects.touch();
+
+        // Load optional compatibility
         if (ModCompat.COMPOST) {
             CompostCompat.register();
         }
