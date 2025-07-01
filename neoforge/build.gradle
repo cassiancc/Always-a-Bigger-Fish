@@ -45,21 +45,10 @@ dependencies {
     neoForge "net.neoforged:neoforge:$rootProject.neoforge_version"
 
     // Architectury API. This is optional, and you can comment it out if you don't need it.
-    modImplementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
     modImplementation("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_version}")
 
     // Developer tools
-//    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
-    // compile against the JEI API but do not include it at runtime
-    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
-    // at runtime, use the full JEI jar for NeoForge
-    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
-
-    // compile against the REI API but do not include it at runtime
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-neoforge:$rei_version"
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-neoforge:$rei_version"
-    // at runtime, use the full REI jar for NeoForge
-//    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
+    modImplementation "dev.emi:emi-fabric:$emi_version+$minecraft_version"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')

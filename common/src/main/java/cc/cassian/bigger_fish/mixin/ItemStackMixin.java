@@ -14,7 +14,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.component.TooltipProvider;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,10 +27,10 @@ import java.util.function.Consumer;
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
 
-    @Inject(method = "addDetailsToTooltip", at = @At(value = "HEAD"))
-    private void randomizedFish(Item.TooltipContext context, TooltipDisplay tooltipDisplay, Player playef, TooltipFlag tooltipFlag, Consumer<Component> tooltipAdder, CallbackInfo ci) {
+    @Inject(method = "addToTooltip", at = @At(value = "HEAD"))
+    private void randomizedFish(DataComponentType component, Item.TooltipContext context, Consumer<Component> tooltipAdder, TooltipFlag tooltipFlag, CallbackInfo ci) {
         var stack = (ItemStack) (Object) this;
-        if (stack.has(BiggerFishComponentTypes.SIZE.get()) && tooltipDisplay.shows(BiggerFishComponentTypes.SIZE.get())) {
+        if (stack.has(BiggerFishComponentTypes.SIZE.get())) {
             if (ModConfig.get().showFishSizesAlways || Screen.hasShiftDown())
                 tooltipAdder.accept(Component.translatable("component.bigger_fish.size", ModHelpers.getFishSize(stack), ModHelpers.getUnit()));
         }

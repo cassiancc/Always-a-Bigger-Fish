@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shapeless","category":"food","ingredients":["#c:foods/raw_fish","bigger_fish:can"],"result":{"id":"bigger_fish:canned_fish","count":1}}
+{"type":"minecraft:crafting_shapeless","category":"food","ingredients":[{"tag":"c:foods/raw_fish"},{"item":"bigger_fish:can"}],"result":{"id":"bigger_fish:canned_fish","count":1}}

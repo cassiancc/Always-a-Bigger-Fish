@@ -10,9 +10,9 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.HumanoidArm;
 
-public class MinigameLayer implements LayeredDraw.Layer {
-    @Override
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+public class MinigameLayer {
+
+    public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         var mc = Minecraft.getInstance();
         var player = mc.player;
         if (player == null) return;;
@@ -25,7 +25,7 @@ public class MinigameLayer implements LayeredDraw.Layer {
                 x = guiGraphics.guiWidth() / 2 - 117;
             }
 
-            guiGraphics.blitSprite(RenderType::guiTextured, ResourceLocation.withDefaultNamespace("hud/hotbar_selection"), x, y, 18, 72);
+//            guiGraphics.blitSprite(RenderType.gui(), ResourceLocation.withDefaultNamespace("hud/hotbar_selection"), x, y, 18, 72);
         }
     }
 }

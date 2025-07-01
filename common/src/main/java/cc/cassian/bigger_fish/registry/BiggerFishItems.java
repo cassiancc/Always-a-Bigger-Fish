@@ -15,6 +15,7 @@ import net.minecraft.world.item.component.BundleContents;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class BiggerFishItems {
@@ -143,7 +144,7 @@ public class BiggerFishItems {
     }
 
     private static Supplier<Item> createFood(String id, int nutrition, float saturation, boolean requiresFarmersDelight) {
-        Supplier<Item> fish = registerItem(id, properties(id).food(new FoodProperties(nutrition, saturation, false)));
+        Supplier<Item> fish = registerItem(id, properties(id).food(new FoodProperties(nutrition, saturation, false, 1.2f, Optional.empty(), List.of())));
         if (!requiresFarmersDelight || ModCompat.FARMERS_DELIGHT) {
             FISH.add(fish);
         } else {
@@ -157,7 +158,7 @@ public class BiggerFishItems {
     }
 
     private static Item.Properties properties(String id) {
-        return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)));
+        return new Item.Properties();
     }
 
     public static void touch() {

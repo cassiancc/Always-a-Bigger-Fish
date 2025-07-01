@@ -38,6 +38,6 @@ public class LeechItem extends Item {
     }
 
     private HitResult calculateHitResult(Player player) {
-        return ProjectileUtil.getHitResultOnViewVector(player, EntitySelector.CAN_BE_PICKED, player.blockInteractionRange());
+        return ProjectileUtil.getHitResultOnViewVector(player, EntitySelector.LIVING_ENTITY_STILL_ALIVE, player.blockInteractionRange());
     }
 }

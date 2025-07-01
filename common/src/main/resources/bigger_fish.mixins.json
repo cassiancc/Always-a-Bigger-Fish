@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
-    "ClientBundleTooltipMixin",
-    "ClientTooltipComponentMixin"
+    "FishingHookRendererMixin"
   ],
   "mixins": [
     "ComposterMixin",
@@ -13,8 +12,8 @@
     "ItemStackMixin",
     "fishing_hook.AllowLavaFishingMixin",
     "fishing_hook.BiomeSpecificFishMixin",
-    "fishing_hook.FishingCausesBubblesMixin",
     "fishing_hook.FireproofItemsMixin",
+    "fishing_hook.FishingCausesBubblesMixin",
     "fishing_hook.FishSizingMixin",
     "fishing_hook.LavaSplashingMixin",
     "fishing_hook.MinigameMixin",

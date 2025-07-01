@@ -72,7 +72,6 @@ public class ModHelpers {
     public static ItemStack setRandomFishSize(ItemStack itemStack, Entity hook) {
         var size = ModHelpers.getRandomFishSize(hook);
         itemStack.set(BiggerFishComponentTypes.SIZE.get(), size);
-        itemStack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(size), List.of(), List.of(), List.of()));
         return itemStack;
     }
 
