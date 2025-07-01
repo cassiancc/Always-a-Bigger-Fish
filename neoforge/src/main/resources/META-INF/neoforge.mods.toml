@@ -1,11 +1,11 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
 issueTrackerURL = "https://github.com/cassiancc/Always-A-Bigger-Fish/issues"
-license = "MIT"
+license = "MIT Code, ARR Assets"
 
 [[mods]]
 modId = "bigger_fish"
-version = "${version}"
+version = "1.0.0"
 displayName = "Always a Bigger Fish"
 authors = "cassiancc"
 description = '''

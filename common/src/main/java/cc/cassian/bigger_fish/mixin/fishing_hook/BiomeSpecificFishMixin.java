@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
-import cc.cassian.bigger_fish.PlatformMethods;
+import cc.cassian.bigger_fish.IPlatformMethods;
+import cc.cassian.bigger_fish.Platform;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
@@ -21,7 +22,7 @@ public class BiomeSpecificFishMixin {
     @WrapOperation(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;"))
     private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original, ItemStack stack) {
         var hook = (FishingHook) (Object) this;
-        if (PlatformMethods.isLavaHook(hook)) {
+        if (Platform.METHODS.isLavaHook(hook)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
         if (ModConfig.get().biomeFishing || stack.is(BiggerFishTags.CATCHES_BIGGER_FISH)) {

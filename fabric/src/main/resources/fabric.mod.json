@@ -12,7 +12,7 @@
     "sources": "https://github.com/cassiancc/Always-A-Bigger-Fish",
     "issues": "https://github.com/cassiancc/Always-A-Bigger-Fish/issues"
   },
-  "license": "MIT",
+  "license": "MIT Code, ARR Assets",
   "icon": "assets/bigger_fish/icon.png",
   "environment": "*",
   "entrypoints": {

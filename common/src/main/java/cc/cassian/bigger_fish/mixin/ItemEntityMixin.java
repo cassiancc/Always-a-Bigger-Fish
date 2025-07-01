@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.mixin;
 
-import cc.cassian.bigger_fish.PlatformMethods;
+import cc.cassian.bigger_fish.IPlatformMethods;
+import cc.cassian.bigger_fish.Platform;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -11,6 +12,6 @@ public class ItemEntityMixin {
     @WrapMethod(method = "fireImmune")
     private boolean fireproofItems(Operation<Boolean> original) {
         var itemEntity = (ItemEntity) (Object) this;
-        return PlatformMethods.isFireproof(itemEntity) || original.call();
+        return Platform.METHODS.isFireproof(itemEntity) || original.call();
     }
 }

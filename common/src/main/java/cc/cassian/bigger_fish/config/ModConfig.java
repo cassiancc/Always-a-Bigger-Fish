@@ -2,7 +2,7 @@ package cc.cassian.bigger_fish.config;
 
 
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.PlatformMethods;
+import cc.cassian.bigger_fish.Platform;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,6 +52,6 @@ public class ModConfig {
     }
 
     static Path configPath() {
-        return PlatformMethods.getConfigFolder().resolve("bigger_fish.json");
+        return Platform.METHODS.getConfigFolder().resolve("bigger_fish.json");
     }
 }

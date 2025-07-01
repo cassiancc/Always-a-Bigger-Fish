@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.mixin.fabric;
 
-import cc.cassian.bigger_fish.PlatformMethods;
+import cc.cassian.bigger_fish.Platform;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.entity.projectile.FishingHook;
@@ -14,11 +14,11 @@ public class AllowModdedRodsMixin {
 
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0))
     private boolean allowModdedRodsInMainhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
+        return Platform.METHODS.isFishingRod(instance) || original.call(instance, item);
     }
 
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
     private boolean allowModdedRodsInOffhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return PlatformMethods.isFishingRod(instance) || original.call(instance, item);
+        return Platform.METHODS.isFishingRod(instance) || original.call(instance, item);
     }
 }

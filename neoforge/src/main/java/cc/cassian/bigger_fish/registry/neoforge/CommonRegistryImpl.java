@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.registry.neoforge;
 
+import cc.cassian.bigger_fish.registry.ICommonRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,7 +17,7 @@ import java.util.function.UnaryOperator;
 
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
-public class CommonRegistryImpl {
+public class CommonRegistryImpl implements ICommonRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, MOD_ID);
     public static final DeferredRegister<DataComponentType<?>> COMPONENT_TYPES = DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, MOD_ID);
@@ -32,27 +33,27 @@ public class CommonRegistryImpl {
         CommonRegistryImpl.MOB_EFFECTS.register(eventBus);
     }
 
-    public static <T> Supplier<DataComponentType<T>> registerComponentType(String id, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
+    public <T> Supplier<DataComponentType<T>> registerComponentType(String id, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
         return COMPONENT_TYPES.register(id, () -> (builderOperator.apply(DataComponentType.builder())).build());
     }
 
-    public static <B extends Item> Supplier<B> registerItem(String name, Supplier<B> supplier) {
+    public <B extends Item> Supplier<B> registerItem(String name, Supplier<B> supplier) {
         return ITEMS.register(name, supplier);
     }
 
-    public static <B extends Block> Supplier<B> registerBlock(String name, Supplier<B> supplier) {
+    public <B extends Block> Supplier<B> registerBlock(String name, Supplier<B> supplier) {
         return BLOCKS.register(name, supplier);
     }
 
-    public static <T extends EntityType<?>> Supplier<T> registerEntity(String name, Supplier<T> supplier) {
+    public <T extends EntityType<?>> Supplier<T> registerEntity(String name, Supplier<T> supplier) {
         return ENTITY_TYPES.register(name, supplier);
     }
 
-    public static Supplier<SoundEvent> registerSoundEvent(String name, Supplier<SoundEvent> supplier) {
+    public Supplier<SoundEvent> registerSoundEvent(String name, Supplier<SoundEvent> supplier) {
         return SOUND_EVENTS.register(name, supplier);
     }
 
-    public static Holder<MobEffect> registerMobEffect(String name, Supplier<MobEffect> supplier) {
+    public Holder<MobEffect> registerMobEffect(String name, Supplier<MobEffect> supplier) {
         return MOB_EFFECTS.register(name, supplier);
     }
 }

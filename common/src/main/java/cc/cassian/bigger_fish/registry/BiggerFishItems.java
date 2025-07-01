@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.registry;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.Platform;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.items.BaitedRodItem;
 import cc.cassian.bigger_fish.items.LeechItem;
@@ -94,8 +95,8 @@ public class BiggerFishItems {
     public static Supplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
-    public static Supplier<Item> WORM = CommonRegistry.registerItem("worm", ()->new Item(properties("worm")));
-    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")));
+    public static Supplier<Item> WORM = Platform.REGISTRY.registerItem("worm", ()->new Item(properties("worm")));
+    public static Supplier<Item> LEECH = Platform.REGISTRY.registerItem("leech", ()->new LeechItem(properties("leech")));
 
     // Food
     public static Supplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
@@ -109,8 +110,8 @@ public class BiggerFishItems {
     public static Supplier<Item> SUSHI = createFood("sushi", 5, 0.6f);
 
     // Tools
-    public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
-    public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
+    public static Supplier<Item> COPPER_ROD = Platform.REGISTRY.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
+    public static Supplier<Item> NETHERITE_ROD = Platform.REGISTRY.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
 
     // JUNK
     public static Supplier<Item> CAN = createItem("can");
@@ -153,7 +154,7 @@ public class BiggerFishItems {
     }
 
     private static Supplier<Item> registerItem(String id, Item.Properties properties) {
-        return CommonRegistry.registerItem(id, () -> new Item(properties));
+        return Platform.REGISTRY.registerItem(id, () -> new Item(properties));
     }
 
     private static Item.Properties properties(String id) {

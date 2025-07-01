@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
-import cc.cassian.bigger_fish.PlatformMethods;
+import cc.cassian.bigger_fish.IPlatformMethods;
+import cc.cassian.bigger_fish.Platform;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -18,7 +19,7 @@ public class AllowLavaFishingMixin {
     private boolean allowLavaFishing(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
         var hook = (FishingHook) (Object) this;
         if ((hook.getPlayerOwner().getMainHandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA) || hook.getPlayerOwner().getOffhandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA)) && instance.is(FluidTags.LAVA)) {
-            PlatformMethods.makeLavaHook(hook);
+            Platform.METHODS.makeLavaHook(hook);
             return true;
         } else {
             return original.call(instance, tag);
