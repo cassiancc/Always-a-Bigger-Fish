@@ -16,7 +16,7 @@ A rework of fishing mechanics, adding new biome-specific fish to catch, a new fi
 [[dependencies.bigger_fish]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.5,)"
+versionRange = "[21.5.81,)"
 ordering = "NONE"
 side = "BOTH"
 

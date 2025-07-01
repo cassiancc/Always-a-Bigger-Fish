@@ -16,9 +16,11 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
@@ -32,6 +34,7 @@ import java.util.function.Supplier;
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
 @Mod(MOD_ID)
+@EventBusSubscriber(modid = BiggerFishMod.MOD_ID)
 public final class BiggerFishNeoForge {
     private static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MOD_ID);
     public static final Supplier<AttachmentType<Boolean>> FIREPROOF = ATTACHMENT_TYPES.register(
@@ -46,9 +49,9 @@ public final class BiggerFishNeoForge {
         BiggerFishMod.init();
         CommonRegistryImpl.register(eventBus);
         ATTACHMENT_TYPES.register(eventBus);
-        eventBus.addListener(BiggerFishNeoForge::registerCreativeTabs);
-        NeoForge.EVENT_BUS.addListener(BiggerFishNeoForge::registerVillageTrades);
-        registerModsPage();
+        if (FMLEnvironment.dist.isClient()) {
+            BiggerFishNeoForgeClient.init(eventBus, container);
+        }
     }
 
     @SubscribeEvent
@@ -75,7 +78,4 @@ public final class BiggerFishNeoForge {
             event.getTrades().get(1).add(new VillagerTrades.ItemsForEmeralds(BiggerFishItems.LEECH.get(), 1, 2, 4));
     }
 
-    public void registerModsPage() {
-        if (ModList.get().isLoaded("cloth_config")) ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, ModConfigFactory::new);
-    }
 }
