@@ -42,7 +42,8 @@
     "java": ">=21"
   },
   "recommends": {
-    "compost": "*"
+    "compost": "*",
+    "eiv": "*"
   },
   "suggests": {
     "item-descriptions": "*",
