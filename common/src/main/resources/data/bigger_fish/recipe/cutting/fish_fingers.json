@@ -13,7 +13,9 @@
       }
     }
   ],
-  "tool": "#c:tools/knife",
+  "tool": {
+    "tag": "c:tools/knife"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",
