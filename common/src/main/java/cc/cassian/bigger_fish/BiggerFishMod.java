@@ -16,11 +16,7 @@ public final class BiggerFishMod {
     public static void init() {
         // Write common init code here.
         ModConfig.load();
-        BiggerFishComponentTypes.touch();
-        BiggerFishItems.touch();
-        BiggerFishEntityTypes.touch();
-        BiggerFishSoundEvents.touch();
-        BiggerFishMobEffects.touch();
+
 
         // Load optional compatibility
         if (ModCompat.COMPOST) {

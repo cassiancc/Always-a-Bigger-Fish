@@ -1,8 +1,7 @@
 package cc.cassian.bigger_fish.fabric;
 
 import cc.cassian.bigger_fish.helpers.ModHelpers;
-import cc.cassian.bigger_fish.registry.BiggerFishItems;
-import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
+import cc.cassian.bigger_fish.registry.*;
 import com.mojang.serialization.Codec;
 import net.fabricmc.api.ModInitializer;
 
@@ -40,7 +39,11 @@ public final class BiggerFishFabric implements ModInitializer {
 
         // Run our common setup.
         BiggerFishMod.init();
-
+        BiggerFishComponentTypes.touch();
+        BiggerFishItems.touch();
+        BiggerFishEntityTypes.touch();
+        BiggerFishSoundEvents.touch();
+        BiggerFishMobEffects.touch();
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 1, (factories, rebalanced) -> {
             factories.add(new VillagerTrades.ItemsForEmeralds(BiggerFishItems.LEECH.get(), 1, 2, 4));
         });
