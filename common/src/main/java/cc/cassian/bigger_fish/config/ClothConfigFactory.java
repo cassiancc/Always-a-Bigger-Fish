@@ -37,11 +37,13 @@ public class ClothConfigFactory {
 
         final var entryBuilder = builder.entryBuilder();
         final var configInstance = ModConfig.get();
-        final var generalCategory = createCategory(null, builder);
+        final var gameplayCategory = createCategory("gameplay", builder);
+        final var tooltipCategory = createCategory("tooltip", builder);
 
 
         for (var field : ModConfig.class.getFields()) {
-            ConfigCategory category = generalCategory;
+            ConfigCategory category = gameplayCategory;
+            if (is(field,"tooltip_")) category = tooltipCategory;
 
             if (field.getType() == boolean.class) {
                 category.addEntry(entryBuilder.startBooleanToggle(fieldName(field), fieldGet(configInstance, field))

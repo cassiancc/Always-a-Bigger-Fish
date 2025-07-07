@@ -20,10 +20,13 @@ public class ModConfig {
 
     private static ModConfig INSTANCE = new ModConfig();
 
-    public boolean biomeFishing = true;
-    public boolean fishSizes = true;
-    public boolean centimeters = true;
-    public boolean showFishSizesAlways = true;
+    public boolean gameplay_biomeFishing = true;
+    public boolean gameplay_fishSizes = true;
+    public boolean tooltip_centimeters = false;
+    public boolean tooltip_fishSizeTooltip = true;
+    public boolean tooltip_showFishSizesAlways = true;
+    public boolean tooltip_baitUsageTooltip = true;
+    public boolean tooltip_showBaitUsageAlways = false;
 
     public static void load() {
         if (!Files.exists(configPath())) {

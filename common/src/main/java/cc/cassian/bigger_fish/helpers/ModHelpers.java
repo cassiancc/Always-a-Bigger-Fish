@@ -32,7 +32,9 @@ public class ModHelpers {
      */
     public static Component fieldTooltip(Field field) {
         String tooltipKey = "config.%s.config.%s.tooltip".formatted(MOD_ID, field.getName());
-        return Component.translatable(tooltipKey);
+        if (I18n.exists(tooltipKey))
+            return Component.translatable(tooltipKey);
+        else return Component.empty();
     }
 
     /**
@@ -77,7 +79,7 @@ public class ModHelpers {
     }
 
     public static String getUnit() {
-        if (ModConfig.get().centimeters) {
+        if (ModConfig.get().tooltip_centimeters) {
             return I18n.get("component.bigger_fish.size.cm");
         } else {
             return I18n.get("component.bigger_fish.size.inch");
@@ -87,7 +89,7 @@ public class ModHelpers {
     public static String getFishSize(ItemStack stack) {
         Float size = stack.get(BiggerFishComponentTypes.SIZE.get());
         if (size == null) return "0";
-        if (ModConfig.get().centimeters) {
+        if (ModConfig.get().tooltip_centimeters) {
             return "%s".formatted(Math.round(size * 2.54 * 10d) / 10d);
         } else {
             return "%s".formatted(size);

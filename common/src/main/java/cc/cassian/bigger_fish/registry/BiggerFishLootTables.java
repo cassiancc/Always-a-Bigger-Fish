@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.storage.loot.LootTable;
 
 public class BiggerFishLootTables {
-    public static ResourceKey<LootTable> TREASURE_FISHING = createLootTable("treasure_fishing");
     public static ResourceKey<LootTable> TIER_ONE_FISHING = createLootTable("tier_one_fishing");
     public static ResourceKey<LootTable> TIER_TWO_FISHING = createLootTable("tier_two_fishing");
     public static ResourceKey<LootTable> TIER_THREE_FISHING = createLootTable("tier_three_fishing");

@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class FishSizingMixin {
     @Inject(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;<init>(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V"))
     private void randomizedFish(ItemStack fishingRod, CallbackInfoReturnable<Integer> cir, @Local(ordinal = 1) LocalRef<ItemStack> stackLocalRef) {
-        if (ModConfig.get().fishSizes) {
+        if (ModConfig.get().gameplay_fishSizes) {
             var hook =  (FishingHook) (Object) this;
             ItemStack fishStack = stackLocalRef.get();
             if (fishStack.is(ItemTags.FISHES)) {

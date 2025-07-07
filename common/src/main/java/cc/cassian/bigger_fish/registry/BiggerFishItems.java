@@ -94,8 +94,8 @@ public class BiggerFishItems {
     public static Supplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
-    public static Supplier<Item> WORM = createItem("worm");
-    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")));
+    public static Supplier<Item> WORM = createItem("worm", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing"));
+    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech").component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_two_fishing")));
 
     // Food
     public static Supplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
@@ -111,7 +111,7 @@ public class BiggerFishItems {
     // Tools
     public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
     public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
-    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().durability(64));
+    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing").durability(64));
 
     // JUNK
     public static Supplier<Item> CAN = createItem("can");
@@ -128,7 +128,7 @@ public class BiggerFishItems {
     }
 
     private static Supplier<Item> createFish(String id) {
-        Supplier<Item> fish = registerItem(id, properties(id).food(Foods.COD));
+        Supplier<Item> fish = registerItem(id, properties(id).food(Foods.COD).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_three_fishing"));
         FISH.add(fish);
         return fish;
     }
@@ -137,7 +137,7 @@ public class BiggerFishItems {
         if (!fireproof) {
             return createFish(id);
         } else {
-            Supplier<Item> fish = registerItem(id, properties(id).fireResistant().food(Foods.COD));
+            Supplier<Item> fish = registerItem(id, properties(id).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_three_fishing").fireResistant().food(Foods.COD));
             FISH.add(fish);
             return fish;
         }
