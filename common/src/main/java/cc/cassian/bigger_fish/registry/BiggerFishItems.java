@@ -94,7 +94,7 @@ public class BiggerFishItems {
     public static Supplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
-    public static Supplier<Item> WORM = CommonRegistry.registerItem("worm", ()->new Item(properties("worm")));
+    public static Supplier<Item> WORM = createItem("worm");
     public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")));
 
     // Food
@@ -111,15 +111,20 @@ public class BiggerFishItems {
     // Tools
     public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
     public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
+    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().durability(64));
 
     // JUNK
     public static Supplier<Item> CAN = createItem("can");
     public static Supplier<Item> FISH_BONES = createItem("fish_bones");
 
-    public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
+    public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES, DIAMOND_HOOK);
 
     private static Supplier<Item> createItem(String id) {
         return registerItem(id, properties(id));
+    }
+
+    private static Supplier<Item> createItem(String id, Item.Properties properties) {
+        return registerItem(id, properties.setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id))));
     }
 
     private static Supplier<Item> createFish(String id) {

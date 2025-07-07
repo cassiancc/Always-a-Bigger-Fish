@@ -1,0 +1,78 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "quality": -2,
+          "value": "minecraft:gameplay/fishing/junk",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:loot_table",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type_specific": {
+                  "type": "minecraft:fishing_hook",
+                  "in_open_water": true
+                }
+              }
+            }
+          ],
+          "quality": 2,
+          "value": "minecraft:gameplay/fishing/treasure",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:loot_table",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "location": {
+                  "position": {
+                    "y": {
+                      "min": 32
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "weight": 10,
+          "quality": -1,
+          "value": "bigger_fish:gameplay/fishing/tier_one_aboveground"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "location": {
+                  "position": {
+                    "y": {
+                      "max": 32
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "weight": 10,
+          "quality": -1,
+          "value": "bigger_fish:gameplay/fishing/caves/tier_one"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "minecraft:gameplay/fishing"
+}

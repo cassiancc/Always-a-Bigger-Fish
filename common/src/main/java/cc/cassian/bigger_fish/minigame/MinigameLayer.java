@@ -25,7 +25,7 @@ public class MinigameLayer implements LayeredDraw.Layer {
                 x = guiGraphics.guiWidth() / 2 - 117;
             }
 
-            guiGraphics.blitSprite(RenderType::guiTextured, ResourceLocation.withDefaultNamespace("hud/hotbar_selection"), x, y, 18, 72);
+            guiGraphics.blit(RenderType::guiTextured, ResourceLocation.withDefaultNamespace("textures/gui/sprites/hud/hotbar_selection.png"), x, y, 0,0, 18, 72, 18, 18);
         }
     }
 }

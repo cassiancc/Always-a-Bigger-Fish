@@ -14,6 +14,11 @@ public class BiggerFishTags {
     public static final TagKey<Item> TIER_THREE_BAIT = itemTagKey("tier_three_bait");
     public static final TagKey<Item> BAIT = itemTagKey("bait");
 
+    public static final TagKey<Item> HOOKS = itemTagKey("hooks");
+    public static final TagKey<Item> ATTRACTS_TREASURE = itemTagKey("attracts_treasure");
+
+    public static final TagKey<Item> ALLOWED_IN_BAITED_ROD = itemTagKey("allowed_in_baited_rod");
+
     public static final TagKey<Item> REQUIRES_MINIGAME_TO_CATCH = itemTagKey("requires_minigame_to_catch");
     public static final TagKey<Item> CAN_FISH_IN_LAVA = itemTagKey("can_fish_in_lava");;
     public static final TagKey<Item> CATCHES_BIGGER_FISH = itemTagKey("catches_bigger_fish");

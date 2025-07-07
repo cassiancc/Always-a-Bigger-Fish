@@ -48,7 +48,7 @@ public class BaitedRodItem extends FishingRodItem {
         } else {
             ItemStack other = slot.getItem();
             BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-            if (action == ClickAction.PRIMARY && other.is(BiggerFishTags.BAIT)) {
+            if (action == ClickAction.PRIMARY && other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD)) {
                 if (mutable.tryTransfer(slot, player) > 0) {
                     playInsertSound(player);
                 } else {
@@ -89,7 +89,7 @@ public class BaitedRodItem extends FishingRodItem {
                 return false;
             } else {
                 BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-                if (action == ClickAction.PRIMARY && other.is(BiggerFishTags.BAIT)) {
+                if (action == ClickAction.PRIMARY && other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD)) {
                     if (slot.allowModification(player) && mutable.tryInsert(other) > 0) {
                         playInsertSound(player);
                     } else {

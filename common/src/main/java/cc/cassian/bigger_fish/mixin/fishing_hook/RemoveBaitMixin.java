@@ -1,5 +1,7 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
+import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
@@ -18,9 +20,19 @@ public class RemoveBaitMixin {
             if (bundleContents != null && !bundleContents.isEmpty()) {
                 BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
                 ItemStack itemStack = mutable.removeOne();
-                if (itemStack != null && itemStack.getCount() > 1) {
-                    itemStack.setCount(itemStack.getCount()-1);
-                    mutable.tryInsert(itemStack);
+                if (itemStack != null) {
+                    if (itemStack.getCount() > 1) {
+                        itemStack.setCount(itemStack.getCount()-1);
+                        mutable.tryInsert(itemStack);
+                    }
+                    if (itemStack.isDamageableItem()) {
+                        int damageValue = itemStack.getDamageValue();
+                        BiggerFishMod.LOGGER.info(damageValue);
+                        if (!itemStack.nextDamageWillBreak()) {
+                            itemStack.setDamageValue(damageValue+1);
+                            mutable.tryInsert(itemStack);
+                        }
+                    }
                 }
                 fishingRod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
             }

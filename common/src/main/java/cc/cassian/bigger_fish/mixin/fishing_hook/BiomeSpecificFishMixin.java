@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.mixin.fishing_hook;
 
 import cc.cassian.bigger_fish.PlatformMethods;
 import cc.cassian.bigger_fish.config.ModConfig;
+import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -29,7 +30,9 @@ public class BiomeSpecificFishMixin {
                 BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
                 if (bundleContents != null && !bundleContents.isEmpty()) {
                     ItemStack itemUnsafe = bundleContents.getItemUnsafe(0);
-                    if (itemUnsafe.is(BiggerFishTags.TIER_ONE_BAIT)) {
+                    if (itemUnsafe.is(BiggerFishTags.ATTRACTS_TREASURE)) {
+                        return instance.getLootTable(BiggerFishLootTables.TREASURE_FISHING);
+                    } else if (itemUnsafe.is(BiggerFishTags.TIER_ONE_BAIT)) {
                         return instance.getLootTable(BiggerFishLootTables.TIER_ONE_FISHING);
                     } else if (itemUnsafe.is(BiggerFishTags.TIER_TWO_BAIT)) {
                         return instance.getLootTable(BiggerFishLootTables.TIER_TWO_FISHING);
