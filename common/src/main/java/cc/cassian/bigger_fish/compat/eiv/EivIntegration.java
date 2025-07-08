@@ -59,11 +59,17 @@ public class EivIntegration implements IExtendedItemViewIntegration {
         ));
 
         ItemView.registerRecipeWrapper(BaitUsageServerRecipe.TYPE,
-                modRecipe -> List.of(
-                        new BaitUsageViewRecipe(BiggerFishTags.TIER_ONE_BAIT),
-                        new BaitUsageViewRecipe(BiggerFishTags.TIER_TWO_BAIT),
-                        new BaitUsageViewRecipe(BiggerFishTags.TIER_THREE_BAIT)
-        ));
+                modRecipe -> {
+
+                //Here you tell EIV how to process incoming server recipes
+                //Requires you to return a list of client-side view-recipes (IEivViewRecipe)
+
+                ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
+                for (TagKey<Item> itemTagKey : BiggerFishTags.BAIT_TAGS_FOR_DISPLAY) {
+                    recipes.add(new BaitUsageViewRecipe(itemTagKey));
+                }
+                return recipes;
+            });
     }
 
     public static void hideStacks() {

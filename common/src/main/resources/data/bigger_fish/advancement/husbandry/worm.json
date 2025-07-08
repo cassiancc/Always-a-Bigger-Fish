@@ -1,0 +1,32 @@
+{
+  "parent": "bigger_fish:husbandry/copper_rod",
+  "criteria": {
+    "worm": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bigger_fish:worm"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.bigger_fish.worm.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bigger_fish:worm"
+    },
+    "title": {
+      "translate": "advancements.bigger_fish.worm.title"
+    }
+  },
+  "requirements": [
+    [
+      "worm"
+    ]
+  ]
+}

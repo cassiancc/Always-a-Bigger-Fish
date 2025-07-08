@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:husbandry/fishy_business",
+  "criteria": {
+    "copper_rod": {
+      "conditions": {
+        "recipe_id": "bigger_fish:copper_rod"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.bigger_fish.copper_rod.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bigger_fish:copper_rod"
+    },
+    "title": {
+      "translate": "advancements.bigger_fish.copper_rod.title"
+    }
+  },
+  "requirements": [
+    [
+      "copper_rod"
+    ]
+  ]
+}

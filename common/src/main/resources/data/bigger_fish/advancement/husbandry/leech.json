@@ -1,0 +1,32 @@
+{
+  "parent": "bigger_fish:husbandry/worm",
+  "criteria": {
+    "leech": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bigger_fish:leech"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.bigger_fish.leech.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bigger_fish:leech"
+    },
+    "title": {
+      "translate": "advancements.bigger_fish.leech.title"
+    }
+  },
+  "requirements": [
+    [
+      "leech"
+    ]
+  ]
+}
