@@ -78,6 +78,10 @@ subprojects {
                 includeGroup "folk.sisby"
             }
         }
+        maven {
+            name = "Fuzs Mod Resources"
+            url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+        }
     }
 
     loom {

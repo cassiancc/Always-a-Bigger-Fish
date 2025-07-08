@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish;
 import cc.cassian.bigger_fish.compat.CompostCompat;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.compat.eiv.EivIntegration;
+import cc.cassian.bigger_fish.compat.iteminteractions.ItemInteractionsCompat;
 import cc.cassian.bigger_fish.config.ModConfig;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +23,9 @@ public final class BiggerFishMod {
         }
         if (ModCompat.EIV) {
             EivIntegration.hideStacks();
+        }
+        if (ModCompat.ITEMINTERACTIONS) {
+            ItemInteractionsCompat.touch();
         }
     }
 

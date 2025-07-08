@@ -45,6 +45,8 @@ dependencies {
         exclude(group: "net.fabricmc")
         exclude(group: "me.shedaniel")
     }
+    modApi("fuzs.iteminteractions:iteminteractions-fabric:$iteminteractions_version")
+
     // Developer tools
     modRuntimeOnly "maven.modrinth:eiv:${eiv_version}-fabric"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"

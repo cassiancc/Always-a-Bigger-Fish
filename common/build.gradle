@@ -18,4 +18,6 @@ dependencies {
     // EIV
     modImplementation "maven.modrinth:eiv:${eiv_version}"
 
+    modApi("fuzs.iteminteractions:iteminteractions-fabric:$iteminteractions_version")
+
 }

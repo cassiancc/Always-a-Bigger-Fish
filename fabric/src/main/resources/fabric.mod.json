@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "bigger_fish",
   "version": "${version}",
-  "name": "Always a Bigger Fish",
+  "name": "There's Always a Bigger Fish",
   "description": "A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!",
   "authors": [
     "cassiancc",
@@ -38,7 +38,7 @@
     "bigger_fish_fabric.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16.14",
+    "fabricloader": ">=0.16.10",
     "fabric-api": "*",
     "minecraft": "~1.21.5",
     "java": ">=21"
