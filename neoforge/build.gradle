@@ -48,6 +48,9 @@ dependencies {
     modImplementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
     modImplementation("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_version}")
 
+    implementation(include("folk.sisby:kaleido-config:${kaleido_version}"))
+    modImplementation "maven.modrinth:mcqoy:yHGo6VsD"
+
     // Developer tools
 //    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
     // compile against the JEI API but do not include it at runtime

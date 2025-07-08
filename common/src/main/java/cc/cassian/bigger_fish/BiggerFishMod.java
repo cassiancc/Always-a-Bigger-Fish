@@ -4,7 +4,6 @@ import cc.cassian.bigger_fish.compat.CompostCompat;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.compat.eiv.EivIntegration;
 import cc.cassian.bigger_fish.config.ModConfig;
-import cc.cassian.bigger_fish.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,11 +11,10 @@ import org.apache.logging.log4j.Logger;
 public final class BiggerFishMod {
     public static final String MOD_ID = "bigger_fish";
     public static final Logger LOGGER = LogManager.getLogger("Always a Bigger Fish");;
+    public static final ModConfig CONFIG = ModConfig.createToml(ModConfig.configPath(), "", MOD_ID, ModConfig.class);
 
     public static void init() {
         // Write common init code here.
-        ModConfig.load();
-
 
         // Load optional compatibility
         if (ModCompat.COMPOST) {

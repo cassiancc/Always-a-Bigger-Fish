@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
+import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.PlatformMethods;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
@@ -27,7 +28,7 @@ public class BiomeSpecificFishMixin {
         if (PlatformMethods.isLavaHook(hook)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
-        if (ModConfig.get().gameplay_biomeFishing || stack.is(BiggerFishTags.CATCHES_BIGGER_FISH)) {
+        if (BiggerFishMod.CONFIG.gameplay.biomeFishing.value() || stack.is(BiggerFishTags.CATCHES_BIGGER_FISH)) {
             if (stack.has(DataComponents.BUNDLE_CONTENTS)) {
                 BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
                 if (bundleContents != null && !bundleContents.isEmpty()) {

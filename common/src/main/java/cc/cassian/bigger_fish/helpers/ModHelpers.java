@@ -1,7 +1,9 @@
 package cc.cassian.bigger_fish.helpers;
 
+import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -23,43 +25,36 @@ public class ModHelpers {
     /**
      * Automatically generate translation keys for config options.
      */
-    public static Component fieldName(Field field) {
-        return Component.translatable("config.%s.config.%s".formatted(MOD_ID, field.getName()));
+    public static Component fieldName(TrackedValue<?> field) {
+        return Component.translatable("config.%s.%s".formatted(MOD_ID, toSnakeCase(field.key().toString())));
+    }
+
+    public static String toSnakeCase(String field) {
+        return field.replaceAll("([a-z])([A-Z]+)", "$1_$2").toLowerCase();
     }
 
     /**
      * Automatically generate translation keys for config tooltips. Relies on custom tooltip wrapping.
      */
-    public static Component fieldTooltip(Field field) {
-        String tooltipKey = "config.%s.config.%s.tooltip".formatted(MOD_ID, field.getName());
+
+    public static Component fieldTooltip(TrackedValue<?> field) {
+        String tooltipKey = "config.%s.%s.tooltip".formatted(MOD_ID, toSnakeCase(field.key().toString()));
         if (I18n.exists(tooltipKey))
             return Component.translatable(tooltipKey);
-        else return Component.empty();
-    }
-
-    /**
-     * Get the current value of a config field.
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> T fieldGet(Object instance, Field field) {
-        try {
-            return (T) field.get(instance);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        return Component.empty();
     }
 
     /**
      * Set a config field.
      */
-    public static <T> Consumer<T> fieldSetter(Object instance, Field field) {
-        return t -> {
-            try {
-                field.set(instance, t);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        };
+    public static void fieldSetter(boolean instance, TrackedValue<Boolean> field) {
+        field.setValue(instance);
+    }
+    public static void fieldSetter(Integer instance, TrackedValue<Integer> field) {
+        field.setValue(instance);
+    }
+    public static void fieldSetter(String instance, TrackedValue<String> field) {
+        field.setValue(instance);
     }
 
     public static Float getRandomFishSize(Entity hook) {
@@ -79,7 +74,7 @@ public class ModHelpers {
     }
 
     public static String getUnit() {
-        if (ModConfig.get().tooltip_centimeters) {
+        if (BiggerFishMod.CONFIG.tooltip.centimeters.value()) {
             return I18n.get("component.bigger_fish.size.cm");
         } else {
             return I18n.get("component.bigger_fish.size.inch");
@@ -89,7 +84,7 @@ public class ModHelpers {
     public static String getFishSize(ItemStack stack) {
         Float size = stack.get(BiggerFishComponentTypes.SIZE.get());
         if (size == null) return "0";
-        if (ModConfig.get().tooltip_centimeters) {
+        if (BiggerFishMod.CONFIG.tooltip.centimeters.value()) {
             return "%s".formatted(Math.round(size * 2.54 * 10d) / 10d);
         } else {
             return "%s".formatted(size);

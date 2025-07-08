@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.mixin;
 
+import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
@@ -25,14 +26,14 @@ public abstract class ItemStackMixin {
     @Inject(method = "addDetailsToTooltip", at = @At(value = "HEAD"))
     private void randomizedFish(Item.TooltipContext context, TooltipDisplay tooltipDisplay, Player playef, TooltipFlag tooltipFlag, Consumer<Component> tooltipAdder, CallbackInfo ci) {
         var stack = (ItemStack) (Object) this;
-        if (ModConfig.get().tooltip_fishSizeTooltip) {
+        if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value()) {
             if (stack.has(BiggerFishComponentTypes.SIZE.get()) && tooltipDisplay.shows(BiggerFishComponentTypes.SIZE.get())) {
-                if (ModConfig.get().tooltip_showFishSizesAlways || Screen.hasShiftDown())
+                if (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || Screen.hasShiftDown())
                     tooltipAdder.accept(Component.translatable("component.bigger_fish.size", ModHelpers.getFishSize(stack), ModHelpers.getUnit()));
             }
         }
-        if (ModConfig.get().tooltip_baitUsageTooltip) {
-            if (ModConfig.get().tooltip_showBaitUsageAlways || Screen.hasShiftDown())
+        if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
+            if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || Screen.hasShiftDown())
                 if (stack.has(BiggerFishComponentTypes.FISHING_LOOT.get()) && tooltipDisplay.shows(BiggerFishComponentTypes.FISHING_LOOT.get())) {
                 tooltipAdder.accept(Component.translatable("fishing."+ ResourceLocation.parse(Objects.requireNonNull(stack.get(BiggerFishComponentTypes.FISHING_LOOT.get()))).toLanguageKey().replace("/", ".")));
             }
