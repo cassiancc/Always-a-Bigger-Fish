@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.items;
 
+import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
 import net.minecraft.core.component.DataComponents;
@@ -48,7 +49,7 @@ public class BaitedRodItem extends FishingRodItem {
         } else {
             ItemStack other = slot.getItem();
             BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-            if (action == ClickAction.PRIMARY && other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD)) {
+            if (action == ClickAction.PRIMARY && (other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD) || other.has(BiggerFishComponentTypes.FISHING_LOOT.get()))) {
                 if (mutable.tryTransfer(slot, player) > 0) {
                     playInsertSound(player);
                 } else {
@@ -89,7 +90,7 @@ public class BaitedRodItem extends FishingRodItem {
                 return false;
             } else {
                 BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-                if (action == ClickAction.PRIMARY && other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD)) {
+                if (action == ClickAction.PRIMARY && (other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD) || other.has(BiggerFishComponentTypes.FISHING_LOOT.get()))) {
                     if (slot.allowModification(player) && mutable.tryInsert(other) > 0) {
                         playInsertSound(player);
                     } else {

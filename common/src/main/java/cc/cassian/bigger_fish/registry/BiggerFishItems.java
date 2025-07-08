@@ -7,6 +7,7 @@ import cc.cassian.bigger_fish.items.LeechItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.FishingRodItem;
@@ -111,7 +112,7 @@ public class BiggerFishItems {
     // Tools
     public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
     public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
-    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing").durability(64));
+    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().repairable(ItemTags.DIAMOND_TOOL_MATERIALS).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing").durability(64));
 
     // JUNK
     public static Supplier<Item> CAN = createItem("can");
