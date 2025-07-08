@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.compat.iteminteractions;
 
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -32,7 +33,7 @@ public class BaitedRodProvider extends BundleProvider {
 
     @Override
     public boolean isItemAllowedInContainer(ItemStack stackToAdd) {
-        return stackToAdd.is(BiggerFishTags.BAIT);
+        return ModHelpers.isAllowedInBaitedRod(stackToAdd);
     }
 
     @Override

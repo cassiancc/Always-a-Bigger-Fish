@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.items;
 
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
@@ -42,21 +43,21 @@ public class BaitedRodItem extends FishingRodItem {
     private static final int BAR_COLOR = ARGB.colorFromFloat(1.0F, 0.44F, 0.53F, 1.0F);
 
     @Override
-    public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {
-        BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
+    public boolean overrideStackedOnOther(ItemStack rod, Slot slot, ClickAction action, Player player) {
+        BundleContents bundleContents = rod.get(DataComponents.BUNDLE_CONTENTS);
         if (bundleContents == null) {
             return false;
         } else {
             ItemStack other = slot.getItem();
             BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-            if (action == ClickAction.PRIMARY && (other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD) || other.has(BiggerFishComponentTypes.FISHING_LOOT.get()))) {
+            if (action == ClickAction.PRIMARY && ModHelpers.isAllowedInBaitedRod(other)) {
                 if (mutable.tryTransfer(slot, player) > 0) {
                     playInsertSound(player);
                 } else {
                     playInsertFailSound(player);
                 }
 
-                stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
+                rod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
                 this.broadcastChangesOnContainerMenu(player);
                 return true;
             } else if (action == ClickAction.SECONDARY && other.isEmpty()) {
@@ -70,7 +71,7 @@ public class BaitedRodItem extends FishingRodItem {
                     }
                 }
 
-                stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
+                rod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
                 this.broadcastChangesOnContainerMenu(player);
                 return true;
             } else {
@@ -80,24 +81,24 @@ public class BaitedRodItem extends FishingRodItem {
     }
 
     @Override
-    public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
+    public boolean overrideOtherStackedOnMe(ItemStack rod, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
         if (action == ClickAction.PRIMARY && other.isEmpty()) {
-            toggleSelectedItem(stack, -1);
+            toggleSelectedItem(rod, -1);
             return false;
         } else {
-            BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
+            BundleContents bundleContents = rod.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents == null) {
                 return false;
             } else {
                 BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-                if (action == ClickAction.PRIMARY && (other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD) || other.has(BiggerFishComponentTypes.FISHING_LOOT.get()))) {
+                if (action == ClickAction.PRIMARY && ModHelpers.isAllowedInBaitedRod(other)) {
                     if (slot.allowModification(player) && mutable.tryInsert(other) > 0) {
                         playInsertSound(player);
                     } else {
                         playInsertFailSound(player);
                     }
 
-                    stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
+                    rod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
                     this.broadcastChangesOnContainerMenu(player);
                     return true;
                 } else if (action == ClickAction.SECONDARY && other.isEmpty()) {
@@ -109,11 +110,11 @@ public class BaitedRodItem extends FishingRodItem {
                         }
                     }
 
-                    stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
+                    rod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
                     this.broadcastChangesOnContainerMenu(player);
                     return true;
                 } else {
-                    toggleSelectedItem(stack, -1);
+                    toggleSelectedItem(rod, -1);
                     return false;
                 }
             }
@@ -122,20 +123,32 @@ public class BaitedRodItem extends FishingRodItem {
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return bundleContents.weight().compareTo(Fraction.ZERO) > 0;
+        if (stack.has(DataComponents.MAX_DAMAGE)) {
+            return super.isBarVisible(stack);
+        } else {
+            BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+            return bundleContents.weight().compareTo(Fraction.ZERO) > 0;
+        }
     }
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return Math.min(1 + Mth.mulAndTruncate(bundleContents.weight(), 12), 13);
+        if (stack.has(DataComponents.MAX_DAMAGE)) {
+            return super.getBarWidth(stack);
+        } else {
+            BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+            return Math.min(1 + Mth.mulAndTruncate(bundleContents.weight(), 12), 13);
+        }
     }
 
     @Override
     public int getBarColor(ItemStack stack) {
-        BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return bundleContents.weight().compareTo(Fraction.ONE) >= 0 ? FULL_BAR_COLOR : BAR_COLOR;
+        if (stack.has(DataComponents.MAX_DAMAGE)) {
+            return super.getBarColor(stack);
+        } else {
+            BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+            return bundleContents.weight().compareTo(Fraction.ONE) >= 0 ? FULL_BAR_COLOR : BAR_COLOR;
+        }
     }
 
     public static void toggleSelectedItem(ItemStack bundle, int selectedItem) {

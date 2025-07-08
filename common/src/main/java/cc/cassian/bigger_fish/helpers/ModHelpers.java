@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.helpers;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
@@ -98,5 +99,9 @@ public class ModHelpers {
         }
         return list;
 
+    }
+
+    public static boolean isAllowedInBaitedRod(ItemStack stack) {
+        return stack.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD) || stack.has(BiggerFishComponentTypes.FISHING_LOOT.get());
     }
 }

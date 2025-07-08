@@ -110,8 +110,8 @@ public class BiggerFishItems {
     public static Supplier<Item> SUSHI = createFood("sushi", 5, 0.6f);
 
     // Tools
-    public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
-    public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
+    public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
+    public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").durability(2031).stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
     public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().repairable(ItemTags.DIAMOND_TOOL_MATERIALS).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing").durability(64));
 
     // JUNK
@@ -164,6 +164,14 @@ public class BiggerFishItems {
 
     private static Item.Properties properties(String id) {
         return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)));
+    }
+
+    private static Item.Properties getCopperRodProperties() {
+        var properties = properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        if (BiggerFishMod.CONFIG.gameplay.baitedRodsHaveDurability.value()) {
+            properties = properties.durability(191);
+        }
+        return properties;
     }
 
     public static void touch() {

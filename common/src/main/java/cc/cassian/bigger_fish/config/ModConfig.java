@@ -18,13 +18,15 @@ public class ModConfig extends ReflectiveConfig {
         public final TrackedValue<Boolean> biomeFishing = this.value(true);
         @Comment("Randomize caught fish sizes")
         public final TrackedValue<Boolean> fishSizes = this.value(true);
+        public final TrackedValue<Boolean> baitedRodsHaveDurability = this.value(true);
     }
 
     public final TooltipOptions tooltip = new TooltipOptions();
     public static class TooltipOptions extends Section {
         @Comment("Show fish size in centimeters instead of inches")
         public final TrackedValue<Boolean> centimeters = this.value(false);
-        @Comment("Show fish size in tooltip. NOTE: When this option is disabled and randomize fish sizes is still enabled, the reason your fish aren't stacking won't be obvious.")
+        @Comment("Show fish size in tooltip.")
+        @Comment("NOTE: When this option is disabled and randomize fish sizes is still enabled, the reason your fish aren't stacking won't be obvious.")
         public final TrackedValue<Boolean> fishSizeTooltip = this.value(true);
         @Comment("When disabled, shift is required to show fish size.")
         public final TrackedValue<Boolean> showFishSizesAlways = this.value(true);
