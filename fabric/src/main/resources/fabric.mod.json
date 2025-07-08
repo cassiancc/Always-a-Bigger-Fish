@@ -5,14 +5,15 @@
   "name": "Always a Bigger Fish",
   "description": "A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!",
   "authors": [
-    "cassiancc"
+    "cassiancc",
+    "malice-and-meat"
   ],
   "contact": {
     "homepage": "https://github.com/cassiancc/Always-A-Bigger-Fish",
     "sources": "https://github.com/cassiancc/Always-A-Bigger-Fish",
     "issues": "https://github.com/cassiancc/Always-A-Bigger-Fish/issues"
   },
-  "license": "MIT",
+  "license": "Multiple",
   "icon": "assets/bigger_fish/icon.png",
   "environment": "*",
   "entrypoints": {

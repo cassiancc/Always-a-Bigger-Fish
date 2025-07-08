@@ -17,7 +17,6 @@ public class ModMenuIntegration implements ModMenuApi {
             return parent-> McQoy.createScreen(parent, BiggerFishMod.MOD_ID, Collections.singletonList(BiggerFishMod.CONFIG));
         }
         else {
-            BiggerFishMod.LOGGER.warn("User attempted to edit config, but neither Cloth Config or McQoy is present!");
             return parent -> null;
         }
     }

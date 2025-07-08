@@ -1,13 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
 issueTrackerURL = "https://github.com/cassiancc/Always-A-Bigger-Fish/issues"
-license = "MIT"
+license = "Multiple"
 
 [[mods]]
 modId = "bigger_fish"
 version = "${version}"
-displayName = "Always a Bigger Fish"
-authors = "cassiancc"
+displayName = "There's Always a Bigger Fish"
+authors = "cassiancc, malice-and-meat"
 description = '''
 A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!
 '''
