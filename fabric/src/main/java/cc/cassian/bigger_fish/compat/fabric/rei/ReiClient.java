@@ -16,10 +16,10 @@ public class ReiClient implements REIClientPlugin {
         for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
             addTagInfo(registry, itemTagKey);
         }
+        for (TagKey<Item> itemTagKey : BiggerFishTags.BAIT_TAGS_FOR_DISPLAY) {
+            addTagInfo(registry, itemTagKey);
+        }
         addTagInfo(registry, BiggerFishTags.LAVA_FISH);
-        addTagInfo(registry, BiggerFishTags.TIER_ONE_BAIT);
-        addTagInfo(registry, BiggerFishTags.TIER_TWO_BAIT);
-        addTagInfo(registry, BiggerFishTags.TIER_THREE_BAIT);
     }
 
     private static void addTagInfo(DisplayRegistry registry, TagKey<Item> itemTag) {

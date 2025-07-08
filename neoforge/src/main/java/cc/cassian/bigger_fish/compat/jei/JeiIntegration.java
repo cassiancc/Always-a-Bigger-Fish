@@ -32,10 +32,10 @@ public class JeiIntegration implements IModPlugin {
         for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
             addTagInfo(registry, itemTagKey);
         }
+        for (TagKey<Item> itemTagKey : BiggerFishTags.BAIT_TAGS_FOR_DISPLAY) {
+            addTagInfo(registry, itemTagKey);
+        }
         addTagInfo(registry, BiggerFishTags.LAVA_FISH);
-        addTagInfo(registry, BiggerFishTags.TIER_ONE_BAIT);
-        addTagInfo(registry, BiggerFishTags.TIER_TWO_BAIT);
-        addTagInfo(registry, BiggerFishTags.TIER_THREE_BAIT);
 
         if (!ModCompat.FARMERS_DELIGHT) {
             ArrayList<ItemStack> objects = new ArrayList<>();

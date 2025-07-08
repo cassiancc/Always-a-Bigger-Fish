@@ -82,7 +82,7 @@ public class BiggerFishTags {
     );
 
     public static final List<TagKey<Item>> BAIT_TAGS_FOR_DISPLAY = List.of(
-            BiggerFishTags.TIER_ONE_BAIT, TIER_TWO_BAIT, TIER_THREE_BAIT
+            BiggerFishTags.TIER_ONE_BAIT, TIER_TWO_BAIT, TIER_THREE_BAIT, ATTRACTS_TREASURE
     );
 
     public static TagKey<Item> itemTagKey(String id) {
