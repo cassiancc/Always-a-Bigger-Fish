@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 public final class BiggerFishMod {
     public static final String MOD_ID = "bigger_fish";
     public static final Logger LOGGER = LogManager.getLogger("Always a Bigger Fish");;
-    public static final ModConfig CONFIG = ModConfig.createToml(ModConfig.configPath(), "", MOD_ID, ModConfig.class);
+    public static final ModConfig CONFIG = ModConfig.createToml(PlatformMethods.getConfigFolder(), "", MOD_ID, ModConfig.class);
 
     public static void init() {
         // Write common init code here.

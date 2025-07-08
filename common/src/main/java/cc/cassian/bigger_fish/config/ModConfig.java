@@ -1,15 +1,12 @@
 package cc.cassian.bigger_fish.config;
 
 
-import cc.cassian.bigger_fish.PlatformMethods;
 import folk.sisby.kaleido.api.ReflectiveConfig;
 import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
 import folk.sisby.kaleido.lib.quiltconfig.api.annotations.DisplayName;
 import folk.sisby.kaleido.lib.quiltconfig.api.annotations.DisplayNameConvention;
 import folk.sisby.kaleido.lib.quiltconfig.api.metadata.NamingSchemes;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
-
-import java.nio.file.Path;
 
 @DisplayNameConvention(NamingSchemes.SPACE_SEPARATED_LOWER_CASE_INITIAL_UPPER_CASE)
 @DisplayName("There's Always a Bigger Fish")
@@ -35,9 +32,5 @@ public class ModConfig extends ReflectiveConfig {
         public final TrackedValue<Boolean> baitUsageTooltip = this.value(true);
         @Comment("Show bait usage always. When disabled, shift is required to show bait usage.")
         public final TrackedValue<Boolean> showBaitUsageAlways = this.value(false);
-    }
-
-    public static Path configPath() {
-        return PlatformMethods.getConfigFolder().resolve("bigger_fish.toml");
     }
 }
