@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
 
@@ -111,8 +110,23 @@ public class BiggerFishItems {
 
     // Tools
     public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
-    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().repairable(ItemTags.DIAMOND_TOOL_MATERIALS).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing").durability(128));
-    public static Supplier<Item> NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties().repairable(ItemTags.NETHERITE_TOOL_MATERIALS).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/lava_fishing").durability(512));
+
+    public static Supplier<Item> COPPER_HOOK = createItem("copper_hook", new Item.Properties()
+            .repairable(BiggerFishTags.COPPER_TOOL_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "copper")
+            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
+            .durability(64));
+
+    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties()
+            .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
+            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
+            .durability(128));
+
+    public static Supplier<Item> NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties()
+            .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
+            .durability(512));
 
     // JUNK
     public static Supplier<Item> CAN = createItem("can");

@@ -17,9 +17,19 @@ public class AllowLavaFishingMixin {
     @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/material/FluidState;is(Lnet/minecraft/tags/TagKey;)Z"))
     private boolean allowLavaFishing(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
         var hook = (FishingHook) (Object) this;
-        if (hook.getPlayerOwner() != null && (ModHelpers.hasNetheriteHook(hook.getPlayerOwner().getOffhandItem()) || ModHelpers.hasNetheriteHook(hook.getPlayerOwner().getOffhandItem())) && instance.is(FluidTags.LAVA)) {
-            PlatformMethods.makeLavaHook(hook);
-            return true;
+        if (hook.getPlayerOwner() != null) {
+            var mainhandData = ModHelpers.getHookData(hook.getPlayerOwner().getMainHandItem());
+            var offhandData = ModHelpers.getHookData(hook.getPlayerOwner().getOffhandItem());
+            String data;
+            if (!mainhandData.isEmpty()) {
+                data = mainhandData;
+            } else {
+                data = offhandData;
+            }
+            PlatformMethods.setHookData(hook, data);
+            if (data.equals("netherite") && instance.is(FluidTags.LAVA))
+                return true;
+            else return original.call(instance,tag);
         } else {
             return original.call(instance, tag);
         }

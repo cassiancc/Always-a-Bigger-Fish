@@ -36,8 +36,9 @@ public final class BiggerFishNeoForge {
     public static final Supplier<AttachmentType<Boolean>> FIREPROOF = ATTACHMENT_TYPES.register(
             "fireproof", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
     );
-    public static final Supplier<AttachmentType<Boolean>> LAVA_HOOK = ATTACHMENT_TYPES.register(
-            "lava_hook", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
+
+    public static final Supplier<AttachmentType<String>> HOOK = ATTACHMENT_TYPES.register(
+            "hook", () -> AttachmentType.builder(() -> "vanilla").serialize(Codec.STRING).build()
     );
 
     public BiggerFishNeoForge(IEventBus eventBus, ModContainer container) {

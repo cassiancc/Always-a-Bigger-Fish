@@ -11,7 +11,6 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -19,16 +18,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 
-import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
-
 public final class BiggerFishFabric implements ModInitializer {
 
     public static final AttachmentType<Boolean> FIREPROOF = AttachmentRegistry.createPersistent(
-            ResourceLocation.fromNamespaceAndPath(MOD_ID, "fireproof"), Codec.BOOL
+            BiggerFishMod.of("fireproof"), Codec.BOOL
     );
 
-    public static final AttachmentType<Boolean> LAVA_HOOK = AttachmentRegistry.createPersistent(
-            ResourceLocation.fromNamespaceAndPath(MOD_ID, "lava_hook"), Codec.BOOL
+    public static final AttachmentType<String> HOOK = AttachmentRegistry.createPersistent(
+           BiggerFishMod.of("hook"), Codec.STRING
     );
 
     @Override

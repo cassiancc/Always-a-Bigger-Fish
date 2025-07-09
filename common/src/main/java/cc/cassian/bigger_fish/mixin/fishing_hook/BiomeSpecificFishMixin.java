@@ -1,7 +1,6 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.PlatformMethods;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
@@ -25,7 +24,7 @@ public class BiomeSpecificFishMixin {
     @WrapOperation(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;"))
     private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original, ItemStack fishingRod) {
         var hook = (FishingHook) (Object) this;
-        if (PlatformMethods.isLavaHook(hook)) {
+        if (ModHelpers.isLavaHook(hook)) {
             return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
         }
         if (BiggerFishMod.CONFIG.gameplay.biomeFishing.value() || fishingRod.is(BiggerFishTags.CATCHES_BIGGER_FISH)) {
@@ -34,7 +33,7 @@ public class BiomeSpecificFishMixin {
                 if (bundleContents != null && !bundleContents.isEmpty()) {
                     ItemStack itemUnsafe = bundleContents.getItemUnsafe(0);
                     // check for the fishing loot table component
-                    if (itemUnsafe.has(BiggerFishComponentTypes.FISHING_LOOT.get()) && !ModHelpers.hasNetheriteHook(fishingRod)) {
+                    if (itemUnsafe.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
                         return instance.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.parse(itemUnsafe.get(BiggerFishComponentTypes.FISHING_LOOT.get()))));
                     }
                     // most fishing is done via components, these are here as fallbacks for modded content

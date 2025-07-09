@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.helpers;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.config.ModConfig;
+import cc.cassian.bigger_fish.PlatformMethods;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
@@ -9,15 +9,14 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.CustomModelData;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
@@ -106,12 +105,16 @@ public class ModHelpers {
         return stack.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD) || stack.has(BiggerFishComponentTypes.FISHING_LOOT.get());
     }
 
-    public static boolean hasNetheriteHook(ItemStack item) {
+    public static String getHookData(ItemStack item) {
         if (item.has(DataComponents.BUNDLE_CONTENTS)) {
             BundleContents bundleContents = item.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents != null)
-                return bundleContents.getItemUnsafe(0).getOrDefault(BiggerFishComponentTypes.FISHING_LOOT.get(), "").equals("bigger_fish:gameplay/lava_fishing");
+                return bundleContents.getItemUnsafe(0).getOrDefault(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "vanilla");
         }
-        return false;
+        return "";
+    }
+
+    public static Boolean isLavaHook(FishingHook hook) {
+        return PlatformMethods.getHookData(hook).equals("netherite");
     }
 }
