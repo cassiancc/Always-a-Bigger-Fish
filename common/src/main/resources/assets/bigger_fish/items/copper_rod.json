@@ -39,8 +39,28 @@
           "model": "bigger_fish:item/copper_rod_with_worm"
         },
         "on_false": {
-          "type": "minecraft:model",
-          "model": "bigger_fish:item/copper_rod"
+          "type": "minecraft:condition",
+          "property": "minecraft:component",
+          "predicate": "minecraft:bundle_contents",
+          "value": {
+            "items": {
+              "contains": [
+                {
+                  "items": [
+                    "bigger_fish:netherite_hook"
+                  ]
+                }
+              ]
+            }
+          },
+          "on_true": {
+            "type": "minecraft:model",
+            "model": "bigger_fish:item/copper_rod_with_netherite_hook"
+          },
+          "on_false": {
+            "type": "minecraft:model",
+            "model": "bigger_fish:item/copper_rod"
+          }
         }
       }
     },

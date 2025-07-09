@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.CustomModelData;
 
 import java.lang.reflect.Field;
@@ -103,5 +104,14 @@ public class ModHelpers {
 
     public static boolean isAllowedInBaitedRod(ItemStack stack) {
         return stack.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD) || stack.has(BiggerFishComponentTypes.FISHING_LOOT.get());
+    }
+
+    public static boolean hasNetheriteHook(ItemStack item) {
+        if (item.has(DataComponents.BUNDLE_CONTENTS)) {
+            BundleContents bundleContents = item.get(DataComponents.BUNDLE_CONTENTS);
+            if (bundleContents != null)
+                return bundleContents.getItemUnsafe(0).getOrDefault(BiggerFishComponentTypes.FISHING_LOOT.get(), "").equals("bigger_fish:gameplay/lava_fishing");
+        }
+        return false;
     }
 }

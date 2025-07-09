@@ -49,8 +49,7 @@ public final class BiggerFishFabric implements ModInitializer {
         });
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
-            itemGroup.addAfter(Items.FISHING_ROD, BiggerFishItems.NETHERITE_ROD.get());
-            itemGroup.addAfter(Items.FISHING_ROD, BiggerFishItems.COPPER_ROD.get());
+            itemGroup.addAfter(Items.FISHING_ROD, ModHelpers.toCollection(BiggerFishItems.TOOLS));
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register((itemGroup) -> {
             itemGroup.addAfter(Items.PUFFERFISH, ModHelpers.toCollection(BiggerFishItems.FISH));

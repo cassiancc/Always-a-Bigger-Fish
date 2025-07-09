@@ -52,8 +52,9 @@ public final class BiggerFishNeoForge {
     @SubscribeEvent
     public static void registerCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
-            event.insertAfter(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.NETHERITE_ROD.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.insertAfter(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.COPPER_ROD.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            for (ItemStack itemStack : ModHelpers.toCollection(BiggerFishItems.TOOLS).reversed()) {
+                event.insertAfter(Items.FISHING_ROD.getDefaultInstance(), itemStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            }
         }
         else if (event.getTabKey().equals(CreativeModeTabs.FOOD_AND_DRINKS)) {
             for (ItemStack itemStack : ModHelpers.toCollection(BiggerFishItems.FISH).reversed()) {

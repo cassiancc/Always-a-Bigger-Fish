@@ -1,7 +1,6 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;

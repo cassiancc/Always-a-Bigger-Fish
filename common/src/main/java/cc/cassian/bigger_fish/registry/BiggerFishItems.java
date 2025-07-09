@@ -111,14 +111,15 @@ public class BiggerFishItems {
 
     // Tools
     public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
-    public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").durability(2031).stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
-    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().repairable(ItemTags.DIAMOND_TOOL_MATERIALS).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing").durability(64));
+    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties().repairable(ItemTags.DIAMOND_TOOL_MATERIALS).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing").durability(128));
+    public static Supplier<Item> NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties().repairable(ItemTags.NETHERITE_TOOL_MATERIALS).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/lava_fishing").durability(512));
 
     // JUNK
     public static Supplier<Item> CAN = createItem("can");
     public static Supplier<Item> FISH_BONES = createItem("fish_bones");
 
-    public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES, DIAMOND_HOOK);
+    public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
+    public static List<Supplier<Item>> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK);
 
     private static Supplier<Item> createItem(String id) {
         return registerItem(id, properties(id));

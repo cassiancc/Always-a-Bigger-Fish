@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
 import cc.cassian.bigger_fish.PlatformMethods;
-import cc.cassian.bigger_fish.registry.BiggerFishTags;
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.tags.FluidTags;
@@ -17,7 +17,7 @@ public class AllowLavaFishingMixin {
     @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/material/FluidState;is(Lnet/minecraft/tags/TagKey;)Z"))
     private boolean allowLavaFishing(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
         var hook = (FishingHook) (Object) this;
-        if (hook.getPlayerOwner() != null && (hook.getPlayerOwner().getMainHandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA) || hook.getPlayerOwner().getOffhandItem().is(BiggerFishTags.CAN_FISH_IN_LAVA)) && instance.is(FluidTags.LAVA)) {
+        if (hook.getPlayerOwner() != null && (ModHelpers.hasNetheriteHook(hook.getPlayerOwner().getOffhandItem()) || ModHelpers.hasNetheriteHook(hook.getPlayerOwner().getOffhandItem())) && instance.is(FluidTags.LAVA)) {
             PlatformMethods.makeLavaHook(hook);
             return true;
         } else {

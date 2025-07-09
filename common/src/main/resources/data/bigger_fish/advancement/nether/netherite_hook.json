@@ -1,28 +1,28 @@
 {
   "parent": "minecraft:nether/obtain_ancient_debris",
   "criteria": {
-    "netherite_rod": {
+    "netherite_hook": {
       "conditions": {
-        "recipe_id": "bigger_fish:netherite_rod"
+        "recipe_id": "bigger_fish:netherite_hook"
       },
       "trigger": "minecraft:recipe_crafted"
     }
   },
   "display": {
     "description": {
-      "translate": "advancements.bigger_fish.netherite_rod.description"
+      "translate": "advancements.bigger_fish.netherite_hook.description"
     },
     "icon": {
       "count": 1,
-      "id": "bigger_fish:netherite_rod"
+      "id": "bigger_fish:netherite_hook"
     },
     "title": {
-      "translate": "advancements.bigger_fish.netherite_rod.title"
+      "translate": "advancements.bigger_fish.netherite_hook.title"
     }
   },
   "requirements": [
     [
-      "netherite_rod"
+      "netherite_hook"
     ]
   ]
 }

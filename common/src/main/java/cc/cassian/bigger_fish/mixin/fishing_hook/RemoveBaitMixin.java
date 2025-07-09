@@ -1,7 +1,6 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
