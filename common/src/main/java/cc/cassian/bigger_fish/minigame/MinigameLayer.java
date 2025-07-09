@@ -15,6 +15,7 @@ import net.minecraft.world.entity.HumanoidArm;
 public class MinigameLayer implements LayeredDraw.Layer {
     public boolean moveBackwards = false;
     public int moveBackwardsLastSwitched = 0;
+    public int difficulty = 2;
 
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
@@ -34,9 +35,19 @@ public class MinigameLayer implements LayeredDraw.Layer {
                     x, y, width, height);
 
             int tickCount= mc.player.tickCount;
-            int tick = tickCount%185;
-            int rectangleWidth = tick;
-            if (tick == 183 && (tickCount-moveBackwardsLastSwitched > 10)) {
+            int difficultySpeed = 185;
+            int difficultyMultiplier = 1;
+            if (difficulty == 2) {
+                difficultySpeed = 92;
+                difficultyMultiplier = 2;
+            } else if (difficulty == 3) {
+                difficultySpeed = 46;
+                difficultyMultiplier = 4;
+            }
+
+            int tick = tickCount%difficultySpeed;
+            int rectangleWidth = tick*difficultyMultiplier;
+            if (tick == (difficultySpeed-2) && (tickCount-moveBackwardsLastSwitched > 10)) {
                 moveBackwards = !moveBackwards;
                 moveBackwardsLastSwitched = tickCount;
             }
