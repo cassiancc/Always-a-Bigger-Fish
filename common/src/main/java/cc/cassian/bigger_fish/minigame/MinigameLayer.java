@@ -53,6 +53,9 @@ public class MinigameLayer implements LayeredDraw.Layer {
             }
             if (moveBackwards) {
                 rectangleWidth = 180-rectangleWidth;
+                if (rectangleWidth < 10) {
+                    rectangleWidth = 180;
+                }
             }
 
             int rectangleHeight = height-2;

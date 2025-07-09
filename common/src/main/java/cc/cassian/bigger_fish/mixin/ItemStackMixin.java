@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 public abstract class ItemStackMixin {
 
     @Inject(method = "addDetailsToTooltip", at = @At(value = "HEAD"))
-    private void randomizedFish(Item.TooltipContext context, TooltipDisplay tooltipDisplay, Player playef, TooltipFlag tooltipFlag, Consumer<Component> tooltipAdder, CallbackInfo ci) {
+    private void randomizedFish(Item.TooltipContext context, TooltipDisplay tooltipDisplay, Player player, TooltipFlag tooltipFlag, Consumer<Component> tooltipAdder, CallbackInfo ci) {
         var stack = (ItemStack) (Object) this;
         if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value()) {
             if (stack.has(BiggerFishComponentTypes.SIZE.get()) && tooltipDisplay.shows(BiggerFishComponentTypes.SIZE.get())) {
