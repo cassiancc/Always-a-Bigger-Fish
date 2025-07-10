@@ -48,6 +48,7 @@ public class BiggerFishItems {
     public static Supplier<Item> GROUPER = createFish("grouper");
     public static Supplier<Item> HADDOCK = createFish("haddock");
     public static Supplier<Item> HERRING = createFish("herring");
+    public static Supplier<Item> JELLYFISH = createFish("jellyfish");
     public static Supplier<Item> KOI = createFish("koi");
     public static Supplier<Item> KNIFEFISH = createFish("knifefish");
     public static Supplier<Item> LOACH = createFish("loach");
@@ -68,6 +69,8 @@ public class BiggerFishItems {
     public static Supplier<Item> SCULKFISH = createFish("sculkfish");
     public static Supplier<Item> SHORTFIN_MOLLY = createFish("shortfin_molly");
     public static Supplier<Item> SPINY_LUMPSUCKER = createFish("spiny_lumpsucker");
+    public static Supplier<Item> STARFISH = createFish("starfish");
+    public static Supplier<Item> STINGRAY = createFish("stingray");
     public static Supplier<Item> STURGEON = createFish("sturgeon");
     public static Supplier<Item> SURGEONFISH = createFish("surgeonfish");
     public static Supplier<Item> SWORDFISH = createFish("swordfish");

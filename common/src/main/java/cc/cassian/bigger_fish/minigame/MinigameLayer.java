@@ -20,6 +20,7 @@ public class MinigameLayer implements LayeredDraw.Layer {
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         var mc = Minecraft.getInstance();
+        if (mc.options.hideGui) return;
         var player = mc.player;
         if (player == null) return;;
         var mainhand = player.getMainHandItem().is(BiggerFishTags.REQUIRES_MINIGAME_TO_CATCH);
