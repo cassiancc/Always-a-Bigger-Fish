@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.compat;
 
 import dev.yurisuika.compost.api.CompostApi;
-import dev.yurisuika.compost.util.config.options.Composition;
+import dev.yurisuika.compost.world.Composition;
 
 import java.util.Set;
 
