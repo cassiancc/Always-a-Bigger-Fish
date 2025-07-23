@@ -11,7 +11,7 @@ authors = "cassiancc, malice-and-meat"
 description = '''
 A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!
 '''
-#logoFile = ""
+logoFile = "assets/bigger_fish/icon.png"
 
 [[dependencies.bigger_fish]]
 modId = "neoforge"

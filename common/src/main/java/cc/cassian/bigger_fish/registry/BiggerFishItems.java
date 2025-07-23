@@ -44,9 +44,11 @@ public class BiggerFishItems {
     public static Supplier<Item> GAR = createFish("gar");
     public static Supplier<Item> GOLDEYE = createFish("goldeye");
     public static Supplier<Item> GOLDFISH = createFish("goldfish");
+    public static Supplier<Item> GREAT_WHITE_SHARK = createFish("great_white_shark");
     public static Supplier<Item> GREEN_CHROMIDE = createFish("green_chromide");
     public static Supplier<Item> GROUPER = createFish("grouper");
     public static Supplier<Item> HADDOCK = createFish("haddock");
+    public static Supplier<Item> HAMMERHEAD_SHARK = createFish("hammerhead_shark");
     public static Supplier<Item> HERRING = createFish("herring");
     public static Supplier<Item> JELLYFISH = createFish("jellyfish");
     public static Supplier<Item> KOI = createFish("koi");
@@ -66,7 +68,6 @@ public class BiggerFishItems {
     public static Supplier<Item> SARDINE = createFish("sardine");
     public static Supplier<Item> SHAD = createFish("shad");
     public static Supplier<Item> SHARK_CATFISH = createFish("shark_catfish");
-    public static Supplier<Item> SCULKFISH = createFish("sculkfish");
     public static Supplier<Item> SHORTFIN_MOLLY = createFish("shortfin_molly");
     public static Supplier<Item> SPINY_LUMPSUCKER = createFish("spiny_lumpsucker");
     public static Supplier<Item> STARFISH = createFish("starfish");
@@ -80,13 +81,21 @@ public class BiggerFishItems {
     public static Supplier<Item> TUNA = createFish("tuna");
     public static Supplier<Item> TWOHORN_SCULPIN = createFish("twohorn_sculpin");
     public static Supplier<Item> WALLEYE = createFish("walleye");
+    public static Supplier<Item> WHALE_SHARK = createFish("whale_shark");
     public static Supplier<Item> WHITE_SUCKER = createFish("white_sucker");
+
+    // Deep Dark Fish
+    public static Supplier<Item> SCULKFISH = createFish("sculkfish");
+    public static Supplier<Item> SENSOR_EEL = createFish("sensor_eel");
+    public static Supplier<Item> ANGLER_SCULKFISH = createFish("angler_sculkfish");
+    public static Supplier<Item> WARDING_SQUID = createFish("warding_squid");
 
     // Lava fish
     public static Supplier<Item> CINDER_EEL = createFish("cinder_eel", true);
     public static Supplier<Item> FIRE_BASS = createFish("fire_bass", true);
     public static Supplier<Item> FIRE_MACKEREL = createFish("fire_mackerel", true);
     public static Supplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish", true);
+    public static Supplier<Item> LAVASHOE_CRAB = createFish("lavashoe_crab", true);
 
     // Cave fish
     public static Supplier<Item> BLIND_CAVEFISH = createFish("blind_cavefish");

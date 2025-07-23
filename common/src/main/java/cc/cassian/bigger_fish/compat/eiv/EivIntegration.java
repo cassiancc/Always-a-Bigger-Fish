@@ -76,5 +76,6 @@ public class EivIntegration implements IExtendedItemViewIntegration {
         for (Supplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
             ItemView.excludeItem(item.get());
         }
+        ItemView.excludeItem(BiggerFishItems.COPPER_HOOK.get());
     }
 }
