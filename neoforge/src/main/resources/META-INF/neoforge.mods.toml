@@ -16,14 +16,14 @@ logoFile = "assets/bigger_fish/icon.png"
 [[dependencies.bigger_fish]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.5.81,)"
+versionRange = "[21.1.181,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.bigger_fish]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.5,)"
+versionRange = "[1.21.1,1.21.2)"
 ordering = "NONE"
 side = "BOTH"
 
