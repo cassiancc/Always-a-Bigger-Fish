@@ -3,7 +3,6 @@ package cc.cassian.bigger_fish;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.FishingHook;
-import net.minecraft.world.item.ItemStack;
 
 import java.nio.file.Path;
 
@@ -20,11 +19,6 @@ public class PlatformMethods {
     }
 
     @ExpectPlatform
-    public static boolean isFishingRod(ItemStack stack) {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
     public static void makeFireproof(ItemEntity itemEntity) {
         throw new AssertionError();
     }
@@ -35,12 +29,12 @@ public class PlatformMethods {
     }
 
     @ExpectPlatform
-    public static void makeLavaHook(FishingHook hook) {
+    public static void setHookData(FishingHook hook, String data) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    public static Boolean isLavaHook(FishingHook hook) {
+    public static String getHookData(FishingHook hook) {
         throw new AssertionError();
     }
 }

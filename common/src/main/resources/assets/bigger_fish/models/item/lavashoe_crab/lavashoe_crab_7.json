@@ -1,0 +1,1 @@
+{"parent":"minecraft:item/generated","textures":{"layer0":"bigger_fish:item/lavashoe_crab"},"display":{"firstperson_righthand":{"scale":[1.25,1.25,1.25]},"firstperson_lefthand":{"scale":[1.25,1.25,1.25]},"thirdperson_righthand":{"scale":[1.25,1.25,1.25]},"thirdperson_lefthand":{"scale":[1.25,1.25,1.25]},"fixed":{"scale":[1.25,1.25,1.25]},"ground":{"scale":[1.25,1.25,1.25]}}}

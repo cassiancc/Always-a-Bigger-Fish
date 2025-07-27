@@ -1,21 +1,17 @@
 package cc.cassian.bigger_fish.config;
 
 
+import cc.cassian.bigger_fish.BiggerFishMod;
+import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Locale;
-
+import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 import static cc.cassian.bigger_fish.helpers.ModHelpers.*;
 
-
 public class ClothConfigFactory {
-
-    private static final ModConfig DEFAULT_VALUES = new ModConfig();
 
     private static ConfigCategory createCategory(String section, ConfigBuilder builder) {
         if (section == null) {
@@ -23,53 +19,55 @@ public class ClothConfigFactory {
         } else {
             section += "_";
         }
-        return builder.getOrCreateCategory(Component.translatable("config.bigger_fish.%stitle".formatted(section)));
-    }
-
-    private static boolean is(Field field, String name) {
-        return field.getName().toLowerCase(Locale.ROOT).contains(name);
+        return builder.getOrCreateCategory(Component.translatable("config.%s.%stitle".formatted(MOD_ID, section)));
     }
 
     public static Screen create(Screen parent) {
         final var builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Component.translatable("modmenu.nameTranslation.bigger_fish"));
+                .setTitle(Component.translatable("modmenu.nameTranslation."+MOD_ID));
 
-        final var entryBuilder = builder.entryBuilder();
-        final var configInstance = ModConfig.get();
-        final var generalCategory = createCategory(null, builder);
+        addEntries(BiggerFishMod.CONFIG.values(), builder);
 
-
-        for (var field : ModConfig.class.getFields()) {
-            ConfigCategory category = generalCategory;
-
-            if (field.getType() == boolean.class) {
-                category.addEntry(entryBuilder.startBooleanToggle(fieldName(field), fieldGet(configInstance, field))
-                        .setSaveConsumer(fieldSetter(configInstance, field))
-                        .setTooltip(fieldTooltip(field))
-                        .setDefaultValue((boolean) fieldGet(DEFAULT_VALUES, field)).build());
-
-            }
-            else if (field.getType() == String.class) {
-                category.addEntry(entryBuilder.startStrField(fieldName(field), fieldGet(configInstance, field))
-                        .setSaveConsumer(fieldSetter(configInstance, field))
-                        .setTooltip(fieldTooltip(field))
-                        .setDefaultValue((String) fieldGet(DEFAULT_VALUES, field)).build());
-            }
-            else if (field.getType() == int.class) {
-                category.addEntry(entryBuilder.startIntField(fieldName(field), fieldGet(configInstance, field))
-                        .setSaveConsumer(fieldSetter(configInstance, field))
-                        .setTooltip(fieldTooltip(field))
-                        .setDefaultValue((int) fieldGet(DEFAULT_VALUES, field)).build());
-            }
-            else if (field.getType() == List.class) {
-                category.addEntry(entryBuilder.startStrList(fieldName(field), fieldGet(configInstance, field))
-                        .setSaveConsumer(fieldSetter(configInstance, field))
-                        .setTooltip(fieldTooltip(field))
-                        .setDefaultValue((List<String>) fieldGet(DEFAULT_VALUES, field)).build());
-            }
-        }
-        builder.setSavingRunnable(ModConfig::save);
+        builder.setSavingRunnable(BiggerFishMod.CONFIG::save);
         return builder.build();
+    }
+
+    private static void addEntries(Iterable<TrackedValue<?>> fields, ConfigBuilder builder) {
+        var entryBuilder = builder.entryBuilder();
+        for (var field : fields) {
+            String categoryName = field.key().toString();
+            if (categoryName.contains(".")) {
+                categoryName = toSnakeCase(categoryName.split("\\.")[0]);
+            } else {
+                categoryName = null;
+            }
+            var category = createCategory(categoryName, builder);
+            if (field.value().getClass() == Boolean.class) {
+                category.addEntry(entryBuilder.startBooleanToggle(fieldName(field), (boolean) field.value())
+                        .setSaveConsumer((o)-> fieldSetter(o, (TrackedValue<Boolean>) field))
+                        .setTooltip(fieldTooltip(field))
+                        .setDefaultValue((boolean) field.getDefaultValue()).build());
+
+            }
+            else if (field.value().getClass() == String.class) {
+                category.addEntry(entryBuilder.startStrField(fieldName(field), (String) field.value())
+                        .setSaveConsumer((o)-> fieldSetter(o, (TrackedValue<String>) field))
+                        .setTooltip(fieldTooltip(field))
+                        .setDefaultValue((String) field.getDefaultValue()).build());
+            }
+            else if (field.value().getClass() == Integer.class) {
+                category.addEntry(entryBuilder.startIntField(fieldName(field), (int) field.value())
+                        .setSaveConsumer((o)-> fieldSetter(o, (TrackedValue<Integer>) field))
+                        .setTooltip(fieldTooltip(field))
+                        .setDefaultValue((int) field.getDefaultValue()).build());
+            }
+//            else if (field.getType() == List.class) {
+//                category.addEntry(entryBuilder.startStrList(fieldName(field, categoryName), fieldGet(config, field))
+//                        .setSaveConsumer(fieldSetter(config, field))
+//                        .setTooltip(fieldTooltip(field, categoryName))
+//                        .setDefaultValue((List<String>) fieldGet(defaultValues, field)).build());
+//            }
+        }
     }
 }

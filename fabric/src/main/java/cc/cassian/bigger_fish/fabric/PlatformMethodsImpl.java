@@ -1,13 +1,19 @@
 package cc.cassian.bigger_fish.fabric;
 
+import cc.cassian.bigger_fish.PlatformMethods;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.nio.file.Path;
 
+/**
+ * See {@link PlatformMethods} for usages.
+ */
+@SuppressWarnings("unused")
 public class PlatformMethodsImpl {
 
     public static Path getConfigFolder() {
@@ -18,10 +24,6 @@ public class PlatformMethodsImpl {
         return FabricLoader.getInstance().isModLoaded(modID);
     }
 
-    public static boolean isFishingRod(ItemStack stack) {
-        return stack.is(ConventionalItemTags.FISHING_ROD_TOOLS);
-    }
-
     public static void makeFireproof(ItemEntity itemEntity) {
         itemEntity.setAttached(BiggerFishFabric.FIREPROOF, true);
     }
@@ -30,11 +32,11 @@ public class PlatformMethodsImpl {
         return itemEntity.getAttachedOrElse(BiggerFishFabric.FIREPROOF, false);
     }
 
-    public static void makeLavaHook(FishingHook hook) {
-        hook.setAttached(BiggerFishFabric.LAVA_HOOK, true);
+    public static void setHookData(FishingHook hook, String data) {
+        hook.setAttached(BiggerFishFabric.HOOK, data);
     }
 
-    public static Boolean isLavaHook(FishingHook hook) {
-        return hook.getAttachedOrElse(BiggerFishFabric.LAVA_HOOK, false);
+    public static String getHookData(FishingHook hook) {
+        return hook.getAttachedOrElse(BiggerFishFabric.HOOK, "vanilla");
     }
 }

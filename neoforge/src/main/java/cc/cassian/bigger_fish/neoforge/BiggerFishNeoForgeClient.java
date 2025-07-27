@@ -3,10 +3,7 @@ package cc.cassian.bigger_fish.neoforge;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.config.neoforge.ModConfigFactory;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
-import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -16,7 +13,6 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 
 @EventBusSubscriber(modid = BiggerFishMod.MOD_ID, value = Dist.CLIENT)
 public final class BiggerFishNeoForgeClient {

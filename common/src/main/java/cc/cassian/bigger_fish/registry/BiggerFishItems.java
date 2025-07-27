@@ -7,9 +7,9 @@ import cc.cassian.bigger_fish.items.LeechItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
 
@@ -45,10 +45,13 @@ public class BiggerFishItems {
     public static Supplier<Item> GAR = createFish("gar");
     public static Supplier<Item> GOLDEYE = createFish("goldeye");
     public static Supplier<Item> GOLDFISH = createFish("goldfish");
+    public static Supplier<Item> GREAT_WHITE_SHARK = createFish("great_white_shark");
     public static Supplier<Item> GREEN_CHROMIDE = createFish("green_chromide");
     public static Supplier<Item> GROUPER = createFish("grouper");
     public static Supplier<Item> HADDOCK = createFish("haddock");
+    public static Supplier<Item> HAMMERHEAD_SHARK = createFish("hammerhead_shark");
     public static Supplier<Item> HERRING = createFish("herring");
+    public static Supplier<Item> JELLYFISH = createFish("jellyfish");
     public static Supplier<Item> KOI = createFish("koi");
     public static Supplier<Item> KNIFEFISH = createFish("knifefish");
     public static Supplier<Item> LOACH = createFish("loach");
@@ -66,9 +69,10 @@ public class BiggerFishItems {
     public static Supplier<Item> SARDINE = createFish("sardine");
     public static Supplier<Item> SHAD = createFish("shad");
     public static Supplier<Item> SHARK_CATFISH = createFish("shark_catfish");
-    public static Supplier<Item> SCULKFISH = createFish("sculkfish");
     public static Supplier<Item> SHORTFIN_MOLLY = createFish("shortfin_molly");
     public static Supplier<Item> SPINY_LUMPSUCKER = createFish("spiny_lumpsucker");
+    public static Supplier<Item> STARFISH = createFish("starfish");
+    public static Supplier<Item> STINGRAY = createFish("stingray");
     public static Supplier<Item> STURGEON = createFish("sturgeon");
     public static Supplier<Item> SURGEONFISH = createFish("surgeonfish");
     public static Supplier<Item> SWORDFISH = createFish("swordfish");
@@ -78,13 +82,21 @@ public class BiggerFishItems {
     public static Supplier<Item> TUNA = createFish("tuna");
     public static Supplier<Item> TWOHORN_SCULPIN = createFish("twohorn_sculpin");
     public static Supplier<Item> WALLEYE = createFish("walleye");
+    public static Supplier<Item> WHALE_SHARK = createFish("whale_shark");
     public static Supplier<Item> WHITE_SUCKER = createFish("white_sucker");
+
+    // Deep Dark Fish
+    public static Supplier<Item> SCULKFISH = createFish("sculkfish");
+    public static Supplier<Item> SENSOR_EEL = createFish("sensor_eel");
+    public static Supplier<Item> ANGLER_SCULKFISH = createFish("angler_sculkfish");
+    public static Supplier<Item> WARDING_SQUID = createFish("warding_squid");
 
     // Lava fish
     public static Supplier<Item> CINDER_EEL = createFish("cinder_eel", true);
     public static Supplier<Item> FIRE_BASS = createFish("fire_bass", true);
     public static Supplier<Item> FIRE_MACKEREL = createFish("fire_mackerel", true);
     public static Supplier<Item> LAVA_JELLYFISH = createFish("lava_jellyfish", true);
+    public static Supplier<Item> LAVASHOE_CRAB = createFish("lavashoe_crab", true);
 
     // Cave fish
     public static Supplier<Item> BLIND_CAVEFISH = createFish("blind_cavefish");
@@ -95,8 +107,8 @@ public class BiggerFishItems {
     public static Supplier<Item> WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
-    public static Supplier<Item> WORM = CommonRegistry.registerItem("worm", ()->new Item(properties("worm")));
-    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")));
+    public static Supplier<Item> WORM = createItem("worm", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing"));
+    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech").useCooldown(0.5F).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_two_fishing")));
 
     // Food
     public static Supplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
@@ -110,21 +122,42 @@ public class BiggerFishItems {
     public static Supplier<Item> SUSHI = createFood("sushi", 5, 0.6f);
 
     // Tools
-    public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)));
-    public static Supplier<Item> NETHERITE_ROD = CommonRegistry.registerItem("netherite_rod", ()->new FishingRodItem(properties("netherite_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).fireResistant()));
+    public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
+
+    public static Supplier<Item> COPPER_HOOK = createItem("copper_hook", new Item.Properties()
+            .repairable(BiggerFishTags.COPPER_TOOL_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "copper")
+            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
+            .durability(64));
+
+    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties()
+            .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
+            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
+            .durability(128));
+
+    public static Supplier<Item> NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties()
+            .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
+            .durability(512));
 
     // JUNK
     public static Supplier<Item> CAN = createItem("can");
     public static Supplier<Item> FISH_BONES = createItem("fish_bones");
 
     public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
+    public static List<Supplier<Item>> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK);
 
     private static Supplier<Item> createItem(String id) {
         return registerItem(id, properties(id));
     }
 
+    private static Supplier<Item> createItem(String id, Item.Properties properties) {
+        return registerItem(id, properties.setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id))));
+    }
+
     private static Supplier<Item> createFish(String id) {
-        Supplier<Item> fish = registerItem(id, properties(id).food(Foods.COD));
+        Supplier<Item> fish = registerItem(id, properties(id).food(Foods.COD).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_three_fishing"));
         FISH.add(fish);
         return fish;
     }
@@ -133,7 +166,7 @@ public class BiggerFishItems {
         if (!fireproof) {
             return createFish(id);
         } else {
-            Supplier<Item> fish = registerItem(id, properties(id).fireResistant().food(Foods.COD));
+            Supplier<Item> fish = registerItem(id, properties(id).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_three_fishing").fireResistant().food(Foods.COD));
             FISH.add(fish);
             return fish;
         }
@@ -159,6 +192,14 @@ public class BiggerFishItems {
 
     private static Item.Properties properties(String id) {
         return new Item.Properties();
+    }
+
+    private static Item.Properties getCopperRodProperties() {
+        var properties = properties("copper_rod").stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        if (BiggerFishMod.CONFIG.gameplay.baitedRodsHaveDurability.value()) {
+            properties = properties.durability(191);
+        }
+        return properties;
     }
 
     public static void touch() {

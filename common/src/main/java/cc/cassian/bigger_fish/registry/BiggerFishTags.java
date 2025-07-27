@@ -1,11 +1,13 @@
 package cc.cassian.bigger_fish.registry;
 
-import cc.cassian.bigger_fish.BiggerFishMod;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 import java.util.List;
+
+import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
 public class BiggerFishTags {
 
@@ -13,6 +15,11 @@ public class BiggerFishTags {
     public static final TagKey<Item> TIER_TWO_BAIT = itemTagKey("tier_two_bait");
     public static final TagKey<Item> TIER_THREE_BAIT = itemTagKey("tier_three_bait");
     public static final TagKey<Item> BAIT = itemTagKey("bait");
+
+    public static final TagKey<Item> HOOKS = itemTagKey("hooks");
+    public static final TagKey<Item> ATTRACTS_TREASURE = itemTagKey("attracts_treasure");
+
+    public static final TagKey<Item> ALLOWED_IN_BAITED_ROD = itemTagKey("allowed_in_baited_rod");
 
     public static final TagKey<Item> REQUIRES_MINIGAME_TO_CATCH = itemTagKey("requires_minigame_to_catch");
     public static final TagKey<Item> CAN_FISH_IN_LAVA = itemTagKey("can_fish_in_lava");;
@@ -62,6 +69,9 @@ public class BiggerFishTags {
     public static final TagKey<Item> JUNK = itemTagKey("junk");
     public static final TagKey<Item> TREASURE = itemTagKey("treasure");
 
+    public static final TagKey<Item> COPPER_TOOL_MATERIALS = itemTagKey("c", "ingots/copper");
+    public static final TagKey<Item> FISHING_RODS = itemTagKey("c", "tools/fishing_rod");
+
     public static final List<TagKey<Item>> FISHING_TAGS_FOR_DISPLAY = List.of(
             TIER_ONE_COLD_FRESHWATER_FISH, TIER_TWO_COLD_FRESHWATER_FISH, TIER_THREE_COLD_FRESHWATER_FISH,
             TIER_ONE_COLD_SALTWATER_FISH, TIER_TWO_COLD_SALTWATER_FISH, TIER_THREE_COLD_SALTWATER_FISH,
@@ -76,7 +86,15 @@ public class BiggerFishTags {
             JUNK, TREASURE
     );
 
+    public static final List<TagKey<Item>> BAIT_TAGS_FOR_DISPLAY = List.of(
+            BiggerFishTags.TIER_ONE_BAIT, TIER_TWO_BAIT, TIER_THREE_BAIT, ATTRACTS_TREASURE
+    );
+
     public static TagKey<Item> itemTagKey(String id) {
-        return TagKey.create(Registries.ITEM, BiggerFishMod.of(id));
+        return itemTagKey(MOD_ID, id);
+    }
+
+    public static TagKey<Item> itemTagKey(String namespace, String id) {
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(namespace, id));
     }
 }

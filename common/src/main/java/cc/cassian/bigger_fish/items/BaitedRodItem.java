@@ -1,5 +1,7 @@
 package cc.cassian.bigger_fish.items;
 
+import cc.cassian.bigger_fish.helpers.ModHelpers;
+import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -31,7 +33,7 @@ public class BaitedRodItem extends FishingRodItem {
         if (action != ClickAction.SECONDARY) {
             return false;
         } else {
-            BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
+            BundleContents bundleContents = rod.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents == null) {
                 return false;
             } else {
@@ -44,7 +46,7 @@ public class BaitedRodItem extends FishingRodItem {
                         ItemStack itemStack3 = slot.safeInsert(itemStack2);
                         mutable.tryInsert(itemStack3);
                     }
-                } else if (itemStack.getItem().canFitInsideContainerItems()  && itemStack.is(BiggerFishTags.BAIT)) {
+                } else if (itemStack.getItem().canFitInsideContainerItems()  && itemStack.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD)) {
                     int i = mutable.tryTransfer(slot, player);
                     if (i > 0) {
                         playInsertSound(player);
@@ -70,7 +72,7 @@ public class BaitedRodItem extends FishingRodItem {
                         playRemoveOneSound(player);
                         access.set(itemStack);
                     }
-                } else if (other.is(BiggerFishTags.BAIT)) {
+                } else if (other.is(BiggerFishTags.ALLOWED_IN_BAITED_ROD)) {
                     int i = mutable.tryInsert(other);
                     if (i > 0) {
                         playInsertSound(player);
@@ -87,20 +89,32 @@ public class BaitedRodItem extends FishingRodItem {
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return bundleContents.weight().compareTo(Fraction.ZERO) > 0;
+        if (stack.has(DataComponents.MAX_DAMAGE)) {
+            return super.isBarVisible(stack);
+        } else {
+            BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+            return bundleContents.weight().compareTo(Fraction.ZERO) > 0;
+        }
     }
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return Math.min(1 + Mth.mulAndTruncate(bundleContents.weight(), 12), 13);
+        if (stack.has(DataComponents.MAX_DAMAGE)) {
+            return super.getBarWidth(stack);
+        } else {
+            BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+            return Math.min(1 + Mth.mulAndTruncate(bundleContents.weight(), 12), 13);
+        }
     }
 
     @Override
     public int getBarColor(ItemStack stack) {
-        BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return bundleContents.weight().compareTo(Fraction.ONE) >= 0 ? FULL_BAR_COLOR : BAR_COLOR;
+        if (stack.has(DataComponents.MAX_DAMAGE)) {
+            return super.getBarColor(stack);
+        } else {
+            BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+            return bundleContents.weight().compareTo(Fraction.ONE) >= 0 ? FULL_BAR_COLOR : BAR_COLOR;
+        }
     }
 
 

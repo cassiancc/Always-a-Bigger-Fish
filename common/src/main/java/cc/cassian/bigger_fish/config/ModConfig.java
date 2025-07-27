@@ -1,57 +1,38 @@
 package cc.cassian.bigger_fish.config;
 
 
-import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.PlatformMethods;
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import folk.sisby.kaleido.api.ReflectiveConfig;
+import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
+import folk.sisby.kaleido.lib.quiltconfig.api.annotations.DisplayName;
+import folk.sisby.kaleido.lib.quiltconfig.api.annotations.DisplayNameConvention;
+import folk.sisby.kaleido.lib.quiltconfig.api.metadata.NamingSchemes;
+import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
+@DisplayNameConvention(NamingSchemes.SPACE_SEPARATED_LOWER_CASE_INITIAL_UPPER_CASE)
+@DisplayName("There's Always a Bigger Fish")
+public class ModConfig extends ReflectiveConfig {
 
-public class ModConfig {
-
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
-
-    private static ModConfig INSTANCE = new ModConfig();
-
-    public boolean biomeFishing = true;
-    public boolean fishSizes = true;
-    public boolean centimeters = true;
-    public boolean showFishSizesAlways = true;
-
-    public static void load() {
-        if (!Files.exists(configPath())) {
-            save();
-            return;
-        }
-
-        try (var input = Files.newInputStream(configPath())) {
-            INSTANCE = GSON.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), ModConfig.class);
-        } catch (IOException e) {
-            BiggerFishMod.LOGGER.warn("Unable to load config file!");
-        }
+    public final GameplayOptions gameplay = new GameplayOptions();
+    public static class GameplayOptions extends Section {
+        @Comment("When using a vanilla Fishing Rod, replace vanilla's fishing loot table with biome specific fishing.")
+        public final TrackedValue<Boolean> biomeFishing = this.value(true);
+        @Comment("Randomize caught fish sizes")
+        public final TrackedValue<Boolean> fishSizes = this.value(true);
+        public final TrackedValue<Boolean> baitedRodsHaveDurability = this.value(true);
     }
 
-    public static void save() {
-        try (var output = Files.newOutputStream(configPath()); var writer = new OutputStreamWriter(output, StandardCharsets.UTF_8)) {
-            GSON.toJson(INSTANCE, writer);
-        } catch (IOException e) {
-            BiggerFishMod.LOGGER.warn("Unable to save config file!");
-        }
-    }
-
-    public static ModConfig get() {
-        if (INSTANCE == null) INSTANCE = new ModConfig();
-        return INSTANCE;
-    }
-
-    static Path configPath() {
-        return PlatformMethods.getConfigFolder().resolve("bigger_fish.json");
+    public final TooltipOptions tooltip = new TooltipOptions();
+    public static class TooltipOptions extends Section {
+        @Comment("Show fish size in centimeters instead of inches")
+        public final TrackedValue<Boolean> centimeters = this.value(false);
+        @Comment("Show fish size in tooltip.")
+        @Comment("NOTE: When this option is disabled and randomize fish sizes is still enabled, the reason your fish aren't stacking won't be obvious.")
+        public final TrackedValue<Boolean> fishSizeTooltip = this.value(true);
+        @Comment("When disabled, shift is required to show fish size.")
+        public final TrackedValue<Boolean> showFishSizesAlways = this.value(true);
+        @Comment("Show what bait can be used for in a tooltip")
+        public final TrackedValue<Boolean> baitUsageTooltip = this.value(true);
+        @Comment("Show bait usage always. When disabled, shift is required to show bait usage.")
+        public final TrackedValue<Boolean> showBaitUsageAlways = this.value(false);
     }
 }
