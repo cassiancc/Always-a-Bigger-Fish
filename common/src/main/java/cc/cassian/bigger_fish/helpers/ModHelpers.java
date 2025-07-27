@@ -108,7 +108,7 @@ public class ModHelpers {
     public static String getHookData(ItemStack item) {
         if (item.has(DataComponents.BUNDLE_CONTENTS)) {
             BundleContents bundleContents = item.get(DataComponents.BUNDLE_CONTENTS);
-            if (bundleContents != null)
+            if (bundleContents != null && !bundleContents.isEmpty())
                 return bundleContents.getItemUnsafe(0).getOrDefault(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "vanilla");
         }
         return "";

@@ -5,12 +5,12 @@
   "minVersion": "0.8",
   "client": [
     "ClientBundleTooltipMixin",
-    "ClientTooltipComponentMixin"
+    "ClientTooltipComponentMixin",
+    "ItemStackMixin"
   ],
   "mixins": [
     "ComposterMixin",
     "ItemEntityMixin",
-    "ItemStackMixin",
     "fishing_hook.AllowLavaFishingMixin",
     "fishing_hook.BiomeSpecificFishMixin",
     "fishing_hook.FishingCausesBubblesMixin",
