@@ -4,12 +4,12 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
-    "FishingHookRendererMixin"
+    "FishingHookRendererMixin",
+    "ItemStackMixin"
   ],
   "mixins": [
     "ComposterMixin",
     "ItemEntityMixin",
-    "ItemStackMixin",
     "fishing_hook.AllowLavaFishingMixin",
     "fishing_hook.BiomeSpecificFishMixin",
     "fishing_hook.FireproofItemsMixin",
