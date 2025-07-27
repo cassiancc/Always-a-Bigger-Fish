@@ -3,14 +3,17 @@ package cc.cassian.bigger_fish.registry;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.items.BaitedRodItem;
+import cc.cassian.bigger_fish.items.HookItem;
 import cc.cassian.bigger_fish.items.LeechItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.BundleContents;
 
 import java.util.ArrayList;
@@ -108,7 +111,7 @@ public class BiggerFishItems {
 
     // Bait
     public static Supplier<Item> WORM = createItem("worm", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing"));
-    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech").useCooldown(0.5F).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_two_fishing")));
+    public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech").component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_two_fishing")));
 
     // Food
     public static Supplier<Item> FRIED_FISH = createFood("fried_fish", 5, 0.6f);
@@ -124,20 +127,17 @@ public class BiggerFishItems {
     // Tools
     public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
 
-    public static Supplier<Item> COPPER_HOOK = createItem("copper_hook", new Item.Properties()
-            .repairable(BiggerFishTags.COPPER_TOOL_MATERIALS)
+    public static Supplier<Item> COPPER_HOOK = createHook("copper_hook", BiggerFishTags.COPPER_TOOL_MATERIALS, new Item.Properties()
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "copper")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
             .durability(64));
 
-    public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties()
-            .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
+    public static Supplier<Item> DIAMOND_HOOK = createHook("diamond_hook", Items.DIAMOND, new Item.Properties()
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
             .durability(128));
 
-    public static Supplier<Item> NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties()
-            .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
+    public static Supplier<Item> NETHERITE_HOOK = createHook("netherite_hook", Items.NETHERITE_SCRAP, new Item.Properties()
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
             .durability(512));
 
@@ -153,13 +153,23 @@ public class BiggerFishItems {
     }
 
     private static Supplier<Item> createItem(String id, Item.Properties properties) {
-        return registerItem(id, properties.setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id))));
+        return registerItem(id, properties);
     }
 
     private static Supplier<Item> createFish(String id) {
         Supplier<Item> fish = registerItem(id, properties(id).food(Foods.COD).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_three_fishing"));
         FISH.add(fish);
         return fish;
+    }
+
+    private static Supplier<Item> createHook(String id, Item repairIngredient, Item.Properties properties) {
+        Supplier<Item> hook = CommonRegistry.registerItem(id, () -> new HookItem(properties, repairIngredient));
+        return hook;
+    }
+
+    private static Supplier<Item> createHook(String id, TagKey<Item> repairIngredient, Item.Properties properties) {
+        Supplier<Item> hook = CommonRegistry.registerItem(id, () -> new HookItem(properties, repairIngredient));
+        return hook;
     }
 
     private static Supplier<Item> createFish(String id, boolean fireproof) {

@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"building","pattern":[" C","CC"],"key":{"C":"minecraft:netherite_scrap"},"result":{"id":"bigger_fish:netherite_hook","count":1}}
+{"type":"minecraft:crafting_shaped","category":"building","pattern":[" C","CC"],"key":{"C":{"item":"minecraft:netherite_scrap"}},"result":{"id":"bigger_fish:netherite_hook","count":1}}

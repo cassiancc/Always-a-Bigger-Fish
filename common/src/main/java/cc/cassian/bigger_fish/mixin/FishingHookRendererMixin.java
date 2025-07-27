@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.mixin;
 
 import cc.cassian.bigger_fish.PlatformMethods;
+import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.renderer.entity.FishingHookRenderer;
@@ -15,7 +16,7 @@ public class FishingHookRendererMixin {
 
     @WrapOperation(method = "getPlayerHandPos", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getMainHandItem()Lnet/minecraft/world/item/ItemStack;"))
     private ItemStack allowModdedRodsInMainhand(Player instance, Operation<ItemStack> original) {
-        if (PlatformMethods.isFishingRod(instance.getMainHandItem())) {
+        if (instance.getMainHandItem().is(BiggerFishTags.FISHING_RODS)) {
             return Items.FISHING_ROD.getDefaultInstance();
         }
         else return original.call(instance);

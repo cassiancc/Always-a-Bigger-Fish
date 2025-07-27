@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"building","pattern":[" C","CC"],"key":{"C":"minecraft:diamond"},"result":{"id":"bigger_fish:diamond_hook","count":1}}
+{"type":"minecraft:crafting_shaped","category":"building","pattern":[" C","CC"],"key":{"C":{"item":"minecraft:diamond"}},"result":{"id":"bigger_fish:diamond_hook","count":1}}

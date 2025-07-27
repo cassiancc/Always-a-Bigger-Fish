@@ -33,7 +33,7 @@ public class BaitedRodItem extends FishingRodItem {
         if (action != ClickAction.SECONDARY) {
             return false;
         } else {
-            BundleContents bundleContents = rod.get(DataComponents.BUNDLE_CONTENTS);
+            BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents == null) {
                 return false;
             } else {

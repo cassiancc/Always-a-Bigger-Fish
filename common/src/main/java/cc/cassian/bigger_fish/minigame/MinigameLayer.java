@@ -9,15 +9,18 @@ import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ARGB;
+import net.minecraft.util.ColorRGBA;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.HumanoidArm;
 
+import java.awt.*;
+
 public class MinigameLayer {
-    public boolean moveBackwards = false;
-    public int moveBackwardsLastSwitched = 0;
-    public int difficulty = 2;
 
     public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+        boolean moveBackwards = false;
+        int moveBackwardsLastSwitched = 0;
+        int difficulty = 2;
         var mc = Minecraft.getInstance();
         if (mc.options.hideGui) return;
         var player = mc.player;
@@ -31,7 +34,7 @@ public class MinigameLayer {
             int height = 15;
 
             // background
-            guiGraphics.blitSprite(RenderType::guiTextured, BiggerFishMod.of("minigame"),
+            guiGraphics.blitSprite(BiggerFishMod.of("minigame"),
                     x, y, width, height);
 
             int tickCount= mc.player.tickCount;
@@ -61,7 +64,7 @@ public class MinigameLayer {
             int rectangleHeight = height-2;
 
             // x1, y1, x2, y2, color
-            guiGraphics.fill(x+1, y+1, x + rectangleWidth, y + rectangleHeight, ARGB.color(200, 100, 0, 0));
+            guiGraphics.fill(x+1, y+1, x + rectangleWidth, y + rectangleHeight, FastColor.ARGB32.color(200, 100, 0, 0));
             guiGraphics.drawString(mc.font, String.valueOf(tick), 5, 5, -1);
         }
     }
