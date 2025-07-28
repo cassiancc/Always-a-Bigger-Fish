@@ -25,6 +25,10 @@ public class BiggerFishTags {
     public static final TagKey<Item> CAN_FISH_IN_LAVA = itemTagKey("can_fish_in_lava");;
     public static final TagKey<Item> CATCHES_BIGGER_FISH = itemTagKey("catches_bigger_fish");
 
+    public static final TagKey<Item> TIER_ONE_FISH = itemTagKey("tier_one_fish");
+    public static final TagKey<Item> TIER_TWO_FISH = itemTagKey("tier_two_fish");
+    public static final TagKey<Item> TIER_THREE_FISH = itemTagKey("tier_three_fish");
+
     public static final TagKey<Item> TIER_ONE_COLD_FRESHWATER_FISH = itemTagKey("tier_one_cold_freshwater_fish");
     public static final TagKey<Item> TIER_TWO_COLD_FRESHWATER_FISH = itemTagKey("tier_two_cold_freshwater_fish");
     public static final TagKey<Item> TIER_THREE_COLD_FRESHWATER_FISH = itemTagKey("tier_three_cold_freshwater_fish");

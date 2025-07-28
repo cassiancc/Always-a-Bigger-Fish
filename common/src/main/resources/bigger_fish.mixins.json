@@ -6,15 +6,16 @@
   "client": [
     "ClientBundleTooltipMixin",
     "ClientTooltipComponentMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "MinigameRendererMixin"
   ],
   "mixins": [
     "ComposterMixin",
     "ItemEntityMixin",
     "fishing_hook.AllowLavaFishingMixin",
     "fishing_hook.BiomeSpecificFishMixin",
-    "fishing_hook.FishingCausesBubblesMixin",
     "fishing_hook.FireproofItemsMixin",
+    "fishing_hook.FishingCausesBubblesMixin",
     "fishing_hook.FishSizingMixin",
     "fishing_hook.LavaSplashingMixin",
     "fishing_hook.MinigameMixin",
