@@ -5,19 +5,19 @@ import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.LayeredDraw;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.HumanoidArm;
 
-public class MinigameLayer implements LayeredDraw.Layer {
+public class MinigameLayer {
     public boolean moveBackwards = false;
     public int moveBackwardsLastSwitched = 0;
     public int difficulty = 2;
 
-    @Override
+//    @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         var mc = Minecraft.getInstance();
         if (mc.options.hideGui) return;
@@ -32,7 +32,7 @@ public class MinigameLayer implements LayeredDraw.Layer {
             int height = 15;
 
             // background
-            guiGraphics.blitSprite(RenderType::guiTextured, BiggerFishMod.of("minigame"),
+            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, BiggerFishMod.of("minigame"),
                     x, y, width, height);
 
             int tickCount= mc.player.tickCount;
