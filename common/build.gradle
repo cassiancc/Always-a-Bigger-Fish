@@ -16,7 +16,7 @@ dependencies {
     compileOnlyApi("folk.sisby:kaleido-config:${kaleido_version}")
 
     // EIV
-    modImplementation "maven.local:eiv:${eiv_version}"
+    modImplementation "maven.modrinth:eiv:${eiv_version}-fabric"
 
     modApi("fuzs.iteminteractions:iteminteractions-fabric:$iteminteractions_version")
 
