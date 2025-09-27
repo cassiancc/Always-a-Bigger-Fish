@@ -17,7 +17,6 @@
     "fishing_hook.FireproofItemsMixin",
     "fishing_hook.FishSizingMixin",
     "fishing_hook.LavaSplashingMixin",
-    "fishing_hook.MinigameMixin",
     "fishing_hook.RemoveBaitMixin"
   ],
   "injectors": {
