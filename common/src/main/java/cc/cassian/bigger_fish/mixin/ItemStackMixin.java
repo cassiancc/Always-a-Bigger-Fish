@@ -4,6 +4,7 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -28,12 +29,12 @@ public abstract class ItemStackMixin {
         var stack = (ItemStack) (Object) this;
         if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value()) {
             if (stack.has(BiggerFishComponentTypes.SIZE.get()) && tooltipDisplay.shows(BiggerFishComponentTypes.SIZE.get())) {
-                if (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || Screen.hasShiftDown())
+                if (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || Minecraft.getInstance().hasShiftDown())
                     tooltipAdder.accept(Component.translatable("component.bigger_fish.size", ModHelpers.getFishSize(stack), ModHelpers.getUnit()));
             }
         }
         if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
-            if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || Screen.hasShiftDown())
+            if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || Minecraft.getInstance().hasShiftDown())
                 if (stack.has(BiggerFishComponentTypes.FISHING_LOOT.get()) && tooltipDisplay.shows(BiggerFishComponentTypes.FISHING_LOOT.get())) {
                 tooltipAdder.accept(Component.translatable("fishing."+ ResourceLocation.parse(Objects.requireNonNull(stack.get(BiggerFishComponentTypes.FISHING_LOOT.get()))).toLanguageKey().replace("/", ".")));
             }
