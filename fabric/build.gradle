@@ -54,6 +54,9 @@ dependencies {
 //    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
     // modImplementation "maven.modrinth:ferrite-core:CtMpt7Jr"
 
+    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
+
+
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }

@@ -18,6 +18,10 @@ dependencies {
     // EIV
     modImplementation "maven.modrinth:eiv:${eiv_version}-fabric"
 
+    //JEI
+    modCompileOnly("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
+
+
     modApi("fuzs.iteminteractions:iteminteractions-fabric:$iteminteractions_version")
 
 }
