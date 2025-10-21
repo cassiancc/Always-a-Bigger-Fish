@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "MIT"
+
+[[mods]]
+modId = "bigger_fish"
+displayName = "There's Always a Bigger Fish"
+version = "${version}"
+displayURL = ""
+logoFile = "assets/icon.png"
+authors = "cassiancc"
+description = '''A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!'''
+
+[[mixins]]
+config = "bigger_fish.mixins.json"
+
+[[dependencies.bigger_fish]]
+modId = "neoforge"
+type = "required"
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bigger_fish]]
+modId = "minecraft"
+type = "required"
