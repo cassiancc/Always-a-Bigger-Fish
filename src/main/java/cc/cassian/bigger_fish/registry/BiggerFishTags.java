@@ -69,7 +69,10 @@ public class BiggerFishTags {
     public static final TagKey<Item> JUNK = itemTagKey("junk");
     public static final TagKey<Item> TREASURE = itemTagKey("treasure");
 
-    public static final TagKey<Item> COPPER_TOOL_MATERIALS = itemTagKey("c", "ingots/copper");
+    public static final TagKey<Item> COPPER_TOOL_MATERIALS = itemTagKey("c", "repairable/copper");
+    public static final TagKey<Item> DIAMOND_TOOL_MATERIALS = itemTagKey("c", "repairable/diamond");
+    public static final TagKey<Item> NETHERITE_TOOL_MATERIALS = itemTagKey("c", "repairable/netherite");
+
     public static final TagKey<Item> FISHING_RODS = itemTagKey("c", "tools/fishing_rod");
 
     public static final List<TagKey<Item>> FISHING_TAGS_FOR_DISPLAY = List.of(

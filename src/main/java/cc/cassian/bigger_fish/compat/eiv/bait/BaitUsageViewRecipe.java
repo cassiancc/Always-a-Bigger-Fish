@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.eiv.bait;
-
+//? if >1.21.4 {
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewRecipe;
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
 import de.crafty.eiv.common.recipe.inventory.SlotContent;
@@ -38,3 +38,4 @@ public class BaitUsageViewRecipe extends FishingViewRecipe {
         return List.of(); //Return all of your outputs here
     }
 }
+//?}

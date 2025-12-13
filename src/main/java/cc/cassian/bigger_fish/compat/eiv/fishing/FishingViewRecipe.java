@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.eiv.fishing;
-
+//? if >1.21.4 {
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
 import de.crafty.eiv.common.api.recipe.IEivViewRecipe;
 import de.crafty.eiv.common.recipe.inventory.RecipeViewMenu;
@@ -59,7 +59,7 @@ public class FishingViewRecipe implements IEivViewRecipe {
     @Override
     public void renderRecipe(RecipeViewScreen screen,
                              //? if >1.21.6
-                             /*RecipePosition recipePosition,*/
+                             RecipePosition recipePosition,
                              GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         guiGraphics.drawWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, FishingViewType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
     }
@@ -74,3 +74,4 @@ public class FishingViewRecipe implements IEivViewRecipe {
         return List.of(this.output); //Return all of your outputs here
     }
 }
+//?}

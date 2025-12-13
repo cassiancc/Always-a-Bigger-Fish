@@ -1,0 +1,6 @@
+{
+  "values": [
+    "minecraft:netherite_ingot",
+    {"id":"minecraft:netherite_tool_materials","required":false}
+  ]
+}

@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.eiv.fishing;
-
+//? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
@@ -64,3 +64,4 @@ public class FishingViewType implements IEivRecipeViewType {
         return List.of(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.COPPER_ROD.get().getDefaultInstance()); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
     }
 }
+//?}

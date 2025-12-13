@@ -49,7 +49,13 @@ public class JeiIntegration implements IModPlugin {
 
     private static void addTagInfo(IRecipeRegistration registration, TagKey<Item> itemTag) {
         List<Item> items = new ArrayList<>();
-        BuiltInRegistries.ITEM.get(itemTag).ifPresent((holders) -> holders.forEach((holder) -> items.add(holder.value())));
+        BuiltInRegistries.ITEM.
+        //? if >1.21.6 {
+        get
+        //?} else {
+        /*getTag
+        *///?}
+        (itemTag).ifPresent((holders) -> holders.forEach((holder) -> items.add(holder.value())));
         List<ItemStack> stacks = new ArrayList<>();
         items.forEach((item) -> stacks.add(new ItemStack(item)));
         registration.addItemStackInfo(stacks, Component.translatable("tag."+ itemTag.location().toLanguageKey() + ".description"));

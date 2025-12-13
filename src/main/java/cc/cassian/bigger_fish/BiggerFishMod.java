@@ -1,9 +1,9 @@
 package cc.cassian.bigger_fish;
 
-import cc.cassian.bigger_fish.Platform;
-import cc.cassian.bigger_fish.compat.CompostCompat;
 import cc.cassian.bigger_fish.compat.ModCompat;
+//? if >1.21.4 {
 import cc.cassian.bigger_fish.compat.eiv.EivIntegration;
+//?}
 import cc.cassian.bigger_fish.compat.iteminteractions.ItemInteractionsCompat;
 import cc.cassian.bigger_fish.config.ModConfig;
 import net.minecraft.resources.ResourceLocation;
@@ -19,12 +19,11 @@ public final class BiggerFishMod {
         // Write common init code here.
 
         // Load optional compatibility
-        if (ModCompat.COMPOST) {
-            CompostCompat.register();
-        }
+        //? if >1.21.4 {
         if (ModCompat.EIV) {
             EivIntegration.hideStacks();
         }
+        //?}
         if (ModCompat.ITEMINTERACTIONS) {
             ItemInteractionsCompat.touch();
         }

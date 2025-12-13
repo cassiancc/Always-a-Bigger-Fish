@@ -1,3 +1,8 @@
+## [1.0.4]
+
+### Added
+- Support for JEI on Fabric.
+- Support for REI and JEI on 1.21.1.
 
 ## [1.0.3] - 2025-09-27
 

@@ -5,12 +5,19 @@ import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+//? if >1.21.6 {
 import net.minecraft.client.renderer.RenderPipelines;
+import static net.minecraft.util.ARGB.color;
+//?} else {
+/*import static net.minecraft.util.FastColor.ABGR32.color;
+*///?}
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.HumanoidArm;
+
+
 
 public class MinigameLayer {
     public boolean moveBackwards = false;
@@ -34,11 +41,9 @@ public class MinigameLayer {
             // background
             guiGraphics.blitSprite(
                     //? if >1.21.6 {
-                    /*RenderPipelines.GUI_TEXTURED
-                    *///?} else {
-                    RenderType::guiTextured
+                    RenderPipelines.GUI_TEXTURED,
                     //?}
-                    , BiggerFishMod.of("minigame"),
+                    BiggerFishMod.of("minigame"),
                     x, y, width, height);
 
             int tickCount= mc.player.tickCount;
@@ -68,7 +73,7 @@ public class MinigameLayer {
             int rectangleHeight = height-2;
 
             // x1, y1, x2, y2, color
-            guiGraphics.fill(x+1, y+1, x + rectangleWidth, y + rectangleHeight, ARGB.color(200, 100, 0, 0));
+            guiGraphics.fill(x+1, y+1, x + rectangleWidth, y + rectangleHeight, color(200, 100, 0, 0));
             guiGraphics.drawString(mc.font, String.valueOf(tick), 5, 5, -1);
         }
     }

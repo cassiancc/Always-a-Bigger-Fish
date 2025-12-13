@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.eiv.bait;
-
+//? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.eiv.bait_info.BaitInfoServerRecipe;
 import cc.cassian.bigger_fish.compat.eiv.bait_info.BaitInfoViewType;
@@ -21,3 +21,4 @@ public class BaitUsageServerRecipe extends FishingServerRecipe {
             return TYPE;
         }
 }
+//?}

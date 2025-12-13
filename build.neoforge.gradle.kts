@@ -57,40 +57,77 @@ neoForge {
 
 repositories {
     mavenLocal()
-    maven("https://maven.shedaniel.me/") {
+    maven {
         name = "shedaniel (Cloth Config)"
+        url = uri("https://maven.shedaniel.me/")
+        content {
+            includeGroupAndSubgroups("me.shedaniel")
+        }
     }
-    maven("https://maven.terraformersmc.com/releases/") {
+    maven {
         name = "Terraformers (Mod Menu)"
+        url = uri("https://maven.terraformersmc.com/releases/")
+        content {
+            includeGroupAndSubgroups("com.terraformersmc")
+            includeGroupAndSubgroups("dev.emi")
+        }
     }
-    maven("https://repo.sleeping.town/") {
+    maven {
         name = "Sisby Maven"
+        url = uri("https://repo.sleeping.town/")
+        content {
+            includeGroupAndSubgroups("folk.sisby")
+        }
     }
-    maven("https://maven.parchmentmc.org") {
+    maven {
         name = "Parchment Mappings"
+        url = uri("https://maven.parchmentmc.org")
+        content {
+            includeGroupAndSubgroups("org.parchmentmc")
+        }
     }
-    maven("https://maven.parchmentmc.org") {
-        name = "Parchment Mappings"
-    }
-    maven("https://maven.isxander.dev/releases") {
+    maven {
         name = "Xander Maven"
+        url = uri("https://maven.isxander.dev/releases")
+        content {
+            includeGroupAndSubgroups("dev.isxander")
+            includeGroupAndSubgroups("org.quiltmc.parsers")
+        }
     }
-    maven("https://maven.architectury.dev") {
+    maven {
         name = "REI Maven"
+        url = uri("https://maven.architectury.dev")
+        content {
+            includeGroupAndSubgroups("dev.architectury")
+        }
     }
-    maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") {
+    maven {
         name = "Fuzs Mod Resources"
+        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
+        content {
+            includeGroupAndSubgroups("fuzs")
+        }
     }
-    maven("https://api.modrinth.com/maven") {
+    maven {
         name = "Modrinth"
+        url = uri("https://api.modrinth.com/maven")
+        content {
+            includeGroupAndSubgroups("maven.modrinth")
+        }
     }
-    maven("https://maven.blamejared.com/") {
-        // location of the maven that hosts JEI files since January 2023
-        name = "Jared's maven"
+    maven {
+        name = "JEI - Jared's maven"
+        url = uri("https://maven.blamejared.com/")
+        content {
+            includeGroup("mezz.jei")
+        }
     }
-    maven("https://modmaven.dev/") {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "JEI"
+    maven {
+        name = "JEI - fallback maven"
+        url = uri("https://modmaven.dev/")
+        content {
+            includeGroup("mezz.jei")
+        }
     }
 }
 

@@ -26,8 +26,14 @@
     "eiv": [
       "cc.cassian.bigger_fish.compat.eiv.EivIntegration"
     ],
+    "emi": [
+      "cc.cassian.bigger_fish.compat.emi.EmiCompat"
+    ],
     "rei_client": [
       "cc.cassian.bigger_fish.compat.rei.ReiClient"
+    ],
+    "jei_mod_plugin": [
+      "cc.cassian.bigger_fish.compat.jei.JeiIntegration"
     ]
   },
   "mixins": [
@@ -37,16 +43,17 @@
   "depends": {
     "fabricloader": ">=0.16.10",
     "fabric-api": "*",
-    "minecraft": "~1.21.5",
+    "minecraft": "${minecraft}",
     "java": ">=21"
   },
   "recommends": {
-    "compost": "*",
-    "eiv": "*"
+    "compost": "*"
   },
   "suggests": {
     "item-descriptions": "*",
     "cloth-config": "*",
-    "modmenu": "*"
+    "modmenu": "*",
+    "eiv": "*",
+    "emi": "*"
   }
 }

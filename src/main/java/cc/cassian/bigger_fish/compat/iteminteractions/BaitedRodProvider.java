@@ -18,25 +18,25 @@ public class BaitedRodProvider extends BundleProvider {
     public static final MapCodec<BundleProvider> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(capacityMultiplierCodec(), backgroundColorCodec(),
                             //? if >1.21.6 {
-                            /*itemContentsCodec()
-                            *///?} else {
-                            disallowedItemsCodec()
-                            //?}
+                            itemContentsCodec()
+                            //?} else {
+                            /*disallowedItemsCodec()
+                            *///?}
                     )
                     .apply(instance,
                             (Integer capacityMultiplier, Optional<DyeBackedColor> dyeColor,
                              //? if >1.21.6 {
-                             /*ItemContents itemContents
-                             *///?} else {
-                             HolderSet<Item> disallowedItems
-                             //?}
+                             ItemContents itemContents
+                             //?} else {
+                             /*HolderSet<Item> disallowedItems
+                             *///?}
                             ) ->
                                     new BaitedRodProvider(capacityMultiplier, dyeColor.orElse(null))
                                             //? if >1.21.6 {
-                                            /*.itemContents(itemContents)
-                                             *///?} else {
-                                            .disallowedItems(disallowedItems)
-                                            //?}
+                                            .itemContents(itemContents)
+                                             //?} else {
+                                            /*.disallowedItems(disallowedItems)
+                                            *///?}
                     ));
 
     public BaitedRodProvider() {

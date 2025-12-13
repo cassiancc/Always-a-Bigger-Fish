@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.eiv.bait_info;
-
+//? if >1.21.4 {
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewRecipe;
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
 import de.crafty.eiv.common.recipe.inventory.SlotContent;
@@ -25,3 +25,4 @@ public class BaitInfoViewRecipe extends FishingViewRecipe {
         return BaitInfoViewType.INSTANCE; //Here you need your type's instance you created before
     }
 }
+//?}

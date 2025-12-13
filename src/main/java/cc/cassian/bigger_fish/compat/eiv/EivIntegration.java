@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.eiv;
-
+//? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.eiv.bait.BaitUsageServerRecipe;
 import cc.cassian.bigger_fish.compat.eiv.bait.BaitUsageViewRecipe;
@@ -79,3 +79,4 @@ public class EivIntegration implements IExtendedItemViewIntegration {
         ItemView.excludeItem(BiggerFishItems.COPPER_HOOK.get());
     }
 }
+//?}

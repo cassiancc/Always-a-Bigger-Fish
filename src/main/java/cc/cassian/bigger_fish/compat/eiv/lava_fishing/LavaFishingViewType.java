@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.eiv.lava_fishing;
-
+//? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
@@ -37,3 +37,4 @@ public class LavaFishingViewType extends FishingViewType {
         return List.of(BiggerFishItems.COPPER_ROD.get().getDefaultInstance()); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
     }
 }
+//?}
