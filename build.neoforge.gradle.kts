@@ -148,14 +148,20 @@ dependencies {
     implementation("fuzs.iteminteractions:iteminteractions-neoforge:${property("deps.iteminteractions")}")
     implementation("maven.modrinth:compost:${property("deps.compost")}")
     // Development QOL
-    runtimeOnly("cc.cassian.item-descriptions:item-descriptions-neoforge:${property("deps.item_descriptions")}")
+    runtimeOnly("cc.cassian.item-descriptions:item-descriptions-neoforge:${property("deps.item_descriptions")}") {
+        isTransitive = false
+    }
 
     // Recipe Viewers
-    compileOnly("maven.modrinth:eiv:${property("deps.eiv")}-neoforge")
+    if (hasProperty("deps.eiv")) {
+        compileOnly("maven.modrinth:eiv:${property("deps.eiv")}-neoforge")
+    }
     compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${property("deps.rei")}")
     compileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-neoforge:${property("deps.rei")}")
     compileOnly("mezz.jei:jei-${property("deps.minecraft")}-neoforge:${property("deps.jei")}")
-
+    if (hasProperty("deps.emi")) {
+        implementation("maven.modrinth:emi:${property("deps.emi")}+${property("deps.minecraft")}+neoforge")
+    }
 }
 
 tasks {

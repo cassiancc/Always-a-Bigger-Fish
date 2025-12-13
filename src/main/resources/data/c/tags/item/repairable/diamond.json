@@ -1,6 +1,0 @@
-{
-  "values": [
-    "minecraft:diamond",
-    {"id":"minecraft:diamond_tool_materials","required":false}
-  ]
-}
