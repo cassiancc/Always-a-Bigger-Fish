@@ -16,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientBundleTooltip.class)
 public class ClientBundleTooltipMixin {
+
+    //? if >1.21.2 {
     @Inject(method = "getProgressBarTexture",
             at = @At(value = "RETURN"), cancellable = true)
     private void baitedRodFullnessIsGood(CallbackInfoReturnable<ResourceLocation> cir) {
@@ -34,4 +36,6 @@ public class ClientBundleTooltipMixin {
         } else
             original.call(x, y, font, guiGraphics);
     }
+    //?}
+
 }
