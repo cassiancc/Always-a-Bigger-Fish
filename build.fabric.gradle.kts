@@ -155,12 +155,12 @@ dependencies {
     for (it in modules) modImplementation(fabricApi.module("fabric-$it", property("deps.fabric-api") as String))
 }
 
-fabricApi {
-    configureDataGeneration() {
-        outputDirectory = file("$rootDir/src/main/generated")
-        client = true
-    }
-}
+//fabricApi {
+//    configureDataGeneration() {
+//        outputDirectory = file("$rootDir/src/main/generated")
+//        client = true
+//    }
+//}
 
 tasks {
     processResources {
