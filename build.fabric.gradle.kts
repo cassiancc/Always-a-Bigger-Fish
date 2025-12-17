@@ -203,7 +203,7 @@ dependencies {
 
     // Recipe Viewers
     if (hasProperty("deps.eiv")) {
-        modCompileOnly("maven.modrinth:eiv:${property("deps.eiv")}-fabric")
+        modImplementation("maven.modrinth:eiv:${property("deps.eiv")}-fabric")
     }
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-api:${property("deps.rei")}")
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin:${property("deps.rei")}")
