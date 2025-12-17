@@ -206,7 +206,7 @@ publishMods {
     type = BETA
     displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version} NeoForge"
     version = "${property("mod.version")}+${property("deps.minecraft")}-neoforge"
-    changelog = provider { rootProject.file("CHANGELOG.md").readText() }
+    changelog = provider { rootProject.file("CHANGELOG-LATEST.md").readText() }
     modLoaders.add("neoforge")
 
     modrinth {
@@ -214,7 +214,6 @@ publishMods {
         accessToken = env.MODRINTH_API_KEY.orNull()
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
-        requires("compost")
         requires("mcqoy")
     }
 
