@@ -3,6 +3,7 @@
 ### Added
 - Support for JEI on Fabric.
 - Support for REI and JEI on 1.21.1.
+- Fish can now be used to tame Cats.
 
 ## [1.0.3] - 2025-09-27
 

@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("fabric-loom")
+    id("net.fabricmc.fabric-loom-remap")
     id("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
 }
@@ -33,61 +33,94 @@ jsonlang {
 
 repositories {
     mavenLocal()
-    maven {
-        name = "shedaniel (Cloth Config)"
-        url = uri("https://maven.shedaniel.me/")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "shedaniel (Cloth Config)"
+                url = uri("https://maven.shedaniel.me/")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("me.shedaniel")
+
         }
     }
-    maven {
-        name = "Terraformers (Mod Menu)"
-        url = uri("https://maven.terraformersmc.com/releases/")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Terraformers (Mod Menu)"
+                url = uri("https://maven.terraformersmc.com/releases/")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("com.terraformersmc")
             includeGroupAndSubgroups("dev.emi")
         }
     }
-    maven {
-        name = "Sisby Maven"
-        url = uri("https://repo.sleeping.town/")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Sisby Maven"
+                url = uri("https://repo.sleeping.town/")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("folk.sisby")
         }
     }
-    maven {
-        name = "Parchment Mappings"
-        url = uri("https://maven.parchmentmc.org")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Parchment Mappings"
+                url = uri("https://maven.parchmentmc.org")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("org.parchmentmc")
         }
     }
-    maven {
-        name = "Xander Maven"
-        url = uri("https://maven.isxander.dev/releases")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Xander Maven"
+                url = uri("https://maven.isxander.dev/releases")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("dev.isxander")
             includeGroupAndSubgroups("org.quiltmc.parsers")
         }
     }
-    maven {
-        name = "REI Maven"
-        url = uri("https://maven.architectury.dev")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "REI Maven"
+                url = uri("https://maven.architectury.dev")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("dev.architectury")
         }
     }
-    maven {
-        name = "Fuzs Mod Resources"
-        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Fuzs Mod Resources"
+                url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("fuzs")
         }
     }
-    maven {
-        name = "Modrinth"
-        url = uri("https://api.modrinth.com/maven")
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = uri("https://api.modrinth.com/maven")
+            }
+        }
+        filter {
             includeGroupAndSubgroups("maven.modrinth")
         }
     }
@@ -103,6 +136,28 @@ repositories {
         url = uri("https://modmaven.dev/")
         content {
             includeGroup("mezz.jei")
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Greenhouse Maven"
+                url = uri("https://maven.greenhouse.lgbt/releases/")
+            }
+        }
+        filter {
+            includeGroup("vectorwing")
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Greenhouse Maven"
+                url = uri("https://jitpack.io")
+            }
+        }
+        filter {
+            includeGroup("com.github.Chocohead")
         }
     }
 }
@@ -132,6 +187,12 @@ dependencies {
         modApi("com.terraformersmc:modmenu:${property("deps.modmenu")}")
     else {
         modCompileOnly("com.terraformersmc:modmenu:15.0.0-beta.3")
+    }
+
+    // Farmer's Delight
+    modImplementation("vectorwing:FarmersDelight:${property("deps.fd")}+refabricated") {
+        exclude(group = "net.fabricmc")
+        exclude(group = "me.shedaniel")
     }
 
     // Optional compat
