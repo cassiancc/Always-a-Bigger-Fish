@@ -3,7 +3,7 @@ package cc.cassian.bigger_fish.compat.eiv.bait_info;
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewRecipe;
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
 import de.crafty.eiv.common.recipe.inventory.SlotContent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -16,7 +16,7 @@ public class BaitInfoViewRecipe extends FishingViewRecipe {
         super(output);
     }
 
-    public BaitInfoViewRecipe(Supplier<Item> item, ResourceLocation output) {
+    public BaitInfoViewRecipe(Supplier<Item> item, Identifier output) {
         super(item, output);
     }
 

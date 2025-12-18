@@ -10,7 +10,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 public class JeiIntegration implements IModPlugin {
 
     @Override
-    public ResourceLocation getPluginUid() {
+    public Identifier getPluginUid() {
         return BiggerFishMod.of("jei_plugin");
     }
 
@@ -58,7 +58,9 @@ public class JeiIntegration implements IModPlugin {
         (itemTag).ifPresent((holders) -> holders.forEach((holder) -> items.add(holder.value())));
         List<ItemStack> stacks = new ArrayList<>();
         items.forEach((item) -> stacks.add(new ItemStack(item)));
-        registration.addItemStackInfo(stacks, Component.translatable("tag."+ itemTag.location().toLanguageKey() + ".description"));
+        if (!stacks.isEmpty()) {
+            registration.addItemStackInfo(stacks, Component.translatable("tag."+ itemTag.location().toLanguageKey() + ".description"));
+        }
     }
 
 }

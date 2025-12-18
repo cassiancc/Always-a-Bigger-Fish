@@ -10,7 +10,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.ReloadableServerRegistries;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
@@ -34,7 +34,7 @@ public class BiomeSpecificFishMixin {
                     ItemStack itemUnsafe = bundleContents.getItemUnsafe(0);
                     // check for the fishing loot table component
                     if (itemUnsafe.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
-                        return instance.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.parse(itemUnsafe.get(BiggerFishComponentTypes.FISHING_LOOT.get()))));
+                        return instance.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, Identifier.parse(itemUnsafe.get(BiggerFishComponentTypes.FISHING_LOOT.get()))));
                     }
                     // most fishing is done via components, these are here as fallbacks for modded content
                     else if (itemUnsafe.is(BiggerFishTags.TIER_ONE_BAIT)) {

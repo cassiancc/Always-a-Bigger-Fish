@@ -5,7 +5,7 @@ import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
 import de.crafty.eiv.common.recipe.inventory.RecipeViewMenu;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -31,7 +31,7 @@ public class FishingViewType implements IEivRecipeViewType {
     }
 
     @Override
-    public ResourceLocation getGuiTexture() {
+    public Identifier getGuiTexture() {
         return BiggerFishMod.of("textures/gui/fishing.png");
     }
 
@@ -50,7 +50,7 @@ public class FishingViewType implements IEivRecipeViewType {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public Identifier getId() {
         return BiggerFishMod.of("fishing");
     }
 

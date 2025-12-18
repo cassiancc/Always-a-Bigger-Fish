@@ -4,7 +4,7 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class BiggerFishModClient {
         if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
             if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown())
                 if (stack.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
-                    list.add(Component.translatable("fishing."+ ResourceLocation.parse(Objects.requireNonNull(stack.get(BiggerFishComponentTypes.FISHING_LOOT.get()))).toLanguageKey().replace("/", ".")));
+                    list.add(Component.translatable("fishing."+ Identifier.parse(Objects.requireNonNull(stack.get(BiggerFishComponentTypes.FISHING_LOOT.get()))).toLanguageKey().replace("/", ".")));
                 }
         }
     }

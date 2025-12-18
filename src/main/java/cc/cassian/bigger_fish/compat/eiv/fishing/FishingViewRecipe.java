@@ -11,7 +11,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.item.Item;
@@ -35,7 +35,7 @@ public class FishingViewRecipe implements IEivViewRecipe {
     }
 
     //You can design your constructor to suit your needs
-    public FishingViewRecipe(Supplier<Item> itemSupplier, ResourceLocation id) {
+    public FishingViewRecipe(Supplier<Item> itemSupplier, Identifier id) {
 
         //Define your inputs and outputs here
         this.output = SlotContent.of(itemSupplier.get());

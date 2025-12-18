@@ -8,7 +8,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientBundleTooltip;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,9 +20,9 @@ public class ClientBundleTooltipMixin {
     //? if >1.21.2 {
     @Inject(method = "getProgressBarTexture",
             at = @At(value = "RETURN"), cancellable = true)
-    private void baitedRodFullnessIsGood(CallbackInfoReturnable<ResourceLocation> cir) {
+    private void baitedRodFullnessIsGood(CallbackInfoReturnable<Identifier> cir) {
         var bundle = (ClientBundleTooltip) (Object) this;
-        if (bundle instanceof ClientBaitedRodTooltip && cir.getReturnValue().equals(ResourceLocation.withDefaultNamespace("container/bundle/bundle_progressbar_full"))) {
+        if (bundle instanceof ClientBaitedRodTooltip && cir.getReturnValue().equals(Identifier.withDefaultNamespace("container/bundle/bundle_progressbar_full"))) {
             cir.setReturnValue(BiggerFishMod.of("container/copper_rod/copper_rod_progressbar_full"));
         }
     }

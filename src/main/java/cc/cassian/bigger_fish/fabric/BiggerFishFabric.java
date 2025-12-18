@@ -11,9 +11,11 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+//? if <26 {
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
+//?}
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -42,9 +44,11 @@ public final class BiggerFishFabric implements ModInitializer {
         BiggerFishEntityTypes.touch();
         BiggerFishSoundEvents.touch();
         BiggerFishMobEffects.touch();
+        //? if <26 {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 1, (factories, rebalanced) -> {
             factories.add(new VillagerTrades.ItemsForEmeralds(BiggerFishItems.LEECH.get(), 1, 2, 4));
         });
+        //?}
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
             itemGroup.addAfter(Items.FISHING_ROD, ModHelpers.toCollection(BiggerFishItems.TOOLS));

@@ -4,7 +4,7 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
@@ -18,12 +18,12 @@ public class LavaFishingViewType extends FishingViewType {
     }
 
     @Override
-    public ResourceLocation getGuiTexture() {
+    public Identifier getGuiTexture() {
         return BiggerFishMod.of("textures/gui/lava_fishing.png");
     }
 
     @Override
-    public ResourceLocation getId() {
+    public Identifier getId() {
         return BiggerFishMod.of("lava_fishing");
     }
 
