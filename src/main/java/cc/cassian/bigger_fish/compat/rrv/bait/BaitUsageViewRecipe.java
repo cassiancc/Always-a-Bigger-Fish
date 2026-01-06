@@ -1,8 +1,8 @@
-package cc.cassian.bigger_fish.compat.eiv.bait;
-//? if >1.21.4 {
-import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewRecipe;
-import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
-import de.crafty.eiv.common.recipe.inventory.SlotContent;
+package cc.cassian.bigger_fish.compat.rrv.bait;
+//? if >1.21.10 {
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewRecipe;
+import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
+import cc.cassian.rrv.common.recipe.inventory.SlotContent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -24,7 +24,7 @@ public class BaitUsageViewRecipe extends FishingViewRecipe {
     }
 
     @Override
-    public IEivRecipeViewType getViewType() {
+    public ReliableClientRecipeType getViewType() {
         return BaitUsageViewType.INSTANCE; //Here you need your type's instance you created before
     }
 

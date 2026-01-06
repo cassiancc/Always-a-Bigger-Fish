@@ -1,9 +1,9 @@
-package cc.cassian.bigger_fish.compat.eiv.fishing;
-//? if >1.21.4 {
+package cc.cassian.bigger_fish.compat.rrv.fishing;
+//? if >1.21.10 {
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
-import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
-import de.crafty.eiv.common.recipe.inventory.RecipeViewMenu;
+import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
+import cc.cassian.rrv.common.recipe.inventory.RecipeViewMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.Items;
 
 import java.util.List;
 
-public class FishingViewType implements IEivRecipeViewType {
+public class FishingViewType implements ReliableClientRecipeType {
 
     protected static final FishingViewType INSTANCE = new FishingViewType();
 

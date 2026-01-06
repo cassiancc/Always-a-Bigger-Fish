@@ -171,6 +171,13 @@ repositories {
             includeGroupAndSubgroups("dev.lambdaurora")
         }
     }
+    maven {
+        name = "Cassian's Maven"
+        url = uri("https://maven.cassian.cc")
+        content {
+            includeGroupAndSubgroups("cc.cassian")
+        }
+    }
 }
 
 dependencies {
@@ -218,13 +225,14 @@ dependencies {
     modLocalRuntime("cc.cassian.item-descriptions:item-descriptions-fabric:${property("deps.item_descriptions")}")
 
     // Recipe Viewers
-    if (hasProperty("deps.eiv")) {
-        modCompileOnly("maven.modrinth:eiv:${property("deps.eiv")}-fabric")
+    if (hasProperty("deps.rrv")) {
+        modCompileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("deps.rrv")}")
+        modLocalRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("deps.rrv")}")
     }
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-api:${property("deps.rei")}")
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin:${property("deps.rei")}")
     modImplementation("mezz.jei:jei-${property("deps.minecraft")}-fabric-api:${property("deps.jei")}")
-    modRuntimeOnly("mezz.jei:jei-${property("deps.minecraft")}-fabric:${property("deps.jei")}")
+//    modRuntimeOnly("mezz.jei:jei-${property("deps.minecraft")}-fabric:${property("deps.jei")}")
     if (hasProperty("deps.emi")) {
         modImplementation("maven.modrinth:emi:${property("deps.emi")}+${property("deps.minecraft")}+fabric")
     }
@@ -295,6 +303,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
         requires("mcqoy")
+        optional("rrv")
 
     }
 
@@ -304,5 +313,6 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
+        optional("reliable-recipe-viewer-rrv")
     }
 }

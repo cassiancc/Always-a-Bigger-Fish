@@ -1,7 +1,7 @@
-package cc.cassian.bigger_fish.compat.eiv.bait_info;
+package cc.cassian.bigger_fish.compat.rrv.bait_info;
 //? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewType;
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;

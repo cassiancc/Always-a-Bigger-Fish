@@ -23,8 +23,8 @@
     "client": [
       "cc.cassian.bigger_fish.fabric.client.BiggerFishFabricClient"
     ],
-    "eiv": [
-      "cc.cassian.bigger_fish.compat.eiv.EivIntegration"
+    "rrv": [
+      "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"
     ],
     "emi": [
       "cc.cassian.bigger_fish.compat.emi.EmiCompat"

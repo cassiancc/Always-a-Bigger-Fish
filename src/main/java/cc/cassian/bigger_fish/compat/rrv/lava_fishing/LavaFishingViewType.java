@@ -1,7 +1,7 @@
-package cc.cassian.bigger_fish.compat.eiv.lava_fishing;
+package cc.cassian.bigger_fish.compat.rrv.lava_fishing;
 //? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewType;
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;

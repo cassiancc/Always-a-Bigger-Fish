@@ -1,18 +1,18 @@
-package cc.cassian.bigger_fish.compat.eiv;
-//? if >1.21.4 {
+package cc.cassian.bigger_fish.compat.rrv;
+//? if >1.21.10 {
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.compat.eiv.bait.BaitUsageServerRecipe;
-import cc.cassian.bigger_fish.compat.eiv.bait.BaitUsageViewRecipe;
-import cc.cassian.bigger_fish.compat.eiv.bait_info.BaitInfoServerRecipe;
-import cc.cassian.bigger_fish.compat.eiv.bait_info.BaitInfoViewRecipe;
-import cc.cassian.bigger_fish.compat.eiv.fishing.FishingServerRecipe;
-import cc.cassian.bigger_fish.compat.eiv.fishing.FishingViewRecipe;
-import cc.cassian.bigger_fish.compat.eiv.lava_fishing.LavaFishingServerRecipe;
-import cc.cassian.bigger_fish.compat.eiv.lava_fishing.LavaFishingViewRecipe;
+import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageServerRecipe;
+import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageViewRecipe;
+import cc.cassian.bigger_fish.compat.rrv.bait_info.BaitInfoServerRecipe;
+import cc.cassian.bigger_fish.compat.rrv.bait_info.BaitInfoViewRecipe;
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingServerRecipe;
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewRecipe;
+import cc.cassian.bigger_fish.compat.rrv.lava_fishing.LavaFishingServerRecipe;
+import cc.cassian.bigger_fish.compat.rrv.lava_fishing.LavaFishingViewRecipe;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import de.crafty.eiv.common.api.IExtendedItemViewIntegration;
-import de.crafty.eiv.common.api.recipe.ItemView;
+import cc.cassian.rrv.api.ReliableRecipeViewerPlugin;
+import cc.cassian.rrv.api.recipe.ItemView;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class EivIntegration implements IExtendedItemViewIntegration {
+public class RrvIntegration implements ReliableRecipeViewerPlugin {
     @Override
     public void onIntegrationInitialize() {
         //For the server
-        ItemView.addRecipeProvider(list -> {
+        ItemView.addServerRecipeProvider(list -> {
             //Here you can add all your server recipes
             list.add(new FishingServerRecipe());
             list.add(new LavaFishingServerRecipe());
@@ -35,7 +35,7 @@ public class EivIntegration implements IExtendedItemViewIntegration {
         //For the client
 
         // Fishing
-        ItemView.registerRecipeWrapper(FishingServerRecipe.TYPE,  modRecipe -> {
+        ItemView.registerClientRecipeWrapper(FishingServerRecipe.TYPE,  modRecipe -> {
 
             //Here you tell EIV how to process incoming server recipes
             //Requires you to return a list of client-side view-recipes (IEivViewRecipe)
@@ -48,17 +48,17 @@ public class EivIntegration implements IExtendedItemViewIntegration {
         });
 
         // Lava Fishing
-        ItemView.registerRecipeWrapper(LavaFishingServerRecipe.TYPE,
+        ItemView.registerClientRecipeWrapper(LavaFishingServerRecipe.TYPE,
                 modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)
         ));
 
         // Bait
-        ItemView.registerRecipeWrapper(BaitInfoServerRecipe.TYPE,
+        ItemView.registerClientRecipeWrapper(BaitInfoServerRecipe.TYPE,
                 modRecipe -> List.of(
                         new BaitInfoViewRecipe(BiggerFishItems.WORM, BiggerFishMod.of("worm"))
         ));
 
-        ItemView.registerRecipeWrapper(BaitUsageServerRecipe.TYPE,
+        ItemView.registerClientRecipeWrapper(BaitUsageServerRecipe.TYPE,
                 modRecipe -> {
 
                 //Here you tell EIV how to process incoming server recipes

@@ -1,15 +1,15 @@
-package cc.cassian.bigger_fish.compat.eiv.fishing;
-//? if >1.21.4 {
+package cc.cassian.bigger_fish.compat.rrv.fishing;
+//? if >1.21.10 {
 import cc.cassian.bigger_fish.BiggerFishMod;
-import de.crafty.eiv.common.api.recipe.EivRecipeType;
-import de.crafty.eiv.common.api.recipe.IEivServerRecipe;
+import cc.cassian.rrv.api.recipe.ReliableServerRecipe;
+import cc.cassian.rrv.api.recipe.ReliableServerRecipeType;
 import net.minecraft.nbt.CompoundTag;
 
-public class FishingServerRecipe implements IEivServerRecipe {
+public class FishingServerRecipe implements ReliableServerRecipe {
 
 
         //Create a server recipe type (the id does not have to match your client side viewtype id)
-        public static final EivRecipeType<FishingServerRecipe> TYPE = EivRecipeType.register(
+        public static final ReliableServerRecipeType<FishingServerRecipe> TYPE = ReliableServerRecipeType.register(
                 BiggerFishMod.of("fishing"),
                 FishingServerRecipe::new
         );
@@ -25,7 +25,7 @@ public class FishingServerRecipe implements IEivServerRecipe {
         }
 
         @Override
-        public EivRecipeType<? extends FishingServerRecipe> getRecipeType() {
+        public ReliableServerRecipeType<? extends FishingServerRecipe> getRecipeType() {
             return TYPE;
         }
 }

@@ -2,7 +2,7 @@ package cc.cassian.bigger_fish;
 
 import cc.cassian.bigger_fish.compat.ModCompat;
 //? if >1.21.4 {
-import cc.cassian.bigger_fish.compat.eiv.EivIntegration;
+import cc.cassian.bigger_fish.compat.rrv.RrvIntegration;
 //?}
 import cc.cassian.bigger_fish.compat.iteminteractions.ItemInteractionsCompat;
 import cc.cassian.bigger_fish.config.ModConfig;
@@ -21,7 +21,7 @@ public final class BiggerFishMod {
         // Load optional compatibility
         //? if >1.21.4 {
         if (ModCompat.EIV) {
-            EivIntegration.hideStacks();
+            RrvIntegration.hideStacks();
         }
         //?}
         if (ModCompat.ITEMINTERACTIONS) {
