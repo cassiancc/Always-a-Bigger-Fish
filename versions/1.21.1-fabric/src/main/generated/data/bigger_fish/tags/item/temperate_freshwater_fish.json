@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_one_temperate_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_two_temperate_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_three_temperate_freshwater_fish",
+      "required": false
+    }
+  ]
+}

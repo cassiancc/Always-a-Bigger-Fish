@@ -34,6 +34,9 @@
     ],
     "jei_mod_plugin": [
       "cc.cassian.bigger_fish.compat.jei.JeiIntegration"
+    ],
+    "fabric-datagen": [
+      "cc.cassian.bigger_fish.datagen.BiggerFishDataGenerator"
     ]
   },
   "mixins": [

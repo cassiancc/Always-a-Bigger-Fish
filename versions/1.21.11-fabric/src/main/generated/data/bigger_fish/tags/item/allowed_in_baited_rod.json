@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:bait",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:hooks",
+      "required": false
+    }
+  ]
+}

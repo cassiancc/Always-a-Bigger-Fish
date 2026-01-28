@@ -11,10 +11,15 @@ import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 
 public class BiggerFishTags {
 
+    public static final TagKey<Item> FISH = itemTagKey("fish");
+    public static final TagKey<Item> TIER_ONE_FISH = itemTagKey("tier_one_fish");
+    public static final TagKey<Item> TIER_TWO_FISH = itemTagKey("tier_two_fish");
+    public static final TagKey<Item> TIER_THREE_FISH = itemTagKey("tier_three_fish");
+
+    public static final TagKey<Item> BAIT = itemTagKey("bait");
     public static final TagKey<Item> TIER_ONE_BAIT = itemTagKey("tier_one_bait");
     public static final TagKey<Item> TIER_TWO_BAIT = itemTagKey("tier_two_bait");
     public static final TagKey<Item> TIER_THREE_BAIT = itemTagKey("tier_three_bait");
-    public static final TagKey<Item> BAIT = itemTagKey("bait");
 
     public static final TagKey<Item> HOOKS = itemTagKey("hooks");
     public static final TagKey<Item> ATTRACTS_TREASURE = itemTagKey("attracts_treasure");
@@ -24,31 +29,39 @@ public class BiggerFishTags {
     public static final TagKey<Item> REQUIRES_MINIGAME_TO_CATCH = itemTagKey("requires_minigame_to_catch");
     public static final TagKey<Item> CAN_FISH_IN_LAVA = itemTagKey("can_fish_in_lava");;
     public static final TagKey<Item> CATCHES_BIGGER_FISH = itemTagKey("catches_bigger_fish");
+    public static final TagKey<Item> ATTRACTS_LAVA_FISH = itemTagKey("attracts_lava_fish");
 
+    public static final TagKey<Item> COLD_FRESHWATER_FISH = itemTagKey("cold_freshwater_fish");
     public static final TagKey<Item> TIER_ONE_COLD_FRESHWATER_FISH = itemTagKey("tier_one_cold_freshwater_fish");
     public static final TagKey<Item> TIER_TWO_COLD_FRESHWATER_FISH = itemTagKey("tier_two_cold_freshwater_fish");
     public static final TagKey<Item> TIER_THREE_COLD_FRESHWATER_FISH = itemTagKey("tier_three_cold_freshwater_fish");
 
+    public static final TagKey<Item> COLD_SALTWATER_FISH = itemTagKey("cold_saltwater_fish");
     public static final TagKey<Item> TIER_ONE_COLD_SALTWATER_FISH = itemTagKey("tier_one_cold_saltwater_fish");
     public static final TagKey<Item> TIER_TWO_COLD_SALTWATER_FISH = itemTagKey("tier_two_cold_saltwater_fish");
     public static final TagKey<Item> TIER_THREE_COLD_SALTWATER_FISH = itemTagKey("tier_three_cold_saltwater_fish");
 
+    public static final TagKey<Item> TEMPERATE_FRESHWATER_FISH = itemTagKey("temperate_freshwater_fish");
     public static final TagKey<Item> TIER_ONE_TEMPERATE_FRESHWATER_FISH = itemTagKey("tier_one_temperate_freshwater_fish");
     public static final TagKey<Item> TIER_TWO_TEMPERATE_FRESHWATER_FISH = itemTagKey("tier_two_temperate_freshwater_fish");
     public static final TagKey<Item> TIER_THREE_TEMPERATE_FRESHWATER_FISH = itemTagKey("tier_three_temperate_freshwater_fish");
 
+    public static final TagKey<Item> TEMPERATE_SALTWATER_FISH = itemTagKey("temperate_saltwater_fish");
     public static final TagKey<Item> TIER_ONE_TEMPERATE_SALTWATER_FISH = itemTagKey("tier_one_temperate_saltwater_fish");
     public static final TagKey<Item> TIER_TWO_TEMPERATE_SALTWATER_FISH = itemTagKey("tier_two_temperate_saltwater_fish");
     public static final TagKey<Item> TIER_THREE_TEMPERATE_SALTWATER_FISH = itemTagKey("tier_three_temperate_saltwater_fish");
 
+    public static final TagKey<Item> HOT_FRESHWATER_FISH = itemTagKey("hot_freshwater_fish");
     public static final TagKey<Item> TIER_ONE_HOT_FRESHWATER_FISH = itemTagKey("tier_one_hot_freshwater_fish");
     public static final TagKey<Item> TIER_TWO_HOT_FRESHWATER_FISH = itemTagKey("tier_two_hot_freshwater_fish");
     public static final TagKey<Item> TIER_THREE_HOT_FRESHWATER_FISH = itemTagKey("tier_three_hot_freshwater_fish");
 
+    public static final TagKey<Item> HOT_SALTWATER_FISH = itemTagKey("hot_saltwater_fish");
     public static final TagKey<Item> TIER_ONE_HOT_SALTWATER_FISH = itemTagKey("tier_one_hot_saltwater_fish");
     public static final TagKey<Item> TIER_TWO_HOT_SALTWATER_FISH = itemTagKey("tier_two_hot_saltwater_fish");
     public static final TagKey<Item> TIER_THREE_HOT_SALTWATER_FISH = itemTagKey("tier_three_hot_saltwater_fish");
 
+    public static final TagKey<Item> BRACKISH_FISH = itemTagKey("brackish_fish");
     public static final TagKey<Item> TIER_ONE_BRACKISH_FISH = itemTagKey("tier_one_brackish_fish");
     public static final TagKey<Item> TIER_TWO_BRACKISH_FISH = itemTagKey("tier_two_brackish_fish");
     public static final TagKey<Item> TIER_THREE_BRACKISH_FISH = itemTagKey("tier_three_brackish_fish");
@@ -56,13 +69,26 @@ public class BiggerFishTags {
     public static final TagKey<Item> SHROOMY_FISH = itemTagKey("shroomy_fish");
     public static final TagKey<Item> DEEP_DARK_FISH = itemTagKey("deep_dark_fish");
 
+    public static final TagKey<Item> CAVE_FISH = itemTagKey("cave_fish");
     public static final TagKey<Item> TIER_ONE_CAVE_FISH = itemTagKey("tier_one_cave_fish");
     public static final TagKey<Item> TIER_TWO_CAVE_FISH = itemTagKey("tier_two_cave_fish");
     public static final TagKey<Item> TIER_THREE_CAVE_FISH = itemTagKey("tier_three_cave_fish");
 
+    public static final TagKey<Item> BRACKISH_CAVE_FISH = itemTagKey("brackish_cave_fish");
     public static final TagKey<Item> TIER_ONE_BRACKISH_CAVE_FISH = itemTagKey("tier_one_brackish_cave_fish");
     public static final TagKey<Item> TIER_TWO_BRACKISH_CAVE_FISH = itemTagKey("tier_two_brackish_cave_fish");
     public static final TagKey<Item> TIER_THREE_BRACKISH_CAVE_FISH = itemTagKey("tier_three_brackish_cave_fish");
+
+    public static final TagKey<Item> COSMOPOLITAN_FRESHWATER_FISH = itemTagKey("cosmopolitan_freshwater_fish");
+    public static final TagKey<Item> TIER_ONE_COSMOPOLITAN_FRESHWATER_FISH = itemTagKey("tier_one_cosmopolitan_freshwater_fish");
+    public static final TagKey<Item> TIER_TWO_COSMOPOLITAN_FRESHWATER_FISH = itemTagKey("tier_two_cosmopolitan_freshwater_fish");
+    public static final TagKey<Item> TIER_THREE_COSMOPOLITAN_FRESHWATER_FISH = itemTagKey("tier_three_cosmopolitan_freshwater_fish");
+
+    public static final TagKey<Item> COSMOPOLITAN_SALTWATER_FISH = itemTagKey("cosmopolitan_saltwater_fish");
+    public static final TagKey<Item> TIER_ONE_COSMOPOLITAN_SALTWATER_FISH = itemTagKey("tier_one_cosmopolitan_saltwater_fish");
+    public static final TagKey<Item> TIER_TWO_COSMOPOLITAN_SALTWATER_FISH = itemTagKey("tier_two_cosmopolitan_saltwater_fish");
+    public static final TagKey<Item> TIER_THREE_COSMOPOLITAN_SALTWATER_FISH = itemTagKey("tier_three_cosmopolitan_saltwater_fish");
+
 
     public static final TagKey<Item> LAVA_FISH = itemTagKey("lava_fish");
 
@@ -83,7 +109,7 @@ public class BiggerFishTags {
             TIER_ONE_HOT_FRESHWATER_FISH, TIER_TWO_HOT_FRESHWATER_FISH, TIER_THREE_HOT_FRESHWATER_FISH,
             TIER_ONE_HOT_SALTWATER_FISH, TIER_TWO_HOT_SALTWATER_FISH, TIER_THREE_HOT_SALTWATER_FISH,
             TIER_ONE_BRACKISH_FISH, TIER_TWO_BRACKISH_FISH, TIER_THREE_BRACKISH_FISH,
-            DEEP_DARK_FISH, SHROOMY_FISH,
+            DEEP_DARK_FISH,
             TIER_ONE_CAVE_FISH, TIER_TWO_CAVE_FISH, TIER_THREE_CAVE_FISH,
             TIER_ONE_BRACKISH_CAVE_FISH, TIER_TWO_BRACKISH_CAVE_FISH, TIER_THREE_BRACKISH_CAVE_FISH,
             JUNK, TREASURE
@@ -98,6 +124,11 @@ public class BiggerFishTags {
     }
 
     public static TagKey<Item> itemTagKey(String namespace, String id) {
+        //? if >1.21 {
         return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(namespace, id));
+        //?} else {
+        /*return TagKey.create(Registries.ITEM, new Identifier(namespace, id));
+        *///?}
+
     }
 }

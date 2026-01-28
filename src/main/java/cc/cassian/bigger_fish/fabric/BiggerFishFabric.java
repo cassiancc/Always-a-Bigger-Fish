@@ -54,7 +54,9 @@ public final class BiggerFishFabric implements ModInitializer {
             itemGroup.addAfter(Items.FISHING_ROD, ModHelpers.toCollection(BiggerFishItems.TOOLS));
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register((itemGroup) -> {
-            itemGroup.addAfter(Items.PUFFERFISH, ModHelpers.toCollection(BiggerFishItems.FISH));
+            var group = ModHelpers.toCollection(BiggerFishItems.FISH);
+            group.addAll(ModHelpers.toCollection(BiggerFishItems.FOOD));
+            itemGroup.addAfter(Items.PUFFERFISH, group);
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register((itemGroup) -> {
             itemGroup.addAfter(Items.BONE_MEAL, ModHelpers.toCollection(BiggerFishItems.INGREDIENTS));

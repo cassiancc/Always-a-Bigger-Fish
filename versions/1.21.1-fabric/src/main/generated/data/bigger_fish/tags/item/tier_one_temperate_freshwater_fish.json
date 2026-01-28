@@ -1,0 +1,27 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_one_cosmopolitan_freshwater_fish",
+      "required": false
+    },
+    "bigger_fish:goldfish",
+    "bigger_fish:bass",
+    "bigger_fish:bluegill",
+    {
+      "id": "fishery:bluegill",
+      "required": false
+    },
+    {
+      "id": "fishery:leafskimmer",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:splashtail",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:pondie",
+      "required": false
+    }
+  ]
+}

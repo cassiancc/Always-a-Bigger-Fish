@@ -1,0 +1,26 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_three_cosmopolitan_saltwater_fish",
+      "required": false
+    },
+    "bigger_fish:spiny_lumpsucker",
+    "bigger_fish:twohorn_sculpin",
+    {
+      "id": "aquaculture:blackfish",
+      "required": false
+    },
+    {
+      "id": "fishery:anglerfish",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:battlegill",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:wrecker",
+      "required": false
+    }
+  ]
+}

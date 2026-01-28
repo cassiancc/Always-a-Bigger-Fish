@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_one_hot_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_two_hot_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_three_hot_freshwater_fish",
+      "required": false
+    }
+  ]
+}

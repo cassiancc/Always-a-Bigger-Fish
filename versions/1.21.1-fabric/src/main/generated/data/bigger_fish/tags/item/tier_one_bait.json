@@ -1,0 +1,17 @@
+{
+  "values": [
+    "bigger_fish:worm",
+    {
+      "id": "aquaculture:worm",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:earthworms",
+      "required": false
+    },
+    {
+      "id": "tide:bait",
+      "required": false
+    }
+  ]
+}

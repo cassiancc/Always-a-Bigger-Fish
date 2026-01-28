@@ -1,0 +1,11 @@
+{
+  "values": [
+    "bigger_fish:herring",
+    "minecraft:cod",
+    "minecraft:salmon",
+    {
+      "id": "aquaculture:atlantic_herring",
+      "required": false
+    }
+  ]
+}

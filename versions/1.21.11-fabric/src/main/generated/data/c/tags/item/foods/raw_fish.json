@@ -1,0 +1,14 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:fish",
+      "required": false
+    },
+    "bigger_fish:leech",
+    {
+      "id": "aquaculture:minnow",
+      "required": false
+    },
+    "bigger_fish:sardine"
+  ]
+}

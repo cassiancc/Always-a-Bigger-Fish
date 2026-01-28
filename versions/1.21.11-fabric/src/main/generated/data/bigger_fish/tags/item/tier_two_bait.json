@@ -1,0 +1,17 @@
+{
+  "values": [
+    "bigger_fish:leech",
+    {
+      "id": "fishofthieves:grubs",
+      "required": false
+    },
+    {
+      "id": "aquaculture:leech",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:leeches",
+      "required": false
+    }
+  ]
+}

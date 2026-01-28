@@ -22,6 +22,7 @@ import static cc.cassian.bigger_fish.registry.BiggerFishTags.*;
 public class BiggerFishItems {
     public static ArrayList<Supplier<Item>> FISH = new ArrayList<>();
     public static ArrayList<Supplier<Item>> HIDDEN_FOOD = new ArrayList<>();
+	public static ArrayList<Supplier<Item>> FOOD = new ArrayList<>();
 
     // Fish
     public static Supplier<Item> ARAPAIMA = createFish("arapaima");
@@ -189,7 +190,7 @@ public class BiggerFishItems {
     private static Supplier<Item> createFood(String id, int nutrition, float saturation, boolean requiresFarmersDelight) {
         Supplier<Item> fish = registerItem(id, properties(id).food(new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturation).build()));
         if (!requiresFarmersDelight || ModCompat.FARMERS_DELIGHT) {
-            FISH.add(fish);
+            FOOD.add(fish);
         } else {
             HIDDEN_FOOD.add(fish);
         }

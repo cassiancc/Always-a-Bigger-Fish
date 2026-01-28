@@ -1,0 +1,43 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_two_cosmopolitan_freshwater_fish",
+      "required": false
+    },
+    "bigger_fish:gar",
+    "bigger_fish:perch",
+    "bigger_fish:tilapia",
+    {
+      "id": "aquaculture:gar",
+      "required": false
+    },
+    {
+      "id": "aquaculture:perch",
+      "required": false
+    },
+    {
+      "id": "aquaculture:capitaine",
+      "required": false
+    },
+    {
+      "id": "aquaculture:boulti",
+      "required": false
+    },
+    {
+      "id": "aquaculture:synodontis",
+      "required": false
+    },
+    {
+      "id": "aquaculture:arapaima",
+      "required": false
+    },
+    {
+      "id": "aquaculture:tambaqui",
+      "required": false
+    },
+    {
+      "id": "upgrade_aquatic:perch",
+      "required": false
+    }
+  ]
+}

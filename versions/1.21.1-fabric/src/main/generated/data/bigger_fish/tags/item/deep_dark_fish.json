@@ -1,0 +1,16 @@
+{
+  "values": [
+    "bigger_fish:sculkfish",
+    "bigger_fish:angler_sculkfish",
+    "bigger_fish:sensor_eel",
+    "bigger_fish:warding_squid",
+    {
+      "id": "fishery:echofin",
+      "required": false
+    },
+    {
+      "id": "fishery:sculkamander",
+      "required": false
+    }
+  ]
+}

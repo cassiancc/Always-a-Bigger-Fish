@@ -1,0 +1,10 @@
+{
+  "values": [
+    "bigger_fish:tarpon",
+    "bigger_fish:jellyfish",
+    {
+      "id": "fishery:red_snapper",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_one_cosmopolitan_saltwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_cosmopolitan_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_cold_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_cold_saltwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_hot_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_hot_saltwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_temperate_freshwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_temperate_saltwater_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_cave_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_brackish_cave_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:tier_one_brackish_fish",
+      "required": false
+    }
+  ]
+}

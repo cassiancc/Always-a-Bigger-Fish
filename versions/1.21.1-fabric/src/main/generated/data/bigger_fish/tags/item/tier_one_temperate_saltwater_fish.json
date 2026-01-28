@@ -1,0 +1,19 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_one_cosmopolitan_saltwater_fish",
+      "required": false
+    },
+    "bigger_fish:starfish",
+    "bigger_fish:mackerel",
+    "bigger_fish:sturgeon",
+    {
+      "id": "fishofthieves:splashtail",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:plentifin",
+      "required": false
+    }
+  ]
+}

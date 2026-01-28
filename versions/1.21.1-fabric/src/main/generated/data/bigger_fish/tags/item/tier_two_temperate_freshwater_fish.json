@@ -1,0 +1,22 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_two_cosmopolitan_freshwater_fish",
+      "required": false
+    },
+    "bigger_fish:darter",
+    "bigger_fish:rainbow_trout",
+    {
+      "id": "aquaculture:rainbow_trout",
+      "required": false
+    },
+    {
+      "id": "aquaculture:brown_trout",
+      "required": false
+    },
+    {
+      "id": "aquaculture:smallmouth_bass",
+      "required": false
+    }
+  ]
+}

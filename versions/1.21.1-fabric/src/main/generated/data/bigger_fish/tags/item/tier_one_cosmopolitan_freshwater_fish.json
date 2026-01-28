@@ -1,0 +1,16 @@
+{
+  "values": [
+    "bigger_fish:bream",
+    "bigger_fish:carp",
+    "bigger_fish:trout",
+    "minecraft:salmon",
+    {
+      "id": "aquaculture:carp",
+      "required": false
+    },
+    {
+      "id": "aquaculture:minnow",
+      "required": false
+    }
+  ]
+}

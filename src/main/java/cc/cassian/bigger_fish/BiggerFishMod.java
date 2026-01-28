@@ -30,6 +30,10 @@ public final class BiggerFishMod {
     }
 
     public static Identifier of(String path) {
-        return Identifier.fromNamespaceAndPath(MOD_ID, path);
+        return of(MOD_ID, path);
+    }
+
+    public static Identifier of(String namespace, String path) {
+        return Identifier.fromNamespaceAndPath(namespace, path);
     }
 }

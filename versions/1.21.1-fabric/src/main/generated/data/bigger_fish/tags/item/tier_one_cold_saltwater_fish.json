@@ -1,0 +1,26 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_one_cosmopolitan_freshwater_fish",
+      "required": false
+    },
+    "bigger_fish:capelin",
+    "bigger_fish:polar_cod",
+    {
+      "id": "aquaculture:atlantic_cod",
+      "required": false
+    },
+    {
+      "id": "aquaculture:pink_salmon",
+      "required": false
+    },
+    {
+      "id": "aquaculture:pacific_halibut",
+      "required": false
+    },
+    {
+      "id": "aquaculture:atlantic_halibut",
+      "required": false
+    }
+  ]
+}

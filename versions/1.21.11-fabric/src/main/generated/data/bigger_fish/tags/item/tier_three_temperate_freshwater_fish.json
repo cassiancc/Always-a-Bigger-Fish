@@ -1,0 +1,15 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_three_cosmopolitan_freshwater_fish",
+      "required": false
+    },
+    "bigger_fish:bowfin",
+    "bigger_fish:loach",
+    "bigger_fish:tuna",
+    {
+      "id": "fishery:branch_eel",
+      "required": false
+    }
+  ]
+}

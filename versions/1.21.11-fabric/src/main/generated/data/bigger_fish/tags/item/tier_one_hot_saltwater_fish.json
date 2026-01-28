@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "id": "#bigger_fish:tier_one_cosmopolitan_saltwater_fish",
+      "required": false
+    },
+    "bigger_fish:sardine",
+    "bigger_fish:flounder",
+    "minecraft:pufferfish",
+    "minecraft:tropical_fish",
+    {
+      "id": "fishofthieves:splashtail",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:islehopper",
+      "required": false
+    },
+    {
+      "id": "fishofthieves:plentifin",
+      "required": false
+    }
+  ]
+}
