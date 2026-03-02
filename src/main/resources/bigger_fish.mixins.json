@@ -11,7 +11,8 @@
   "mixins": [
     "BundleItemAccessor",
     "ComposterMixin",
-    "ItemEntityMixin",
+    "FireproofItemEntityMixin",
+    "fish_barrel.ItemEntityMixin",
     "fishing_hook.AllowLavaFishingMixin",
     "fishing_hook.BiomeSpecificFishMixin",
     "fishing_hook.FireproofItemsMixin",

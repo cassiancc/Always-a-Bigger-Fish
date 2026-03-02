@@ -100,6 +100,7 @@ public class BiggerFishTags {
     public static final TagKey<Item> NETHERITE_TOOL_MATERIALS = itemTagKey("c", "repairable/netherite");
 
     public static final TagKey<Item> FISHING_RODS = itemTagKey("c", "tools/fishing_rod");
+    public static final TagKey<Item> FISH_CONTAINERS = itemTagKey("fish_containers");
 
     public static final List<TagKey<Item>> FISHING_TAGS_FOR_DISPLAY = List.of(
             TIER_ONE_COLD_FRESHWATER_FISH, TIER_TWO_COLD_FRESHWATER_FISH, TIER_THREE_COLD_FRESHWATER_FISH,
@@ -119,7 +120,7 @@ public class BiggerFishTags {
             BiggerFishTags.TIER_ONE_BAIT, TIER_TWO_BAIT, TIER_THREE_BAIT, ATTRACTS_TREASURE
     );
 
-    public static TagKey<Item> itemTagKey(String id) {
+	public static TagKey<Item> itemTagKey(String id) {
         return itemTagKey(MOD_ID, id);
     }
 

@@ -7,7 +7,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ItemEntity.class)
-public class ItemEntityMixin {
+public class FireproofItemEntityMixin {
     @WrapMethod(method = "fireImmune")
     private boolean fireproofItems(Operation<Boolean> original) {
         var itemEntity = (ItemEntity) (Object) this;

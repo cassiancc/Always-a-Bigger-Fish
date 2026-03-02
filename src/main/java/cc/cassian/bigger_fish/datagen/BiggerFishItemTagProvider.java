@@ -40,6 +40,8 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 				.addOptionalTag(BiggerFishTags.FISH);
 		tagBuilder(FISHING_ROD_TOOLS)
 				.add(COPPER_ROD);
+		tagBuilder(FISH_CONTAINERS)
+				.add(FISH_BARREL);
 		tagBuilder(BONES)
 				.add(FISH_BONES);
 		tagBuilder(HIDDEN_FROM_RECIPE_VIEWERS)
