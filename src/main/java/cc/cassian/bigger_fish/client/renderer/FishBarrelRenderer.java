@@ -75,14 +75,14 @@ public class FishBarrelRenderer implements BlockEntityRenderer<FishBarrelBlockEn
 				poseStack.translate(0.0, 0, 0.0F);
 			}
 			else if (i<5) {
-				poseStack.translate(0.5F, 0.44921875F, 0.5F);
+				poseStack.translate(0.5F, 0.34921875F, 0.5F);
 				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
 				float angle = -direction.toYRot();
 				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
 				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
 				poseStack.translate(-0.2125F, -0.2125F, 0.0F);
 			} else if (i<10) {
-				poseStack.translate(0.5F, 0.64921875F, 0.5F);
+				poseStack.translate(0.5F, 0.39921875F, 0.5F);
 				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
 				float angle = -direction.toYRot();
 				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
@@ -90,19 +90,69 @@ public class FishBarrelRenderer implements BlockEntityRenderer<FishBarrelBlockEn
 				poseStack.translate(-0.1125F, -0.1125F, 0.0F);
 			}
 			else if (i<15) {
-				poseStack.translate(0.5F, 0.84921875F, 0.5F);
+				poseStack.translate(0.5F, 0.44921875F, 0.5F);
 				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
 				float angle = -direction.toYRot();
 				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
 				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
 				poseStack.translate(-0.2125F, -0.2125F, 0.0F);
-			} else {
-				poseStack.translate(0.5F, 0.94921875F, 0.5F);
+			} else if (i<20) {
+				poseStack.translate(0.5F, 0.50921875F, 0.5F);
 				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
 				float angle = -direction.toYRot();
 				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
 				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
 				poseStack.translate(-0.1125F, -0.1125F, 0.0F);
+			}
+			else if (i<30) {
+				poseStack.translate(0.5F, 0.55921875F, 0.5F);
+				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
+				float angle = -direction.toYRot();
+				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.translate(-0.2125F, -0.2125F, 0.0F);
+			} else if (i<35) {
+				poseStack.translate(0.5F, 0.60921875F, 0.5F);
+				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
+				float angle = -direction.toYRot();
+				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.translate(-0.1125F, -0.1125F, 0.0F);
+			} else if (i<40) {
+				poseStack.translate(0.5F, 0.65921875F, 0.5F);
+				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
+				float angle = -direction.toYRot();
+				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.translate(-0.2125F, -0.2125F, 0.0F);
+			} else if (i<50) {
+				poseStack.translate(0.5F, 0.70921875F, 0.5F);
+				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
+				float angle = -direction.toYRot();
+				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.translate(-0.1125F, -0.1125F, 0.0F);
+			} else if (i<55) {
+				poseStack.translate(0.5F, 0.75921875F, 0.5F);
+				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
+				float angle = -direction.toYRot();
+				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.translate(-0.2125F, -0.2125F, 0.0F);
+			} else if (i<60) {
+				poseStack.translate(0.5F, 0.85921875F, 0.5F);
+				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
+				float angle = -direction.toYRot();
+				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.translate(-0.1125F, -0.1125F, 0.0F);
+			} else  {
+				poseStack.translate(0.5F, 0.90921875F, 0.5F);
+				Direction direction = Direction.from2DDataValue((i + Direction.UP.get2DDataValue()) % 4);
+				float angle = -direction.toYRot();
+				poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				poseStack.translate(-0.2125F, -0.2125F, 0.0F);
 			}
 			poseStack.scale(SIZE, SIZE, SIZE);
 			itemStack.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);

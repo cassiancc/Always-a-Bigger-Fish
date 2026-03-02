@@ -126,7 +126,7 @@ public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContain
 	 * Checks if there is space to put items in this Barrel.
 	 */
 	public boolean hasSpace(int size) {
-		return (items.size() + size) < getContainerSize();
+		return (items.size() + size) <= getContainerSize();
 	}
 
 	@Override

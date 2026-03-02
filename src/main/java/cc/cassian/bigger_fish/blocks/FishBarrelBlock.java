@@ -68,7 +68,7 @@ public class FishBarrelBlock extends Block implements EntityBlock {
 				return InteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.SUCCESS_SERVER;
+		return InteractionResult.PASS;
 	}
 
 
