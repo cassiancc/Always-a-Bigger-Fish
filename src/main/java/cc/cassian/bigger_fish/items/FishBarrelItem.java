@@ -1,7 +1,9 @@
 package cc.cassian.bigger_fish.items;
 
+import cc.cassian.bigger_fish.blocks.FishBarrelBlock;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.mixin.BundleItemAccessor;
+import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
 import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
@@ -14,6 +16,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
@@ -25,9 +28,9 @@ import java.util.Optional;
 
 import static net.minecraft.util.ARGB.colorFromFloat;
 
-public class FishBarrelItem extends BundleItem {
+public class FishBarrelItem extends BlockItem {
 	public FishBarrelItem(Properties properties) {
-		super(properties);
+		super(BiggerFishBlocks.FISH_BARREL, properties);
 	}
 
 	private static final int FULL_BAR_COLOR = colorFromFloat(1.0F, 0.44F, 1.0F, 0.33F);

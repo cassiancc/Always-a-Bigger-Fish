@@ -2,7 +2,7 @@
     "parent": "block/block",
     "textures": {
         "particle": "block/barrel_side",
-        "top": "block/composter_top",
+        "top": "bigger_fish:block/fish_barrel_top",
         "bottom": "block/barrel_bottom",
         "side": "block/barrel_side",
         "inside": "block/barrel_bottom"

@@ -159,7 +159,7 @@ public class BiggerFishItems {
     public static Supplier<Item> FISH_BONES = createItem("fish_bones");
 
     public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
-    public static List<Supplier<Item>> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK);
+    public static List<Supplier<Item>> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK, ()-> FISH_BARREL);
 
     private static Supplier<Item> createItem(String id) {
         return registerItem(id, properties(id));

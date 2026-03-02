@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.fabric;
 
 //? if fabric {
+import cc.cassian.bigger_fish.CommonEvents;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.*;
 import com.mojang.serialization.Codec;
@@ -35,22 +36,12 @@ public final class BiggerFishFabric implements ModInitializer {
         // Run our common setup.
         BiggerFishMod.init();
         BiggerFishComponentTypes.touch();
+        BiggerFishBlocks.touch();
         BiggerFishItems.touch();
         BiggerFishEntityTypes.touch();
         BiggerFishSoundEvents.touch();
         BiggerFishMobEffects.touch();
-
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
-            itemGroup.insertAfter(Items.FISHING_ROD, ModHelpers.toCollection(BiggerFishItems.TOOLS));
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FOOD_AND_DRINKS).register((itemGroup) -> {
-            var group = ModHelpers.toCollection(BiggerFishItems.FISH);
-            group.addAll(ModHelpers.toCollection(BiggerFishItems.FOOD));
-            itemGroup.insertAfter(Items.PUFFERFISH, group);
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((itemGroup) -> {
-            itemGroup.insertAfter(Items.BONE_MEAL, ModHelpers.toCollection(BiggerFishItems.INGREDIENTS));
-        });
+        CreativeModeTabEvents.MODIFY_OUTPUT_ALL.register(CommonEvents::modifyOutput);
         LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
             if (key == BuiltInLootTables.FISHING_JUNK) {
                 tableBuilder.modifyPools((builder -> {
