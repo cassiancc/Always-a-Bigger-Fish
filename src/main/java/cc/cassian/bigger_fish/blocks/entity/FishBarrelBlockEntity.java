@@ -2,12 +2,16 @@ package cc.cassian.bigger_fish.blocks.entity;
 
 import cc.cassian.bigger_fish.registry.BiggerFishBlockEntityTypes;
 import net.minecraft.core.*;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -20,7 +24,8 @@ import java.util.*;
 
 public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContainer {
 
-	private final ArrayList<ItemStack> items = new ArrayList<>(9);
+	public static final int CAPACITY = 64;
+	private final ArrayList<ItemStack> items = new ArrayList<>(CAPACITY);
 
 	public FishBarrelBlockEntity(BlockPos pos, BlockState state) {
 		super(BiggerFishBlockEntityTypes.FISH_BARREL_BLOCK_ENTITY, pos, state);
@@ -56,10 +61,25 @@ public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContain
 		super.saveAdditional(tag);
 	}
 
+	@Override
+	protected void applyImplicitComponents(DataComponentGetter components) {
+		components.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).items().forEach(s->{
+			ItemStack itemStack = s.create();
+			for (int i = 0; i < itemStack.getCount(); i++) {
+				this.items.add(itemStack.copyWithCount(1));
+			}
+		});
+	}
+
 	public InteractionResult insert(ItemStack itemStack) {
 		// insert as inventory
-		if (hasSpace()) {
-			items.add(itemStack.copyAndClear());
+		if (hasSpace(itemStack.getCount())) {
+			int i;
+			for (i = 0; i < itemStack.getCount(); i++) {
+				items.add(itemStack.copyWithCount(1));
+			}
+
+			itemStack.setCount(itemStack.getCount() - i);
 			setChanged();
 			return InteractionResult.SUCCESS;
 		}
@@ -76,7 +96,7 @@ public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContain
 
 	@Override
 	public int[] getSlotsForFace(Direction side) {
-		return new int[9];
+		return new int[CAPACITY];
 	}
 
 	@Override
@@ -91,7 +111,7 @@ public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContain
 
 	@Override
 	public int getContainerSize() {
-		return 9;
+		return CAPACITY;
 	}
 
 	/**
@@ -105,8 +125,8 @@ public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContain
 	/**
 	 * Checks if there is space to put items in this Barrel.
 	 */
-	public boolean hasSpace() {
-		return items.size() < getContainerSize();
+	public boolean hasSpace(int size) {
+		return (items.size() + size) < getContainerSize();
 	}
 
 	@Override

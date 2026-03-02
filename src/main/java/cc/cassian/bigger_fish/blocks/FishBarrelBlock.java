@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.blocks;
 
 import cc.cassian.bigger_fish.CommonEvents;
 import cc.cassian.bigger_fish.blocks.entity.FishBarrelBlockEntity;
+import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.*;
@@ -52,7 +53,8 @@ public class FishBarrelBlock extends Block implements EntityBlock {
 	protected InteractionResult useItemOn(
 			ItemStack itemStack, BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult
 	) {
-		if (level.getBlockEntity(pos) instanceof FishBarrelBlockEntity cauldronBlockEntity) {
+		if (itemStack.isEmpty()) return useWithoutItem(blockState, level, pos, player, blockHitResult);
+		if (level.getBlockEntity(pos) instanceof FishBarrelBlockEntity cauldronBlockEntity && itemStack.is(BiggerFishTags.FISH)) {
 			return cauldronBlockEntity.insert(itemStack);
 		}
 		return InteractionResult.PASS;
@@ -66,7 +68,7 @@ public class FishBarrelBlock extends Block implements EntityBlock {
 				return InteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.PASS;
+		return InteractionResult.SUCCESS_SERVER;
 	}
 
 
