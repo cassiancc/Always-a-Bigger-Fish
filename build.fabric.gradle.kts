@@ -209,6 +209,13 @@ stonecutter {
     }
 }
 
+fabricApi {
+    configureDataGeneration() {
+        outputDirectory = file("$rootDir/src/main/generated")
+        client = true
+    }
+}
+
 tasks {
     processResources {
         exclude("**/neoforge.mods.toml", "**/mods.toml")

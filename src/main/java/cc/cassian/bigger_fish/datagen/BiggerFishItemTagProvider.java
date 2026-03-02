@@ -23,6 +23,8 @@ import java.util.function.Supplier;
 import static cc.cassian.bigger_fish.BiggerFishMod.of;
 import static cc.cassian.bigger_fish.registry.BiggerFishItems.*;
 import static cc.cassian.bigger_fish.registry.BiggerFishTags.*;
+import static net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags.*;
+import static net.minecraft.tags.ItemTags.*;
 import static net.minecraft.world.item.Items.*;
 
 public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
@@ -32,21 +34,35 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tagBuilder(convention("foods/cooked_fish")).add(FRIED_FISH);
-		tagBuilder(convention("foods/raw_fish")).addOptionalTag(BiggerFishTags.FISH);
-		tagBuilder(convention("fishing_rod")).add(COPPER_ROD);
-		tagBuilder(convention("bones")).add(FISH_BONES);
-		tagBuilder(convention("hidden_from_recipe_viewers")).add(COPPER_HOOK);
-		//? if >1.21 {
-		tagBuilder(ItemTags.DURABILITY_ENCHANTABLE).add(DIAMOND_HOOK.get(), NETHERITE_HOOK.get(), COPPER_ROD.get());
-		tagBuilder(ItemTags.FISHING_ENCHANTABLE).add(COPPER_ROD);
-		//?}
-		tagBuilder(ItemTags.CAT_FOOD).addOptionalTag(BiggerFishTags.FISH);
-		tagBuilder(ItemTags.CHICKEN_FOOD).add(WORM);
-		tagBuilder(ItemTags.FISHES).addOptionalTag(BiggerFishTags.FISH);
-		tagBuilder(ALLOWED_IN_BAITED_ROD).addOptionalTag(BAIT).addOptionalTag(HOOKS);
-		tagBuilder(ATTRACTS_TREASURE).add(DIAMOND_HOOK);
-		tagBuilder(BAIT).addOptionalTag(TIER_ONE_BAIT).addOptionalTag(TIER_TWO_BAIT).addOptionalTag(TIER_THREE_BAIT);
+		tagBuilder(COOKED_FISH_FOODS)
+				.add(FRIED_FISH);
+		tagBuilder(RAW_FISH_FOODS)
+				.addOptionalTag(BiggerFishTags.FISH);
+		tagBuilder(FISHING_ROD_TOOLS)
+				.add(COPPER_ROD);
+		tagBuilder(BONES)
+				.add(FISH_BONES);
+		tagBuilder(HIDDEN_FROM_RECIPE_VIEWERS)
+				.add(COPPER_HOOK);
+		tagBuilder(DURABILITY_ENCHANTABLE)
+				.add(DIAMOND_HOOK.get(), NETHERITE_HOOK.get(), COPPER_ROD.get());
+		tagBuilder(FISHING_ENCHANTABLE)
+				.add(COPPER_ROD);
+		tagBuilder(CAT_FOOD)
+				.addOptionalTag(BiggerFishTags.FISH);
+		tagBuilder(CHICKEN_FOOD)
+				.add(WORM);
+		tagBuilder(FISHES)
+				.addOptionalTag(BiggerFishTags.FISH);
+		tagBuilder(ALLOWED_IN_BAITED_ROD)
+				.addOptionalTag(BAIT)
+				.addOptionalTag(HOOKS);
+		tagBuilder(ATTRACTS_TREASURE)
+				.add(DIAMOND_HOOK);
+		tagBuilder(BAIT)
+				.addOptionalTag(TIER_ONE_BAIT)
+				.addOptionalTag(TIER_TWO_BAIT)
+				.addOptionalTag(TIER_THREE_BAIT);
 		BiggerFishItems.FISH.forEach(itemSupplier -> {
 			tagBuilder(BiggerFishTags.FISH).add(itemSupplier);
 		});
