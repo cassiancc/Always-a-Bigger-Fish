@@ -3,18 +3,24 @@ package cc.cassian.bigger_fish.registry;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.items.BaitedRodItem;
+import cc.cassian.bigger_fish.items.FishBarrelItem;
 import cc.cassian.bigger_fish.items.LeechItem;
+import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
+import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static cc.cassian.bigger_fish.registry.BiggerFishTags.*;
@@ -145,6 +151,9 @@ public class BiggerFishItems {
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
             .durability(512));
 
+    public static Item FISH_BARREL = createItem("fish_barrel", FishBarrelItem::new, new Item.Properties().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
+
+
     // JUNK
     public static Supplier<Item> CAN = createItem("can");
     public static Supplier<Item> FISH_BONES = createItem("fish_bones");
@@ -154,6 +163,19 @@ public class BiggerFishItems {
 
     private static Supplier<Item> createItem(String id) {
         return registerItem(id, properties(id));
+    }
+
+    public static <T extends Item> T createItem(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
+        // Create the item key.
+        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, BiggerFishMod.of(name));
+
+        // Create the item instance.
+        T item = itemFactory.apply(settings.setId(itemKey));
+
+        // Register the item.
+        Registry.register(BuiltInRegistries.ITEM, itemKey, item);
+
+        return item;
     }
 
     private static Supplier<Item> createItem(String id, Item.Properties properties) {

@@ -17,25 +17,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ClientBundleTooltip.class)
 public class ClientBundleTooltipMixin {
 
-    //? if >1.21.2 {
-    @Inject(method = "getProgressBarTexture",
-            at = @At(value = "RETURN"), cancellable = true)
-    private void baitedRodFullnessIsGood(CallbackInfoReturnable<Identifier> cir) {
-        var bundle = (ClientBundleTooltip) (Object) this;
-        if (bundle instanceof ClientBaitedRodTooltip && cir.getReturnValue().equals(Identifier.withDefaultNamespace("container/bundle/bundle_progressbar_full"))) {
-            cir.setReturnValue(BiggerFishMod.of("container/copper_rod/copper_rod_progressbar_full"));
-        }
-    }
-
-    @WrapOperation(method = "renderEmptyBundleTooltip",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientBundleTooltip;drawEmptyBundleDescriptionText(IILnet/minecraft/client/gui/Font;Lnet/minecraft/client/gui/GuiGraphics;)V"))
-    private void baitedRodsTakeBait(int x, int y, Font font, GuiGraphics guiGraphics, Operation<Void> original) {
-        var bundle = (ClientBundleTooltip) (Object) this;
-        if (bundle instanceof ClientBaitedRodTooltip) {
-            guiGraphics.drawWordWrap(font, Component.translatable("item.bigger_fish.baited_rod.empty.description"), x, y, 96, 11184810);
-        } else
-            original.call(x, y, font, guiGraphics);
-    }
-    //?}
+    //FIXME - these got made static
+//    @Inject(method = "getProgressBarTexture",
+//            at = @At(value = "RETURN"), cancellable = true)
+//    private static void baitedRodFullnessIsGood(CallbackInfoReturnable<Identifier> cir) {
+//        var bundle = (ClientBundleTooltip) (Object) this;
+//        if (bundle instanceof ClientBaitedRodTooltip && cir.getReturnValue().equals(Identifier.withDefaultNamespace("container/bundle/bundle_progressbar_full"))) {
+//            cir.setReturnValue(BiggerFishMod.of("container/copper_rod/copper_rod_progressbar_full"));
+//        }
+//    }
+//
+//    @WrapOperation(method = "renderEmptyBundleTooltip",
+//            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientBundleTooltip;drawEmptyBundleDescriptionText(IILnet/minecraft/client/gui/Font;Lnet/minecraft/client/gui/GuiGraphics;)V"))
+//    private static void baitedRodsTakeBait(int x, int y, Font font, GuiGraphics guiGraphics, Operation<Void> original) {
+//        var bundle = (ClientBundleTooltip) (Object) this;
+//        if (bundle instanceof ClientBaitedRodTooltip) {
+//            guiGraphics.drawWordWrap(font, Component.translatable("item.bigger_fish.baited_rod.empty.description"), x, y, 96, 11184810);
+//        } else
+//            original.call(x, y, font, guiGraphics);
+//    }
 
 }

@@ -1,0 +1,45 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:condition",
+          "predicate": "minecraft:bundle_contents",
+          "value": {
+            "items": {
+              "contains": [
+                {
+                  "count": 1
+                }
+              ]
+            }
+          },
+          "on_false": {
+            "type": "minecraft:model",
+            "model": "bigger_fish:block/fish_barrel"
+          },
+          "on_true": {
+            "type": "minecraft:composite",
+            "models": [
+              {
+                "type": "minecraft:bundle/selected_item"
+              },
+              {
+                "type": "minecraft:model",
+                "model": "bigger_fish:item/barrel_open_front"
+              }
+            ]
+          },
+          "property": "minecraft:component"
+        },
+        "when": "gui"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "bigger_fish:block/fish_barrel"
+    },
+    "property": "minecraft:display_context"
+  }
+}
