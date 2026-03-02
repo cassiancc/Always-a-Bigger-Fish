@@ -1,3 +1,4 @@
+//? fabric {
 package cc.cassian.bigger_fish.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -12,3 +13,4 @@ public class BiggerFishDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(BiggerFishItemTagProvider::new);
 	}
 }
+//?}
