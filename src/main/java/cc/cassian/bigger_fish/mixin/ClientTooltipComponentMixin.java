@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.mixin;
 
-import cc.cassian.bigger_fish.tooltip.ClientBaitedRodTooltip;
+import cc.cassian.bigger_fish.client.tooltip.ClientBaitedRodTooltip;
 import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

@@ -1,5 +1,7 @@
 ## [1.0.5]
 
+- Replaced EIV support with RRV. Please give Reliable Recipe Viewer a try once it's approved on Modrinth!
+
 ## [1.0.4]
 
 ### Added
