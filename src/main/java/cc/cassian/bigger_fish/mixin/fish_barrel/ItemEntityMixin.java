@@ -17,7 +17,7 @@ public class ItemEntityMixin {
 	@WrapOperation(method = "playerTouch", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;add(Lnet/minecraft/world/item/ItemStack;)Z"))
 	private boolean pickupWithBarrel(Inventory inventory, ItemStack itemStack, Operation<Boolean> original) {
 		CommonEvents.tryInsertingIntoFishBarrel(inventory, (ItemEntity) (Object) this);
-		original.call(inventory, itemStack);
+		return original.call(inventory, itemStack);
 	}
 
 }

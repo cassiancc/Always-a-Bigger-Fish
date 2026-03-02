@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.client.renderer;
 
 
 import cc.cassian.bigger_fish.blocks.entity.FishBarrelBlockEntity;
+import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class FishBarrelRenderer implements BlockEntityRenderer<FishBarrelBlockEntity, FishBarrelBlockEntityRenderState> {
-	private static final float SIZE = 0.375F;
+	private static final float SIZE = 0.85F;
 	private final ItemModelResolver itemRenderer;
 
 	public FishBarrelRenderer(BlockEntityRendererProvider.Context context) {
@@ -52,6 +53,7 @@ public class FishBarrelRenderer implements BlockEntityRenderer<FishBarrelBlockEn
 		state.items.clear();
 		if (!items.isEmpty()) {
 			items.forEach(itemStack -> {
+				itemStack.remove(BiggerFishComponentTypes.SIZE.get()); // hide scale when rendering as it looks terrible otherwise
 				ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
 				this.itemRenderer.updateForTopItem(itemStackRenderState, itemStack, ItemDisplayContext.FIXED, blockEntity.getLevel(), null, k);
 				state.items.add(itemStackRenderState);
