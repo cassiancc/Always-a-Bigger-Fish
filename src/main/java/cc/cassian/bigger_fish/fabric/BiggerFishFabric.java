@@ -9,13 +9,8 @@ import net.fabricmc.api.ModInitializer;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-//? if <26 {
-import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.world.entity.npc.villager.VillagerProfession;
-import net.minecraft.world.entity.npc.villager.VillagerTrades;
-//?}
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -44,22 +39,17 @@ public final class BiggerFishFabric implements ModInitializer {
         BiggerFishEntityTypes.touch();
         BiggerFishSoundEvents.touch();
         BiggerFishMobEffects.touch();
-        //? if <26 {
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 1, (factories, rebalanced) -> {
-            factories.add(new VillagerTrades.ItemsForEmeralds(BiggerFishItems.LEECH.get(), 1, 2, 4));
-        });
-        //?}
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
-            itemGroup.addAfter(Items.FISHING_ROD, ModHelpers.toCollection(BiggerFishItems.TOOLS));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((itemGroup) -> {
+            itemGroup.insertAfter(Items.FISHING_ROD, ModHelpers.toCollection(BiggerFishItems.TOOLS));
         });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register((itemGroup) -> {
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FOOD_AND_DRINKS).register((itemGroup) -> {
             var group = ModHelpers.toCollection(BiggerFishItems.FISH);
             group.addAll(ModHelpers.toCollection(BiggerFishItems.FOOD));
-            itemGroup.addAfter(Items.PUFFERFISH, group);
+            itemGroup.insertAfter(Items.PUFFERFISH, group);
         });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register((itemGroup) -> {
-            itemGroup.addAfter(Items.BONE_MEAL, ModHelpers.toCollection(BiggerFishItems.INGREDIENTS));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((itemGroup) -> {
+            itemGroup.insertAfter(Items.BONE_MEAL, ModHelpers.toCollection(BiggerFishItems.INGREDIENTS));
         });
         LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
             if (key == BuiltInLootTables.FISHING_JUNK) {

@@ -46,17 +46,15 @@
   "depends": {
     "fabricloader": ">=0.16.10",
     "fabric-api": "*",
-    "minecraft": "${minecraft}",
-    "java": ">=21"
+    "minecraft": ">26 <27"
   },
   "recommends": {
-    "compost": "*"
+    "rrv": "*"
   },
   "suggests": {
     "item-descriptions": "*",
     "cloth-config": "*",
     "modmenu": "*",
-    "eiv": "*",
     "emi": "*"
   }
 }

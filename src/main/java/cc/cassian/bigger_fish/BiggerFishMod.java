@@ -19,11 +19,6 @@ public final class BiggerFishMod {
         // Write common init code here.
 
         // Load optional compatibility
-        //? if >1.21.4 {
-        if (ModCompat.EIV) {
-            RrvIntegration.hideStacks();
-        }
-        //?}
         if (ModCompat.ITEMINTERACTIONS) {
             ItemInteractionsCompat.touch();
         }

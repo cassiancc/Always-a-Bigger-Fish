@@ -35,41 +35,34 @@ public class RrvIntegration implements ReliableRecipeViewerPlugin {
         //For the client
 
         // Fishing
-        ItemView.registerClientRecipeWrapper(FishingServerRecipe.TYPE,  modRecipe -> {
-
-            //Here you tell EIV how to process incoming server recipes
-            //Requires you to return a list of client-side view-recipes (IEivViewRecipe)
-
-            ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
-            for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
-                recipes.add(new FishingViewRecipe(itemTagKey));
-            }
-            return recipes;
-        });
+        ItemView.addClientRecipeWrapper(FishingServerRecipe.TYPE, modRecipe -> {
+			ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
+			for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
+				recipes.add(new FishingViewRecipe(itemTagKey));
+			}
+			return recipes;
+		});
 
         // Lava Fishing
-        ItemView.registerClientRecipeWrapper(LavaFishingServerRecipe.TYPE,
-                modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)
-        ));
+        ItemView.addClientRecipeWrapper(LavaFishingServerRecipe.TYPE,
+				modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)
+				));
 
         // Bait
-        ItemView.registerClientRecipeWrapper(BaitInfoServerRecipe.TYPE,
-                modRecipe -> List.of(
-                        new BaitInfoViewRecipe(BiggerFishItems.WORM, BiggerFishMod.of("worm"))
-        ));
+        ItemView.addClientRecipeWrapper(BaitInfoServerRecipe.TYPE,
+				modRecipe -> List.of(
+						new BaitInfoViewRecipe(BiggerFishItems.WORM, BiggerFishMod.of("worm"))
+				));
 
-        ItemView.registerClientRecipeWrapper(BaitUsageServerRecipe.TYPE,
-                modRecipe -> {
-
-                //Here you tell EIV how to process incoming server recipes
-                //Requires you to return a list of client-side view-recipes (IEivViewRecipe)
-
-                ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
-                for (TagKey<Item> itemTagKey : BiggerFishTags.BAIT_TAGS_FOR_DISPLAY) {
-                    recipes.add(new BaitUsageViewRecipe(itemTagKey));
-                }
-                return recipes;
-            });
+        ItemView.addClientRecipeWrapper(BaitUsageServerRecipe.TYPE,
+				modRecipe -> {
+					ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
+					for (TagKey<Item> itemTagKey : BiggerFishTags.BAIT_TAGS_FOR_DISPLAY) {
+						recipes.add(new BaitUsageViewRecipe(itemTagKey));
+					}
+					return recipes;
+				});
+        hideStacks();
     }
 
     public static void hideStacks() {

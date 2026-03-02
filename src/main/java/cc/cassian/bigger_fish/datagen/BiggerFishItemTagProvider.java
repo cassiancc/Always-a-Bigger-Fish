@@ -5,8 +5,8 @@ package cc.cassian.bigger_fish.datagen;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 //? if >1.21.2
@@ -25,8 +25,8 @@ import static cc.cassian.bigger_fish.registry.BiggerFishItems.*;
 import static cc.cassian.bigger_fish.registry.BiggerFishTags.*;
 import static net.minecraft.world.item.Items.*;
 
-public class BiggerFishItemTagProvider extends FabricTagProvider.ItemTagProvider {
-	public BiggerFishItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
+	public BiggerFishItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 

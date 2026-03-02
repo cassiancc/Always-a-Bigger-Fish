@@ -31,10 +31,12 @@ public class BiomeSpecificFishMixin {
             if (fishingRod.has(DataComponents.BUNDLE_CONTENTS)) {
                 BundleContents bundleContents = fishingRod.get(DataComponents.BUNDLE_CONTENTS);
                 if (bundleContents != null && !bundleContents.isEmpty()) {
-                    ItemStack itemUnsafe = bundleContents.getItemUnsafe(0);
+                    ItemStack itemUnsafe = bundleContents.items().getFirst().create();
                     // check for the fishing loot table component
                     if (itemUnsafe.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
-                        return instance.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, Identifier.parse(itemUnsafe.get(BiggerFishComponentTypes.FISHING_LOOT.get()))));
+                        String identifier = itemUnsafe.get(BiggerFishComponentTypes.FISHING_LOOT.get());
+						assert identifier != null;
+						return instance.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, Identifier.parse(identifier)));
                     }
                     // most fishing is done via components, these are here as fallbacks for modded content
                     else if (itemUnsafe.is(BiggerFishTags.TIER_ONE_BAIT)) {

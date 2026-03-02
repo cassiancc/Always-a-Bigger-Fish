@@ -1,9 +1,0 @@
-{
-  "values": [
-    "bigger_fish:koi",
-    {
-      "id": "fishery:largemouth_bass",
-      "required": false
-    }
-  ]
-}

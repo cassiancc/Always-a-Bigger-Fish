@@ -111,7 +111,6 @@ public class BiggerFishItems {
     // Bait
     public static Supplier<Item> WORM = createItem("worm", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing"));
     public static Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")
-            //? if >1.21.4
             .useCooldown(0.5F)
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_two_fishing")));
 
@@ -130,21 +129,18 @@ public class BiggerFishItems {
     public static Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
 
     public static Supplier<Item> COPPER_HOOK = createItem("copper_hook", new Item.Properties()
-            //? if >1.21.4
             .repairable(COPPER_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "copper")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
             .durability(64));
 
     public static Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties()
-            //? if >1.21.4
             .repairable(DIAMOND_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
             .durability(128));
 
     public static Supplier<Item> NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties()
-            //? if >1.21.4
             .repairable(NETHERITE_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
             .durability(512));
@@ -162,8 +158,7 @@ public class BiggerFishItems {
 
     private static Supplier<Item> createItem(String id, Item.Properties properties) {
         return registerItem(id, properties
-                //? if >1.21.4
-                .setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)))
+                    .setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)))
         );
     }
 
@@ -202,10 +197,7 @@ public class BiggerFishItems {
     }
 
     private static Item.Properties properties(String id) {
-        return new Item.Properties()
-                //? if >1.21.4
-                .setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)))
-                ;
+        return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)));
     }
 
     private static Item.Properties getCopperRodProperties() {

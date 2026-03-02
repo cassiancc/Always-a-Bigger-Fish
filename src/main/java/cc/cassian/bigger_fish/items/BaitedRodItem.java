@@ -1,30 +1,17 @@
 package cc.cassian.bigger_fish.items;
 
 import cc.cassian.bigger_fish.helpers.ModHelpers;
-import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
-import cc.cassian.bigger_fish.registry.BiggerFishTags;
+import cc.cassian.bigger_fish.mixin.BundleItemAccessor;
 import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
-//? if >1.21.4 {
 import static net.minecraft.util.ARGB.colorFromFloat;
 import net.minecraft.world.item.component.TooltipDisplay;
-//?} else {
-/*import static net.minecraft.util.FastColor.ARGB32.colorFromFloat;
-*///?}
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.FishingHook;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -32,9 +19,6 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
 
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
 import org.apache.commons.lang3.math.Fraction;
 
 import java.util.Optional;
@@ -215,18 +199,14 @@ public class BaitedRodItem extends FishingRodItem {
             return super.isBarVisible(stack);
         } else {
             BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-            return bundleContents.weight().compareTo(Fraction.ZERO) > 0;
+            return bundleContents.weight().getOrThrow().compareTo(Fraction.ZERO) > 0;
         }
     }
 
     @Override
-    public int getBarWidth(ItemStack stack) {
-        if (stack.has(DataComponents.MAX_DAMAGE)) {
-            return super.getBarWidth(stack);
-        } else {
-            BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-            return Math.min(1 + Mth.mulAndTruncate(bundleContents.weight(), 12), 13);
-        }
+    public int getBarWidth(final ItemStack stack) {
+        BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        return Math.min(1 + Mth.mulAndTruncate(getWeightSafe(contents), 12), 13);
     }
 
     @Override
@@ -235,16 +215,19 @@ public class BaitedRodItem extends FishingRodItem {
             return super.getBarColor(stack);
         } else {
             BundleContents bundleContents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-            return bundleContents.weight().compareTo(Fraction.ONE) >= 0 ? FULL_BAR_COLOR : BAR_COLOR;
+            return getWeightSafe(bundleContents).compareTo(Fraction.ONE) >= 0 ? FULL_BAR_COLOR : BAR_COLOR;
         }
     }
 
-    @Override
-    public void onDestroyed(ItemEntity itemEntity) {
-        BundleContents bundleContents = itemEntity.getItem().get(DataComponents.BUNDLE_CONTENTS);
-        if (bundleContents != null) {
-            itemEntity.getItem().set(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-            ItemUtils.onContainerDestroyed(itemEntity, bundleContents.itemsCopy());
+	private Fraction getWeightSafe(BundleContents bundleContents) {
+		return BundleItemAccessor.invokeGetWeightSafe(bundleContents);
+	}
+
+    public void onDestroyed(final ItemEntity entity) {
+        BundleContents contents = entity.getItem().get(DataComponents.BUNDLE_CONTENTS);
+        if (contents != null) {
+            entity.getItem().set(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+            ItemUtils.onContainerDestroyed(entity, contents.itemCopyStream());
         }
     }
 
