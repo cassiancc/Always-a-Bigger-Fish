@@ -37,6 +37,7 @@ public final class BiggerFishFabric implements ModInitializer {
         BiggerFishMod.init();
         BiggerFishComponentTypes.touch();
         BiggerFishBlocks.touch();
+        BiggerFishBlockEntityTypes.touch();
         BiggerFishItems.touch();
         BiggerFishEntityTypes.touch();
         BiggerFishSoundEvents.touch();

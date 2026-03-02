@@ -1,48 +1,28 @@
 package cc.cassian.bigger_fish.blocks;
 
-import cc.cassian.bigger_fish.registry.BiggerFishItems;
-import cc.cassian.bigger_fish.registry.BiggerFishTags;
+import cc.cassian.bigger_fish.CommonEvents;
+import cc.cassian.bigger_fish.blocks.entity.FishBarrelBlockEntity;
 import com.mojang.serialization.MapCodec;
-import it.unimi.dsi.fastutil.objects.Object2FloatMap;
-import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.Util;
 import net.minecraft.world.*;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
 
-public class FishBarrelBlock extends Block {
+public class FishBarrelBlock extends Block implements EntityBlock {
 	public static final MapCodec<FishBarrelBlock> CODEC = simpleCodec(FishBarrelBlock::new);
 	private static final int HOLE_WIDTH = 12;
-	private static final VoxelShape SHAPE = Block.column(HOLE_WIDTH, Math.clamp((long) 1, 2, 16), 16.0);
+	private static final VoxelShape SHAPE = Block.column(HOLE_WIDTH, Math.clamp(1, 2, 16), 16.0);
 
 	@Override
 	public MapCodec<FishBarrelBlock> codec() {
@@ -66,5 +46,32 @@ public class FishBarrelBlock extends Block {
 	@Override
 	protected VoxelShape getCollisionShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
 		return SHAPE;
+	}
+
+	@Override
+	protected InteractionResult useItemOn(
+			ItemStack itemStack, BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult
+	) {
+		if (level.getBlockEntity(pos) instanceof FishBarrelBlockEntity cauldronBlockEntity) {
+			return cauldronBlockEntity.insert(itemStack);
+		}
+		return InteractionResult.PASS;
+	}
+
+	@Override
+	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos pos, Player player, BlockHitResult blockHitResult) {
+		if (level.getBlockEntity(pos) instanceof FishBarrelBlockEntity cauldronBlockEntity) {
+			if (!cauldronBlockEntity.isEmpty()) {
+				CommonEvents.giveToPlayer(player, null, level, pos, blockHitResult.getDirection(), cauldronBlockEntity.retrieve());
+				return InteractionResult.SUCCESS;
+			}
+		}
+		return InteractionResult.PASS;
+	}
+
+
+	@Override
+	public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new FishBarrelBlockEntity(blockPos, blockState);
 	}
 }
