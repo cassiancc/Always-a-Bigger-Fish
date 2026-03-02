@@ -11,8 +11,8 @@ import static cc.cassian.bigger_fish.registry.CommonRegistry.registerComponentTy
 
 public class BiggerFishComponentTypes {
 
-    public static Supplier<DataComponentType<Float>> SIZE = registerComponentType("size",
-            (builder) -> builder.persistent(ExtraCodecs.POSITIVE_FLOAT).networkSynchronized(ByteBufCodecs.FLOAT));
+    public static Supplier<DataComponentType<FishSize>> SIZE = registerComponentType("size",
+            (builder) -> builder.persistent(FishSize.CODEC).networkSynchronized(FishSize.STREAM_CODEC));
 
     public static Supplier<DataComponentType<String>> FISHING_LOOT = registerComponentType("fishing_loot_table",
             (builder) -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));

@@ -3,6 +3,8 @@ package cc.cassian.bigger_fish.client;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import cc.cassian.bigger_fish.registry.FishSize;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
@@ -12,14 +14,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class BiggerFishModClient {
-    public static void addTooltip(ItemStack stack, List<Component> list) {
-        MutableComponent fishSizeTooltip = getFishSizeTooltip(stack);
-        if (fishSizeTooltip != null)
-            list.add(fishSizeTooltip);
-        addBaitUsageTooltip(stack, list);
-    }
 
-    private static void addBaitUsageTooltip(ItemStack stack, List<Component> list) {
+    public static void addBaitUsageTooltip(ItemStack stack, List<Component> list) {
         if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
             if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown())
                 if (stack.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
@@ -28,13 +24,9 @@ public class BiggerFishModClient {
         }
     }
 
-    public static MutableComponent getFishSizeTooltip(ItemStack stack) {
-        if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value()) {
-            if (stack.has(BiggerFishComponentTypes.SIZE.get())) {
-                if (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || ModHelpers.hasShiftDown())
-                    return Component.translatable("component.bigger_fish.size", ModHelpers.getFishSize(stack), ModHelpers.getUnit());
-            }
-        }
+    public static MutableComponent getFishSizeTooltip(FishSize size) {
+		if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value() && size != null && (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || ModHelpers.hasShiftDown()))
+			return Component.translatable("component.bigger_fish.size", ModHelpers.getFishSize(size), ModHelpers.getUnit());
         return null;
     }
 }

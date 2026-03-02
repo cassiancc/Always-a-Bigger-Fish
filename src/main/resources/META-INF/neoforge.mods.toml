@@ -25,3 +25,5 @@ side = "BOTH"
 modId = "minecraft"
 type = "required"
 versionRange = "[26, 27]"
+
+rrv = "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"

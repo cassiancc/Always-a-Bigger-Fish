@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RangeSelectItemModelProperties.class)
 public class RangeSelectItemPropertiesMixin {
+	//? fabric {
 	@Shadow
 	@Final
 	public static ExtraCodecs.LateBoundIdMapper<Identifier, MapCodec<? extends RangeSelectItemModelProperty>> ID_MAPPER;
@@ -27,4 +28,5 @@ public class RangeSelectItemPropertiesMixin {
 	private static void registerSize(CallbackInfo ci) {
 		ID_MAPPER.put(BiggerFishMod.of("size"), SizeProperty.MAP_CODEC);
 	}
+	//?}
 }

@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.client.tooltip;
 
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.mixin.ClientBundleTooltipAccessor;
+import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.serialization.DataResult;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -90,7 +91,7 @@ public class ClientBaitedRodTooltip extends ClientBundleTooltip {
             ClientTooltipComponent selectedItemNameTooltip = ClientTooltipComponent.create(selectedItemName.getVisualOrderText());
             tooltip.add(selectedItemNameTooltip);
             // fish size
-            MutableComponent fishSizeTooltip = BiggerFishModClient.getFishSizeTooltip(itemStack);
+            MutableComponent fishSizeTooltip = BiggerFishModClient.getFishSizeTooltip(itemStack.get(BiggerFishComponentTypes.SIZE.get()));
             if (fishSizeTooltip != null) {
 				ClientTooltipComponent fishSizeClientTooltip = ClientTooltipComponent.create(fishSizeTooltip.getVisualOrderText());
                 tooltip.add(fishSizeClientTooltip);

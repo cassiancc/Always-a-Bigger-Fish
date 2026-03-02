@@ -4,6 +4,7 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.Platform;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
+import cc.cassian.bigger_fish.registry.FishSize;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 //? if >1.21.9 {
 import net.minecraft.client.Minecraft;
@@ -62,13 +63,13 @@ public class ModHelpers {
         field.setValue(instance);
     }
 
-    public static Float getRandomFishSize(Entity hook) {
+    public static FishSize getRandomFishSize(Entity hook) {
         var random = hook.getRandom();
         var size = random.nextIntBetweenInclusive(1, 15)*Math.log(random.nextIntBetweenInclusive(1, 160));
         if (random.nextIntBetweenInclusive(0, 100) > 60) {
             size = size*.5;
         }
-        return (float) (Math.round(size * 10d) / 10d);
+        return new FishSize((float) (Math.round(size * 10d) / 10d));
     }
 
     public static ItemStack setRandomFishSize(ItemStack itemStack, Entity hook) {
@@ -84,13 +85,12 @@ public class ModHelpers {
         }
     }
 
-    public static String getFishSize(ItemStack stack) {
-        Float size = stack.get(BiggerFishComponentTypes.SIZE.get());
+    public static String getFishSize(FishSize size) {
         if (size == null) return "0";
         if (BiggerFishMod.CONFIG.tooltip.centimeters.value()) {
-            return "%s".formatted(Math.round(size * 2.54 * 10d) / 10d);
+            return "%s".formatted(Math.round(size.size() * 2.54 * 10d) / 10d);
         } else {
-            return "%s".formatted(size);
+            return "%s".formatted(size.size());
         }
     }
 

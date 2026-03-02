@@ -58,7 +58,7 @@ public class CommonEvents {
 	//? neoforge {
 	/*private static void insertAfter(BuildCreativeModeTabContentsEvent tab, Item anchor, List<ItemStack> collection) {
 		collection.reversed().forEach(stack -> {
-			tab.insertAfter(fishingRod.getDefaultInstance(), anchor, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+			tab.insertAfter(anchor.getDefaultInstance(), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 		});
 	}
 	*///?}

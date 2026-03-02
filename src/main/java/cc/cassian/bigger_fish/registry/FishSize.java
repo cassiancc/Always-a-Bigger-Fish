@@ -1,0 +1,26 @@
+package cc.cassian.bigger_fish.registry;
+
+import cc.cassian.bigger_fish.client.BiggerFishModClient;
+import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipProvider;
+
+import java.util.function.Consumer;
+
+public record FishSize(float size) implements TooltipProvider {
+	public static final Codec<FishSize> CODEC = ExtraCodecs.POSITIVE_FLOAT.xmap(FishSize::new, FishSize::size);
+	public static final StreamCodec<ByteBuf, FishSize> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.FLOAT, FishSize::size, FishSize::new);
+	public static final FishSize ZERO = new FishSize(0);
+
+	@Override
+	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter components) {
+		consumer.accept(BiggerFishModClient.getFishSizeTooltip(this));
+	}
+}

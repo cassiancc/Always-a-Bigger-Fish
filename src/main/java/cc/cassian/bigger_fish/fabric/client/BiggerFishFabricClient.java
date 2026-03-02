@@ -10,9 +10,11 @@ import cc.cassian.bigger_fish.minigame.MinigameLayer;
 import cc.cassian.bigger_fish.registry.BiggerFishBlockEntityTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
+import cc.cassian.bigger_fish.registry.FishSize;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -36,8 +38,9 @@ public final class BiggerFishFabricClient implements ClientModInitializer {
         EntityRenderers.register(BiggerFishEntityTypes.LEECH.get(), ThrownItemRenderer::new);
         BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_BARREL_BLOCK_ENTITY, FishBarrelRenderer::new);
         ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipFlag, list) -> {
-            BiggerFishModClient.addTooltip(stack, list);
+            BiggerFishModClient.addBaitUsageTooltip(stack, list);
         });
+        ItemComponentTooltipProviderRegistry.addFirst(BiggerFishComponentTypes.SIZE.get());
     }
 }
 //?}
