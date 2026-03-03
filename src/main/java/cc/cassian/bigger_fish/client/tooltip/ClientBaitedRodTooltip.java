@@ -25,14 +25,15 @@ import static cc.cassian.bigger_fish.mixin.ClientBundleTooltipAccessor.*;
 public class ClientBaitedRodTooltip extends ClientBundleTooltip {
 
     private final ClientBundleTooltipAccessor original;
+    private final MutableComponent emptyDescription;
 
-    public ClientBaitedRodTooltip(BundleContents contents) {
+    public ClientBaitedRodTooltip(BundleContents contents, MutableComponent translatable) {
         super(contents);
         this.contents = contents;
+        this.emptyDescription = translatable;
         this.original = (ClientBundleTooltipAccessor) this;
     }
 
-    private static final Component FISH_CONTAINER_EMPTY_DESCRIPTION = Component.translatable("item.bigger_fish.baited_rod.empty.description");
     private final BundleContents contents;
 
     @Override
@@ -47,7 +48,7 @@ public class ClientBaitedRodTooltip extends ClientBundleTooltip {
         }
     }
 
-    private static void renderEmptyFishContainerTooltip(final Font font, final int x, final int y, final int w, final int h, final GuiGraphics graphics) {
+    private void renderEmptyFishContainerTooltip(final Font font, final int x, final int y, final int w, final int h, final GuiGraphics graphics) {
         int left = x + callGetContentXOffset(w);
         drawEmptyFishContainerDescriptionText(left, y, font, graphics);
         callDrawProgressbar(left, y + getEmptyFishContainerDescriptionTextHeight(font) + 4, font, graphics, Fraction.ZERO);
@@ -107,11 +108,11 @@ public class ClientBaitedRodTooltip extends ClientBundleTooltip {
         }
     }
 
-    private static void drawEmptyFishContainerDescriptionText(final int x, final int y, final Font font, final GuiGraphics graphics) {
-        graphics.drawWordWrap(font, FISH_CONTAINER_EMPTY_DESCRIPTION, x, y, 96, -5592406);
+    private void drawEmptyFishContainerDescriptionText(final int x, final int y, final Font font, final GuiGraphics graphics) {
+        graphics.drawWordWrap(font, emptyDescription, x, y, 96, -5592406);
     }
 
-    private static int getEmptyFishContainerDescriptionTextHeight(final Font font) {
-        return font.split(FISH_CONTAINER_EMPTY_DESCRIPTION, 96).size() * 9;
+    private int getEmptyFishContainerDescriptionTextHeight(final Font font) {
+        return font.split(emptyDescription, 96).size() * 9;
     }
 }

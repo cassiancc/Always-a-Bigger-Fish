@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.blocks.entity;
 import cc.cassian.bigger_fish.registry.BiggerFishBlockEntityTypes;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -10,14 +11,12 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
-import oshi.util.tuples.Pair;
 
 import java.util.*;
 
@@ -63,12 +62,24 @@ public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContain
 
 	@Override
 	protected void applyImplicitComponents(DataComponentGetter components) {
+		this.items.clear();
 		components.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).items().forEach(s->{
 			ItemStack itemStack = s.create();
 			for (int i = 0; i < itemStack.getCount(); i++) {
 				this.items.add(itemStack.copyWithCount(1));
 			}
 		});
+		setChanged();
+
+	}
+
+	@Override
+	protected void collectImplicitComponents(DataComponentMap.Builder components) {
+		BundleContents.Mutable mutable = new BundleContents.Mutable(BundleContents.EMPTY);
+		for (ItemStack item : items) {
+			mutable.tryInsert(item.copy());
+		}
+		components.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
 	}
 
 	public InteractionResult insert(ItemStack itemStack) {
@@ -159,5 +170,10 @@ public class FishBarrelBlockEntity extends BlockEntity implements WorldlyContain
 	@Override
 	public void clearContent() {
 		items.clear();
+	}
+
+	@Override
+	public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+
 	}
 }

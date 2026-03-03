@@ -10,6 +10,7 @@ public class BiggerFishDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		//tags
+		pack.addProvider(BiggerFishBlockTagProvider::new);
 		pack.addProvider(BiggerFishItemTagProvider::new);
 	}
 }

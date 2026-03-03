@@ -167,7 +167,7 @@ public class BiggerFishItems {
 
     public static <T extends Item> T createItem(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
         // Create the item key.
-        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, BiggerFishMod.of(name));
+        ResourceKey<Item> itemKey = key(name);
 
         // Create the item instance.
         T item = itemFactory.apply(settings.setId(itemKey));
@@ -180,8 +180,12 @@ public class BiggerFishItems {
 
     private static Supplier<Item> createItem(String id, Item.Properties properties) {
         return registerItem(id, properties
-                    .setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)))
+                    .setId(key(id))
         );
+    }
+
+    private static ResourceKey<Item> key(String name) {
+        return ResourceKey.create(Registries.ITEM, BiggerFishMod.of(name));
     }
 
     private static Supplier<Item> createFish(String id) {
@@ -219,7 +223,7 @@ public class BiggerFishItems {
     }
 
     private static Item.Properties properties(String id) {
-        return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, BiggerFishMod.of(id)));
+        return new Item.Properties().setId(key(id));
     }
 
     private static Item.Properties getCopperRodProperties() {

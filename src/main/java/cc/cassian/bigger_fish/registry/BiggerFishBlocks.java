@@ -5,34 +5,28 @@ import cc.cassian.bigger_fish.blocks.FishBarrelBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Function;
 
 public class BiggerFishBlocks {
-	public static Block FISH_BARREL = register("fish_barrel", FishBarrelBlock::new, BlockBehaviour.Properties.of());
+	public static Block FISH_BARREL = register("fish_barrel", FishBarrelBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL));
 
 
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings) {
 		// Create a registry key for the block
-		ResourceKey<Block> blockKey = keyOfBlock(name);
+		ResourceKey<Block> blockKey = key(name);
 		// Create the block instance
 		Block block = blockFactory.apply(settings.setId(blockKey));
 
 		return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
 	}
 
-	private static ResourceKey<Block> keyOfBlock(String name) {
+	private static ResourceKey<Block> key(String name) {
 		return ResourceKey.create(Registries.BLOCK, BiggerFishMod.of(name));
-	}
-
-	private static ResourceKey<Item> keyOfItem(String name) {
-		return ResourceKey.create(Registries.ITEM, BiggerFishMod.of(name));
 	}
 
 	public static void touch() {
