@@ -25,6 +25,7 @@ public class BiggerFishTags {
     public static final TagKey<Item> ATTRACTS_TREASURE = itemTagKey("attracts_treasure");
 
     public static final TagKey<Item> ALLOWED_IN_BAITED_ROD = itemTagKey("allowed_in_baited_rod");
+    public static final TagKey<Item> ALLOWED_IN_FISH_BARREL = itemTagKey("allowed_in_fish_barrel");
 
     public static final TagKey<Item> REQUIRES_MINIGAME_TO_CATCH = itemTagKey("requires_minigame_to_catch");
     public static final TagKey<Item> CAN_FISH_IN_LAVA = itemTagKey("can_fish_in_lava");;
@@ -100,6 +101,7 @@ public class BiggerFishTags {
     public static final TagKey<Item> NETHERITE_TOOL_MATERIALS = itemTagKey("c", "repairable/netherite");
 
     public static final TagKey<Item> FISHING_RODS = itemTagKey("c", "tools/fishing_rod");
+    public static final TagKey<Item> PICKS_UP_FISH = itemTagKey("picks_up_fish");
     public static final TagKey<Item> FISH_CONTAINERS = itemTagKey("fish_containers");
 
     public static final List<TagKey<Item>> FISHING_TAGS_FOR_DISPLAY = List.of(

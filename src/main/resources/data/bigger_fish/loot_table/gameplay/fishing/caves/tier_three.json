@@ -8,14 +8,12 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
+
                   "biomes": "minecraft:deep_dark"
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/deep_dark",
@@ -25,14 +23,12 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
+
                   "biomes": "minecraft:dripstone_caves"
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/brackish_caves/tier_three",

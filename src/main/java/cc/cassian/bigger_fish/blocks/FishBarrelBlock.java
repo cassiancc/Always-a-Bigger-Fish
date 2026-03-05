@@ -33,7 +33,7 @@ public class FishBarrelBlock extends FishContainerBlock {
 	}
 
 	public FishBarrelBlock(final Properties properties) {
-		super(properties, (stack -> stack.is(BiggerFishTags.FISH)));
+		super(properties, (stack -> stack.is(BiggerFishTags.ALLOWED_IN_FISH_BARREL)));
 	}
 
 	@Override

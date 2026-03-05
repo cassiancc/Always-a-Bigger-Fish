@@ -8,16 +8,13 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
                 "location": {
-                  "position": {
                     "y": {
                       "min": 32
                     }
                   }
-                }
               }
             }
           ],
@@ -28,16 +25,13 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
                 "location": {
-                  "position": {
                     "y": {
                       "max": 32
                     }
                   }
-                }
               }
             }
           ],

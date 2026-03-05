@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-//? if >1.21.2
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
@@ -42,6 +41,10 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 				.add(COPPER_ROD);
 		tagBuilder(FISH_CONTAINERS)
 				.add(FISH_BARREL);
+		tagBuilder(PICKS_UP_FISH)
+				.add(COPPER_ROD)
+				.add(FISH_BARREL)
+				.add(FISH_TRAP);
 		tagBuilder(BONES)
 				.add(FISH_BONES);
 		tagBuilder(HIDDEN_FROM_RECIPE_VIEWERS)
@@ -59,6 +62,11 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(ALLOWED_IN_BAITED_ROD)
 				.addOptionalTag(BAIT)
 				.addOptionalTag(HOOKS);
+		tagBuilder(ALLOWED_IN_FISH_BARREL)
+				.addOptionalTag(RAW_FISH_FOODS)
+				.addOptionalTag(BiggerFishTags.FISH)
+				.addOptionalTag(TREASURE)
+				.addOptionalTag(JUNK);
 		tagBuilder(ATTRACTS_TREASURE)
 				.add(DIAMOND_HOOK);
 		tagBuilder(BAIT)

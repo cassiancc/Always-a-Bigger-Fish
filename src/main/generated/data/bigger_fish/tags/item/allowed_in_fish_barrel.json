@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "#c:foods/raw_fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:fish",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:treasure",
+      "required": false
+    },
+    {
+      "id": "#bigger_fish:junk",
+      "required": false
+    }
+  ]
+}

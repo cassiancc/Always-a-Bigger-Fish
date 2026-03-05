@@ -8,26 +8,21 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
+
                   "biomes": "#c:is_cold/freshwater"
                 }
-              }
             },
             {
               "condition": "minecraft:inverted",
               "term": {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
+                "condition": "minecraft:location_check",
                 "predicate": {
-                  "location": {
                     "biomes": "#c:is_cold/saltwater"
                   }
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/cold/freshwater/tier_three",
@@ -37,12 +32,9 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "#c:is_cold/saltwater"
-                }
               }
             }
           ],
@@ -54,26 +46,20 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "#c:is_hot/freshwater"
-                }
               }
             },
             {
               "condition": "minecraft:inverted",
               "term": {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
+                "condition": "minecraft:location_check",
                 "predicate": {
-                  "location": {
                     "biomes": "#c:is_hot/saltwater"
                   }
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/hot/freshwater/tier_three",
@@ -83,12 +69,9 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "#c:is_hot/saltwater"
-                }
               }
             }
           ],
@@ -100,38 +83,30 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "#c:is_temperate/freshwater"
-                }
               }
             },
             {
               "condition": "minecraft:inverted",
               "term": {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
+                "condition": "minecraft:location_check",
                 "predicate": {
-                  "location": {
                     "biomes": "#c:is_temperate/saltwater"
                   }
                 }
               }
-            },
+            ,
             {
               "condition": "minecraft:inverted",
               "term": {
-                "condition": "minecraft:entity_properties",
-                "entity": "this",
+                "condition": "minecraft:location_check",
                 "predicate": {
-                  "location": {
                     "biomes": "#c:is_brackish"
                   }
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/temperate/freshwater/tier_three",
@@ -141,12 +116,9 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "#c:is_temperate/saltwater"
-                }
               }
             }
           ],
@@ -158,14 +130,11 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "#c:is_mushroom"
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/mushroom",
@@ -175,14 +144,11 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "#c:is_brackish"
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/brackish/tier_three",
@@ -192,14 +158,11 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
-                "location": {
                   "biomes": "minecraft:deep_dark"
                 }
               }
-            }
           ],
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/deep_dark",

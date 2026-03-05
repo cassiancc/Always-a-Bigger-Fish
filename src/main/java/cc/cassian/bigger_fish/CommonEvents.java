@@ -64,7 +64,7 @@ public class CommonEvents {
 	*///?}
 
 	public static void tryInsertingIntoFishBarrel(Inventory inventory, ItemEntity itemEntity) {
-		Predicate<ItemStack> fishContainers = (stack) -> stack.is(BiggerFishTags.FISH_CONTAINERS);
+		Predicate<ItemStack> fishContainers = (stack) -> stack.is(BiggerFishTags.PICKS_UP_FISH);
 		ItemStack fish = itemEntity.getItem();
 		if (fish.is(BiggerFishTags.FISH) && inventory.hasAnyMatching(fishContainers)) {
 			inventory.getNonEquipmentItems().stream().filter(fishContainers).findFirst().ifPresent(fishContainer -> {

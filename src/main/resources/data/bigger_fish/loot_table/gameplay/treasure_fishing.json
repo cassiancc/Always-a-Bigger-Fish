@@ -32,19 +32,17 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
                 "location": {
-                  "position": {
+
                     "y": {
                       "min": 32
                     }
                   }
                 }
               }
-            }
-          ],
+            ],
           "weight": 10,
           "quality": -1,
           "value": "bigger_fish:gameplay/fishing/tier_one_aboveground"
@@ -53,14 +51,11 @@
           "type": "minecraft:loot_table",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "condition": "minecraft:location_check",
               "predicate": {
                 "location": {
-                  "position": {
-                    "y": {
-                      "max": 32
-                    }
+                  "y": {
+                    "max": 32
                   }
                 }
               }

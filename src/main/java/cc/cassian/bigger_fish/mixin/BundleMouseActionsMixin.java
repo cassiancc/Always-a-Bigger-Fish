@@ -21,7 +21,6 @@ import java.util.List;
 public class BundleMouseActionsMixin {
 	@WrapOperation(method = "matches", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/tags/TagKey;)Z"))
 	private static boolean scrollContainers(ItemStack instance, TagKey<Item> tagKey, Operation<Boolean> original) {
-		if (instance.is(BiggerFishItems.COPPER_ROD.get())) return true;
 		if (instance.is(BiggerFishTags.FISH_CONTAINERS)) return true;
 		return original.call(instance, tagKey);
 	}
