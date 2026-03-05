@@ -5,8 +5,7 @@ import cc.cassian.bigger_fish.client.tooltip.ClientFishContainerTooltip;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.FishSize;
-import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
-import cc.cassian.bigger_fish.tooltip.FishBarrelTooltip;
+import cc.cassian.bigger_fish.tooltip.FishContainerTooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
@@ -35,10 +34,8 @@ public class BiggerFishModClient {
     }
 
     public static ClientFishContainerTooltip getClientBaitedRodTooltip(TooltipComponent visualTooltipComponent) {
-        if (visualTooltipComponent instanceof BaitedRodTooltip(BundleContents contents)) {
-            return new ClientFishContainerTooltip(contents, Component.translatable("item.bigger_fish.baited_rod.empty.description"));
-        } else if (visualTooltipComponent instanceof FishBarrelTooltip(BundleContents contents)) {
-            return new ClientFishContainerTooltip(contents, Component.translatable("item.bigger_fish.fish_barrel.empty.description"));
+        if (visualTooltipComponent instanceof FishContainerTooltip(BundleContents contents, MutableComponent translatable)) {
+            return new ClientFishContainerTooltip(contents, translatable);
         } else return null;
     }
 }

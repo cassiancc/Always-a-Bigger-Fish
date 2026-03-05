@@ -1,11 +1,9 @@
 package cc.cassian.bigger_fish.items;
 
-import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.config.ModConfig;
-import cc.cassian.bigger_fish.helpers.ModHelpers;
-import cc.cassian.bigger_fish.mixin.BundleItemAccessor;
-import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
+import cc.cassian.bigger_fish.tooltip.FishContainerTooltip;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -16,7 +14,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.component.BundleContents;
@@ -120,11 +117,11 @@ public class FishContainer {
 		}
 	}
 
-	static Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+	static Optional<TooltipComponent> getTooltipImage(ItemStack stack, MutableComponent translatable) {
 		TooltipDisplay tooltipDisplay = stack.getOrDefault(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT);
 		return !tooltipDisplay.shows(DataComponents.BUNDLE_CONTENTS)
 				? Optional.empty()
-				: Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BaitedRodTooltip::new);
+				: Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map((BundleContents contents) -> new FishContainerTooltip(contents, translatable));
 	}
 
 	private static void playInsertFailSound(Entity entity) {

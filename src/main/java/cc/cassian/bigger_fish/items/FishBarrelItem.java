@@ -2,8 +2,8 @@ package cc.cassian.bigger_fish.items;
 
 import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import cc.cassian.bigger_fish.tooltip.FishBarrelTooltip;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -33,10 +33,7 @@ public class FishBarrelItem extends BlockItem {
 
 	@Override
 	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-		TooltipDisplay tooltipDisplay = stack.getOrDefault(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT);
-		return !tooltipDisplay.shows(DataComponents.BUNDLE_CONTENTS)
-				? Optional.empty()
-				: Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(FishBarrelTooltip::new);
+		return FishContainer.getTooltipImage(stack, Component.translatable("item.bigger_fish.fish_barrel.empty.description"));
 	}
 
 	@Override

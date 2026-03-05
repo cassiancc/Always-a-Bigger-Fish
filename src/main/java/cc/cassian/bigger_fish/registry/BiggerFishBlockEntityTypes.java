@@ -2,8 +2,8 @@ package cc.cassian.bigger_fish.registry;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.blocks.entity.FishBarrelBlockEntity;
-//? fabric {
 import cc.cassian.bigger_fish.blocks.entity.FishTrapBlockEntity;
+//? fabric {
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 //?}
 import net.minecraft.core.Registry;

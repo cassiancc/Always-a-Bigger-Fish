@@ -41,5 +41,10 @@ public class NeoforgePlatformImpl implements Platform {
         return hook.getExistingData(BiggerFishNeoForge.HOOK).orElse("vanilla");
     }
 
+	@Override
+    public boolean isDevelopmentEnvironment() {
+        return false;
+    }
+
 }
 *///?}

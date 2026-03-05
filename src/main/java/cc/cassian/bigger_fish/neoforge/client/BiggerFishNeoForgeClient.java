@@ -6,13 +6,10 @@ import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.client.SizeProperty;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
-import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
-import cc.cassian.bigger_fish.tooltip.FishBarrelTooltip;
+import cc.cassian.bigger_fish.tooltip.FishContainerTooltip;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
@@ -23,11 +20,6 @@ import java.util.Objects;
 
 @EventBusSubscriber(modid = BiggerFishMod.MOD_ID, value = Dist.CLIENT)
 public final class BiggerFishNeoForgeClient {
-
-
-    public static void init(IEventBus eventBus, ModContainer container) {
-
-    }
 
     @SubscribeEvent
     public static void registerTooltip(ItemTooltipEvent event) {
@@ -49,8 +41,7 @@ public final class BiggerFishNeoForgeClient {
 
     @SubscribeEvent
     public static void registerClientTooltip(RegisterClientTooltipComponentFactoriesEvent event) {
-        event.register(BaitedRodTooltip.class, BiggerFishModClient::getClientBaitedRodTooltip);
-        event.register(FishBarrelTooltip.class, BiggerFishModClient::getClientBaitedRodTooltip);
+        event.register(FishContainerTooltip.class, BiggerFishModClient::getClientBaitedRodTooltip);
     }
 
 }

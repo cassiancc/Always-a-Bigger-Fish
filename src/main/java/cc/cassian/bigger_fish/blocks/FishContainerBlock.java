@@ -42,8 +42,10 @@ public abstract class FishContainerBlock extends Block implements EntityBlock {
 			ItemStack itemStack, BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult
 	) {
 		if (itemStack.isEmpty() && interactionHand.equals(InteractionHand.MAIN_HAND)) return useWithoutItem(blockState, level, pos, player, blockHitResult);
-		if (level.getBlockEntity(pos) instanceof FishContainerBlockEntity fishContainerBlockEntity && allowedItems.test(itemStack)) {
-			return fishContainerBlockEntity.insert(itemStack);
+		if (level.getBlockEntity(pos) instanceof FishContainerBlockEntity fishContainerBlockEntity) {
+			if (allowedItems.test(itemStack))
+				return fishContainerBlockEntity.insert(itemStack);
+			else if (interactionHand.equals(InteractionHand.MAIN_HAND)) return useWithoutItem(blockState, level, pos, player, blockHitResult);
 		}
 		return InteractionResult.PASS;
 	}

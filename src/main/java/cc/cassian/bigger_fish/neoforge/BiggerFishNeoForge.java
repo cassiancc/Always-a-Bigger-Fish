@@ -40,9 +40,6 @@ public final class BiggerFishNeoForge {
         // Run our common setup.
         BiggerFishMod.init();
         ATTACHMENT_TYPES.register(eventBus);
-        if (FMLEnvironment.getDist().isClient()) {
-            BiggerFishNeoForgeClient.init(eventBus, container);
-        }
     }
 
     @SubscribeEvent

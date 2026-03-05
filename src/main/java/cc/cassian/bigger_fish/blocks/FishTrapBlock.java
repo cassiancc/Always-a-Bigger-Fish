@@ -50,6 +50,7 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 			)
 	);
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final BooleanProperty BOOP = BooleanProperty.create("boop");
 
 	@Override
 	public MapCodec<FishTrapBlock> codec() {
@@ -57,8 +58,8 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 	}
 
 	public FishTrapBlock(final Properties properties) {
-		super(properties, (stack)->stack.is(BiggerFishTags.BAIT));
-		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
+		super(properties, (_)->false);
+		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(BOOP, false));
 	}
 
 	@Override
@@ -83,7 +84,7 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 
 	@Override
 	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-		if (level.getBlockEntity(pos) instanceof FishTrapBlockEntity fishTrapBlockEntity) {
+		if (level.getBlockEntity(pos) instanceof FishTrapBlockEntity fishTrapBlockEntity && state.getFluidState().is(Fluids.WATER)) {
 			AtomicInteger blocks = new AtomicInteger();
 			AtomicInteger waterBlocks = new AtomicInteger();
 			Stream<BlockState> blockStates = level.getBlockStates(new AABB(pos.above().east().north().getCenter(), pos.below().west().south().getCenter()));
@@ -105,6 +106,7 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 			ObjectArrayList<ItemStack> randomItems = lootTable.getRandomItems(params);
 			randomItems.forEach(fishTrapBlockEntity::insert);
 			level.blockEntityChanged(pos);
+			level.setBlockAndUpdate(pos, state.setValue(BOOP, !state.getValue(BOOP)));
 		}
 
 	}
@@ -141,6 +143,6 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 
 	@Override
 	protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(WATERLOGGED);
+		builder.add(WATERLOGGED).add(BOOP);
 	}
 }

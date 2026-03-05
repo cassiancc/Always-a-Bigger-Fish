@@ -40,5 +40,10 @@ public class FabricPlatformImpl implements Platform {
         return hook.getAttachedOrElse(BiggerFishFabric.HOOK, "vanilla");
     }
 
+    @Override
+    public boolean isDevelopmentEnvironment() {
+        return FabricLoader.getInstance().isDevelopmentEnvironment();
+    }
+
 }
 //?}

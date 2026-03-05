@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.items;
 
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -30,7 +31,7 @@ public class BaitedRodItem extends FishingRodItem {
 
     @Override
     public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-        return FishContainer.getTooltipImage(stack);
+        return FishContainer.getTooltipImage(stack, Component.translatable("item.bigger_fish.baited_rod.empty.description"));
     }
 
     @Override

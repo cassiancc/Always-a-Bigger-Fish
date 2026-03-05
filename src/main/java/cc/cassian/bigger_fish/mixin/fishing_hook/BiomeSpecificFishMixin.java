@@ -19,13 +19,11 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static cc.cassian.bigger_fish.helpers.ModHelpers.fish;
-
 @Mixin(FishingHook.class)
 public class BiomeSpecificFishMixin {
     @WrapOperation(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;"))
     private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original, ItemStack fishingRod) {
-        LootTable fish = fish(instance, ModHelpers.getBaitFromRod(fishingRod), ModHelpers.isLavaHook((FishingHook) (Object) this), fishingRod.is(BiggerFishTags.CATCHES_BIGGER_FISH));
+        LootTable fish = ModHelpers.fish(instance, ModHelpers.getBaitFromRod(fishingRod), ModHelpers.isLavaHook((FishingHook) (Object) this), fishingRod.is(BiggerFishTags.CATCHES_BIGGER_FISH));
         if (fish != null) {
             return fish;
         }

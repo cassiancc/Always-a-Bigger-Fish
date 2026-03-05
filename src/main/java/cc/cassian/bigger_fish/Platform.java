@@ -37,4 +37,5 @@ public interface Platform {
 
     String getHookData(FishingHook hook);
 
+	boolean isDevelopmentEnvironment();
 }

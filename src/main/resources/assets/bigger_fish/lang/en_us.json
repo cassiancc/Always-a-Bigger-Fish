@@ -207,5 +207,6 @@
  "tag.item.bigger_fish.temperate_saltwater_fish": "Temperate Saltwater Fish",
  "tag.item.bigger_fish.treasure": "Treasure",
  "tag.item.bigger_fish.fish_containers": "Fish Containers",
- "item.bigger_fish.fish_barrel.empty.description": "Can hold a mixed stack of fish."
+ "item.bigger_fish.fish_barrel.empty.description": "Can hold a mixed stack of fish.",
+ "item.bigger_fish.fish_trap.empty.description": "Can hold a mixed stack of fishing loot."
 }

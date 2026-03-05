@@ -4,11 +4,13 @@ import cc.cassian.bigger_fish.blocks.entity.FishBarrelBlockEntity;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Util;
 import net.minecraft.world.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -16,8 +18,14 @@ import org.jspecify.annotations.Nullable;
 
 public class FishBarrelBlock extends FishContainerBlock {
 	public static final MapCodec<FishBarrelBlock> CODEC = simpleCodec(FishBarrelBlock::new);
-	private static final int HOLE_WIDTH = 12;
-	private static final VoxelShape SHAPE = Block.column(HOLE_WIDTH, Math.clamp(1, 2, 16), 16.0);
+	private static final VoxelShape SHAPE_INSIDE = Block.column(12.0, 4.0, 16.0);
+	protected static final VoxelShape SHAPE = Util.make(
+			() -> Shapes.join(
+					Shapes.block(),
+					Shapes.or(Block.column(16.0, 8.0, 0.0, 0.0), Block.column(8.0, 16.0, 0.0, 0.0), Block.column(16.0, 0.0, 0.0), SHAPE_INSIDE),
+					BooleanOp.ONLY_FIRST
+			)
+	);
 
 	@Override
 	public MapCodec<FishBarrelBlock> codec() {
