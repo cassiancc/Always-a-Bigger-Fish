@@ -12,12 +12,6 @@ import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 @DisplayName("There's Always a Bigger Fish")
 public class ModConfig extends ReflectiveConfig {
 
-    public final ClientOptions client = new ClientOptions();
-    public static class ClientOptions extends Section {
-        @Comment("Switches left click and right click functionality on Baited Rods and Fish Barrels. This matches the pre-1.21.2 bundles.")
-        public final TrackedValue<Boolean> swapClick = this.value(false);
-    }
-
     public final GameplayOptions gameplay = new GameplayOptions();
     public static class GameplayOptions extends Section {
         @Comment("When using a vanilla Fishing Rod, replace vanilla's fishing loot table with biome specific fishing.")

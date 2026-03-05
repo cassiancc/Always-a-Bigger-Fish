@@ -22,12 +22,12 @@ import java.util.List;
 
 import static cc.cassian.bigger_fish.mixin.ClientBundleTooltipAccessor.*;
 
-public class ClientBaitedRodTooltip extends ClientBundleTooltip {
+public class ClientFishContainerTooltip extends ClientBundleTooltip {
 
     private final ClientBundleTooltipAccessor original;
     private final MutableComponent emptyDescription;
 
-    public ClientBaitedRodTooltip(BundleContents contents, MutableComponent translatable) {
+    public ClientFishContainerTooltip(BundleContents contents, MutableComponent translatable) {
         super(contents);
         this.contents = contents;
         this.emptyDescription = translatable;

@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(FishingHook.class)
 public class AllowModdedRodsMixin {
 
+    //? fabric {
+
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z", ordinal = 0))
     private boolean allowModdedRodsInMainhand(ItemStack instance, Object item, Operation<Boolean> original) {
         return instance.is(BiggerFishTags.FISHING_RODS) || original.call(instance, item);
@@ -21,4 +23,6 @@ public class AllowModdedRodsMixin {
     private boolean allowModdedRodsInOffhand(ItemStack instance, Object item, Operation<Boolean> original) {
         return instance.is(BiggerFishTags.FISHING_RODS) || original.call(instance, item);
     }
+
+    //?}
 }

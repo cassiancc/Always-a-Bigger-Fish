@@ -24,24 +24,24 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import org.apache.commons.lang3.math.Fraction;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import static cc.cassian.bigger_fish.mixin.BundleItemAccessor.invokeGetWeightSafe;
 import static net.minecraft.util.ARGB.colorFromFloat;
 
 public class FishContainer {
 
-
 	static int FULL_BAR_COLOR = colorFromFloat(1.0F, 0.44F, 1.0F, 0.33F);
 	static int BAR_COLOR = colorFromFloat(1.0F, 0.44F, 0.53F, 1.0F);
 
-	static boolean overrideStackedOnOther(ItemStack rod, Slot slot, ClickAction action, Player player) {
+	static boolean overrideStackedOnOther(ItemStack rod, Slot slot, ClickAction action, Player player, Predicate<ItemStack> stackPredicate) {
 		BundleContents bundleContents = rod.get(DataComponents.BUNDLE_CONTENTS);
 		if (bundleContents == null) {
 			return false;
 		} else {
 			ItemStack other = slot.getItem();
 			BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-			if (isPrimary(action) && ModHelpers.isAllowedInBaitedRod(other)) {
+			if (isPrimary(action) && stackPredicate.test(other)) {
 				if (mutable.tryTransfer(slot, player) > 0) {
 					playInsertSound(player);
 				} else {
@@ -71,7 +71,7 @@ public class FishContainer {
 		}
 	}
 
-	static boolean overrideOtherStackedOnMe(ItemStack rod, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
+	static boolean overrideOtherStackedOnMe(ItemStack rod, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access, Predicate<ItemStack> stackPredicate) {
 		if (isPrimary(action) && other.isEmpty()) {
 			toggleSelectedItem(rod, -1);
 			return false;
@@ -81,7 +81,7 @@ public class FishContainer {
 				return false;
 			} else {
 				BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-				if (isPrimary(action) && ModHelpers.isAllowedInBaitedRod(other)) {
+				if (isPrimary(action) && stackPredicate.test(other)) {
 					if (slot.allowModification(player) && mutable.tryInsert(other) > 0) {
 						playInsertSound(player);
 					} else {
@@ -170,18 +170,10 @@ public class FishContainer {
 	}
 
 	private static boolean isPrimary(ClickAction action) {
-		boolean b = action == ClickAction.PRIMARY;
-		if (BiggerFishMod.CONFIG.client.swapClick.value()) {
-			return !b;
-		}
-		return b;
+		return action == ClickAction.PRIMARY;
 	}
 
 	private static boolean isSecondary(ClickAction action) {
-		boolean b = action == ClickAction.SECONDARY;
-		if (BiggerFishMod.CONFIG.client.swapClick.value()) {
-			return !b;
-		}
-		return b;
+		return action == ClickAction.SECONDARY;
 	}
 }

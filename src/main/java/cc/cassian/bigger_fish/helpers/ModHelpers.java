@@ -6,10 +6,7 @@ import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.registry.FishSize;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
-//? if >1.21.9 {
 import net.minecraft.client.Minecraft;
-//?} else
-/*import net.minecraft.client.gui.screens.Screen;*/
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -121,10 +118,6 @@ public class ModHelpers {
     }
 
     public static boolean hasShiftDown() {
-        //? if >1.21.8 {
         return Minecraft.getInstance().hasShiftDown();
-        //?} else {
-        /*return Screen.hasShiftDown();
-         *///?}
     }
 }

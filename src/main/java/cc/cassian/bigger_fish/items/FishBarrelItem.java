@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.items;
 
 import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
-import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
+import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.tooltip.FishBarrelTooltip;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.SlotAccess;
@@ -23,12 +23,12 @@ public class FishBarrelItem extends BlockItem {
 
 	@Override
 	public boolean overrideStackedOnOther(ItemStack rod, Slot slot, ClickAction action, Player player) {
-		return FishContainer.overrideStackedOnOther(rod, slot, action, player);
+		return FishContainer.overrideStackedOnOther(rod, slot, action, player, stack -> stack.is(BiggerFishTags.FISH));
 	}
 
 	@Override
 	public boolean overrideOtherStackedOnMe(ItemStack rod, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
-		return FishContainer.overrideOtherStackedOnMe(rod, other, slot, action, player, access);
+		return FishContainer.overrideOtherStackedOnMe(rod, other, slot, action, player, access, stack -> stack.is(BiggerFishTags.FISH));
 	}
 
 	@Override

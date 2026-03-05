@@ -1,5 +1,6 @@
 package cc.cassian.bigger_fish.items;
 
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -19,12 +20,12 @@ public class BaitedRodItem extends FishingRodItem {
 
     @Override
     public boolean overrideStackedOnOther(ItemStack rod, Slot slot, ClickAction action, Player player) {
-        return FishContainer.overrideStackedOnOther(rod, slot, action, player);
+        return FishContainer.overrideStackedOnOther(rod, slot, action, player, ModHelpers::isAllowedInBaitedRod);
     }
 
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack rod, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
-        return FishContainer.overrideOtherStackedOnMe(rod, other, slot, action, player, access);
+        return FishContainer.overrideOtherStackedOnMe(rod, other, slot, action, player, access, ModHelpers::isAllowedInBaitedRod);
     }
 
     @Override
