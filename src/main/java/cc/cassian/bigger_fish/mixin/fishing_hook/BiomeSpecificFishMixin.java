@@ -19,40 +19,16 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+import static cc.cassian.bigger_fish.helpers.ModHelpers.fish;
+
 @Mixin(FishingHook.class)
 public class BiomeSpecificFishMixin {
     @WrapOperation(method = "retrieve", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;"))
     private LootTable biomeSpecificFish(ReloadableServerRegistries.Holder instance, ResourceKey<LootTable> lootTableKey, Operation<LootTable> original, ItemStack fishingRod) {
-        var hook = (FishingHook) (Object) this;
-        if (ModHelpers.isLavaHook(hook)) {
-            return instance.getLootTable(BiggerFishLootTables.LAVA_FISHING);
+        LootTable fish = fish(instance, ModHelpers.getBaitFromRod(fishingRod), ModHelpers.isLavaHook((FishingHook) (Object) this), fishingRod.is(BiggerFishTags.CATCHES_BIGGER_FISH));
+        if (fish != null) {
+            return fish;
         }
-        if (BiggerFishMod.CONFIG.gameplay.biomeFishing.value() || fishingRod.is(BiggerFishTags.CATCHES_BIGGER_FISH)) {
-            if (fishingRod.has(DataComponents.BUNDLE_CONTENTS)) {
-                BundleContents bundleContents = fishingRod.get(DataComponents.BUNDLE_CONTENTS);
-                if (bundleContents != null && !bundleContents.isEmpty()) {
-                    ItemStack itemUnsafe = bundleContents.items().getFirst().create();
-                    // check for the fishing loot table component
-                    if (itemUnsafe.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
-                        String identifier = itemUnsafe.get(BiggerFishComponentTypes.FISHING_LOOT.get());
-						assert identifier != null;
-						return instance.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, Identifier.parse(identifier)));
-                    }
-                    // most fishing is done via components, these are here as fallbacks for modded content
-                    else if (itemUnsafe.is(BiggerFishTags.TIER_ONE_BAIT)) {
-                        return instance.getLootTable(BiggerFishLootTables.TIER_ONE_FISHING);
-                    } else if (itemUnsafe.is(BiggerFishTags.TIER_TWO_BAIT)) {
-                        return instance.getLootTable(BiggerFishLootTables.TIER_TWO_FISHING);
-                    } else if (itemUnsafe.is(BiggerFishTags.TIER_THREE_BAIT)) {
-                        return instance.getLootTable(BiggerFishLootTables.TIER_THREE_FISHING);
-                    } else {
-                        return instance.getLootTable(BiggerFishLootTables.FISHING);
-                    }
-                }
-            }
-            return instance.getLootTable(BiggerFishLootTables.FISHING);
-        } else {
-            return original.call(instance, lootTableKey);
-        }
+        return original.call(instance, lootTableKey);
     }
 }

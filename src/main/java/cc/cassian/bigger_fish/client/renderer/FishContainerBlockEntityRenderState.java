@@ -6,6 +6,6 @@ import net.minecraft.client.renderer.item.ItemStackRenderState;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FishBarrelBlockEntityRenderState extends BlockEntityRenderState {
+public class FishContainerBlockEntityRenderState extends BlockEntityRenderState {
 	public List<ItemStackRenderState> items = new ArrayList<>();
 }

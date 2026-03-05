@@ -1,0 +1,60 @@
+package cc.cassian.bigger_fish.items;
+
+import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
+import cc.cassian.bigger_fish.registry.BiggerFishTags;
+import cc.cassian.bigger_fish.tooltip.FishBarrelTooltip;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickAction;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.TooltipDisplay;
+
+import java.util.Optional;
+
+public class FishTrapItem extends BlockItem {
+	public FishTrapItem(Properties properties) {
+		super(BiggerFishBlocks.FISH_TRAP, properties);
+	}
+
+	@Override
+	public boolean overrideStackedOnOther(ItemStack rod, Slot slot, ClickAction action, Player player) {
+		return FishContainer.overrideStackedOnOther(rod, slot, action, player, stack -> stack.is(BiggerFishTags.FISH));
+	}
+
+	@Override
+	public boolean overrideOtherStackedOnMe(ItemStack rod, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
+		return FishContainer.overrideOtherStackedOnMe(rod, other, slot, action, player, access, stack -> stack.is(BiggerFishTags.FISH));
+	}
+
+	@Override
+	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+		TooltipDisplay tooltipDisplay = stack.getOrDefault(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT);
+		return !tooltipDisplay.shows(DataComponents.BUNDLE_CONTENTS)
+				? Optional.empty()
+				: Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(FishBarrelTooltip::new);
+	}
+
+	@Override
+	public boolean isBarVisible(ItemStack stack) {
+		return FishContainer.isBarVisible(stack);
+	}
+
+	@Override
+	public int getBarWidth(final ItemStack stack) {
+		return FishContainer.getBarWidth(stack);
+	}
+
+	@Override
+	public int getBarColor(ItemStack stack) {
+		return FishContainer.getBarColor(stack);
+	}
+
+	public void onDestroyed(final ItemEntity entity) {
+		FishContainer.onDestroyed(entity);
+	}
+}

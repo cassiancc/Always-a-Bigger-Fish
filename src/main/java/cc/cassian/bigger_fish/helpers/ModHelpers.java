@@ -3,19 +3,30 @@ package cc.cassian.bigger_fish.helpers;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.Platform;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.registry.FishSize;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.ReloadableServerRegistries;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
-import net.minecraft.world.item.component.CustomModelData;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootTable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,4 +131,63 @@ public class ModHelpers {
     public static boolean hasShiftDown() {
         return Minecraft.getInstance().hasShiftDown();
     }
+
+    public static LootTable fish(ReloadableServerRegistries.Holder reloadableRegistries, ItemStack bait, boolean isLavaHook, boolean catchesBiggerFish) {
+        if (isLavaHook) {
+            return reloadableRegistries.getLootTable(BiggerFishLootTables.LAVA_FISHING);
+        }
+        if (BiggerFishMod.CONFIG.gameplay.biomeFishing.value() || catchesBiggerFish) {
+            if (bait != null) {
+				// check for the fishing loot table component
+				if (bait.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
+					String identifier = bait.get(BiggerFishComponentTypes.FISHING_LOOT.get());
+					assert identifier != null;
+					return reloadableRegistries.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, Identifier.parse(identifier)));
+				}
+				// most fishing is done via components, these are here as fallbacks for modded content
+				else if (bait.is(BiggerFishTags.TIER_ONE_BAIT)) {
+					return reloadableRegistries.getLootTable(BiggerFishLootTables.TIER_ONE_FISHING);
+				} else if (bait.is(BiggerFishTags.TIER_TWO_BAIT)) {
+					return reloadableRegistries.getLootTable(BiggerFishLootTables.TIER_TWO_FISHING);
+				} else if (bait.is(BiggerFishTags.TIER_THREE_BAIT)) {
+					return reloadableRegistries.getLootTable(BiggerFishLootTables.TIER_THREE_FISHING);
+				} else {
+					return reloadableRegistries.getLootTable(BiggerFishLootTables.FISHING);
+				}
+			}
+            return reloadableRegistries.getLootTable(BiggerFishLootTables.FISHING);
+        } else {
+            return null;
+        }
+    }
+
+    public static void hurtOrRemoveHook(BundleContents.Mutable mutable, Player player, Level level) {
+        ItemStack itemStack = mutable.removeOne();
+        if (itemStack != null) {
+            if (itemStack.getCount() > 1) {
+                itemStack.setCount(itemStack.getCount()-1);
+                mutable.tryInsert(itemStack);
+            }
+            if (itemStack.isDamageableItem()) {
+                int damageValue = itemStack.getDamageValue();
+                BiggerFishMod.LOGGER.debug(damageValue);
+                if (level instanceof ServerLevel serverLevel) {
+                    ServerPlayer owner = null;
+                    if (player instanceof ServerPlayer serverPlayer)
+                        owner = serverPlayer;
+                    itemStack.hurtAndBreak(1, serverLevel, owner, (item)->{});
+                    mutable.tryInsert(itemStack);
+                }
+            }
+        }
+    }
+
+	public static @Nullable ItemStack getBaitFromRod(ItemStack fishingRod) {
+        if (fishingRod.has(DataComponents.BUNDLE_CONTENTS)) {
+            BundleContents bundleContents = fishingRod.get(DataComponents.BUNDLE_CONTENTS);
+            if (bundleContents != null && !bundleContents.isEmpty())
+                return bundleContents.items().getFirst().create();
+        }
+        return null;
+	}
 }

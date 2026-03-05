@@ -4,6 +4,7 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
 import cc.cassian.bigger_fish.items.BaitedRodItem;
 import cc.cassian.bigger_fish.items.FishBarrelItem;
+import cc.cassian.bigger_fish.items.FishTrapItem;
 import cc.cassian.bigger_fish.items.LeechItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
@@ -152,6 +153,7 @@ public class BiggerFishItems {
             .durability(512));
 
     public static Item FISH_BARREL = createItem("fish_barrel", FishBarrelItem::new, new Item.Properties().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
+    public static Item FISH_TRAP = createItem("fish_trap", FishTrapItem::new, new Item.Properties().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
 
 
     // JUNK
@@ -159,7 +161,7 @@ public class BiggerFishItems {
     public static final Supplier<Item> FISH_BONES = createItem("fish_bones");
 
     public static List<Supplier<Item>> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
-    public static List<Supplier<Item>> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK, ()-> FISH_BARREL);
+    public static List<Supplier<Item>> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK, ()-> FISH_BARREL, ()->FISH_TRAP);
 
     private static Supplier<Item> createItem(String id) {
         return registerItem(id, properties(id));

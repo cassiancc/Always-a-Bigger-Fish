@@ -2,6 +2,7 @@ package cc.cassian.bigger_fish.registry;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.blocks.FishBarrelBlock;
+import cc.cassian.bigger_fish.blocks.FishTrapBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -14,6 +15,7 @@ import java.util.function.Function;
 
 public class BiggerFishBlocks {
 	public static final Block FISH_BARREL = register("fish_barrel", FishBarrelBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL));
+	public static final Block FISH_TRAP = register("fish_trap", FishTrapBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL).randomTicks().noOcclusion());
 
 
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings) {

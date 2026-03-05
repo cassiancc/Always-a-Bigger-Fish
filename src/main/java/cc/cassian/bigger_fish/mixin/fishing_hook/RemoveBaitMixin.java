@@ -1,12 +1,15 @@
 package cc.cassian.bigger_fish.mixin.fishing_hook;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,24 +24,7 @@ public class RemoveBaitMixin {
             BundleContents bundleContents = fishingRod.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents != null && !bundleContents.isEmpty()) {
                 BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-                ItemStack itemStack = mutable.removeOne();
-                if (itemStack != null) {
-                    if (itemStack.getCount() > 1) {
-                        itemStack.setCount(itemStack.getCount()-1);
-                        mutable.tryInsert(itemStack);
-                    }
-                    if (itemStack.isDamageableItem()) {
-                        int damageValue = itemStack.getDamageValue();
-                        BiggerFishMod.LOGGER.info(damageValue);
-                        if (hook.level() instanceof ServerLevel serverLevel) {
-                            ServerPlayer owner = null;
-                            if (hook.getPlayerOwner() instanceof ServerPlayer serverPlayer)
-                                owner = serverPlayer;
-                            itemStack.hurtAndBreak(1, serverLevel, owner, (item)->{});
-                            mutable.tryInsert(itemStack);
-                        }
-                    }
-                }
+                ModHelpers.hurtOrRemoveHook(mutable, hook.getPlayerOwner(), hook.level());
                 fishingRod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
             }
         }

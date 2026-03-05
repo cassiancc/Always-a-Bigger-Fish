@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.client.renderer;
 
 
-import cc.cassian.bigger_fish.blocks.entity.FishBarrelBlockEntity;
+import cc.cassian.bigger_fish.blocks.entity.FishContainerBlockEntity;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -22,23 +22,23 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class FishBarrelRenderer implements BlockEntityRenderer<FishBarrelBlockEntity, FishBarrelBlockEntityRenderState> {
+public class FishContainerRenderer implements BlockEntityRenderer<FishContainerBlockEntity, FishContainerBlockEntityRenderState> {
 	private static final float SIZE = 0.85F;
 	private final ItemModelResolver itemRenderer;
 
-	public FishBarrelRenderer(BlockEntityRendererProvider.Context context) {
+	public FishContainerRenderer(BlockEntityRendererProvider.Context context) {
 		this.itemRenderer = context.itemModelResolver();
 	}
 
 	@Override
-	public FishBarrelBlockEntityRenderState createRenderState() {
-		return new FishBarrelBlockEntityRenderState();
+	public FishContainerBlockEntityRenderState createRenderState() {
+		return new FishContainerBlockEntityRenderState();
 	}
 
 	@Override
 	public void extractRenderState(
-			FishBarrelBlockEntity blockEntity,
-			FishBarrelBlockEntityRenderState state,
+			FishContainerBlockEntity blockEntity,
+			FishContainerBlockEntityRenderState state,
 			float partialTicks,
 			Vec3 cameraPosition,
 			ModelFeatureRenderer.CrumblingOverlay crumblingOverlay
@@ -63,7 +63,7 @@ public class FishBarrelRenderer implements BlockEntityRenderer<FishBarrelBlockEn
 
 
 	@Override
-	public void submit(FishBarrelBlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+	public void submit(FishContainerBlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
 		AtomicReference<Float> yPos = new AtomicReference<>(0.44921875F);
 		List<ItemStackRenderState> items = state.items;
 		for (int i = 0; i < items.size(); i++) {

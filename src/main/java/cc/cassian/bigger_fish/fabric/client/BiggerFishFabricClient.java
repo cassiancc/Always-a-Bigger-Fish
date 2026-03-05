@@ -2,7 +2,7 @@ package cc.cassian.bigger_fish.fabric.client;
 
 //? if fabric {
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
-import cc.cassian.bigger_fish.client.renderer.FishBarrelRenderer;
+import cc.cassian.bigger_fish.client.renderer.FishContainerRenderer;
 import cc.cassian.bigger_fish.registry.BiggerFishBlockEntityTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
@@ -26,7 +26,8 @@ public final class BiggerFishFabricClient implements ClientModInitializer {
 //        });
 
         EntityRenderers.register(BiggerFishEntityTypes.LEECH.get(), ThrownItemRenderer::new);
-        BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_BARREL_BLOCK_ENTITY, FishBarrelRenderer::new);
+        BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_BARREL_BLOCK_ENTITY, FishContainerRenderer::new);
+        BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_TRAP_BLOCK_ENTITY, FishContainerRenderer::new);
         ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipFlag, list) -> {
             BiggerFishModClient.addBaitUsageTooltip(stack, list);
         });

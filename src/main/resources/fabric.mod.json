@@ -51,7 +51,6 @@
   "suggests": {
     "item-descriptions": "*",
     "cloth-config": "*",
-    "modmenu": "*",
-    "emi": "*"
+    "modmenu": "*"
   }
 }
