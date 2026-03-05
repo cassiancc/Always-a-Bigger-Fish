@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bowl",
+    "minecraft:carrot",
+    "minecraft:potato",
+    "#c:foods/cooked_fish"
+  ],
+  "result": {
+    "id": "bigger_fish:fish_stew"
+  }
+}

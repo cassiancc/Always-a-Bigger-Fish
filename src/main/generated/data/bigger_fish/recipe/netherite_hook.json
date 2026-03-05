@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": "minecraft:netherite_scrap"
+  },
+  "pattern": [
+    " C",
+    "CC"
+  ],
+  "result": {
+    "id": "bigger_fish:netherite_hook"
+  }
+}

@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -16,16 +17,9 @@ public class LeechedMobEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(
-            //? if >1.21.4
-            ServerLevel level,
-            LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         if (entity.getHealth() > 1.0F) {
-            //? if >1.21.4 {
             entity.hurtServer(level, entity.damageSources().magic(), 1.0F);
-            //?} else {
-            /*entity.hurt(entity.damageSources().magic(), 1.0F);
-            *///?}
             if (entity.getRandom().nextBoolean() && entity.getActiveEffects().size() > 1) {
                 List<MobEffectInstance> activeEffects = entity.getActiveEffects().stream().toList();
                 var effect = getRandomEffectToRemove(activeEffects, entity);
@@ -37,7 +31,7 @@ public class LeechedMobEffect extends MobEffect {
         return true;
     }
 
-    private Holder<MobEffect> getRandomEffectToRemove(List<MobEffectInstance> activeEffects, LivingEntity entity) {
+    private @Nullable Holder<MobEffect> getRandomEffectToRemove(List<MobEffectInstance> activeEffects, LivingEntity entity) {
         Holder<MobEffect> effect = activeEffects.get(entity.getRandom().nextInt(0, activeEffects.size())).getEffect();
         if (!effect.equals(BiggerFishMobEffects.LEECHED)) {
             return effect;

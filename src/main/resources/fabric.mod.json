@@ -26,9 +26,6 @@
     "rrv": [
       "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"
     ],
-    "emi": [
-      "cc.cassian.bigger_fish.compat.emi.EmiCompat"
-    ],
     "rei_client": [
       "cc.cassian.bigger_fish.compat.rei.ReiClient"
     ],

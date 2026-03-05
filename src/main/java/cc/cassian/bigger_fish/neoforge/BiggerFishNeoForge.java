@@ -2,14 +2,10 @@ package cc.cassian.bigger_fish.neoforge;
 
 //? if neoforge {
 /*import cc.cassian.bigger_fish.CommonEvents;
-import cc.cassian.bigger_fish.helpers.ModHelpers;
+import cc.cassian.bigger_fish.neoforge.client.BiggerFishNeoForgeClient;
 import cc.cassian.bigger_fish.registry.*;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;

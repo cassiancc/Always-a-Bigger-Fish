@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import java.util.function.Function;
 
 public class BiggerFishBlocks {
-	public static Block FISH_BARREL = register("fish_barrel", FishBarrelBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL));
+	public static final Block FISH_BARREL = register("fish_barrel", FishBarrelBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL));
 
 
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings) {

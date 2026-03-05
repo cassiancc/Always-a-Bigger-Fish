@@ -37,19 +37,19 @@ public class ClientBaitedRodTooltip extends ClientBundleTooltip {
     private final BundleContents contents;
 
     @Override
-    public void renderImage(final Font font, final int x, final int y, final int w, final int h, final GuiGraphics graphics) {
+    public void renderImage(final Font font, final int x, final int y, final int width, final int height, final GuiGraphics graphics) {
         DataResult<Fraction> weight = this.contents.weight();
         if (!weight.isError()) {
             if (this.contents.isEmpty()) {
-                renderEmptyFishContainerTooltip(font, x, y, w, h, graphics);
+                renderEmptyFishContainerTooltip(font, x, y, width, height, graphics);
             } else {
-                this.renderFishContainerWithItemsTooltip(font, x, y, w, h, graphics, weight.getOrThrow());
+                this.renderFishContainerWithItemsTooltip(font, x, y, width, height, graphics, weight.getOrThrow());
             }
         }
     }
 
-    private void renderEmptyFishContainerTooltip(final Font font, final int x, final int y, final int w, final int h, final GuiGraphics graphics) {
-        int left = x + callGetContentXOffset(w);
+    private void renderEmptyFishContainerTooltip(final Font font, final int x, final int y, final int width, final int height, final GuiGraphics graphics) {
+        int left = x + callGetContentXOffset(width);
         drawEmptyFishContainerDescriptionText(left, y, font, graphics);
         callDrawProgressbar(left, y + getEmptyFishContainerDescriptionTextHeight(font) + 4, font, graphics, Fraction.ZERO);
     }

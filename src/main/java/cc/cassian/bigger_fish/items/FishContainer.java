@@ -1,5 +1,7 @@
 package cc.cassian.bigger_fish.items;
 
+import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.config.ModConfig;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.mixin.BundleItemAccessor;
 import cc.cassian.bigger_fish.tooltip.BaitedRodTooltip;
@@ -27,8 +29,8 @@ import static cc.cassian.bigger_fish.mixin.BundleItemAccessor.invokeGetWeightSaf
 import static net.minecraft.util.ARGB.colorFromFloat;
 
 public class FishContainer {
-	public static final ClickAction PRIMARY = ClickAction.PRIMARY;
-	public static final ClickAction SECONDARY = ClickAction.SECONDARY;
+
+
 	static int FULL_BAR_COLOR = colorFromFloat(1.0F, 0.44F, 1.0F, 0.33F);
 	static int BAR_COLOR = colorFromFloat(1.0F, 0.44F, 0.53F, 1.0F);
 
@@ -39,7 +41,7 @@ public class FishContainer {
 		} else {
 			ItemStack other = slot.getItem();
 			BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-			if (action == PRIMARY && ModHelpers.isAllowedInBaitedRod(other)) {
+			if (isPrimary(action) && ModHelpers.isAllowedInBaitedRod(other)) {
 				if (mutable.tryTransfer(slot, player) > 0) {
 					playInsertSound(player);
 				} else {
@@ -49,7 +51,7 @@ public class FishContainer {
 				rod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
 				broadcastChangesOnContainerMenu(player);
 				return true;
-			} else if (action == SECONDARY && other.isEmpty()) {
+			} else if (isSecondary(action) && other.isEmpty()) {
 				ItemStack itemStack2 = mutable.removeOne();
 				if (itemStack2 != null) {
 					ItemStack itemStack3 = slot.safeInsert(itemStack2);
@@ -70,7 +72,7 @@ public class FishContainer {
 	}
 
 	static boolean overrideOtherStackedOnMe(ItemStack rod, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
-		if (action == PRIMARY && other.isEmpty()) {
+		if (isPrimary(action) && other.isEmpty()) {
 			toggleSelectedItem(rod, -1);
 			return false;
 		} else {
@@ -79,7 +81,7 @@ public class FishContainer {
 				return false;
 			} else {
 				BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-				if (action == PRIMARY && ModHelpers.isAllowedInBaitedRod(other)) {
+				if (isPrimary(action) && ModHelpers.isAllowedInBaitedRod(other)) {
 					if (slot.allowModification(player) && mutable.tryInsert(other) > 0) {
 						playInsertSound(player);
 					} else {
@@ -89,7 +91,7 @@ public class FishContainer {
 					rod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
 					broadcastChangesOnContainerMenu(player);
 					return true;
-				} else if (action == SECONDARY && other.isEmpty()) {
+				} else if (isSecondary(action) && other.isEmpty()) {
 					if (slot.allowModification(player)) {
 						ItemStack itemStack = mutable.removeOne();
 						if (itemStack != null) {
@@ -165,5 +167,21 @@ public class FishContainer {
 		if (abstractContainerMenu != null) {
 			abstractContainerMenu.slotsChanged(player.getInventory());
 		}
+	}
+
+	private static boolean isPrimary(ClickAction action) {
+		boolean b = action == ClickAction.PRIMARY;
+		if (BiggerFishMod.CONFIG.client.swapClick.value()) {
+			return !b;
+		}
+		return b;
+	}
+
+	private static boolean isSecondary(ClickAction action) {
+		boolean b = action == ClickAction.SECONDARY;
+		if (BiggerFishMod.CONFIG.client.swapClick.value()) {
+			return !b;
+		}
+		return b;
 	}
 }

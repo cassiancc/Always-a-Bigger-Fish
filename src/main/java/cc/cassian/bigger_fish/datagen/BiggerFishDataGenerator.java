@@ -12,6 +12,7 @@ public class BiggerFishDataGenerator implements DataGeneratorEntrypoint {
 		//tags
 		pack.addProvider(BiggerFishBlockTagProvider::new);
 		pack.addProvider(BiggerFishItemTagProvider::new);
+		pack.addProvider(BiggerFishRecipeProvider::new);
 	}
 }
 //?}

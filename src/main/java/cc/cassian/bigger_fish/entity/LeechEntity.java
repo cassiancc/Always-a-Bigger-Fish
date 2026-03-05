@@ -22,23 +22,12 @@ public class LeechEntity extends ThrowableItemProjectile {
     }
 
     public LeechEntity(Level level, double x, double y, double z) {
-        super(BiggerFishEntityTypes.LEECH.get(), x, y, z, level
-        //? if >1.21.4
-        , BiggerFishItems.LEECH.get().getDefaultInstance()
-        );
+        super(BiggerFishEntityTypes.LEECH.get(), x, y, z, level, BiggerFishItems.LEECH.get().getDefaultInstance());
     }
 
-
-    //? if >1.21.6 {
-    
     public LeechEntity(ServerLevel serverLevel, LivingEntity living, ItemStack itemStack) {
         super(BiggerFishEntityTypes.LEECH.get(), living, serverLevel, itemStack);
     }
-    //?} else {
-    /*public LeechEntity(Level level, Player player) {
-        super(BiggerFishEntityTypes.LEECH.get(), player, level);
-    }
-    *///?}
 
     @Override
     protected void onHitEntity(EntityHitResult result) {

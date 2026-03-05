@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": "minecraft:diamond"
+  },
+  "pattern": [
+    " C",
+    "CC"
+  ],
+  "result": {
+    "id": "bigger_fish:diamond_hook"
+  }
+}
