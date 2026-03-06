@@ -7,11 +7,11 @@ This mod reworks fishing mechanics, adding new biome-specific fish to catch, a n
 
 ## Installation
 
-Always a Bigger Fish is a client and server mod for Fabric 1.21.5. Its dependencies are listed below.
+Always a Bigger Fish is a client and server mod for Fabric 26.1. Its dependencies are listed below.
 
 #### Dependencies
-- [Cloth Config](https://modrinth.com/mod/cloth-config) is recommended to configure the mod.
-- [Compost](https://modrinth.com/mod/compost) is recommended.
+- [Fabric API](https://modrinth.com/mod/fabric-api) is required on Fabric.
+- [Cloth Config](https://modrinth.com/mod/cloth-config) or [McQoy](https://modrinth.com/mod/mcqoy) is recommended to configure the mod.
 
 ## Features
 
@@ -25,6 +25,14 @@ Always a Bigger Fish is a client and server mod for Fabric 1.21.5. Its dependenc
     - Netherite Hooks allow you to fish in Lava.
     - Diamond Hooks increase your chance of catching treasure.
 - To make caught fish more unique, they'll be assigned a random size. Boasting about big fish is encouraged and part of the intended experience.
+- Fish Barrels, a storage block and item for your fish.
+  - Fish Barrels are crafted similar to vanilla barrels, but without a lid.
+  - In the world, fish can be inserted in a similar manner to composters (just right click!). An entire stack of fish is visible.
+  - In the inventory, fish can be inserted in a similar manner to bundles (just left click!). You can see the top fish in the barrel.
+  - Catching fish with a barrel in your offhand will deliver the fish directly into the barrel, keeping your inventory clean of nonstackable fish.
+- Fish Traps, a way to automate the harvesting of fish.
+  - Place them in water to automatically catch that biome's fish.
+  - The larger the water, the more likely it is that a fish will be caught.
 
 ## Mod Compatibility
 
@@ -37,7 +45,7 @@ Always a Bigger Fish is a client and server mod for Fabric 1.21.5. Its dependenc
 
 ## FAQ
 - Will this mod be ported to other versions/loaders?
-  - Currently, the mod actively supports Fabric 1.21.1 and 1.21.11. There is no plan to backport to older versions, as the mod relies extensively on 1.21+ features.
+  - Currently, the mod actively supports Fabric 26.1. There is no plan to backport to older versions, as the mod relies extensively on 1.21+ features.
 - What's next for the mod?
   - The mod will continue development, we're currently working on an optional fishing minigame, working on making more fish mods compatible, and rebalancing the mod based on player feedback.
 
