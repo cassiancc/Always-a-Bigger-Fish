@@ -142,6 +142,8 @@
  "item.bigger_fish.worm.description": "This bait can be found as a rare output from Composters.",
  "lore.bigger_fish.carp": "A freshwater fish found in all biomes.",
  "lore.bigger_fish.copper_rod": "A fishing rod that can have bait attached to catch a wider variety fish.",
+ "lore.bigger_fish.fish_barrel": "A storage block for fish. Catching a fish with one in your inventory will automatically bundle it.",
+ "lore.bigger_fish.fish_trap": "A block that will automatically catch fish when placed in a body of water.",
  "lore.bigger_fish.herring": "A saltwater fish found in all biomes.",
  "lore.bigger_fish.koi": "A freshwater fish found in all biomes.",
  "lore.bigger_fish.leeches": "A bait that can be attached to a Copper Rod to catch up to a tier two fish.",
