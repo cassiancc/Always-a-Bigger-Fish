@@ -10,9 +10,9 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 //? if <1.21.2 {
-/*import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.ItemInteractionResult;
-*///?}
+//?}
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
@@ -29,7 +29,7 @@ public class LeechItem extends Item implements ProjectileItem {
     }
 
     //? if >1.21.4 {
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+    /*public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         level.playSound(null, player.getX(), player.getY(), player.getZ(), BiggerFishSoundEvents.LEECH_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (level instanceof ServerLevel serverLevel) {
@@ -38,8 +38,8 @@ public class LeechItem extends Item implements ProjectileItem {
                 player.awardStat(Stats.ITEM_USED.get(this));
         itemStack.consume(1, player);
         return InteractionResult.SUCCESS;
-    //?} else {
-        /*public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    *///?} else {
+        public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
             ItemStack itemStack = player.getItemInHand(hand);
             level.playSound(null, player.getX(), player.getY(), player.getZ(), BiggerFishSoundEvents.LEECH_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
             if (level instanceof ServerLevel serverLevel) {
@@ -51,7 +51,7 @@ public class LeechItem extends Item implements ProjectileItem {
             player.awardStat(Stats.ITEM_USED.get(this));
             itemStack.consume(1, player);
             return InteractionResultHolder.success(itemStack);
-    *///?}
+    //?}
     }
 
 

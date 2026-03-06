@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.emi;
 //? if <1.21.2 {
-/*import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import dev.emi.emi.api.EmiEntrypoint;
@@ -8,7 +8,6 @@ import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.render.EmiRenderable;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.network.chat.Component;
@@ -19,7 +18,7 @@ import net.minecraft.world.item.Item;
 import java.util.List;
 
 @EmiEntrypoint
-public class EmiCompat implements EmiPlugin {
+public class EmiIntegration implements EmiPlugin {
     public static final EmiRecipeCategory FISHING = new EmiRecipeCategory(BiggerFishMod.of("fishing"), EmiStack.of(BiggerFishItems.COPPER_ROD.get()));
 
     @Override
@@ -42,4 +41,4 @@ public class EmiCompat implements EmiPlugin {
         ));
     }
 }
-*///?}
+//?}

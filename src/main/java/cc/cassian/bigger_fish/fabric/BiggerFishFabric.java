@@ -10,7 +10,7 @@ import net.fabricmc.api.ModInitializer;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
@@ -42,7 +42,7 @@ public final class BiggerFishFabric implements ModInitializer {
         BiggerFishEntityTypes.touch();
         BiggerFishSoundEvents.touch();
         BiggerFishMobEffects.touch();
-        CreativeModeTabEvents.MODIFY_OUTPUT_ALL.register(CommonEvents::modifyOutput);
+        ItemGroupEvents.MODIFY_ENTRIES_ALL.register(CommonEvents::modifyOutput);
         LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
             if (key == BuiltInLootTables.FISHING_JUNK) {
                 tableBuilder.modifyPools((builder -> {

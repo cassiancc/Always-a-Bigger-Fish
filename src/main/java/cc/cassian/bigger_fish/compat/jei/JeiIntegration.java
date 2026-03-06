@@ -51,10 +51,10 @@ public class JeiIntegration implements IModPlugin {
         List<Item> items = new ArrayList<>();
         BuiltInRegistries.ITEM.
         //? if >1.21.6 {
-        get
-        //?} else {
-        /*getTag
-        *///?}
+        /*get
+        *///?} else {
+        getTag
+        //?}
         (itemTag).ifPresent((holders) -> holders.forEach((holder) -> items.add(holder.value())));
         List<ItemStack> stacks = new ArrayList<>();
         items.forEach((item) -> stacks.add(new ItemStack(item)));

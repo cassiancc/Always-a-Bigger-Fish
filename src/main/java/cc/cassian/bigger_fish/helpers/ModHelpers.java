@@ -6,7 +6,7 @@ import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.registry.FishSize;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -77,7 +77,7 @@ public class ModHelpers {
         if (item.has(DataComponents.BUNDLE_CONTENTS)) {
             BundleContents bundleContents = item.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents != null && !bundleContents.isEmpty())
-                return bundleContents.items().getFirst().getOrDefault(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "vanilla");
+                return bundleContents.items().iterator().next().getOrDefault(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "vanilla");
         }
         return "";
     }
@@ -87,7 +87,7 @@ public class ModHelpers {
     }
 
     public static boolean hasShiftDown() {
-        return Minecraft.getInstance().hasShiftDown();
+        return Screen.hasShiftDown();
     }
 
     public static @Nullable LootTable fish(ReloadableServerRegistries.Holder reloadableRegistries, @Nullable ItemStack bait, boolean isLavaHook, boolean catchesBiggerFish) {
@@ -144,7 +144,7 @@ public class ModHelpers {
         if (fishingRod.has(DataComponents.BUNDLE_CONTENTS)) {
             BundleContents bundleContents = fishingRod.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents != null && !bundleContents.isEmpty())
-                return bundleContents.items().getFirst().create();
+                return bundleContents.items().iterator().next();;
         }
         return null;
 	}

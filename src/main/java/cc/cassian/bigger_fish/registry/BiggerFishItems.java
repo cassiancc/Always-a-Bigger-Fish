@@ -118,7 +118,7 @@ public class BiggerFishItems {
     // Bait
     public static final Supplier<Item> WORM = createItem("worm", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing"));
     public static final Supplier<Item> LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")
-            .useCooldown(0.5F)
+//            .useCooldown(0.5F)
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_two_fishing")));
 
     // Food
@@ -136,19 +136,19 @@ public class BiggerFishItems {
     public static final Supplier<Item> COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
 
     public static final Supplier<Item> COPPER_HOOK = createItem("copper_hook", new Item.Properties()
-            .repairable(COPPER_TOOL_MATERIALS)
+//            .repairable(COPPER_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "copper")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
             .durability(64));
 
     public static final Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties()
-            .repairable(DIAMOND_TOOL_MATERIALS)
+//            .repairable(DIAMOND_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
             .durability(128));
 
     public static final Supplier<Item> NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties()
-            .repairable(NETHERITE_TOOL_MATERIALS)
+//            .repairable(NETHERITE_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
             .durability(512));
 
@@ -172,7 +172,7 @@ public class BiggerFishItems {
         ResourceKey<Item> itemKey = key(name);
 
         // Create the item instance.
-        T item = itemFactory.apply(settings.setId(itemKey));
+        T item = itemFactory.apply(settings);
 
         // Register the item.
         Registry.register(BuiltInRegistries.ITEM, itemKey, item);
@@ -182,7 +182,6 @@ public class BiggerFishItems {
 
     private static Supplier<Item> createItem(String id, Item.Properties properties) {
         return registerItem(id, properties
-                    .setId(key(id))
         );
     }
 
@@ -225,7 +224,7 @@ public class BiggerFishItems {
     }
 
     private static Item.Properties properties(String id) {
-        return new Item.Properties().setId(key(id));
+        return new Item.Properties();
     }
 
     private static Item.Properties getCopperRodProperties() {

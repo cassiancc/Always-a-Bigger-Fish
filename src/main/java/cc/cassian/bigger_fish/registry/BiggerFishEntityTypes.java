@@ -17,10 +17,10 @@ public class BiggerFishEntityTypes {
                     .updateInterval(10)
                     .build(
                             //? if >1.21.4
-                            ResourceKey.create(Registries.ENTITY_TYPE, BiggerFishMod.of(
+                            //ResourceKey.create(Registries.ENTITY_TYPE, BiggerFishMod.of(
                                     "leech"
                             //? if >1.21.4
-                            ))
+                            //))
             ))
     );
 

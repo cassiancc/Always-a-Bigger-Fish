@@ -23,8 +23,8 @@
     "client": [
       "cc.cassian.bigger_fish.fabric.client.BiggerFishFabricClient"
     ],
-    "rrv": [
-      "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"
+    "emi": [
+      "cc.cassian.bigger_fish.compat.emi.EmiIntegration"
     ],
     "rei_client": [
       "cc.cassian.bigger_fish.compat.rei.ReiClient"
@@ -43,10 +43,10 @@
   "depends": {
     "fabricloader": ">=0.16.10",
     "fabric-api": "*",
-    "minecraft": ">26 <27"
+    "minecraft": "1.21.1"
   },
   "recommends": {
-    "rrv": "*"
+    "emi": "*"
   },
   "suggests": {
     "item-descriptions": "*",

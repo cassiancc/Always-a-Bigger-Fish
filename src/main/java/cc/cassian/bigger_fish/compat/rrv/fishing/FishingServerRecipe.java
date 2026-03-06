@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv.fishing;
 //? if >1.21.10 {
-import cc.cassian.bigger_fish.BiggerFishMod;
+/*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.rrv.api.recipe.ReliableServerRecipe;
 import cc.cassian.rrv.api.recipe.ReliableServerRecipeType;
 import net.minecraft.nbt.CompoundTag;
@@ -29,4 +29,4 @@ public class FishingServerRecipe implements ReliableServerRecipe {
             return TYPE;
         }
 }
-//?}
+*///?}

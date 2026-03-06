@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv.fishing;
 //? if >1.21.10 {
-import cc.cassian.bigger_fish.BiggerFishMod;
+/*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
 import cc.cassian.rrv.common.recipe.inventory.RecipeViewMenu;
@@ -64,4 +64,4 @@ public class FishingViewType implements ReliableClientRecipeType {
         return List.of(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.COPPER_ROD.get().getDefaultInstance()); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
     }
 }
-//?}
+*///?}

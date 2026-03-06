@@ -2,72 +2,35 @@ package cc.cassian.bigger_fish.client.renderer;
 
 
 import cc.cassian.bigger_fish.blocks.entity.FishContainerBlockEntity;
-import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
-import net.minecraft.client.renderer.item.ItemStackRenderState;
-import net.minecraft.client.renderer.item.ItemModelResolver;
-import net.minecraft.client.renderer.state.level.CameraRenderState;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class FishContainerRenderer implements BlockEntityRenderer<FishContainerBlockEntity, FishContainerBlockEntityRenderState> {
+public class FishContainerRenderer implements BlockEntityRenderer<FishContainerBlockEntity> {
 	private static final float SIZE = 0.85F;
-	private final ItemModelResolver itemRenderer;
+	private final ItemRenderer itemRenderer;
 
 	public FishContainerRenderer(BlockEntityRendererProvider.Context context) {
-		this.itemRenderer = context.itemModelResolver();
-	}
-
-	@Override
-	public FishContainerBlockEntityRenderState createRenderState() {
-		return new FishContainerBlockEntityRenderState();
-	}
-
-	@Override
-	public void extractRenderState(
-			FishContainerBlockEntity blockEntity,
-			FishContainerBlockEntityRenderState state,
-			float partialTicks,
-			Vec3 cameraPosition,
-			ModelFeatureRenderer.CrumblingOverlay crumblingOverlay
-	) {
-		BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, crumblingOverlay);
-
-
-		int k = (int)blockEntity.getBlockPos().asLong();
-
-		List<ItemStack> items = blockEntity.getItems();
-		state.items.clear();
-		if (!items.isEmpty()) {
-			items.forEach(itemStack -> {
-				itemStack.remove(BiggerFishComponentTypes.SIZE.get()); // hide scale when rendering as it looks terrible otherwise
-				ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
-				this.itemRenderer.updateForTopItem(itemStackRenderState, itemStack, ItemDisplayContext.FIXED, blockEntity.getLevel(), null, k);
-				state.items.add(itemStackRenderState);
-			});
-		}
-
+		this.itemRenderer = context.getItemRenderer();
 	}
 
 
 	@Override
-	public void submit(FishContainerBlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+	public void render(FishContainerBlockEntity state, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 		AtomicReference<Float> yPos = new AtomicReference<>(0.44921875F);
-		List<ItemStackRenderState> items = state.items;
+		List<ItemStack> items = state.getItems();
 		for (int i = 0; i < items.size(); i++) {
-			ItemStackRenderState itemStack = items.get(i);
+			ItemStack itemStack = items.get(i);
 			poseStack.pushPose();
 			if (i==0) {
 				poseStack.translate(0.5F, yPos.get(), 0.5F);
@@ -156,10 +119,8 @@ public class FishContainerRenderer implements BlockEntityRenderer<FishContainerB
 				poseStack.translate(-0.2125F, -0.2125F, 0.0F);
 			}
 			poseStack.scale(SIZE, SIZE, SIZE);
-			itemStack.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+			itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, packedLight, packedOverlay, poseStack, bufferSource, state.getLevel(), 0);
 			poseStack.popPose();
 		}
 	}
-
-
 }

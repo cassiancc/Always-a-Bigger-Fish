@@ -16,10 +16,10 @@ import java.util.Optional;
 
 public class BaitedRodProvider extends BundleProvider {
     public static final MapCodec<BundleProvider> CODEC = RecordCodecBuilder.mapCodec(instance ->
-            instance.group(capacityMultiplierCodec(), backgroundColorCodec(), itemContentsCodec())
+            instance.group(capacityMultiplierCodec(), backgroundColorCodec(), disallowedItemsCodec())
                     .apply(instance,
-                            (Integer capacityMultiplier, Optional<DyeBackedColor> dyeColor, ItemContents itemContents) ->
-                                    new BaitedRodProvider(capacityMultiplier, dyeColor.orElse(null)).itemContents(itemContents)
+                            (Integer capacityMultiplier, Optional<DyeBackedColor> dyeColor, HolderSet<Item> disallowedItems) ->
+                                    new BaitedRodProvider(capacityMultiplier, dyeColor.orElse(null)).disallowedItems(disallowedItems)
 
                     ));
 

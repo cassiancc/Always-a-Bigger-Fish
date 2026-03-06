@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv.bait;
 //? if >1.21.10 {
-import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewRecipe;
+/*import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewRecipe;
 import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
 import cc.cassian.rrv.common.recipe.inventory.SlotContent;
 import net.minecraft.resources.Identifier;
@@ -38,4 +38,4 @@ public class BaitUsageViewRecipe extends FishingViewRecipe {
         return List.of(); //Return all of your outputs here
     }
 }
-//?}
+*///?}

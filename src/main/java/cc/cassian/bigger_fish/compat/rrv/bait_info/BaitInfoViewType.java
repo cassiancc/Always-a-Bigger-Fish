@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv.bait_info;
 //? if >1.21.4 {
-import cc.cassian.bigger_fish.BiggerFishMod;
+/*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.network.chat.Component;
@@ -37,4 +37,4 @@ public class BaitInfoViewType extends FishingViewType {
         return List.of(); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
     }
 }
-//?}
+*///?}

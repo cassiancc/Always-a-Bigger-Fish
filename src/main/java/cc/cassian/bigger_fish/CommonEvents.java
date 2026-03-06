@@ -4,7 +4,7 @@ import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 //? fabric {
-import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTabOutput;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 //?}
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,7 +29,7 @@ import static net.minecraft.world.level.block.Block.popResourceFromFace;
 
 public class CommonEvents {
 	//? fabric {
-	public static void modifyOutput(CreativeModeTab creativeModeTab, FabricCreativeModeTabOutput tab) {
+	public static void modifyOutput(CreativeModeTab creativeModeTab, FabricItemGroupEntries tab) {
 		ResourceKey<CreativeModeTab> tabKey = BuiltInRegistries.CREATIVE_MODE_TAB.getResourceKey(creativeModeTab).orElse(null);
 		if (tabKey == null) {
 			return;
@@ -50,8 +50,8 @@ public class CommonEvents {
 	}
 
 	//? fabric {
-	private static void insertAfter(FabricCreativeModeTabOutput tab, Item anchor, List<ItemStack> collection) {
-		tab.insertAfter(anchor, collection);
+	private static void insertAfter(net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries tab, Item anchor, List<ItemStack> collection) {
+		tab.addAfter(anchor, collection);
 	}
 	//?}
 
@@ -67,7 +67,7 @@ public class CommonEvents {
 		Predicate<ItemStack> fishContainers = (stack) -> stack.is(BiggerFishTags.PICKS_UP_FISH);
 		ItemStack fish = itemEntity.getItem();
 		if (fish.is(BiggerFishTags.FISH) && inventory.hasAnyMatching(fishContainers)) {
-			inventory.getNonEquipmentItems().stream().filter(fishContainers).findFirst().ifPresent(fishContainer -> {
+			inventory.items.stream().filter(fishContainers).findFirst().ifPresent(fishContainer -> {
 				int index = inventory.findSlotMatchingItem(fishContainer);
 				if (fishContainer.has(DataComponents.BUNDLE_CONTENTS)) {
 					BundleContents bundleContents = fishContainer.get(DataComponents.BUNDLE_CONTENTS);

@@ -4,21 +4,17 @@ import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.FishSize;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
-import net.minecraft.world.entity.ItemOwner;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomModelData;
 import org.jspecify.annotations.Nullable;
+import timmychips.modefiteitemdefinitions.property.handler.RangePropertyHandler;
+import timmychips.modefiteitemdefinitions.property.type.codec.RangeDispatchDefinition;
 
-public class SizeProperty implements RangeSelectItemModelProperty {
-	public static final MapCodec<SizeProperty> MAP_CODEC = MapCodec.unit(new SizeProperty());
+public class SizeProperty implements RangePropertyHandler {
+
 	@Override
-	public float get(ItemStack itemStack, @Nullable ClientLevel level, @Nullable ItemOwner owner, int seed) {
+	public float getValue(ItemStack itemStack, LivingEntity livingEntity, RangeDispatchDefinition.Definition definition) {
 		return itemStack.getOrDefault(BiggerFishComponentTypes.SIZE.get(), FishSize.ZERO).size();
-	}
-
-	@Override
-	public MapCodec<SizeProperty> type() {
-		return MAP_CODEC;
 	}
 }

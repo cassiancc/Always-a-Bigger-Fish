@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv.fishing;
 //? if >1.21.10 {
-import cc.cassian.rrv.api.recipe.ReliableClientRecipe;
+/*import cc.cassian.rrv.api.recipe.ReliableClientRecipe;
 import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
 import cc.cassian.rrv.common.recipe.inventory.RecipeViewMenu;
 import cc.cassian.rrv.common.recipe.inventory.RecipeViewScreen;
@@ -69,4 +69,4 @@ public class FishingViewRecipe implements ReliableClientRecipe {
         return List.of(this.output); //Return all of your outputs here
     }
 }
-//?}
+*///?}

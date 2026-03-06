@@ -14,13 +14,13 @@ public class AllowModdedRodsMixin {
 
     //? fabric {
 
-    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z", ordinal = 0))
-    private boolean allowModdedRodsInMainhand(ItemStack instance, Object item, Operation<Boolean> original) {
+    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0))
+    private boolean allowModdedRodsInMainhand(ItemStack instance, Item item, Operation<Boolean> original) {
         return instance.is(BiggerFishTags.FISHING_RODS) || original.call(instance, item);
     }
 
-    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z", ordinal = 1))
-    private boolean allowModdedRodsInOffhand(ItemStack instance, Object item, Operation<Boolean> original) {
+    @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
+    private boolean allowModdedRodsInOffhand(ItemStack instance, Item item, Operation<Boolean> original) {
         return instance.is(BiggerFishTags.FISHING_RODS) || original.call(instance, item);
     }
 

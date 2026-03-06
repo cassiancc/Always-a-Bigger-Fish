@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.emi;
 //? if <1.21.2 {
-/*import dev.emi.emi.api.recipe.EmiInfoRecipe;
+import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -17,4 +17,4 @@ public class FishingEmiRecipe extends EmiInfoRecipe {
         super(stacks, text, id);
     }
 }
-*///?}
+//?}

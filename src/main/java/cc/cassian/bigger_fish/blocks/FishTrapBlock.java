@@ -15,8 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -42,14 +42,9 @@ import java.util.stream.Stream;
 
 public class FishTrapBlock extends FishContainerBlock implements SimpleWaterloggedBlock {
 	public static final MapCodec<FishTrapBlock> CODEC = simpleCodec(FishTrapBlock::new);
-	private static final VoxelShape SHAPE_INSIDE = Block.column(12.0, 4.0, 16.0);
-	protected static final VoxelShape SHAPE = Util.make(
-			() -> Shapes.join(
-					Shapes.block(),
-					Shapes.or(Block.column(16.0, 8.0, 0.0, 0.0), Block.column(8.0, 16.0, 0.0, 0.0), Block.column(16.0, 0.0, 0.0), SHAPE_INSIDE),
-					BooleanOp.ONLY_FIRST
-			)
-	);
+	private static final VoxelShape INSIDE_SHAPE = box(2.0F, 4.0F, 2.0F, 14.0F, 16.0F, 14.0F);
+	protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0F, 0.0F, 4.0F, 16.0F, 3.0F, 12.0F), box(4.0F, 0.0F, 0.0F, 12.0F, 3.0F, 16.0F), box(2.0F, 0.0F, 2.0F, 14.0F, 3.0F, 14.0F), INSIDE_SHAPE), BooleanOp.ONLY_FIRST);
+
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private int nearbyBlocks = 0;
 	private int nearbyWaterBlocks = 0;
@@ -60,7 +55,7 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 	}
 
 	public FishTrapBlock(final Properties properties) {
-		super(properties, (_)->false);
+		super(properties, (stack)->false);
 		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(BOOP, false));
 	}
 
@@ -131,21 +126,12 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 	}
 
 	@Override
-	protected BlockState updateShape(
-			final BlockState state,
-			final LevelReader level,
-			final ScheduledTickAccess ticks,
-			final BlockPos pos,
-			final Direction directionToNeighbour,
-			final BlockPos neighbourPos,
-			final BlockState neighbourState,
-			final RandomSource random
-	) {
+	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
 		if (state.getValue(WATERLOGGED)) {
-			ticks.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
 
-		return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
+		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
 	}
 
 	@Override

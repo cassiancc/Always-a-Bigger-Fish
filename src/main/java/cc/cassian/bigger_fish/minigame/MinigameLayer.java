@@ -5,12 +5,8 @@ import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-//? if >1.21.6 {
-import net.minecraft.client.renderer.RenderPipelines;
-import static net.minecraft.util.ARGB.color;
-//?} else {
-/*import static net.minecraft.util.FastColor.ABGR32.color;
-*///?}
+
+import static net.minecraft.util.FastColor.ABGR32.color;
 
 
 public class MinigameLayer {
@@ -35,8 +31,8 @@ public class MinigameLayer {
             // background
             guiGraphics.blitSprite(
                     //? if >1.21.6 {
-                    RenderPipelines.GUI_TEXTURED,
-                    //?}
+                    /*RenderPipelines.GUI_TEXTURED,
+                    *///?}
                     BiggerFishMod.of("minigame"),
                     x, y, width, height);
 

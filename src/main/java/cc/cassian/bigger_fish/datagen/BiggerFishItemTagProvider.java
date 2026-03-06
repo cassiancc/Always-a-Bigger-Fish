@@ -5,11 +5,10 @@ package cc.cassian.bigger_fish.datagen;
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.tags.TagAppender;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagBuilder;
@@ -26,8 +25,8 @@ import static net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags.*;
 import static net.minecraft.tags.ItemTags.*;
 import static net.minecraft.world.item.Items.*;
 
-public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
-	public BiggerFishItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class BiggerFishItemTagProvider extends FabricTagProvider.ItemTagProvider {
+	public BiggerFishItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
@@ -395,19 +394,19 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 
 	public class BiggerFishTagBuilder {
 		//? if >1.21.2 {
-		private TagAppender<Item, Item> valueLookupBuilder;
-		//?} else {
-		/*private FabricTagProvider<Item>.FabricTagBuilder valueLookupBuilder;
-		*///?}
+		/*private TagAppender<Item> valueLookupBuilder;
+		*///?} else {
+		private FabricTagProvider<Item>.FabricTagBuilder valueLookupBuilder;
+		//?}
 
 		private TagBuilder rawBuilder;
 
 		public BiggerFishTagBuilder(TagKey<Item> tag) {
 			//? if >1.21.2 {
-			this.valueLookupBuilder = valueLookupBuilder(tag);
-			//?} else {
-			/*this.valueLookupBuilder = getOrCreateTagBuilder(tag);
-			*///?}
+			/*this.valueLookupBuilder = valueLookupBuilder(tag);
+			*///?} else {
+			this.valueLookupBuilder = getOrCreateTagBuilder(tag);
+			//?}
 
 			this.rawBuilder = getOrCreateRawBuilder(tag);
 		}

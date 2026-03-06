@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(FishingHook.class)
 public class FishingCausesBubblesMixin {
-    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
-    private boolean alwaysBubbleInFluids(BlockState instance, Object block, Operation<Boolean> original) {
+    @WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+    private boolean alwaysBubbleInFluids(BlockState instance, Block block, Operation<Boolean> original) {
         return instance.getFluidState().is(FluidTags.LAVA) || instance.getFluidState().is(FluidTags.WATER) || original.call(instance, block);
     }
 }

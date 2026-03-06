@@ -2,7 +2,6 @@ package cc.cassian.bigger_fish.items;
 
 import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -12,7 +11,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.util.Optional;
 

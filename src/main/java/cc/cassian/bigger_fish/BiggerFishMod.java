@@ -2,8 +2,8 @@ package cc.cassian.bigger_fish;
 
 import cc.cassian.bigger_fish.compat.ModCompat;
 //? if >1.21.4 {
-import cc.cassian.bigger_fish.compat.rrv.RrvIntegration;
-//?}
+/*import cc.cassian.bigger_fish.compat.rrv.RrvIntegration;
+*///?}
 import cc.cassian.bigger_fish.compat.iteminteractions.ItemInteractionsCompat;
 import cc.cassian.bigger_fish.config.ModConfig;
 import net.minecraft.resources.Identifier;

@@ -3,7 +3,6 @@ package cc.cassian.bigger_fish.registry;
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -20,7 +19,7 @@ public record FishSize(float size) implements TooltipProvider {
 	public static final FishSize ZERO = new FishSize(0);
 
 	@Override
-	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter components) {
+	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
 		consumer.accept(BiggerFishModClient.getFishSizeTooltip(this));
 	}
 }

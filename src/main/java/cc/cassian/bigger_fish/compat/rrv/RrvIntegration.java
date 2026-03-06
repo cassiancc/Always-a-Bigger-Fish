@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv;
 //? if >1.21.10 {
-import cc.cassian.bigger_fish.BiggerFishMod;
+/*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageServerRecipe;
 import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageViewRecipe;
 import cc.cassian.bigger_fish.compat.rrv.bait_info.BaitInfoServerRecipe;
@@ -72,4 +72,4 @@ public class RrvIntegration implements ReliableRecipeViewerPlugin {
         ItemView.excludeItem(BiggerFishItems.COPPER_HOOK.get());
     }
 }
-//?}
+*///?}

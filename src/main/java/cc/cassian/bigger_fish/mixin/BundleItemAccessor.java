@@ -9,8 +9,4 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(BundleItem.class)
 public interface BundleItemAccessor {
 
-	@Invoker("getWeightSafe")
-	static Fraction invokeGetWeightSafe(BundleContents bundleContents) {
-		throw new AssertionError();
-	}
 }

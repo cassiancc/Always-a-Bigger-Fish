@@ -19,14 +19,8 @@ import org.jspecify.annotations.Nullable;
 
 public class FishBarrelBlock extends FishContainerBlock {
 	public static final MapCodec<FishBarrelBlock> CODEC = simpleCodec(FishBarrelBlock::new);
-	private static final VoxelShape SHAPE_INSIDE = Block.column(12.0, 4.0, 16.0);
-	protected static final VoxelShape SHAPE = Util.make(
-			() -> Shapes.join(
-					Shapes.block(),
-					Shapes.or(Block.column(16.0, 8.0, 0.0, 0.0), Block.column(8.0, 16.0, 0.0, 0.0), Block.column(16.0, 0.0, 0.0), SHAPE_INSIDE),
-					BooleanOp.ONLY_FIRST
-			)
-	);
+	private static final VoxelShape INSIDE_SHAPE = box(2.0F, 4.0F, 2.0F, 14.0F, 16.0F, 14.0F);
+	protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0F, 0.0F, 4.0F, 16.0F, 3.0F, 12.0F), box(4.0F, 0.0F, 0.0F, 12.0F, 3.0F, 16.0F), box(2.0F, 0.0F, 2.0F, 14.0F, 3.0F, 14.0F), INSIDE_SHAPE), BooleanOp.ONLY_FIRST);
 
 	@Override
 	public MapCodec<FishBarrelBlock> codec() {

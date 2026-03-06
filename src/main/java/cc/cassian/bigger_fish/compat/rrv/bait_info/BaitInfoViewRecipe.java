@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv.bait_info;
 //? if >1.21.4 {
-import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewRecipe;
+/*import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewRecipe;
 import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -23,4 +23,4 @@ public class BaitInfoViewRecipe extends FishingViewRecipe {
         return BaitInfoViewType.INSTANCE; //Here you need your type's instance you created before
     }
 }
-//?}
+*///?}

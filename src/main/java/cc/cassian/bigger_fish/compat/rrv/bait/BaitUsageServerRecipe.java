@@ -1,6 +1,6 @@
 package cc.cassian.bigger_fish.compat.rrv.bait;
 //? if >1.21.10 {
-import cc.cassian.bigger_fish.BiggerFishMod;
+/*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.rrv.fishing.FishingServerRecipe;
 import cc.cassian.rrv.api.recipe.ReliableServerRecipeType;
 
@@ -17,4 +17,4 @@ public class BaitUsageServerRecipe extends FishingServerRecipe {
             return TYPE;
         }
 }
-//?}
+*///?}

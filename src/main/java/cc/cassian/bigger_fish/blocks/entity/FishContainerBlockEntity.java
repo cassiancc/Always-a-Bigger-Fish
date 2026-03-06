@@ -1,16 +1,16 @@
 package cc.cassian.bigger_fish.blocks.entity;
 
 import cc.cassian.bigger_fish.blocks.FishContainerBlock;
-import cc.cassian.bigger_fish.blocks.FishTrapBlock;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -18,8 +18,6 @@ import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -54,35 +52,44 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 	}
 
 	@Override
-	public void loadAdditional(ValueInput tag) {
-		super.loadAdditional(tag);
-		Optional<List<ItemStack>> inventory = tag.read("inventory", ItemStack.CODEC.listOf());
+	protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+		super.loadAdditional(tag, registries);
+		Optional<List<ItemStack>> inventory = read(tag, registries, "inventory", ItemStack.CODEC.listOf());
 		items.clear();
 		inventory.ifPresent(items::addAll);
 	}
 
-	@Override
-	public void saveAdditional(ValueOutput tag) {
-		if (!items.isEmpty()) {
-			items.removeIf(ItemStack::isEmpty);
-			tag.store("inventory", ItemStack.CODEC.listOf(), items);
-		} else {
-			tag.store("inventory", ItemStack.CODEC.listOf(), List.of());
-		}
-		super.saveAdditional(tag);
+	private Optional<List<ItemStack>> read(CompoundTag tag, HolderLookup.Provider registries, String inventory, Codec<List<ItemStack>> listCodec) {
+		var c = listCodec.decode(registries.createSerializationContext(NbtOps.INSTANCE), tag.get(inventory));
+		if (c.result().isPresent()) {
+			return Optional.of(c.getOrThrow().getFirst());
+		} else return Optional.empty();
+	}
+
+	private void store(CompoundTag tag, HolderLookup.Provider registries, String inventory, Codec<List<ItemStack>> listCodec, List<ItemStack> items) {
+		tag.put(inventory, listCodec.encodeStart(registries.createSerializationContext(NbtOps.INSTANCE), items).getOrThrow());
 	}
 
 	@Override
-	protected void applyImplicitComponents(DataComponentGetter components) {
+	protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+		if (!items.isEmpty()) {
+			items.removeIf(ItemStack::isEmpty);
+			store(tag, registries, "inventory", ItemStack.CODEC.listOf(), items);
+		} else {
+			store(tag, registries, "inventory", ItemStack.CODEC.listOf(), List.of());
+		}
+		super.saveAdditional(tag, registries);
+	}
+
+	@Override
+	protected void applyImplicitComponents(DataComponentInput components) {
 		this.items.clear();
-		components.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).items().forEach(s->{
-			ItemStack itemStack = s.create();
+		components.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).items().forEach(itemStack->{
 			for (int i = 0; i < itemStack.getCount(); i++) {
 				this.items.add(itemStack.copyWithCount(1));
 			}
 		});
 		setChanged();
-
 	}
 
 	@Override
@@ -94,7 +101,7 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 		components.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
 	}
 
-	public InteractionResult insert(ItemStack itemStack) {
+	public ItemInteractionResult insert(ItemStack itemStack) {
 		// insert as inventory
 		if (hasSpace(itemStack.getCount())) {
 			int i;
@@ -104,9 +111,9 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 
 			itemStack.setCount(itemStack.getCount() - i);
 			setChanged();
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-		return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 
 	public ItemStack retrieve() {
@@ -184,10 +191,5 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 	@Override
 	public void clearContent() {
 		items.clear();
-	}
-
-	@Override
-	public void preRemoveSideEffects(BlockPos pos, BlockState state) {
-
 	}
 }

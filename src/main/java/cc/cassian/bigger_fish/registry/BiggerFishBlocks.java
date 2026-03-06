@@ -22,7 +22,7 @@ public class BiggerFishBlocks {
 		// Create a registry key for the block
 		ResourceKey<Block> blockKey = key(name);
 		// Create the block instance
-		Block block = blockFactory.apply(settings.setId(blockKey));
+		Block block = blockFactory.apply(settings);
 
 		return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
 	}
