@@ -2,27 +2,20 @@ package cc.cassian.bigger_fish.registry;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
-import cc.cassian.bigger_fish.items.BaitedRodItem;
-import cc.cassian.bigger_fish.items.FishBarrelItem;
-import cc.cassian.bigger_fish.items.FishTrapItem;
-import cc.cassian.bigger_fish.items.LeechItem;
+import cc.cassian.bigger_fish.items.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.BundleContents;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import static cc.cassian.bigger_fish.registry.BiggerFishTags.*;
 
@@ -135,19 +128,19 @@ public class BiggerFishItems {
     // Tools
     public static final Item COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
 
-    public static final Item COPPER_HOOK = createItem("copper_hook", new Item.Properties()
+    public static final Item COPPER_HOOK = createItem("copper_hook", properties -> new HookItem(properties, COPPER_TOOL_MATERIALS), new Item.Properties()
 //            .repairable(COPPER_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "copper")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
             .durability(64));
 
-    public static final Item DIAMOND_HOOK = createItem("diamond_hook", Item::new, new Item.Properties()
+    public static final Item DIAMOND_HOOK = createItem("diamond_hook", properties -> new HookItem(properties, DIAMOND_TOOL_MATERIALS), new Item.Properties()
 //            .repairable(DIAMOND_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
             .durability(128));
 
-    public static final Item NETHERITE_HOOK = createItem("netherite_hook", new Item.Properties()
+    public static final Item NETHERITE_HOOK = createItem("netherite_hook", properties -> new HookItem(properties, NETHERITE_TOOL_MATERIALS), new Item.Properties()
 //            .repairable(NETHERITE_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
             .durability(512));
