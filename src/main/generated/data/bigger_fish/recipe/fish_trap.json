@@ -2,9 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": "minecraft:cobweb",
-    "P": "#c:rods/wooden",
-    "S": "#minecraft:wooden_slabs"
+    "C": {
+      "item": "minecraft:cobweb"
+    },
+    "P": {
+      "tag": "c:rods/wooden"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    }
   },
   "pattern": [
     "P P",
@@ -12,6 +18,7 @@
     "PSP"
   ],
   "result": {
+    "count": 1,
     "id": "bigger_fish:fish_trap"
   }
 }

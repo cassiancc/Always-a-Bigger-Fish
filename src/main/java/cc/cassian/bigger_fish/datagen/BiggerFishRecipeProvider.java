@@ -85,7 +85,7 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 						.pattern("PCP")
 						.pattern("PSP")
 						.unlockedBy("has_cobweb", this.has(Items.COBWEB))
-						.save(this.output);
+						.save(output);
 
 				shaped(RecipeCategory.TOOLS, COPPER_ROD)
 						.define('#', Items.COPPER_INGOT)

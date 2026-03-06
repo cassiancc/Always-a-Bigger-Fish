@@ -19,7 +19,7 @@ import java.util.List;
 
 @EmiEntrypoint
 public class EmiIntegration implements EmiPlugin {
-    public static final EmiRecipeCategory FISHING = new EmiRecipeCategory(BiggerFishMod.of("fishing"), EmiStack.of(BiggerFishItems.COPPER_ROD.get()));
+    public static final EmiRecipeCategory FISHING = new EmiRecipeCategory(BiggerFishMod.of("fishing"), EmiStack.of(BiggerFishItems.COPPER_ROD));
 
     @Override
     public void register(EmiRegistry registry) {
@@ -28,10 +28,10 @@ public class EmiIntegration implements EmiPlugin {
         for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
             addTagInfo(registry, itemTagKey);
         }
+        for (TagKey<Item> itemTagKey : BiggerFishTags.BAIT_TAGS_FOR_DISPLAY) {
+            addTagInfo(registry, itemTagKey);
+        }
         addTagInfo(registry, BiggerFishTags.LAVA_FISH);
-        addTagInfo(registry, BiggerFishTags.TIER_ONE_BAIT);
-        addTagInfo(registry, BiggerFishTags.TIER_TWO_BAIT);
-        addTagInfo(registry, BiggerFishTags.TIER_THREE_BAIT);
     }
 
     private static void addTagInfo(EmiRegistry registry, TagKey<Item> itemTag) {

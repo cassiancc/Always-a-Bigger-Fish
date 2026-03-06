@@ -17,12 +17,12 @@ public class AllowModdedRodsMixin {
 
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0))
     private boolean allowModdedRodsInMainhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return instance.is(BiggerFishItems.COPPER_ROD.get()) || original.call(instance, item);
+        return instance.is(BiggerFishItems.COPPER_ROD) || original.call(instance, item);
     }
 
     @WrapOperation(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
     private boolean allowModdedRodsInOffhand(ItemStack instance, Item item, Operation<Boolean> original) {
-        return instance.is(BiggerFishItems.COPPER_ROD.get()) || original.call(instance, item);
+        return instance.is(BiggerFishItems.COPPER_ROD) || original.call(instance, item);
     }
 
     //?}
