@@ -39,8 +39,8 @@ public class JeiIntegration implements IModPlugin {
 
         if (!ModCompat.FARMERS_DELIGHT) {
             ArrayList<ItemStack> objects = new ArrayList<>();
-            for (Supplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
-                objects.add(item.get().getDefaultInstance());
+            for (Item item : BiggerFishItems.HIDDEN_FOOD) {
+                objects.add(item.getDefaultInstance());
             }
 
             registry.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, objects);

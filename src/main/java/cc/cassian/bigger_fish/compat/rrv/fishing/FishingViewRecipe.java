@@ -33,10 +33,10 @@ public class FishingViewRecipe implements ReliableClientRecipe {
     }
 
     //You can design your constructor to suit your needs
-    public FishingViewRecipe(Supplier<Item> itemSupplier, Identifier id) {
+    public FishingViewRecipe(Item itemSupplier, Identifier id) {
 
         //Define your inputs and outputs here
-        this.output = SlotContent.of(itemSupplier.get());
+        this.output = SlotContent.of(itemSupplier);
         this.translationKey = "item." + id.toLanguageKey() + ".description";
 
     }

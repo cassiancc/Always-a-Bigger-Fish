@@ -61,10 +61,10 @@ public class ModHelpers {
         }
     }
 
-    public static List<ItemStack> toCollection(List<Supplier<Item>> fish) {
+    public static List<ItemStack> toCollection(List<Item> fish) {
         List<ItemStack> list = new ArrayList<>();
-        for (Supplier<Item> itemDeferredSupplier : fish) {
-            list.add(itemDeferredSupplier.get().getDefaultInstance());
+        for (Item itemDeferredSupplier : fish) {
+            list.add(itemDeferredSupplier.getDefaultInstance());
         }
         return list;
     }

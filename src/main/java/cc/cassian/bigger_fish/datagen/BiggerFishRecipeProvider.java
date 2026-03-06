@@ -34,48 +34,48 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 			public void buildRecipes() {
 				HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
 
-				shapeless(RecipeCategory.FOOD, SUSHI.get())
+				shapeless(RecipeCategory.FOOD, SUSHI)
 						.requires(Items.DRIED_KELP)
 						.requires(ConventionalItemTags.RAW_FISH_FOODS)
 						.unlockedBy(getHasName(Items.DRIED_KELP), has(Items.DRIED_KELP))
 						.save(output);
 
 				shapeless(RecipeCategory.MISC, Items.BONE_MEAL)
-						.requires(FISH_BONES.get())
-						.unlockedBy(getHasName(FISH_BONES.get()), has(FISH_BONES.get()))
+						.requires(FISH_BONES)
+						.unlockedBy(getHasName(FISH_BONES), has(FISH_BONES))
 						.save(output, "bone_meal_from_fish_bones");
 
 				foodSmelting(
 						Ingredient.of(itemLookup.getOrThrow(BiggerFishTags.FISH)),
-						FRIED_FISH.get(),
+						FRIED_FISH,
 						0.35F, 200,
 						"fried_fish");
 				foodSmelting(Ingredient.of(TROPICAL_FISH),
-						FRIED_FISH.get(),
+						FRIED_FISH,
 						0.35F, 200,
 						"tropical_fish");
 
-				shapeless(RecipeCategory.MISC, CANNED_FISH.get())
+				shapeless(RecipeCategory.MISC, CANNED_FISH)
 					.requires(ConventionalItemTags.COOKED_FISH_FOODS)
-					.requires(CAN.get())
-					.unlockedBy(getHasName(CAN.get()), has(CAN.get()))
+					.requires(CAN)
+					.unlockedBy(getHasName(CAN), has(CAN))
 					.save(output);
 
 				SimpleCookingRecipeBuilder.smelting(
-						Ingredient.of(CAN.get()),
+						Ingredient.of(CAN),
 						RecipeCategory.MISC,
 						CookingBookCategory.MISC,
 						Items.IRON_NUGGET,
 						0.3F, 200)
-						.unlockedBy(getHasName(CAN.get()), this.has(CAN.get()))
+						.unlockedBy(getHasName(CAN), this.has(CAN))
 						.save(output, "iron_nugget_from_can");
 				SimpleCookingRecipeBuilder.blasting(
-						Ingredient.of(CAN.get()),
+						Ingredient.of(CAN),
 						RecipeCategory.MISC,
 						CookingBookCategory.MISC,
 						Items.IRON_NUGGET,
 						0.3F, 200)
-						.unlockedBy(getHasName(CAN.get()), this.has(CAN.get()))
+						.unlockedBy(getHasName(CAN), this.has(CAN))
 						.save(output, "iron_nugget_from_can_blasting");
 				this.shaped(RecipeCategory.TOOLS, FISH_BARREL, 1)
 						.define('P', ItemTags.PLANKS)
@@ -87,7 +87,7 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy("has_wood_slab", this.has(ItemTags.WOODEN_SLABS))
 						.save(this.output);
 
-				this.shaped(RecipeCategory.TOOLS, COPPER_ROD.get())
+				this.shaped(RecipeCategory.TOOLS, COPPER_ROD)
 						.define('#', Items.COPPER_INGOT)
 						.define('X', Items.STRING)
 						.pattern("  #")
@@ -96,27 +96,27 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy(getHasName(Items.STRING), this.has(Items.FISHING_ROD))
 						.save(this.output);
 
-				this.shaped(RecipeCategory.TOOLS, DIAMOND_HOOK.get())
+				this.shaped(RecipeCategory.TOOLS, DIAMOND_HOOK)
 						.define('C', Items.DIAMOND)
 						.pattern(" C")
 						.pattern("CC")
 						.unlockedBy(getHasName(Items.DIAMOND), this.has(Items.DIAMOND))
 						.save(this.output);
 
-				this.shaped(RecipeCategory.TOOLS, NETHERITE_HOOK.get())
+				this.shaped(RecipeCategory.TOOLS, NETHERITE_HOOK)
 						.define('C', Items.NETHERITE_SCRAP)
 						.pattern(" C")
 						.pattern("CC")
 						.unlockedBy(getHasName(Items.NETHERITE_SCRAP), this.has(Items.NETHERITE_SCRAP))
 						.save(this.output);
 
-				this.shapeless(RecipeCategory.FOOD, FISH_KEBAB.get())
+				this.shapeless(RecipeCategory.FOOD, FISH_KEBAB)
 						.requires(Items.STICK)
 						.requires(ConventionalItemTags.COOKED_FISH_FOODS)
 						.unlockedBy("has_fish", this.has(ConventionalItemTags.COOKED_FISH_FOODS))
 						.save(this.output);
 
-				this.shapeless(RecipeCategory.FOOD, FISH_STEW.get())
+				this.shapeless(RecipeCategory.FOOD, FISH_STEW)
 						.requires(Items.BOWL)
 						.requires(Items.CARROT)
 						.requires(Items.POTATO)

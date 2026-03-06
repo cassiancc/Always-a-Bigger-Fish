@@ -31,7 +31,7 @@ public class LeechItem extends Item implements ProjectileItem {
     //? if >1.21.4 {
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), BiggerFishSoundEvents.LEECH_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), BiggerFishSoundEvents.LEECH_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (level instanceof ServerLevel serverLevel) {
             Projectile.spawnProjectileFromRotation(LeechEntity::new, serverLevel, itemStack, player, 0.0F, PROJECTILE_SHOOT_POWER, 1.0F);
         }

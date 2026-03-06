@@ -14,7 +14,7 @@ public class BaitInfoViewRecipe extends FishingViewRecipe {
         super(output);
     }
 
-    public BaitInfoViewRecipe(Supplier<Item> item, Identifier output) {
+    public BaitInfoViewRecipe(Item item, Identifier output) {
         super(item, output);
     }
 

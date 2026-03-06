@@ -66,10 +66,10 @@ public class RrvIntegration implements ReliableRecipeViewerPlugin {
     }
 
     public static void hideStacks() {
-        for (Supplier<Item> item : BiggerFishItems.HIDDEN_FOOD) {
-            ItemView.excludeItem(item.get());
+        for (Item item : BiggerFishItems.HIDDEN_FOOD) {
+            ItemView.excludeItem(item);
         }
-        ItemView.excludeItem(BiggerFishItems.COPPER_HOOK.get());
+        ItemView.excludeItem(BiggerFishItems.COPPER_HOOK);
     }
 }
 //?}

@@ -18,9 +18,9 @@ public class BaitUsageViewRecipe extends FishingViewRecipe {
         this.input = SlotContent.of(input);
     }
 
-    public BaitUsageViewRecipe(Supplier<Item> itemSupplier, Identifier input) {
+    public BaitUsageViewRecipe(Item itemSupplier, Identifier input) {
         super(itemSupplier, input);
-        this.input = SlotContent.of(itemSupplier.get());
+        this.input = SlotContent.of(itemSupplier);
     }
 
     @Override

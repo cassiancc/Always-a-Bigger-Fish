@@ -56,12 +56,12 @@ public class FishingViewType implements ReliableClientRecipeType {
 
     @Override
     public ItemStack getIcon() {
-        return BiggerFishItems.COPPER_ROD.get().getDefaultInstance();
+        return BiggerFishItems.COPPER_ROD.getDefaultInstance();
     }
 
     @Override
     public List<ItemStack> getCraftReferences() {
-        return List.of(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.COPPER_ROD.get().getDefaultInstance()); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
+        return List.of(Items.FISHING_ROD.getDefaultInstance(), BiggerFishItems.COPPER_ROD.getDefaultInstance()); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
     }
 }
 //?}

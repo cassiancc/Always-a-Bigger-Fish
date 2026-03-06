@@ -29,7 +29,7 @@ public class BaitInfoViewType extends FishingViewType {
 
     @Override
     public ItemStack getIcon() {
-        return BiggerFishItems.WORM.get().getDefaultInstance();
+        return BiggerFishItems.WORM.getDefaultInstance();
     }
 
     @Override

@@ -29,12 +29,12 @@ public class LavaFishingViewType extends FishingViewType {
 
     @Override
     public ItemStack getIcon() {
-        return BiggerFishItems.NETHERITE_HOOK.get().getDefaultInstance();
+        return BiggerFishItems.NETHERITE_HOOK.getDefaultInstance();
     }
 
     @Override
     public List<ItemStack> getCraftReferences() {
-        return List.of(BiggerFishItems.COPPER_ROD.get().getDefaultInstance()); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
+        return List.of(BiggerFishItems.COPPER_ROD.getDefaultInstance()); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
     }
 }
 //?}

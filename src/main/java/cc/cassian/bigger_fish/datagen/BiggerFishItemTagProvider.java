@@ -50,7 +50,7 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(HIDDEN_FROM_RECIPE_VIEWERS)
 				.add(COPPER_HOOK);
 		tagBuilder(DURABILITY_ENCHANTABLE)
-				.add(DIAMOND_HOOK.get(), NETHERITE_HOOK.get(), COPPER_ROD.get());
+				.add(DIAMOND_HOOK, NETHERITE_HOOK, COPPER_ROD);
 		tagBuilder(FISHING_ENCHANTABLE)
 				.add(COPPER_ROD);
 		tagBuilder(CAT_FOOD)
@@ -84,45 +84,45 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(COSMOPOLITAN_FRESHWATER_FISH).addOptionalTag(TIER_ONE_COSMOPOLITAN_FRESHWATER_FISH).addOptionalTag(TIER_TWO_COSMOPOLITAN_FRESHWATER_FISH).addOptionalTag(TIER_THREE_COSMOPOLITAN_FRESHWATER_FISH);
 		tagBuilder(COSMOPOLITAN_SALTWATER_FISH).addOptionalTag(TIER_ONE_COSMOPOLITAN_SALTWATER_FISH).addOptionalTag(TIER_TWO_COSMOPOLITAN_SALTWATER_FISH).addOptionalTag(TIER_THREE_COSMOPOLITAN_SALTWATER_FISH);
 		tagBuilder(DEEP_DARK_FISH).add(
-				SCULKFISH.get(),
-				ANGLER_SCULKFISH.get(),
-				SENSOR_EEL.get(),
-				WARDING_SQUID.get())
+				SCULKFISH,
+				ANGLER_SCULKFISH,
+				SENSOR_EEL,
+				WARDING_SQUID)
 				.addOptional(fishery("echofin"))
 				.addOptional(fishery("sculkamander")
 		);
 		tagBuilder(HOOKS).add(
-						DIAMOND_HOOK.get(),
-						NETHERITE_HOOK.get()
+						DIAMOND_HOOK,
+						NETHERITE_HOOK
 		);
 		tagBuilder(HOT_FRESHWATER_FISH).addOptionalTag(TIER_ONE_HOT_FRESHWATER_FISH).addOptionalTag(TIER_TWO_HOT_FRESHWATER_FISH).addOptionalTag(TIER_THREE_HOT_FRESHWATER_FISH);
 		tagBuilder(HOT_SALTWATER_FISH).addOptionalTag(TIER_ONE_HOT_SALTWATER_FISH).addOptionalTag(TIER_TWO_HOT_SALTWATER_FISH).addOptionalTag(TIER_THREE_HOT_SALTWATER_FISH);
 
-		tagBuilder(JUNK).add(LILY_PAD, LEATHER, LEATHER_BOOTS, BONE, STRING, FISHING_ROD, BOWL, STICK, TRIPWIRE_HOOK, ROTTEN_FLESH, BAMBOO, FISH_BONES.get(), CAN.get());
+		tagBuilder(JUNK).add(LILY_PAD, LEATHER, LEATHER_BOOTS, BONE, STRING, FISHING_ROD, BOWL, STICK, TRIPWIRE_HOOK, ROTTEN_FLESH, BAMBOO, FISH_BONES, CAN);
 		tagBuilder(TREASURE).add(NAME_TAG, SADDLE, BOW, FISHING_ROD, NAUTILUS_SHELL);
 
 
-		tagBuilder(LAVA_FISH).add(CINDER_EEL.get(), FIRE_BASS.get(), FIRE_MACKEREL.get(), LAVA_JELLYFISH.get(), LAVASHOE_CRAB.get())
+		tagBuilder(LAVA_FISH).add(CINDER_EEL, FIRE_BASS, FIRE_MACKEREL, LAVA_JELLYFISH, LAVASHOE_CRAB)
 				.addOptional(fishofthieves("jellyfish"))
 				.addOptional(fishofthieves("ghast_brood"))
 				.addOptional(fishofthieves("soul_leech"))
 		;
 		// bait
-		tagBuilder(TIER_ONE_BAIT).add(WORM.get())
+		tagBuilder(TIER_ONE_BAIT).add(WORM)
 				.addOptional(aquaculture("worm"))
 				.addOptional(fishofthieves("earthworms"))
 				.addOptional(of("tide", "bait"))
 		;
-		tagBuilder(TIER_TWO_BAIT).add(LEECH.get())
+		tagBuilder(TIER_TWO_BAIT).add(LEECH)
 				.addOptional(fishofthieves("grubs"))
 				.addOptional(aquaculture("leech"))
 				.addOptional(fishofthieves("leeches"))
 		;
-		tagBuilder(convention("foods/raw_fish")).add(LEECH.get())
+		tagBuilder(convention("foods/raw_fish")).add(LEECH)
 				.addOptional(aquaculture("minnow"))
-				.add(SARDINE.get())
+				.add(SARDINE)
 		;
-		tagBuilder(REQUIRES_MINIGAME_TO_CATCH).add(COPPER_ROD.get());
+		tagBuilder(REQUIRES_MINIGAME_TO_CATCH).add(COPPER_ROD);
 		tagBuilder(SHROOMY_FISH)
 				.addOptional(aquaculture("brown_shrooma"))
 				.addOptional(aquaculture("red_shrooma"));
@@ -130,41 +130,41 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(TEMPERATE_SALTWATER_FISH).addOptionalTag(TIER_ONE_TEMPERATE_SALTWATER_FISH).addOptionalTag(TIER_TWO_TEMPERATE_SALTWATER_FISH).addOptionalTag(TIER_THREE_TEMPERATE_SALTWATER_FISH);
 		// tier one
 		tagBuilder(TIER_ONE_BRACKISH_CAVE_FISH).add(
-				SHORTFIN_MOLLY.get(),
-				CICHLID.get()
+				SHORTFIN_MOLLY,
+				CICHLID
 		);
 		tagBuilder(TIER_ONE_BRACKISH_FISH).add(
-				BRACKISH_MUDSKIPPER.get(),
-				BRACKISH_GOBY.get()
+				BRACKISH_MUDSKIPPER,
+				BRACKISH_GOBY
 		);
 		tagBuilder(TIER_ONE_CAVE_FISH).add(
-				BLIND_CAVEFISH.get(),
-				CAVE_PUPFISH.get())
+				BLIND_CAVEFISH,
+				CAVE_PUPFISH)
 				.addOptional(fishery("pale_bass"))
 				.addOptional(fishery("salamander"))
 		;
 		tagBuilder(TIER_ONE_COLD_FRESHWATER_FISH)
 				.addOptionalTag(TIER_ONE_COSMOPOLITAN_FRESHWATER_FISH)
-				.add(GOLDEYE.get());
+				.add(GOLDEYE);
 		tagBuilder(TIER_ONE_COLD_SALTWATER_FISH)
 				.addOptionalTag(TIER_ONE_COSMOPOLITAN_FRESHWATER_FISH)
-				.add(CAPELIN.get(),
-					POLAR_COD.get())
+				.add(CAPELIN,
+					POLAR_COD)
 				.addOptional(aquaculture("atlantic_cod"))
 				.addOptional(aquaculture("pink_salmon"))
 				.addOptional(aquaculture("pacific_halibut"))
 				.addOptional(aquaculture("atlantic_halibut"))
 		;
 		tagBuilder(TIER_ONE_COSMOPOLITAN_FRESHWATER_FISH)
-				.add(BREAM.get(),
-					CARP.get(),
-					TROUT.get(),
+				.add(BREAM,
+					CARP,
+					TROUT,
 					SALMON)
 				.addOptional(aquaculture("carp"))
 				.addOptional(aquaculture("minnow"))
 		;
 		tagBuilder(TIER_ONE_COSMOPOLITAN_SALTWATER_FISH)
-				.add(HERRING.get(),
+				.add(HERRING,
 					COD,
 					SALMON)
 				.addOptional(aquaculture("atlantic_herring"))
@@ -184,8 +184,8 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		;
 		tagBuilder(TIER_ONE_HOT_FRESHWATER_FISH)
 				.addOptionalTag(TIER_ONE_COSMOPOLITAN_FRESHWATER_FISH)
-				.add(CATFISH.get(),
-					PIRANHA.get())
+				.add(CATFISH,
+					PIRANHA)
 				.addOptional(aquaculture("bayad"))
 				.addOptional(aquaculture("catfish"))
 				.addOptional(aquaculture("piranha"))
@@ -194,8 +194,8 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		;
 		tagBuilder(TIER_ONE_HOT_SALTWATER_FISH)
 				.addOptionalTag(TIER_ONE_COSMOPOLITAN_SALTWATER_FISH)
-				.add(SARDINE.get(),
-					FLOUNDER.get(),
+				.add(SARDINE,
+					FLOUNDER,
 					PUFFERFISH,
 					TROPICAL_FISH)
 				.addOptional(fishofthieves("splashtail"))
@@ -204,9 +204,9 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		;
 		tagBuilder(TIER_ONE_TEMPERATE_FRESHWATER_FISH)
 				.addOptionalTag(TIER_ONE_COSMOPOLITAN_FRESHWATER_FISH)
-				.add(GOLDFISH.get(),
-					BASS.get(),
-					BLUEGILL.get())
+				.add(GOLDFISH,
+					BASS,
+					BLUEGILL)
 				.addOptional(fishery("bluegill"))
 				.addOptional(fishery("leafskimmer"))
 				.addOptional(fishofthieves("splashtail"))
@@ -214,9 +214,9 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		;
 		tagBuilder(TIER_ONE_TEMPERATE_SALTWATER_FISH)
 				.addOptionalTag(TIER_ONE_COSMOPOLITAN_SALTWATER_FISH)
-				.add(STARFISH.get(),
-					MACKEREL.get(),
-					STURGEON.get())
+				.add(STARFISH,
+					MACKEREL,
+					STURGEON)
 				.addOptional(fishofthieves("splashtail"))
 				.addOptional(fishofthieves("plentifin"))
 		;
@@ -235,13 +235,13 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 				.addOptionalTag(TIER_TWO_BRACKISH_FISH)
 		;
 		tagBuilder(TIER_TWO_BRACKISH_CAVE_FISH)
-				.add(BLUE_BLANQUILLO.get(), BRACKISH_GOBY.get())
+				.add(BLUE_BLANQUILLO, BRACKISH_GOBY)
 		;
 		tagBuilder(TIER_TWO_BRACKISH_FISH)
-				.add(GREEN_CHROMIDE.get(), BRACKISH_TIGERFISH.get(), MANGROVE_MOONY.get())
+				.add(GREEN_CHROMIDE, BRACKISH_TIGERFISH, MANGROVE_MOONY)
 		;
 		tagBuilder(TIER_TWO_CAVE_FISH)
-				.add(NORTHERN_CAVEFISH.get(), RED_CAVEFISH.get(), WHITE_CAVEFISH.get())
+				.add(NORTHERN_CAVEFISH, RED_CAVEFISH, WHITE_CAVEFISH)
 		;
 		tagBuilder(TIER_TWO_COLD_FRESHWATER_FISH)
 				.addOptionalTag(TIER_TWO_COSMOPOLITAN_FRESHWATER_FISH)
@@ -267,7 +267,7 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		;
 		tagBuilder(TIER_TWO_HOT_FRESHWATER_FISH)
 				.addOptionalTag(TIER_TWO_COSMOPOLITAN_FRESHWATER_FISH)
-				.add(GAR.get(), PERCH.get(), TILAPIA.get())
+				.add(GAR, PERCH, TILAPIA)
 				.addOptional(aquaculture("gar"))
 				.addOptional(aquaculture("perch"))
 				.addOptional(aquaculture("capitaine"))
@@ -329,15 +329,15 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(TIER_THREE_COLD_FRESHWATER_FISH)
 				.addOptionalTag(TIER_THREE_COSMOPOLITAN_FRESHWATER_FISH)
 				.add(
-					WALLEYE.get(),
-					WHITE_SUCKER.get())
+					WALLEYE,
+					WHITE_SUCKER)
 				.addOptional(fishery("walleye"))
 		;
 		tagBuilder(TIER_THREE_COLD_SALTWATER_FISH)
 				.addOptionalTag(TIER_THREE_COSMOPOLITAN_SALTWATER_FISH)
 				.add(
-					SPINY_LUMPSUCKER.get(),
-					TWOHORN_SCULPIN.get())
+					SPINY_LUMPSUCKER,
+					TWOHORN_SCULPIN)
 				.addOptional(aquaculture("blackfish"))
 				.addOptional(fishery("anglerfish"))
 				.addOptional(fishofthieves("battlegill"))
@@ -353,9 +353,9 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(TIER_THREE_HOT_FRESHWATER_FISH)
 				.addOptionalTag(TIER_THREE_COSMOPOLITAN_FRESHWATER_FISH)
 				.add(
-					ARAPAIMA.get(),
-					ROACH.get(),
-					PACU.get())
+					ARAPAIMA,
+					ROACH,
+					PACU)
 				.addOptional(fishofthieves("stormfish"))
 				.addOptional(fishofthieves("wildsplash"))
 				.addOptional(fishofthieves("crab_claw"))
@@ -364,9 +364,9 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(TIER_THREE_HOT_SALTWATER_FISH)
 				.addOptionalTag(TIER_THREE_COSMOPOLITAN_SALTWATER_FISH)
 				.add(
-					SWORDFISH.get(),
-					GROUPER.get(),
-					TUNA.get())
+					SWORDFISH,
+					GROUPER,
+					TUNA)
 				.addOptional(aquaculture("red_grouper"))
 				.addOptional(aquaculture("tuna"))
 				.addOptional(fishery("tuna"))
@@ -375,17 +375,17 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		tagBuilder(TIER_THREE_TEMPERATE_FRESHWATER_FISH)
 				.addOptionalTag(TIER_THREE_COSMOPOLITAN_FRESHWATER_FISH)
 				.add(
-					BOWFIN.get(),
-					LOACH.get(),
-					TUNA.get())
+					BOWFIN,
+					LOACH,
+					TUNA)
 				.addOptional(fishery("branch_eel"))
 		;
 		tagBuilder(TIER_THREE_TEMPERATE_SALTWATER_FISH)
 				.addOptionalTag(TIER_THREE_COSMOPOLITAN_SALTWATER_FISH)
 				.add(
-					OARFISH.get(),
-					HAMMERHEAD_SHARK.get(),
-					WHALE_SHARK.get())
+					OARFISH,
+					HAMMERHEAD_SHARK,
+					WHALE_SHARK)
 				.addOptional(fishofthieves("ancientscale"))
 				.addOptional(fishofthieves("devilfish"))
 				.addOptional(of("upgrade_aquatic", "lionfish"))
