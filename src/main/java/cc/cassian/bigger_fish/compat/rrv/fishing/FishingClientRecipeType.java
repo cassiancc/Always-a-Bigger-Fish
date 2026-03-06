@@ -11,9 +11,9 @@ import net.minecraft.world.item.Items;
 
 import java.util.List;
 
-public class FishingViewType implements ReliableClientRecipeType {
+public class FishingClientRecipeType implements ReliableClientRecipeType {
 
-    protected static final FishingViewType INSTANCE = new FishingViewType();
+    protected static final FishingClientRecipeType INSTANCE = new FishingClientRecipeType();
 
     @Override
     public Component getDisplayName() {
@@ -46,7 +46,6 @@ public class FishingViewType implements ReliableClientRecipeType {
         //NOTE: Slot position is relative to your gui texture
 
         slotDefinition.addItemSlot(0, (getDisplayWidth()/2)-5, 65);
-
     }
 
     @Override

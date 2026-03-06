@@ -118,6 +118,10 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 				.addOptional(aquaculture("leech"))
 				.addOptional(fishofthieves("leeches"))
 		;
+		tagBuilder(TIER_THREE_BAIT)
+				.addOptionalTag(RAW_FISH_FOODS)
+				.addOptional(aquaculture("minnow"))
+		;
 		tagBuilder(convention("foods/raw_fish")).add(LEECH)
 				.addOptional(aquaculture("minnow"))
 				.add(SARDINE)

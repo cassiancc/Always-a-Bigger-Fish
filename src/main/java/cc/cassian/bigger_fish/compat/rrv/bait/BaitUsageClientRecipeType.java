@@ -1,7 +1,7 @@
-package cc.cassian.bigger_fish.compat.rrv.bait_info;
+package cc.cassian.bigger_fish.compat.rrv.bait;
 //? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewType;
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingClientRecipeType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -9,8 +9,13 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-public class BaitInfoViewType extends FishingViewType {
-    protected static final BaitInfoViewType INSTANCE = new BaitInfoViewType();
+public class BaitUsageClientRecipeType extends FishingClientRecipeType {
+    protected static final BaitUsageClientRecipeType INSTANCE = new BaitUsageClientRecipeType();
+
+    @Override
+    public Identifier getId() {
+        return BiggerFishMod.of("bait_usage");
+    }
 
     @Override
     public Component getDisplayName() {
@@ -23,11 +28,6 @@ public class BaitInfoViewType extends FishingViewType {
     }
 
     @Override
-    public Identifier getId() {
-        return BiggerFishMod.of("bait_info");
-    }
-
-    @Override
     public ItemStack getIcon() {
         return BiggerFishItems.WORM.getDefaultInstance();
     }
@@ -36,5 +36,6 @@ public class BaitInfoViewType extends FishingViewType {
     public List<ItemStack> getCraftReferences() {
         return List.of(); //Return a list of blocks/items that can be used to process your recipes (e.g. for Smelting it would be the furnace)
     }
+
 }
 //?}

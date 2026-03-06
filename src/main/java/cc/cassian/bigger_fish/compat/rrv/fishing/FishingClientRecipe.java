@@ -16,15 +16,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
-import java.util.function.Supplier;
 
-public class FishingViewRecipe implements ReliableClientRecipe {
+public class FishingClientRecipe implements ReliableClientRecipe {
     private final SlotContent output;
     private final String translationKey;
 
-
     //You can design your constructor to suit your needs
-    public FishingViewRecipe(TagKey<Item> output) {
+    public FishingClientRecipe(TagKey<Item> output) {
 
         //Define your inputs and outputs here
         this.output = SlotContent.of(output);
@@ -33,30 +31,26 @@ public class FishingViewRecipe implements ReliableClientRecipe {
     }
 
     //You can design your constructor to suit your needs
-    public FishingViewRecipe(Item itemSupplier, Identifier id) {
-
+    public FishingClientRecipe(Item itemSupplier, Identifier id) {
         //Define your inputs and outputs here
         this.output = SlotContent.of(itemSupplier);
         this.translationKey = "item." + id.toLanguageKey() + ".description";
-
     }
 
     @Override
     public ReliableClientRecipeType getViewType() {
-        return FishingViewType.INSTANCE; //Here you need your type's instance you created before
+        return FishingClientRecipeType.INSTANCE; //Here you need your type's instance you created before
     }
 
     @Override
     public void bindSlots(RecipeViewMenu.SlotFillContext slotFillContext) {
-
         //Tell EIV which SlotContent belongs to which of your previously defined slots
         slotFillContext.bindSlot(0, this.output);
-
     }
 
     @Override
     public void renderRecipe(RecipeViewScreen screen, RecipePosition recipePosition, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        guiGraphics.drawWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, FishingViewType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
+        guiGraphics.drawWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, FishingClientRecipeType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
     }
 
     @Override

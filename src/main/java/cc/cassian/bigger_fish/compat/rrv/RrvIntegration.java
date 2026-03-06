@@ -2,13 +2,11 @@ package cc.cassian.bigger_fish.compat.rrv;
 //? if >1.21.10 {
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageServerRecipe;
-import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageViewRecipe;
-import cc.cassian.bigger_fish.compat.rrv.bait_info.BaitInfoServerRecipe;
-import cc.cassian.bigger_fish.compat.rrv.bait_info.BaitInfoViewRecipe;
+import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageClientRecipe;
 import cc.cassian.bigger_fish.compat.rrv.fishing.FishingServerRecipe;
-import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewRecipe;
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingClientRecipe;
 import cc.cassian.bigger_fish.compat.rrv.lava_fishing.LavaFishingServerRecipe;
-import cc.cassian.bigger_fish.compat.rrv.lava_fishing.LavaFishingViewRecipe;
+import cc.cassian.bigger_fish.compat.rrv.lava_fishing.LavaFishingClientRecipe;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.rrv.api.ReliableRecipeViewerPlugin;
@@ -18,7 +16,6 @@ import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class RrvIntegration implements ReliableRecipeViewerPlugin {
     @Override
@@ -28,7 +25,6 @@ public class RrvIntegration implements ReliableRecipeViewerPlugin {
             //Here you can add all your server recipes
             list.add(new FishingServerRecipe());
             list.add(new LavaFishingServerRecipe());
-            list.add(new BaitInfoServerRecipe());
             list.add(new BaitUsageServerRecipe());
         });
 
@@ -36,30 +32,25 @@ public class RrvIntegration implements ReliableRecipeViewerPlugin {
 
         // Fishing
         ItemView.addClientRecipeWrapper(FishingServerRecipe.TYPE, modRecipe -> {
-			ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
+			ArrayList<FishingClientRecipe> recipes = new ArrayList<>();
 			for (TagKey<Item> itemTagKey : BiggerFishTags.FISHING_TAGS_FOR_DISPLAY) {
-				recipes.add(new FishingViewRecipe(itemTagKey));
+				recipes.add(new FishingClientRecipe(itemTagKey));
 			}
 			return recipes;
 		});
 
         // Lava Fishing
         ItemView.addClientRecipeWrapper(LavaFishingServerRecipe.TYPE,
-				modRecipe -> List.of(new LavaFishingViewRecipe(BiggerFishTags.LAVA_FISH)
-				));
-
-        // Bait
-        ItemView.addClientRecipeWrapper(BaitInfoServerRecipe.TYPE,
-				modRecipe -> List.of(
-						new BaitInfoViewRecipe(BiggerFishItems.WORM, BiggerFishMod.of("worm"))
+				modRecipe -> List.of(new LavaFishingClientRecipe(BiggerFishTags.LAVA_FISH)
 				));
 
         ItemView.addClientRecipeWrapper(BaitUsageServerRecipe.TYPE,
 				modRecipe -> {
-					ArrayList<FishingViewRecipe> recipes = new ArrayList<>();
+					ArrayList<BaitUsageClientRecipe> recipes = new ArrayList<>();
 					for (TagKey<Item> itemTagKey : BiggerFishTags.BAIT_TAGS_FOR_DISPLAY) {
-						recipes.add(new BaitUsageViewRecipe(itemTagKey));
+						recipes.add(new BaitUsageClientRecipe(itemTagKey));
 					}
+					recipes.add(new BaitUsageClientRecipe(BiggerFishItems.NETHERITE_HOOK, "tag.bigger_fish.attracts_lava_fish.description"));
 					return recipes;
 				});
         hideStacks();

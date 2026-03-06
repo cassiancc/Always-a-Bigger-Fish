@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.compat.rrv.lava_fishing;
 //? if >1.21.4 {
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.compat.rrv.fishing.FishingViewType;
+import cc.cassian.bigger_fish.compat.rrv.fishing.FishingClientRecipeType;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -9,8 +9,8 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-public class LavaFishingViewType extends FishingViewType {
-    protected static final LavaFishingViewType INSTANCE = new LavaFishingViewType();
+public class LavaFishingClientRecipeType extends FishingClientRecipeType {
+    protected static final LavaFishingClientRecipeType INSTANCE = new LavaFishingClientRecipeType();
 
     @Override
     public Component getDisplayName() {
