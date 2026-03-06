@@ -87,6 +87,16 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy("has_wood_slab", this.has(ItemTags.WOODEN_SLABS))
 						.save(this.output);
 
+				this.shaped(RecipeCategory.TOOLS, FISH_TRAP, 1)
+						.define('P', ConventionalItemTags.WOODEN_RODS)
+						.define('C', Items.COBWEB)
+						.define('S', ItemTags.WOODEN_SLABS)
+						.pattern("P P")
+						.pattern("PCP")
+						.pattern("PSP")
+						.unlockedBy("has_cobweb", this.has(Items.COBWEB))
+						.save(this.output);
+
 				this.shaped(RecipeCategory.TOOLS, COPPER_ROD)
 						.define('#', Items.COPPER_INGOT)
 						.define('X', Items.STRING)

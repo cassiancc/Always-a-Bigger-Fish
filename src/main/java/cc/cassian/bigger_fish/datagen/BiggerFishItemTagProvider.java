@@ -39,9 +39,9 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 				.addOptionalTag(BiggerFishTags.FISH);
 		tagBuilder(FISHING_ROD_TOOLS)
 				.add(COPPER_ROD);
-		tagBuilder(FISH_CONTAINERS)
-				.add(FISH_BARREL);
 		tagBuilder(PICKS_UP_FISH)
+				.add(FISH_BARREL);
+		tagBuilder(FISH_CONTAINERS)
 				.add(COPPER_ROD)
 				.add(FISH_BARREL)
 				.add(FISH_TRAP);

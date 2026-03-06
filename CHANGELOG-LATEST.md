@@ -12,5 +12,6 @@
 - Scrolling on fish containers now works correctly.
 - Fish size can now be seen in the selected item tooltip.
 
-### Changed
-- Various internal fixes.
+### Fixed
+- Missing recipes for Sashimi.
+- Missing tag translations.

@@ -209,6 +209,7 @@
  "tag.item.bigger_fish.temperate_freshwater_fish": "Temperate Freshwater Fish",
  "tag.item.bigger_fish.temperate_saltwater_fish": "Temperate Saltwater Fish",
  "tag.item.bigger_fish.attracts_treasure": "Attracts Treasure",
+ "tag.item.bigger_fish.picks_up_fish": "Picks Up Fish",
  "tag.item.bigger_fish.tier_one_bait": "Tier One Bait",
  "tag.item.bigger_fish.tier_two_bait": "Tier Two Bait",
  "tag.item.bigger_fish.tier_three_bait": "Tier Three Bait",
@@ -243,5 +244,5 @@
  "tag.item.bigger_fish.treasure": "Treasure",
  "tag.item.bigger_fish.fish_containers": "Fish Containers",
  "item.bigger_fish.fish_barrel.empty.description": "Can hold a mixed stack of fish",
- "item.bigger_fish.fish_trap.empty.description": "Can hold a mixed stack of fish"
+ "item.bigger_fish.fish_trap.empty.description": "Collects fish in water"
 }
