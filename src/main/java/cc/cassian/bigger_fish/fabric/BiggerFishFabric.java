@@ -46,7 +46,7 @@ public final class BiggerFishFabric implements ModInitializer {
         LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
             if (key == BuiltInLootTables.FISHING_JUNK) {
                 tableBuilder.modifyPools((builder -> {
-                    builder.add(LootItem.lootTableItem(BiggerFishItems.FISH_BONES.get()).setWeight(15)).add(LootItem.lootTableItem(BiggerFishItems.CAN.get()).setWeight(15)).build();
+                    builder.add(LootItem.lootTableItem(BiggerFishItems.FISH_BONES).setWeight(15)).add(LootItem.lootTableItem(BiggerFishItems.CAN).setWeight(15)).build();
                 }));
             }
         }));

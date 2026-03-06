@@ -127,11 +127,6 @@ public class BiggerFishTags {
     }
 
     public static TagKey<Item> itemTagKey(String namespace, String id) {
-        //? if >1.21 {
         return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(namespace, id));
-        //?} else {
-        /*return TagKey.create(Registries.ITEM, new Identifier(namespace, id));
-        *///?}
-
     }
 }

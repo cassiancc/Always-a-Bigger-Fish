@@ -22,7 +22,7 @@ public class ComposterMixin
     private static void addWormsToComposter(Entity entity, BlockState state, Level level, BlockPos pos, CallbackInfoReturnable<BlockState> cir) {
         if (entity.getRandom().nextBoolean()) {
             Vec3 vec3 = Vec3.atLowerCornerWithOffset(pos, 0.5, 1.01, 0.5).offsetRandom(level.getRandom(), 0.7F);
-            ItemEntity itemEntity = new ItemEntity(level, vec3.x(), vec3.y(), vec3.z(), new ItemStack(BiggerFishItems.WORM.get()));
+            ItemEntity itemEntity = new ItemEntity(level, vec3.x(), vec3.y(), vec3.z(), new ItemStack(BiggerFishItems.WORM));
             itemEntity.setDefaultPickUpDelay();
             level.addFreshEntity(itemEntity);
         }

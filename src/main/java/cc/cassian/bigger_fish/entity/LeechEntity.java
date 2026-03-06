@@ -22,11 +22,11 @@ public class LeechEntity extends ThrowableItemProjectile {
     }
 
     public LeechEntity(Level level, double x, double y, double z) {
-        super(BiggerFishEntityTypes.LEECH.get(), x, y, z, level);
+        super(BiggerFishEntityTypes.LEECH, x, y, z, level);
     }
 
     public LeechEntity(Level level, Player player) {
-        super(BiggerFishEntityTypes.LEECH.get(), player, level);
+        super(BiggerFishEntityTypes.LEECH, player, level);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class LeechEntity extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return BiggerFishItems.LEECH.get();
+        return BiggerFishItems.LEECH;
     }
 }

@@ -27,7 +27,7 @@ public final class BiggerFishFabricClient implements ClientModInitializer {
 //            layeredDrawerWrapper.addLayer(IdentifiedLayer.of(BiggerFishMod.of("minigame"), LAYER));
 //        });
 
-        EntityRendererRegistry.register(BiggerFishEntityTypes.LEECH.get(), ThrownItemRenderer::new);
+        EntityRendererRegistry.register(BiggerFishEntityTypes.LEECH, ThrownItemRenderer::new);
         BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_BARREL_BLOCK_ENTITY, FishContainerRenderer::new);
         BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_TRAP_BLOCK_ENTITY, FishContainerRenderer::new);
         ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipFlag, list) -> {

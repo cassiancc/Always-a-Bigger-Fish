@@ -2,6 +2,8 @@ package cc.cassian.bigger_fish.client.renderer;
 
 
 import cc.cassian.bigger_fish.blocks.entity.FishContainerBlockEntity;
+import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import cc.cassian.bigger_fish.registry.FishSize;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class FishContainerRenderer implements BlockEntityRenderer<FishContainerBlockEntity> {
-	private static final float SIZE = 0.85F;
+	private static final float SIZE = 0.375F;
 	private final ItemRenderer itemRenderer;
 
 	public FishContainerRenderer(BlockEntityRendererProvider.Context context) {

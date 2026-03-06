@@ -28,23 +28,23 @@ public class CommonRegistry {
         return register(name, () -> (builderOperator.apply(DataComponentType.builder())).build(), BuiltInRegistries.DATA_COMPONENT_TYPE);
     }
 
-    public static <B extends Item> Supplier<B> registerItem(String name, Supplier<B> supplier) {
-        return register(name, supplier, BuiltInRegistries.ITEM);
+    public static <B extends Item> B registerItem(String name, Supplier<B> supplier) {
+        return register(name, supplier, BuiltInRegistries.ITEM).get();
     }
 
     public static <B extends Block> Supplier<B> registerBlock(String name, Supplier<B> supplier) {
         return register(name, supplier, BuiltInRegistries.BLOCK);
     }
 
-    public static <T extends EntityType<?>> Supplier<T> registerEntity(String name, Supplier<T> supplier) {
-        return register(name, supplier, BuiltInRegistries.ENTITY_TYPE);
+    public static <T extends EntityType<?>> T registerEntity(String name, Supplier<T> supplier) {
+        return register(name, supplier, BuiltInRegistries.ENTITY_TYPE).get();
     }
 
-    public static Supplier<SoundEvent> registerSoundEvent(String name, Supplier<SoundEvent> supplier) {
-        return register(name, supplier, BuiltInRegistries.SOUND_EVENT);
+    public static SoundEvent registerSoundEvent(String name, Supplier<SoundEvent> supplier) {
+        return register(name, supplier, BuiltInRegistries.SOUND_EVENT).get();
     }
 
-    public static Supplier<SoundEvent> registerSoundEvent(String name) {
+    public static SoundEvent registerSoundEvent(String name) {
         return registerSoundEvent(name, ()->SoundEvent.createVariableRangeEvent(BiggerFishMod.of(name)));
     }
 
