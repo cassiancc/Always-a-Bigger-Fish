@@ -4,14 +4,17 @@ package cc.cassian.bigger_fish.fabric.client;
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.client.renderer.FishContainerRenderer;
 import cc.cassian.bigger_fish.registry.BiggerFishBlockEntityTypes;
+import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.TooltipComponentCallback;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.rendertype.RenderType;
 
 public final class BiggerFishFabricClient implements ClientModInitializer {
 //    public static final LayeredDraw.Layer LAYER = new MinigameLayer();
@@ -36,6 +39,7 @@ public final class BiggerFishFabricClient implements ClientModInitializer {
                 itemStack.get(BiggerFishComponentTypes.SIZE.get()).addToTooltip(tooltipContext, list::add, tooltipFlag);
             }
         });
+        BlockRenderLayerMap.INSTANCE.putBlock(BiggerFishBlocks.FISH_TRAP, RenderType.cutout());
     }
 }
 //?}

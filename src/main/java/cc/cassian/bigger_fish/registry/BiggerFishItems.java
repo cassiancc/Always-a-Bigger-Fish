@@ -152,8 +152,8 @@ public class BiggerFishItems {
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
             .durability(512));
 
-    public static Item FISH_BARREL = createItem("fish_barrel", FishBarrelItem::new, new Item.Properties().useBlockDescriptionPrefix().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
-    public static Item FISH_TRAP = createItem("fish_trap", FishTrapItem::new, new Item.Properties().useBlockDescriptionPrefix().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
+    public static Item FISH_BARREL = createItem("fish_barrel", FishBarrelItem::new, new Item.Properties().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
+    public static Item FISH_TRAP = createItem("fish_trap", FishTrapItem::new, new Item.Properties().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
 
 
     // JUNK

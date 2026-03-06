@@ -20,7 +20,7 @@ import org.jspecify.annotations.Nullable;
 public class FishBarrelBlock extends FishContainerBlock {
 	public static final MapCodec<FishBarrelBlock> CODEC = simpleCodec(FishBarrelBlock::new);
 	private static final VoxelShape INSIDE_SHAPE = box(2.0F, 4.0F, 2.0F, 14.0F, 16.0F, 14.0F);
-	protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0F, 0.0F, 4.0F, 16.0F, 3.0F, 12.0F), box(4.0F, 0.0F, 0.0F, 12.0F, 3.0F, 16.0F), box(2.0F, 0.0F, 2.0F, 14.0F, 3.0F, 14.0F), INSIDE_SHAPE), BooleanOp.ONLY_FIRST);
+	protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0F, 0.0F, 0.0F, 16.0F, 0.0F, 12.0F), box(4.0F, 0.0F, 0.0F, 12.0F, 0.0F, 16.0F), box(2.0F, 0.0F, 2.0F, 16.0F, 0.0F, 16.0F), INSIDE_SHAPE), BooleanOp.ONLY_FIRST);
 
 	@Override
 	public MapCodec<FishBarrelBlock> codec() {
