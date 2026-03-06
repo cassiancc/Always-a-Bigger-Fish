@@ -245,6 +245,7 @@ fabricApi {
     configureDataGeneration() {
         outputDirectory = file("$rootDir/src/main/generated")
         client = true
+        modId = "bigger_fish"
     }
 }
 
@@ -303,7 +304,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
         requires("mcqoy")
-        optional("rrv")
+        optional("emi")
 
     }
 
@@ -313,6 +314,6 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
-        optional("reliable-recipe-viewer-rrv")
+        optional("emi")
     }
 }

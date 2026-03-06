@@ -12,6 +12,11 @@ public class ItemInteractionsCompat {
             ItemContentsProvider.REGISTRY_KEY,
             "baited_rod",
             () -> new ItemContentsProvider.Type(BaitedRodProvider.CODEC));
+    public static final Holder.Reference<ItemContentsProvider.Type>
+            FISH_BARREL_ITEM_CONTENTS_PROVIDER_TYPE = REGISTRIES.register(
+            ItemContentsProvider.REGISTRY_KEY,
+            "fish_barrel",
+            () -> new ItemContentsProvider.Type(FishBarrelProvider.CODEC));
 
     public static void touch() {
 

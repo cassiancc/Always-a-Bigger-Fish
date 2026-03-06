@@ -2,10 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "minecraft:dried_kelp",
-    "#c:foods/raw_fish"
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "tag": "c:foods/raw_fish"
+    }
   ],
   "result": {
+    "count": 1,
     "id": "bigger_fish:sushi"
   }
 }

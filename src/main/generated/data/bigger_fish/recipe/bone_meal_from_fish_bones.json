@@ -2,9 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "bigger_fish:fish_bones"
+    {
+      "item": "bigger_fish:fish_bones"
+    }
   ],
   "result": {
+    "count": 1,
     "id": "minecraft:bone_meal"
   }
 }

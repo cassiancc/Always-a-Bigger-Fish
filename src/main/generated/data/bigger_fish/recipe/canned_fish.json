@@ -2,10 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "#c:foods/cooked_fish",
-    "bigger_fish:can"
+    {
+      "tag": "c:foods/cooked_fish"
+    },
+    {
+      "item": "bigger_fish:can"
+    }
   ],
   "result": {
+    "count": 1,
     "id": "bigger_fish:canned_fish"
   }
 }

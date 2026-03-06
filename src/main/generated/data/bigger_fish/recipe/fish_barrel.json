@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "P": "#minecraft:planks",
-    "S": "#minecraft:wooden_slabs"
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    }
   },
   "pattern": [
     "P P",
@@ -11,6 +15,7 @@
     "PSP"
   ],
   "result": {
+    "count": 1,
     "id": "bigger_fish:fish_barrel"
   }
 }

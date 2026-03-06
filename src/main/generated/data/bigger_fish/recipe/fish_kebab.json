@@ -2,10 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "minecraft:stick",
-    "#c:foods/cooked_fish"
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "tag": "c:foods/cooked_fish"
+    }
   ],
   "result": {
+    "count": 1,
     "id": "bigger_fish:fish_kebab"
   }
 }
