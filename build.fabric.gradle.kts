@@ -304,6 +304,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
         requires("mcqoy")
+        requires("modefite")
         optional("emi")
 
     }
@@ -314,6 +315,7 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
+        requires("modefite")
         optional("emi")
     }
 }

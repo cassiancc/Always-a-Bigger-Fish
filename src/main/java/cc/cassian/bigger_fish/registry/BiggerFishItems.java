@@ -141,7 +141,7 @@ public class BiggerFishItems {
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
             .durability(64));
 
-    public static final Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", new Item.Properties()
+    public static final Supplier<Item> DIAMOND_HOOK = createItem("diamond_hook", Item::new, new Item.Properties()
 //            .repairable(DIAMOND_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
