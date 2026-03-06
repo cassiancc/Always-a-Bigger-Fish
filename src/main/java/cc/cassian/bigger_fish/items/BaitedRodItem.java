@@ -51,7 +51,7 @@ public class BaitedRodItem extends FishingRodItem {
     @Override
     public int getBarColor(ItemStack stack) {
         if (stack.has(DataComponents.MAX_DAMAGE)) {
-            return stack.getBarColor();
+            return super.getBarColor(stack);
         } else {
             return FishContainer.getBarColor(stack);
         }
