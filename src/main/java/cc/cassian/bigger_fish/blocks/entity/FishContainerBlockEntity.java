@@ -1,5 +1,7 @@
 package cc.cassian.bigger_fish.blocks.entity;
 
+import cc.cassian.bigger_fish.blocks.FishContainerBlock;
+import cc.cassian.bigger_fish.blocks.FishTrapBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -29,6 +31,12 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 
 	public static final int CAPACITY = 64;
 	private final ArrayList<ItemStack> items = new ArrayList<>(CAPACITY);
+	@Override
+	public void setChanged() {
+		if (level != null)
+			level.setBlockAndUpdate(worldPosition, getBlockState().cycle(FishContainerBlock.BOOP));
+		super.setChanged();
+	}
 
 	public FishContainerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -116,12 +124,12 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 
 	@Override
 	public boolean canPlaceItemThroughFace(int index, ItemStack itemStack, @Nullable Direction direction) {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-		return true;
+		return index <= items.size() - 1;
 	}
 
 	@Override
@@ -153,7 +161,9 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 
 	@Override
 	public ItemStack removeItem(int slot, int amount) {
-		return items.remove(slot);
+		ItemStack remove1 = items.remove(slot);
+		setChanged();
+		return remove1;
 	}
 
 	@Override

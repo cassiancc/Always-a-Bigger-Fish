@@ -42,7 +42,7 @@
  "fishing.bigger_fish.gameplay.treasure_fishing": "Primarily catches treasure and junk, not fish",
  "item.bigger_fish.angler_sculkfish": "Angler Sculkfish",
  "item.bigger_fish.arapaima": "Arapaima",
- "item.bigger_fish.baited_rod.empty.description": "Can hold a mixed stack of bait.",
+ "item.bigger_fish.baited_rod.empty.description": "Can hold a mixed stack of bait",
  "item.bigger_fish.bass": "Bass",
  "item.bigger_fish.betta": "Betta",
  "item.bigger_fish.blind_cavefish": "Blind Cavefish",
@@ -207,6 +207,6 @@
  "tag.item.bigger_fish.temperate_saltwater_fish": "Temperate Saltwater Fish",
  "tag.item.bigger_fish.treasure": "Treasure",
  "tag.item.bigger_fish.fish_containers": "Fish Containers",
- "item.bigger_fish.fish_barrel.empty.description": "Can hold a mixed stack of fish.",
- "item.bigger_fish.fish_trap.empty.description": "Can hold a mixed stack of fishing loot."
+ "item.bigger_fish.fish_barrel.empty.description": "Can hold a mixed stack of fish",
+ "item.bigger_fish.fish_trap.empty.description": "Can hold a mixed stack of fish"
 }

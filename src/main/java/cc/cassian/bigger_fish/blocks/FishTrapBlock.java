@@ -1,8 +1,9 @@
 package cc.cassian.bigger_fish.blocks;
 
+import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.Platform;
 import cc.cassian.bigger_fish.blocks.entity.FishTrapBlockEntity;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
-import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.mojang.serialization.MapCodec;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
@@ -13,10 +14,10 @@ import net.minecraft.util.Util;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -50,7 +51,8 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 			)
 	);
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	public static final BooleanProperty BOOP = BooleanProperty.create("boop");
+	private int nearbyBlocks = 0;
+	private int nearbyWaterBlocks = 0;
 
 	@Override
 	public MapCodec<FishTrapBlock> codec() {
@@ -85,16 +87,14 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 	@Override
 	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (level.getBlockEntity(pos) instanceof FishTrapBlockEntity fishTrapBlockEntity && state.getFluidState().is(Fluids.WATER)) {
-			AtomicInteger blocks = new AtomicInteger();
-			AtomicInteger waterBlocks = new AtomicInteger();
-			Stream<BlockState> blockStates = level.getBlockStates(new AABB(pos.above().east().north().getCenter(), pos.below().west().south().getCenter()));
-			blockStates.forEach(blockState -> {
-				blocks.getAndIncrement();
-				if (blockState.getFluidState().is(Fluids.WATER)) {
-					waterBlocks.getAndIncrement();
-				}
-			});
-			System.out.printf("Detected %s water blocks out of %s.%n", waterBlocks, blocks);
+			recountWaterBlocks(level, pos);
+			float nextRandom = random.nextFloat();
+			float chanceToContinue = (float) this.nearbyWaterBlocks / this.nearbyBlocks;
+			boolean willContinue = nextRandom <= chanceToContinue;
+			if (Platform.INSTANCE.isDevelopmentEnvironment())
+				BiggerFishMod.LOGGER.info("Fish Trap at {} detected {} water blocks out of {}. Percentage is {}, next random is {}. Should continue: {}", pos, nearbyWaterBlocks, nearbyBlocks, chanceToContinue, nextRandom, willContinue);
+
+			if (!willContinue) return;
 
 			LootTable lootTable = ModHelpers.fish(level.getServer().reloadableRegistries(), ItemStack.EMPTY, false, true);
 			if (lootTable == null) return;
@@ -105,10 +105,22 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 					.create(LootContextParamSets.FISHING);
 			ObjectArrayList<ItemStack> randomItems = lootTable.getRandomItems(params);
 			randomItems.forEach(fishTrapBlockEntity::insert);
-			level.blockEntityChanged(pos);
-			level.setBlockAndUpdate(pos, state.setValue(BOOP, !state.getValue(BOOP)));
 		}
 
+	}
+
+	private void recountWaterBlocks(Level level, BlockPos pos) {
+		AtomicInteger blocks = new AtomicInteger();
+		AtomicInteger waterBlocks = new AtomicInteger();
+		Stream<BlockState> blockStates = level.getBlockStates(new AABB(pos.above().east().north().getCenter(), pos.below().west().south().getCenter()));
+		blockStates.forEach(blockState -> {
+			blocks.getAndIncrement();
+			if (blockState.getFluidState().is(Fluids.WATER)) {
+				waterBlocks.getAndIncrement();
+			}
+		});
+		this.nearbyBlocks = blocks.get();
+		this.nearbyWaterBlocks = waterBlocks.get();
 	}
 
 	@Nullable

@@ -19,6 +19,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
@@ -31,10 +33,12 @@ import static net.minecraft.world.level.block.ShulkerBoxBlock.CONTENTS;
 public abstract class FishContainerBlock extends Block implements EntityBlock {
 
 	public Predicate<ItemStack> allowedItems;
+	public static final BooleanProperty BOOP = BooleanProperty.create("boop");
 
 	public FishContainerBlock(final Properties properties, Predicate<ItemStack> allowedItems) {
 		super(properties);
 		this.allowedItems = allowedItems;
+		this.registerDefaultState(this.defaultBlockState().setValue(BOOP, false));
 	}
 
 	@Override
@@ -96,5 +100,10 @@ public abstract class FishContainerBlock extends Block implements EntityBlock {
 	@Override
 	protected void affectNeighborsAfterRemoval(final BlockState state, final ServerLevel level, final BlockPos pos, final boolean movedByPiston) {
 		Containers.updateNeighboursAfterDestroy(state, level, pos);
+	}
+
+	@Override
+	protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(BOOP);
 	}
 }
