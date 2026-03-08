@@ -1,5 +1,8 @@
 package cc.cassian.bigger_fish.datagen;
 
+//? fabric {
+
+import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -137,3 +140,4 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 		return "Always a Bigger Fish";
 	}
 }
+//?}

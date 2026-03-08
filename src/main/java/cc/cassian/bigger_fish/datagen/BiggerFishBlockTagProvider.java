@@ -1,5 +1,7 @@
 package cc.cassian.bigger_fish.datagen;
 
+//? fabric {
+
 import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -20,3 +22,5 @@ public class BiggerFishBlockTagProvider extends FabricTagProvider.BlockTagProvid
 		getOrCreateTagBuilder(ConventionalBlockTags.WOODEN_BARRELS).add(BiggerFishBlocks.FISH_BARREL);
 	}
 }
+
+//?}
