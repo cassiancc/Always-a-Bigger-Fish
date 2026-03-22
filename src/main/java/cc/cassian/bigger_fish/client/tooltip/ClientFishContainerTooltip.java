@@ -5,7 +5,7 @@ import cc.cassian.bigger_fish.mixin.ClientBundleTooltipAccessor;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.serialization.DataResult;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientBundleTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
@@ -37,7 +37,7 @@ public class ClientFishContainerTooltip extends ClientBundleTooltip {
     private final BundleContents contents;
 
     @Override
-    public void renderImage(final Font font, final int x, final int y, final int width, final int height, final GuiGraphics graphics) {
+    public void extractImage(final Font font, final int x, final int y, final int width, final int height, final GuiGraphicsExtractor graphics) {
         DataResult<Fraction> weight = this.contents.weight();
         if (!weight.isError()) {
             if (this.contents.isEmpty()) {
@@ -48,14 +48,14 @@ public class ClientFishContainerTooltip extends ClientBundleTooltip {
         }
     }
 
-    private void renderEmptyFishContainerTooltip(final Font font, final int x, final int y, final int width, final int height, final GuiGraphics graphics) {
+    private void renderEmptyFishContainerTooltip(final Font font, final int x, final int y, final int width, final int height, final GuiGraphicsExtractor graphics) {
         int left = x + callGetContentXOffset(width);
         drawEmptyFishContainerDescriptionText(left, y, font, graphics);
         callDrawProgressbar(left, y + getEmptyFishContainerDescriptionTextHeight(font) + 4, font, graphics, Fraction.ZERO);
     }
 
     private void renderFishContainerWithItemsTooltip(
-            final Font font, final int x, final int y, final int w, final int h, final GuiGraphics graphics, final Fraction weight
+            final Font font, final int x, final int y, final int w, final int h, final GuiGraphicsExtractor graphics, final Fraction weight
     ) {
         boolean isOverflowing = this.contents.size() > 12;
         List<ItemStackTemplate> shownItems = original.callGetShownItems(this.contents.getNumberOfItemsToShow());
@@ -80,7 +80,7 @@ public class ClientFishContainerTooltip extends ClientBundleTooltip {
         callDrawProgressbar(x + callGetContentXOffset(w), y + original.callItemGridHeight() + 4, font, graphics, weight);
     }
 
-    private void drawSelectedItemTooltip(final Font font, final GuiGraphics graphics, final int x, final int y, final int w) {
+    private void drawSelectedItemTooltip(final Font font, final GuiGraphicsExtractor graphics, final int x, final int y, final int w) {
         ItemStackTemplate selectedItem = this.contents.getSelectedItem();
         if (selectedItem != null) {
             ArrayList<ClientTooltipComponent> tooltip = new ArrayList<>();
@@ -97,7 +97,7 @@ public class ClientFishContainerTooltip extends ClientBundleTooltip {
 				ClientTooltipComponent fishSizeClientTooltip = ClientTooltipComponent.create(fishSizeTooltip.getVisualOrderText());
                 tooltip.add(fishSizeClientTooltip);
 			}
-            graphics.renderTooltip(
+            graphics.tooltip(
                     font,
                     tooltip,
                     centerTooltip - textWidth / 2,
@@ -108,8 +108,8 @@ public class ClientFishContainerTooltip extends ClientBundleTooltip {
         }
     }
 
-    private void drawEmptyFishContainerDescriptionText(final int x, final int y, final Font font, final GuiGraphics graphics) {
-        graphics.drawWordWrap(font, emptyDescription, x, y, 96, -5592406);
+    private void drawEmptyFishContainerDescriptionText(final int x, final int y, final Font font, final GuiGraphicsExtractor graphics) {
+        graphics.textWithWordWrap(font, emptyDescription, x, y, 96, -5592406);
     }
 
     private int getEmptyFishContainerDescriptionTextHeight(final Font font) {

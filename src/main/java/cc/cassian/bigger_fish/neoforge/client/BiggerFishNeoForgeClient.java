@@ -36,7 +36,7 @@ public final class BiggerFishNeoForgeClient {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(BiggerFishEntityTypes.LEECH.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(BiggerFishEntityTypes.LEECH, ThrownItemRenderer::new);
     }
 
     @SubscribeEvent

@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.mixin;
 
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientBundleTooltip;
 import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -30,7 +30,7 @@ public interface ClientBundleTooltipAccessor {
 	@Invoker
 	int callGetAmountOfHiddenItems(final List<ItemStackTemplate> shownItems);
 
-	@Invoker
+	@Invoker("extractSlot")
 	void callRenderSlot(
 		final int slotNumber,
 		final int drawX,
@@ -38,16 +38,16 @@ public interface ClientBundleTooltipAccessor {
 		final List<ItemStackTemplate> shownItems,
 		final int slotIndex,
 		final Font font,
-		final GuiGraphics graphics
+		final GuiGraphicsExtractor graphics
 	);
 
-	@Invoker
-	static void callRenderCount(final int drawX, final int drawY, final int hiddenItemCount, final Font font, final GuiGraphics graphics) {
+	@Invoker("extractCount")
+	static void callRenderCount(final int drawX, final int drawY, final int hiddenItemCount, final Font font, final GuiGraphicsExtractor graphics) {
 		throw new UnsupportedOperationException();
 	}
 
-	@Invoker
-	static void callDrawProgressbar(final int x, final int y, final Font font, final GuiGraphics graphics, final Fraction weight) {
+	@Invoker("extractProgressbar")
+	static void callDrawProgressbar(final int x, final int y, final Font font, final GuiGraphicsExtractor graphics, final Fraction weight) {
 		throw new UnsupportedOperationException();
 	}
 

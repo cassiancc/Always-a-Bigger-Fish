@@ -111,6 +111,9 @@ repositories {
     maven {
         name = "Kotlin for Forge"
         setUrl("https://thedarkcolour.github.io/KotlinForForge/")
+        content {
+            includeGroupAndSubgroups("thedarkcolour")
+        }
     }
     maven {
         // location of the maven that hosts JEI files since January 2023
@@ -131,6 +134,7 @@ repositories {
             includeGroupAndSubgroups("fuzs")
         }
     }
+    mavenLocal()
     mavenCentral()
 }
 
@@ -144,7 +148,7 @@ dependencies {
 
     // Cloth Config
     if (hasProperty("deps.yacl")) {
-        implementation("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-neoforge")
+        compileOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-neoforge")
         compileOnly("thedarkcolour:kotlinforforge-neoforge:5.10.0")
     } else {
         compileOnly("dev.isxander:yet-another-config-lib:3.7.1+1.21.6-neoforge")

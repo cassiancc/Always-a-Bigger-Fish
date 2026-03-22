@@ -4,7 +4,7 @@ import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 //? if >1.21.6 {
 import net.minecraft.client.renderer.RenderPipelines;
 import static net.minecraft.util.ARGB.color;
@@ -19,7 +19,7 @@ public class MinigameLayer {
     public int difficulty = 2;
 
 //    @Override
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public void render(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         var mc = Minecraft.getInstance();
         if (mc.options.hideGui) return;
         var player = mc.player;
@@ -68,7 +68,7 @@ public class MinigameLayer {
 
             // x1, y1, x2, y2, color
             guiGraphics.fill(x+1, y+1, x + rectangleWidth, y + rectangleHeight, color(200, 100, 0, 0));
-            guiGraphics.drawString(mc.font, String.valueOf(tick), 5, 5, -1);
+            guiGraphics.text(mc.font, String.valueOf(tick), 5, 5, -1);
         }
     }
 }

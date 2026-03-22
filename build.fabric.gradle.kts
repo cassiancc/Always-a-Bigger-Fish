@@ -190,9 +190,9 @@ dependencies {
 
     compileOnly("fuzs.iteminteractions:iteminteractions-neoforge:${property("deps.iteminteractions")}")
     // Development QOL
-    runtimeOnly("cc.cassian.item-descriptions:item-descriptions-fabric:${property("deps.item_descriptions")}") {
-        isTransitive = false
-    }
+//    runtimeOnly("cc.cassian.item-descriptions:item-descriptions-fabric:${property("deps.item_descriptions")}") {
+//        isTransitive = false
+//    }
 
 }
 

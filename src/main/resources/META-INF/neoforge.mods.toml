@@ -10,6 +10,7 @@ displayURL = "https://modrinth.com/mod/always-a-bigger-fish"
 logoFile = "assets/bigger_fish/icon.png"
 authors = "cassiancc"
 description = '''A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!'''
+rrv = "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"
 
 [[mixins]]
 config = "bigger_fish.mixins.json"
@@ -25,5 +26,3 @@ side = "BOTH"
 modId = "minecraft"
 type = "required"
 versionRange = "[26, 27]"
-
-rrv = "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"
