@@ -1,0 +1,12 @@
+
+{
+  "sort_index": 3,
+  "icon": "fieldguide:textures/gui/icons/cod.png",
+  "replace": true,
+  "contents": [
+    {
+      "type": "auto_populate",
+      "strategy": "tag:bigger_fish:fish"
+    }
+  ]
+}
