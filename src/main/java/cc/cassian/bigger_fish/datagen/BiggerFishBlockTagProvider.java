@@ -18,7 +18,7 @@ public class BiggerFishBlockTagProvider extends FabricTagProvider.BlockTagProvid
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).add(BiggerFishBlocks.FISH_BARREL);
+		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).add(BiggerFishBlocks.FISH_BARREL).add(BiggerFishBlocks.FISH_TRAP);
 		getOrCreateTagBuilder(ConventionalBlockTags.WOODEN_BARRELS).add(BiggerFishBlocks.FISH_BARREL);
 	}
 }
