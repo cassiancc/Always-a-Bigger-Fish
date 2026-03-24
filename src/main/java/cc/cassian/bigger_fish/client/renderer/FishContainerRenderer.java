@@ -32,7 +32,8 @@ public class FishContainerRenderer implements BlockEntityRenderer<FishContainerB
 		AtomicReference<Float> yPos = new AtomicReference<>(0.44921875F);
 		List<ItemStack> items = state.getItems();
 		for (int i = 0; i < items.size(); i++) {
-			ItemStack itemStack = items.get(i);
+			ItemStack itemStack = items.get(i).copy();
+			itemStack.set(BiggerFishComponentTypes.SIZE.get(), new FishSize(15)); // hide scale when rendering as it looks terrible otherwise
 			poseStack.pushPose();
 			if (i==0) {
 				poseStack.translate(0.5F, yPos.get(), 0.5F);
