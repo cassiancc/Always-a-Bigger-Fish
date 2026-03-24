@@ -304,7 +304,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
         requires("mcqoy")
-        requires("modefite")
+        requires("modefite-item-definition-backport")
         optional("emi")
 
     }
