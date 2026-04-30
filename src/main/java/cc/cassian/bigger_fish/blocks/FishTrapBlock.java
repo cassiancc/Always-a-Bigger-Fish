@@ -91,9 +91,6 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 			float nextRandom = random.nextFloat();
 			float chanceToContinue = (float) this.nearbyWaterBlocks / this.nearbyBlocks;
 			boolean willContinue = nextRandom <= chanceToContinue;
-			if (Platform.INSTANCE.isDevelopmentEnvironment())
-				BiggerFishMod.LOGGER.info("Fish Trap at {} detected {} water blocks out of {}. Percentage is {}, next random is {}. Should continue: {}", pos, nearbyWaterBlocks, nearbyBlocks, chanceToContinue, nextRandom, willContinue);
-
 			if (!willContinue) return;
 
 			LootTable lootTable = ModHelpers.fish(level.getServer().reloadableRegistries(), ItemStack.EMPTY, false, true);

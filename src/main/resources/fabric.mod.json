@@ -3,7 +3,7 @@
   "id": "bigger_fish",
   "version": "${version}",
   "name": "There's Always a Bigger Fish",
-  "description": "A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and a fishing minigame!",
+  "description": "A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and more",
   "authors": [
     "cassiancc",
     "malice-and-meat"
@@ -23,7 +23,7 @@
     "client": [
       "cc.cassian.bigger_fish.fabric.client.BiggerFishFabricClient"
     ],
-    "rrv": [
+    "rrv_client": [
       "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"
     ],
     "rei_client": [
@@ -43,14 +43,17 @@
   "depends": {
     "fabricloader": ">=0.16.10",
     "fabric-api": "*",
-    "minecraft": ">26 <27"
+    "minecraft": ">26 <26.2"
   },
   "recommends": {
-    "rrv": "*"
+    "rrv": ">=8.0.1"
   },
   "suggests": {
-    "item-descriptions": "*",
+    "item_descriptions": "*",
     "cloth-config": "*",
     "modmenu": "*"
+  },
+  "breaks": {
+    "rrv": "<8.0.0"
   }
 }
