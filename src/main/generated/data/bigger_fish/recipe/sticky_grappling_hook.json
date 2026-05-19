@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "bigger_fish:grappling_hook"
+    },
+    {
+      "tag": "c:slime_balls"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bigger_fish:sticky_grappling_hook"
+  }
+}

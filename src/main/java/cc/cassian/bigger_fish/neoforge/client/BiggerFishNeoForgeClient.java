@@ -3,8 +3,7 @@ package cc.cassian.bigger_fish.neoforge.client;
 //? if neoforge {
 /*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
-import cc.cassian.bigger_fish.client.SizeProperty;
-import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
+import cc.cassian.bigger_fish.client.renderer.GrapplingHookRenderer;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
 import cc.cassian.bigger_fish.tooltip.FishContainerTooltip;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -16,17 +15,12 @@ import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactori
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-import java.util.Objects;
-
 @EventBusSubscriber(modid = BiggerFishMod.MOD_ID, value = Dist.CLIENT)
 public final class BiggerFishNeoForgeClient {
 
     @SubscribeEvent
     public static void registerTooltip(ItemTooltipEvent event) {
-        BiggerFishModClient.addBaitUsageTooltip(event.getItemStack(), event.getToolTip());
-        if (event.getItemStack().has(BiggerFishComponentTypes.SIZE)) {
-            Objects.requireNonNull(event.getItemStack().get(BiggerFishComponentTypes.SIZE)).addToTooltip(event.getContext(), (component)->event.getToolTip().add(component), event.getFlags(), event.getItemStack().getComponents());
-        }
+        BiggerFishModClient.addTooltips(event.getItemStack(), event.getContext(), event.getFlags(), event.getToolTip());
     }
 
     @SubscribeEvent
@@ -37,6 +31,7 @@ public final class BiggerFishNeoForgeClient {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(BiggerFishEntityTypes.LEECH, ThrownItemRenderer::new);
+        event.registerEntityRenderer(BiggerFishEntityTypes.GRAPPLING_HOOK, GrapplingHookRenderer::new);
     }
 
     @SubscribeEvent

@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.datagen;
 //? fabric {
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -122,7 +123,20 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy(getHasName(Items.NETHERITE_SCRAP), this.has(Items.NETHERITE_SCRAP))
 						.save(this.output);
 
-				this.shapeless(RecipeCategory.FOOD, FISH_KEBAB)
+				shaped(RecipeCategory.TOOLS, GRAPPLING_HOOK)
+						.define('C', Items.IRON_INGOT)
+						.pattern(" C")
+						.pattern("CC")
+						.unlockedBy(getHasName(Items.IRON_INGOT), this.has(Items.IRON_INGOT))
+						.save(output);
+
+				shapeless(RecipeCategory.TOOLS, STICKY_GRAPPLING_HOOK)
+						.requires(GRAPPLING_HOOK)
+						.requires(ConventionalItemTags.SLIME_BALLS)
+						.unlockedBy("has_slime", this.has(ConventionalItemTags.SLIME_BALLS))
+						.save(output);
+
+				shapeless(RecipeCategory.FOOD, FISH_KEBAB)
 						.requires(Items.STICK)
 						.requires(ConventionalItemTags.COOKED_FISH_FOODS)
 						.unlockedBy("has_fish", this.has(ConventionalItemTags.COOKED_FISH_FOODS))

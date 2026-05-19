@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.fabric.client;
 //? if fabric {
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.client.renderer.FishContainerRenderer;
+import cc.cassian.bigger_fish.client.renderer.GrapplingHookRenderer;
 import cc.cassian.bigger_fish.registry.BiggerFishBlockEntityTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;

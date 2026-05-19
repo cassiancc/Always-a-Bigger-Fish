@@ -3,7 +3,7 @@ package cc.cassian.bigger_fish.client.renderer;
 
 import cc.cassian.bigger_fish.blocks.entity.FishContainerBlockEntity;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
-import cc.cassian.bigger_fish.registry.FishSize;
+import cc.cassian.bigger_fish.components.FishSize;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 

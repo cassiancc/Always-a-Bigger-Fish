@@ -12,6 +12,7 @@
     "BundleItemAccessor",
     "ComposterMixin",
     "FireproofItemEntityMixin",
+    "PlayerMixin",
     "fish_barrel.ItemEntityMixin",
     "fishing_hook.AllowLavaFishingMixin",
     "fishing_hook.BiomeSpecificFishMixin",

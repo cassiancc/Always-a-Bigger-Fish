@@ -1,11 +1,15 @@
 package cc.cassian.bigger_fish;
 
+import cc.cassian.bigger_fish.entity.GrapplingHookEntity;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
 import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 //? fabric {
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTabOutput;
-//?}
+//?} else {
+/*import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.EventHooks;
+*///?}
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -17,9 +21,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
-//? neoforge
-//import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -94,4 +97,11 @@ public class CommonEvents {
 			popResourceFromFace(level, pos, direction, stack);
 		}
 	}
+
+    public static boolean onProjectileImpact(GrapplingHookEntity grapplingHookEntity, HitResult hitresult) {
+		//? neoforge
+		//return EventHooks.onProjectileImpact(grapplingHookEntity, hitresult);
+		//? fabric
+        return false;
+    }
 }
