@@ -1,4 +1,4 @@
-package cc.cassian.bigger_fish.mixin.fabric;
+package cc.cassian.bigger_fish.mixin;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.client.SizeProperty;

@@ -43,11 +43,11 @@
   "depends": {
     "fabricloader": ">=0.16.10",
     "fabric-api": "*",
-    "minecraft": "1.21.1",
-    "modefite": "*"
+    "minecraft": "1.21.1"
   },
   "recommends": {
-    "emi": "*"
+    "emi": "*",
+    "modefite": "*"
   },
   "suggests": {
     "item-descriptions": "*",
