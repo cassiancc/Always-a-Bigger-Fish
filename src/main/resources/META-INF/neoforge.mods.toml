@@ -24,6 +24,11 @@ side = "BOTH"
 [[dependencies.bigger_fish]]
 modId = "minecraft"
 type = "required"
-versionRange = "[26, 27]"
+versionRange = "[1.21, 1.21.2]"
+
+[[dependencies.bigger_fish]]
+modId = "modefite"
+type = "required"
+versionRange = "[1, ]"
 
 rrv = "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"

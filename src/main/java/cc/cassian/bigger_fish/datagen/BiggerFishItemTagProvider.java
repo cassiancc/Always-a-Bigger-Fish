@@ -9,7 +9,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagBuilder;
 import net.minecraft.tags.TagKey;
@@ -435,7 +435,7 @@ public class BiggerFishItemTagProvider extends FabricTagProvider.ItemTagProvider
 			return this;
 		}
 
-		public BiggerFishTagBuilder addOptional(Identifier item) {
+		public BiggerFishTagBuilder addOptional(ResourceLocation item) {
 			rawBuilder = rawBuilder.addOptionalElement(item);
 			return this;
 		}
@@ -445,15 +445,15 @@ public class BiggerFishItemTagProvider extends FabricTagProvider.ItemTagProvider
 		return new BiggerFishTagBuilder(tag);
 	}
 
-	private Identifier aquaculture(String id) {
+	private ResourceLocation aquaculture(String id) {
 		return of("aquaculture", id);
 	}
 
-	private Identifier fishofthieves(String id) {
+	private ResourceLocation fishofthieves(String id) {
 		return of("fishofthieves", id);
 	}
 
-	private Identifier fishery(String id) {
+	private ResourceLocation fishery(String id) {
 		return of("fishery", id);
 	}
 

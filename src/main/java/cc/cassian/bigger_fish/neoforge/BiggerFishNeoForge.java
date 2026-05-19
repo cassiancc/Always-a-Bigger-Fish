@@ -29,11 +29,11 @@ import static cc.cassian.bigger_fish.BiggerFishMod.MOD_ID;
 public final class BiggerFishNeoForge {
     private static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MOD_ID);
     public static final Supplier<AttachmentType<Boolean>> FIREPROOF = ATTACHMENT_TYPES.register(
-            "fireproof", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL.fieldOf("fireproof")).build()
+            "fireproof", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build()
     );
 
     public static final Supplier<AttachmentType<String>> HOOK = ATTACHMENT_TYPES.register(
-            "hook", () -> AttachmentType.builder(() -> "vanilla").serialize(Codec.STRING.fieldOf("hook")).build()
+            "hook", () -> AttachmentType.builder(() -> "vanilla").serialize(Codec.STRING).build()
     );
 
     public BiggerFishNeoForge(IEventBus eventBus, ModContainer container) {

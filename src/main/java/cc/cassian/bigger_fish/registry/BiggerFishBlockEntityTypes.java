@@ -18,13 +18,13 @@ public class BiggerFishBlockEntityTypes {
 	public static final BlockEntityType<FishBarrelBlockEntity> FISH_BARREL_BLOCK_ENTITY =
 			Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, BiggerFishMod.of("fish_barrel_block_entity"),
 					BlockEntityType.Builder.of(FishBarrelBlockEntity::new,
-							BiggerFishBlocks.FISH_BARREL).build()
+							BiggerFishBlocks.FISH_BARREL).build(null)
 			);
 
 	public static final BlockEntityType<FishTrapBlockEntity> FISH_TRAP_BLOCK_ENTITY =
 			Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, BiggerFishMod.of("fish_trap_block_entity"),
 					BlockEntityType.Builder.of(FishTrapBlockEntity::new,
-							BiggerFishBlocks.FISH_TRAP).build()
+							BiggerFishBlocks.FISH_TRAP).build(null)
 			);
 
 	public static void touch() {

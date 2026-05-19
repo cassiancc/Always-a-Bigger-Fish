@@ -138,6 +138,7 @@ dependencies {
     // Kaleido
     implementation("folk.sisby:kaleido-config:${property("deps.kaleido")}")
     jarJar("folk.sisby:kaleido-config:${property("deps.kaleido")}")
+    "additionalRuntimeClasspath"("folk.sisby:kaleido-config:${property("deps.kaleido")}")
 
     // mcqoy
 //    runtimeOnly("maven.modrinth:mcqoy:yHGo6VsD")
@@ -152,13 +153,18 @@ dependencies {
     compileOnly("me.shedaniel.cloth:cloth-config-neoforge:19.0.147")
 
     // Recipe Viewers
-    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("deps.rrv")}")
-    runtimeOnly("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("deps.rrv")}")
+    if (hasProperty("deps.emi")) {
+        implementation("maven.modrinth:emi:${property("deps.emi")}+${property("deps.minecraft")}+neoforge")
+    }
     compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${property("deps.rei")}")
-    compileOnly("mezz.jei:jei-26.1-snapshot-4-neoforge:${property("deps.jei")}")
+    implementation("mezz.jei:jei-${property("deps.minecraft")}-neoforge-api:${property("deps.jei")}")
+//    runtimeOnly("mezz.jei:jei-${property("deps.minecraft")}-neoforge:${property("deps.jei")}")
     compileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-neoforge:${property("deps.rei")}")
 
     compileOnly("fuzs.iteminteractions:iteminteractions-neoforge:${property("deps.iteminteractions")}")
+    implementation("org.jspecify:jspecify:1.0.0")
+    implementation("maven.modrinth:qjlkcVfy:cy8BkRZc")
+
 
 }
 
@@ -188,7 +194,7 @@ tasks {
 
 java {
     withSourcesJar()
-    val javaCompat = JavaVersion.VERSION_25
+    val javaCompat = JavaVersion.VERSION_21
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat
 }
@@ -216,6 +222,8 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         optional("mcqoy")
+        requires("modefite-item-definition-backport")
+        optional("emi")
     }
 
     curseforge {
@@ -223,5 +231,7 @@ publishMods {
         accessToken = env.CURSEFORGE_API_KEY.orNull()
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
+        requires("modefite")
+        optional("emi")
     }
 }

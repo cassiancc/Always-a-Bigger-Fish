@@ -6,7 +6,7 @@ import cc.cassian.bigger_fish.compat.ModCompat;
 *///?}
 import cc.cassian.bigger_fish.compat.iteminteractions.ItemInteractionsCompat;
 import cc.cassian.bigger_fish.config.ModConfig;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,11 +24,11 @@ public final class BiggerFishMod {
         }
     }
 
-    public static Identifier of(String path) {
+    public static ResourceLocation of(String path) {
         return of(MOD_ID, path);
     }
 
-    public static Identifier of(String namespace, String path) {
-        return Identifier.fromNamespaceAndPath(namespace, path);
+    public static ResourceLocation of(String namespace, String path) {
+        return ResourceLocation.fromNamespaceAndPath(namespace, path);
     }
 }

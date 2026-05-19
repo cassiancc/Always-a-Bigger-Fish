@@ -4,7 +4,6 @@ import cc.cassian.bigger_fish.blocks.entity.FishBarrelBlockEntity;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Util;
 import net.minecraft.world.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

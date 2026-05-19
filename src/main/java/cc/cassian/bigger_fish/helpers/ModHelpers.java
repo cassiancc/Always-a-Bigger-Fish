@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.ReloadableServerRegistries;
 import net.minecraft.server.level.ServerLevel;
@@ -100,7 +100,7 @@ public class ModHelpers {
 				if (bait.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
 					String identifier = bait.get(BiggerFishComponentTypes.FISHING_LOOT.get());
 					assert identifier != null;
-					return reloadableRegistries.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, Identifier.parse(identifier)));
+					return reloadableRegistries.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.parse(identifier)));
 				}
 				// most fishing is done via components, these are here as fallbacks for modded content
 				else if (bait.is(BiggerFishTags.TIER_ONE_BAIT)) {
