@@ -4,5 +4,14 @@
       "random/bow"
     ],
     "subtitle": "subtitles.bigger_fish.leech.throw"
+  },
+  "entity.player.grappling_hook.tighten": {
+    "sounds": [
+      "bigger_fish:tighten1",
+      "bigger_fish:tighten2",
+      "bigger_fish:tighten3",
+      "bigger_fish:tighten4"
+    ],
+    "subtitle": "bigger_fish.subtitles.player.grappling_hook.tighten"
   }
 }

@@ -212,9 +212,6 @@ dependencies {
         exclude(group = "net.fabricmc")
         exclude(group = "me.shedaniel")
     }
-    modImplementation("com.github.Chocohead:Fabric-ASM:${property("deps.fabric_asm")}") {
-        exclude (group = "net.fabricmc.fabric-api")
-    }
 
     // Optional compat
     modApi("fuzs.iteminteractions:iteminteractions-fabric:${property("deps.iteminteractions")}")

@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.datagen;
 //? fabric {
 
 import cc.cassian.bigger_fish.BiggerFishMod;
+import cc.cassian.bigger_fish.registry.BiggerFishItems;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -111,6 +112,19 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 						.pattern(" C")
 						.pattern("CC")
 						.unlockedBy(getHasName(Items.NETHERITE_SCRAP), this.has(Items.NETHERITE_SCRAP))
+						.save(output);
+
+				shaped(RecipeCategory.TOOLS, GRAPPLING_HOOK)
+						.define('C', Items.IRON_INGOT)
+						.pattern(" C")
+						.pattern("CC")
+						.unlockedBy(getHasName(Items.IRON_INGOT), this.has(Items.IRON_INGOT))
+						.save(output);
+
+				shapeless(RecipeCategory.TOOLS, STICKY_GRAPPLING_HOOK)
+						.requires(GRAPPLING_HOOK)
+						.requires(ConventionalItemTags.SLIME_BALLS)
+						.unlockedBy("has_slime", this.has(ConventionalItemTags.SLIME_BALLS))
 						.save(output);
 
 				shapeless(RecipeCategory.FOOD, FISH_KEBAB)

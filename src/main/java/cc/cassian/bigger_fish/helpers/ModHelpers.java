@@ -2,10 +2,12 @@ package cc.cassian.bigger_fish.helpers;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.Platform;
+import cc.cassian.bigger_fish.components.FishingLoot;
+import cc.cassian.bigger_fish.components.HookEffects;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
-import cc.cassian.bigger_fish.registry.FishSize;
+import cc.cassian.bigger_fish.components.FishSize;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
@@ -27,7 +29,6 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class ModHelpers {
 
@@ -77,7 +78,7 @@ public class ModHelpers {
         if (item.has(DataComponents.BUNDLE_CONTENTS)) {
             BundleContents bundleContents = item.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents != null && !bundleContents.isEmpty())
-                return bundleContents.items().iterator().next().getOrDefault(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "vanilla");
+                return bundleContents.items().iterator().next().getOrDefault(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.VANILLA).effect();
         }
         return "";
     }
@@ -98,9 +99,9 @@ public class ModHelpers {
             if (bait != null) {
 				// check for the fishing loot table component
 				if (bait.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
-					String identifier = bait.get(BiggerFishComponentTypes.FISHING_LOOT.get());
+					FishingLoot identifier = bait.get(BiggerFishComponentTypes.FISHING_LOOT.get());
 					assert identifier != null;
-					return reloadableRegistries.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.parse(identifier)));
+					return reloadableRegistries.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, identifier.lootTable()));
 				}
 				// most fishing is done via components, these are here as fallbacks for modded content
 				else if (bait.is(BiggerFishTags.TIER_ONE_BAIT)) {

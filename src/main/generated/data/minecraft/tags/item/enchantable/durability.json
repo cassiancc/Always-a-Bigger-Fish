@@ -2,6 +2,8 @@
   "values": [
     "bigger_fish:diamond_hook",
     "bigger_fish:netherite_hook",
-    "bigger_fish:copper_rod"
+    "bigger_fish:copper_rod",
+    "bigger_fish:grappling_hook",
+    "bigger_fish:sticky_grappling_hook"
   ]
 }

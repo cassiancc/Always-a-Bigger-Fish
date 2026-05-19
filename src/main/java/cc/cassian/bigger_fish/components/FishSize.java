@@ -1,6 +1,8 @@
-package cc.cassian.bigger_fish.registry;
+package cc.cassian.bigger_fish.components;
 
+import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
+import cc.cassian.bigger_fish.helpers.ModHelpers;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.chat.Component;
@@ -20,6 +22,7 @@ public record FishSize(float size) implements TooltipProvider {
 
 	@Override
 	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
-		consumer.accept(BiggerFishModClient.getFishSizeTooltip(this));
+		if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value() && (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || ModHelpers.hasShiftDown()))
+			consumer.accept(Component.translatable("component.bigger_fish.size", ModHelpers.getFishSize(this), ModHelpers.getUnit()));
 	}
 }

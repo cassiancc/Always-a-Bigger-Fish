@@ -3,6 +3,7 @@ package cc.cassian.bigger_fish.fabric.client;
 //? if fabric {
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.client.renderer.FishContainerRenderer;
+import cc.cassian.bigger_fish.client.renderer.GrapplingHookRenderer;
 import cc.cassian.bigger_fish.registry.BiggerFishBlockEntityTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishBlocks;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
@@ -28,17 +29,11 @@ public final class BiggerFishFabricClient implements ClientModInitializer {
 //        });
 
         EntityRendererRegistry.register(BiggerFishEntityTypes.LEECH, ThrownItemRenderer::new);
+        EntityRendererRegistry.register(BiggerFishEntityTypes.GRAPPLING_HOOK, GrapplingHookRenderer::new);
         BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_BARREL_BLOCK_ENTITY, FishContainerRenderer::new);
         BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_TRAP_BLOCK_ENTITY, FishContainerRenderer::new);
-        ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipFlag, list) -> {
-            BiggerFishModClient.addBaitUsageTooltip(stack, list);
-        });
+        ItemTooltipCallback.EVENT.register(BiggerFishModClient::addTooltips);
         TooltipComponentCallback.EVENT.register(BiggerFishModClient::getClientBaitedRodTooltip);
-        ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipFlag, list) -> {
-            if (itemStack.has(BiggerFishComponentTypes.SIZE.get())) {
-                itemStack.get(BiggerFishComponentTypes.SIZE.get()).addToTooltip(tooltipContext, list::add, tooltipFlag);
-            }
-        });
         BlockRenderLayerMap.INSTANCE.putBlock(BiggerFishBlocks.FISH_TRAP, RenderType.cutout());
     }
 }

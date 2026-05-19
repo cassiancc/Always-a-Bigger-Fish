@@ -2,6 +2,8 @@ package cc.cassian.bigger_fish.registry;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.compat.ModCompat;
+import cc.cassian.bigger_fish.components.FishingLoot;
+import cc.cassian.bigger_fish.components.HookEffects;
 import cc.cassian.bigger_fish.items.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
@@ -109,10 +111,10 @@ public class BiggerFishItems {
     public static final Item WHITE_CAVEFISH = createFish("white_cavefish");
 
     // Bait
-    public static final Item WORM = createItem("worm", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing"));
+    public static final Item WORM = createItem("worm", new Item.Properties().component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/tier_one_fishing")));
     public static final Item LEECH = CommonRegistry.registerItem("leech", ()->new LeechItem(properties("leech")
 //            .useCooldown(0.5F)
-            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_two_fishing")));
+            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/tier_two_fishing"))));
 
     // Food
     public static final Item FRIED_FISH = createFood("fried_fish", 5, 0.6f);
@@ -130,20 +132,30 @@ public class BiggerFishItems {
 
     public static final Item COPPER_HOOK = createItem("copper_hook", properties -> new HookItem(properties, COPPER_TOOL_MATERIALS), new Item.Properties()
 //            .repairable(COPPER_TOOL_MATERIALS)
-            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "copper")
-            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_one_fishing")
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.COPPER)
+            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/tier_one_fishing"))
             .durability(64));
 
     public static final Item DIAMOND_HOOK = createItem("diamond_hook", properties -> new HookItem(properties, DIAMOND_TOOL_MATERIALS), new Item.Properties()
 //            .repairable(DIAMOND_TOOL_MATERIALS)
-            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "treasure")
-            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/treasure_fishing")
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.TREASURE)
+            .component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/treasure_fishing"))
             .durability(128));
 
     public static final Item NETHERITE_HOOK = createItem("netherite_hook", properties -> new HookItem(properties, NETHERITE_TOOL_MATERIALS), new Item.Properties()
 //            .repairable(NETHERITE_TOOL_MATERIALS)
-            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), "netherite")
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.NETHERITE)
             .durability(512));
+
+    public static final Item GRAPPLING_HOOK = createItem("grappling_hook", properties -> new HookItem(properties, GRAPPLING_HOOK_MATERIALS), new Item.Properties()
+//            .repairable(GRAPPLING_HOOK_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.GRAPPLING)
+            .durability(128));
+
+    public static final Item STICKY_GRAPPLING_HOOK = createItem("sticky_grappling_hook", properties -> new HookItem(properties, GRAPPLING_HOOK_MATERIALS), new Item.Properties()
+//            .repairable(GRAPPLING_HOOK_MATERIALS)
+            .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.STICKY_GRAPPLING)
+            .durability(128));
 
     public static Item FISH_BARREL = createItem("fish_barrel", FishBarrelItem::new, new Item.Properties().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
     public static Item FISH_TRAP = createItem("fish_trap", FishTrapItem::new, new Item.Properties().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).stacksTo(1));
@@ -154,7 +166,7 @@ public class BiggerFishItems {
     public static final Item FISH_BONES = createItem("fish_bones");
 
     public static List<Item> INGREDIENTS = List.of(WORM, LEECH, CAN, FISH_BONES);
-    public static List<Item> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK, FISH_BARREL, FISH_TRAP);
+    public static List<Item> TOOLS = List.of(COPPER_ROD, DIAMOND_HOOK, NETHERITE_HOOK, GRAPPLING_HOOK, STICKY_GRAPPLING_HOOK, FISH_BARREL, FISH_TRAP);
 
     private static Item createItem(String id) {
         return registerItem(id, properties(id));
@@ -183,7 +195,7 @@ public class BiggerFishItems {
     }
 
     private static Item createFish(String id) {
-        Item fish = registerItem(id, properties(id).food(Foods.COD).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_three_fishing"));
+        Item fish = registerItem(id, properties(id).food(Foods.COD).component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/tier_three_fishing")));
         FISH.add(fish);
         return fish;
     }
@@ -192,7 +204,7 @@ public class BiggerFishItems {
         if (!fireproof) {
             return createFish(id);
         } else {
-            Item fish = registerItem(id, properties(id).component(BiggerFishComponentTypes.FISHING_LOOT.get(), "bigger_fish:gameplay/tier_three_fishing").fireResistant().food(Foods.COD));
+            Item fish = registerItem(id, properties(id).component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/tier_three_fishing")).fireResistant().food(Foods.COD));
             FISH.add(fish);
             return fish;
         }

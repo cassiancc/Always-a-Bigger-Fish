@@ -4,12 +4,14 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+    "FishingRodCastBoolMixin",
     "RangeSelectItemPropertiesMixin"
   ],
   "mixins": [
     "BundleItemAccessor",
     "ComposterMixin",
     "FireproofItemEntityMixin",
+    "PlayerMixin",
     "fish_barrel.ItemEntityMixin",
     "fishing_hook.AllowLavaFishingMixin",
     "fishing_hook.BiomeSpecificFishMixin",

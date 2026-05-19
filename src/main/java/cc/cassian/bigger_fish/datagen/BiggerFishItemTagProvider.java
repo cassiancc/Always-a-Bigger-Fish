@@ -49,7 +49,8 @@ public class BiggerFishItemTagProvider extends FabricTagProvider.ItemTagProvider
 		tagBuilder(HIDDEN_FROM_RECIPE_VIEWERS)
 				.add(COPPER_HOOK);
 		tagBuilder(DURABILITY_ENCHANTABLE)
-				.add(DIAMOND_HOOK, NETHERITE_HOOK, COPPER_ROD);
+				.add(DIAMOND_HOOK, NETHERITE_HOOK, COPPER_ROD, GRAPPLING_HOOK, STICKY_GRAPPLING_HOOK);
+		tagBuilder(DYEABLE).add(GRAPPLING_HOOK, STICKY_GRAPPLING_HOOK);
 		tagBuilder(FISHING_ENCHANTABLE)
 				.add(COPPER_ROD);
 		tagBuilder(CAT_FOOD)
@@ -92,7 +93,9 @@ public class BiggerFishItemTagProvider extends FabricTagProvider.ItemTagProvider
 		);
 		tagBuilder(HOOKS).add(
 						DIAMOND_HOOK,
-						NETHERITE_HOOK
+						NETHERITE_HOOK,
+						GRAPPLING_HOOK,
+						STICKY_GRAPPLING_HOOK
 		);
 		tagBuilder(HOT_FRESHWATER_FISH).addOptionalTag(TIER_ONE_HOT_FRESHWATER_FISH).addOptionalTag(TIER_TWO_HOT_FRESHWATER_FISH).addOptionalTag(TIER_THREE_HOT_FRESHWATER_FISH);
 		tagBuilder(HOT_SALTWATER_FISH).addOptionalTag(TIER_ONE_HOT_SALTWATER_FISH).addOptionalTag(TIER_TWO_HOT_SALTWATER_FISH).addOptionalTag(TIER_THREE_HOT_SALTWATER_FISH);
