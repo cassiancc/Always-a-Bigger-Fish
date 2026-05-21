@@ -1,6 +1,7 @@
 package cc.cassian.bigger_fish.client.tooltip;
 
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
+import cc.cassian.bigger_fish.components.FishSize;
 import cc.cassian.bigger_fish.mixin.ClientBundleTooltipAccessor;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.serialization.DataResult;
@@ -92,9 +93,9 @@ public class ClientFishContainerTooltip extends ClientBundleTooltip {
             ClientTooltipComponent selectedItemNameTooltip = ClientTooltipComponent.create(selectedItemName.getVisualOrderText());
             tooltip.add(selectedItemNameTooltip);
             // fish size
-            MutableComponent fishSizeTooltip = BiggerFishModClient.getFishSizeTooltip(itemStack.get(BiggerFishComponentTypes.SIZE.get()));
-            if (fishSizeTooltip != null) {
-				ClientTooltipComponent fishSizeClientTooltip = ClientTooltipComponent.create(fishSizeTooltip.getVisualOrderText());
+            FishSize fishSize = itemStack.get(BiggerFishComponentTypes.SIZE.get());
+            if (fishSize != null) {
+				ClientTooltipComponent fishSizeClientTooltip = ClientTooltipComponent.create(fishSize.getComponent().getVisualOrderText());
                 tooltip.add(fishSizeClientTooltip);
 			}
             graphics.tooltip(

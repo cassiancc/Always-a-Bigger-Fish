@@ -34,11 +34,11 @@ public class BiggerFishModClient {
         var components = List.of(BiggerFishComponentTypes.HOOK_EFFECTS, BiggerFishComponentTypes.FISHING_LOOT, BiggerFishComponentTypes.SIZE);
         for (Supplier<? extends DataComponentType<?>> component : components) {
             if (itemStack.has(component.get())) {
-                ((TooltipProvider) Objects.requireNonNull(itemStack.get(component.get()))).addToTooltip(tooltipContext, component1->list.add(1, component1.copy().withStyle(ChatFormatting.GRAY)), tooltipFlag);
+                ((TooltipProvider) Objects.requireNonNull(itemStack.get(component.get()))).addToTooltip(tooltipContext, component1->list.add(1, component1.copy().withStyle(ChatFormatting.GRAY)), tooltipFlag, itemStack.getComponents());
             }
             ItemStack baitFromRod = ModHelpers.getBaitFromRod(itemStack);
             if (baitFromRod != null && baitFromRod.has(component.get())) {
-                ((TooltipProvider) Objects.requireNonNull(baitFromRod.get(component.get()))).addToTooltip(tooltipContext, component1->list.add(1, component1.copy().withStyle(ChatFormatting.GRAY)), tooltipFlag);
+                ((TooltipProvider) Objects.requireNonNull(baitFromRod.get(component.get()))).addToTooltip(tooltipContext, component1->list.add(1, component1.copy().withStyle(ChatFormatting.GRAY)), tooltipFlag, itemStack.getComponents());
             }
         }
     }

@@ -150,6 +150,9 @@ public class BiggerFishRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy("has_fish", this.has(ConventionalItemTags.COOKED_FISH_FOODS))
 						.save(this.output);
 
+				dyedItem(GRAPPLING_HOOK, "grappling_hook_dye");
+				dyedItem(STICKY_GRAPPLING_HOOK, "grappling_hook_dye");
+
 			}
 
 			private void foodSmelting(Ingredient ingredient, Item result, float experience, int cookingTime, String s) {

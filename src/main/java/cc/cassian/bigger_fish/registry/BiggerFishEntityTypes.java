@@ -37,10 +37,10 @@ public class BiggerFishEntityTypes {
                     .noSummon()
                     .build(
                             //? if >1.21.4
-                            //ResourceKey.create(Registries.ENTITY_TYPE, BiggerFishMod.of(
+                            ResourceKey.create(Registries.ENTITY_TYPE, BiggerFishMod.of(
                             "grappling_hook"
                             //? if >1.21.4
-                            //))
+                            ))
                     ))
     );
 

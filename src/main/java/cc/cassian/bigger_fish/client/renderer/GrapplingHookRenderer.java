@@ -2,20 +2,21 @@ package cc.cassian.bigger_fish.client.renderer;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.entity.GrapplingHookEntity;
-import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueList;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueMap;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
@@ -28,29 +29,66 @@ import org.joml.Matrix4f;
 import java.util.List;
 import java.util.Map;
 
-public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity> {
-    private static final ResourceLocation HOOK = BiggerFishMod.of("textures/entity/projectiles/grappling_hook.png");
-    private static final ResourceLocation HOOK_STICKY = BiggerFishMod.of("textures/entity/projectiles/grappling_hook_sticky.png");
-    private static final ResourceLocation BOBBER_OVERLAY = BiggerFishMod.of("textures/entity/projectiles/grappling_hook_bobber_overlay.png");
-    private static final RenderType HOOK_RENDER = RenderType.entityCutout(HOOK);
-    private static final RenderType HOOK_STICKY_RENDER = RenderType.entityCutout(HOOK_STICKY);
-    private static final RenderType BOBBER_OVERLAY_RENDER = RenderType.entityCutout(BOBBER_OVERLAY);
+import static net.minecraft.client.renderer.entity.FishingHookRenderer.getHoldingArm;
+
+public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity, GrapplingHookRenderState> {
+    private static final Identifier HOOK = BiggerFishMod.of("textures/entity/projectiles/grappling_hook.png");
+    private static final Identifier HOOK_STICKY = BiggerFishMod.of("textures/entity/projectiles/grappling_hook_sticky.png");
+    private static final Identifier BOBBER_OVERLAY = BiggerFishMod.of("textures/entity/projectiles/grappling_hook_bobber_overlay.png");
+    private static final RenderType HOOK_RENDER = RenderTypes.entityCutout(HOOK);
+    private static final RenderType HOOK_STICKY_RENDER = RenderTypes.entityCutout(HOOK_STICKY);
+    private static final RenderType BOBBER_OVERLAY_RENDER = RenderTypes.entityCutout(BOBBER_OVERLAY);
 
     public GrapplingHookRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
-    public void render(GrapplingHookEntity entity, float entityYaw, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int packedLight) {
+    @Override
+    public GrapplingHookRenderState createRenderState() {
+        return new GrapplingHookRenderState();
+    }
+
+    private Vec3 getPlayerHandPos(final Player owner, final float swing, final float partialTicks) {
+        int invert = getHoldingArm(owner) == HumanoidArm.RIGHT ? 1 : -1;
+        if (this.entityRenderDispatcher.options.getCameraType().isFirstPerson() && owner == Minecraft.getInstance().player) {
+            float fov = (float)(Integer)this.entityRenderDispatcher.options.fov().get();
+            double viewBobbingScale = (double)960.0F / (double)fov;
+            Vec3 viewVec = this.entityRenderDispatcher.camera.getNearPlane(fov).getPointOnPlane((float)invert * 0.525F, -0.1F).scale(viewBobbingScale).yRot(swing * 0.5F).xRot(-swing * 0.7F);
+            return owner.getEyePosition(partialTicks).add(viewVec);
+        } else {
+            float ownerYRot = Mth.lerp(partialTicks, owner.yBodyRotO, owner.yBodyRot) * ((float)Math.PI / 180F);
+            double sin = (double)Mth.sin((double)ownerYRot);
+            double cos = (double)Mth.cos((double)ownerYRot);
+            float playerScale = owner.getScale();
+            double rightOffset = (double)invert * 0.35 * (double)playerScale;
+            double forwardOffset = 0.8 * (double)playerScale;
+            float yOffset = owner.isCrouching() ? -0.1875F : 0.0F;
+            return owner.getEyePosition(partialTicks).add(-cos * rightOffset - sin * forwardOffset, (double)yOffset - 0.45 * (double)playerScale, -sin * rightOffset + cos * forwardOffset);
+        }
+    }
+
+    @Override
+    public void extractRenderState(GrapplingHookEntity entity, GrapplingHookRenderState state, float partialTicks) {
+        super.extractRenderState(entity, state, partialTicks);
+        state.sticky = entity.isSticky();
         Player player = entity.getPlayerOwner();
         if (player == null) return;
 
-        boolean isAttached = entity.isAttached() || entity.getHookedIn() != null;
+        float swing = player.getAttackAnim(partialTicks);
+        float swing2 = Mth.sin((double)(Mth.sqrt(swing) * (float)Math.PI));
+        Vec3 playerPos = this.getPlayerHandPos(player, swing2, partialTicks);
+        Vec3 hookPos = entity.getPosition(partialTicks).add((double)0.0F, (double)0.25F, (double)0.0F);
+        state.playerPos = playerPos;
+        state.hookPos = hookPos;
+        state.lineOriginOffset = playerPos.subtract(hookPos);
+
+        state.isAttached = entity.isAttached() || entity.getHookedIn() != null;
 
         // Line Colors
         ItemStack line = entity.getFishingLine();
         List<Integer> colors = List.of(
-            0x704b2a,
-            0x634225
+                0x704b2a,
+                0x634225
         );
 
         if (!line.isEmpty()) {
@@ -87,59 +125,31 @@ public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity> {
                 }
             }
         }
+        state.colors = colors;
+        state.shakeTime = entity.shakeTime;
+        state.playerMovement = player.getDeltaMovement();
+        state.hookMovement = entity.getDeltaMovement();
+        state.yRotO = entity.yRotO;
+        state.xRotO = entity.xRotO;
+        state.yRot = entity.getYRot();
+        state.xRot = entity.getXRot();
+        state.hasBobber = entity.hasBobber();
+        state.bobber = entity.getBobber();
+        state.partialTicks = partialTicks;
+    }
 
+    @Override
+    public void submit(GrapplingHookRenderState state, PoseStack matrixStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
         matrixStack.pushPose();
 
-        // Code from FishingHookRenderer. All of this just finds the position of the tip of the fishing rod
-        int armSide = player.getMainArm() == HumanoidArm.RIGHT ? 1 : -1;
-        ItemStack itemstack = player.getMainHandItem();
-        if (!itemstack.is(BiggerFishTags.FISHING_RODS)) {
-            armSide = -armSide;
-        }
-        float attackAnim = player.getAttackAnim(partialTicks);
-        float swingAngle = Mth.sin(Mth.sqrt(attackAnim) * (float)Math.PI);
-        float bodyRotationRad = Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot) * ((float)Math.PI / 180F);
-        double sinBodyRot = Mth.sin(bodyRotationRad);
-        double cosBodyRot = Mth.cos(bodyRotationRad);
-        double armSideOffset = (double)armSide * 0.35;
-        double rodTipX;
-        double rodTipY;
-        double rodTipZ;
-        float eyeHeightOffset;
-        // Rod tip position in first person
-        if ((this.entityRenderDispatcher.options == null || this.entityRenderDispatcher.options.getCameraType().isFirstPerson()) && player == Minecraft.getInstance().player) {
-            double cameraFovScale = (double)960.0F / (double)this.entityRenderDispatcher.options.fov().get();
-            Vec3 cameraRodTip = this.entityRenderDispatcher.camera.getNearPlane().getPointOnPlane((float)armSide * 0.525F, -0.1F);
-            cameraRodTip = cameraRodTip.scale(cameraFovScale);
-            cameraRodTip = cameraRodTip.yRot(swingAngle * 0.5F);
-            cameraRodTip = cameraRodTip.xRot(-swingAngle * 0.7F);
-            rodTipX = Mth.lerp(partialTicks, player.xo, player.getX()) + cameraRodTip.x;
-            rodTipY = Mth.lerp(partialTicks, player.yo, player.getY()) + cameraRodTip.y;
-            rodTipZ = Mth.lerp(partialTicks, player.zo, player.getZ()) + cameraRodTip.z;
-            eyeHeightOffset = player.getEyeHeight();
-        }
-        // Rod position in third person
-        else {
-            rodTipX = Mth.lerp(partialTicks, player.xo, player.getX()) - cosBodyRot * armSideOffset - sinBodyRot * 0.8;
-            rodTipY = player.yo + (double)player.getEyeHeight() + (player.getY() - player.yo) * (double)partialTicks - 0.45;
-            rodTipZ = Mth.lerp(partialTicks, player.zo, player.getZ()) - sinBodyRot * armSideOffset + cosBodyRot * 0.8;
-            eyeHeightOffset = player.isCrouching() ? -0.1875F : 0.0F;
-        }
-        double offsetY = 0.05;
-        double entityX = Mth.lerp(partialTicks, entity.xo, entity.getX());
-        double entityY = Mth.lerp(partialTicks, entity.yo, entity.getY()) + offsetY;
-        double entityZ = Mth.lerp(partialTicks, entity.zo, entity.getZ());
+        float rodOffsetX = (float) state.lineOriginOffset.x;
+        float rodOffsetY = (float) state.lineOriginOffset.y;
+        float rodOffsetZ = (float) state.lineOriginOffset.z;
+        var packedLight = state.lightCoords;
+        var partialTicks = state.partialTicks;
 
-        float rodOffsetX = (float)(rodTipX - entityX);
-        float rodOffsetY = (float)(rodTipY - entityY) + eyeHeightOffset;
-        float rodOffsetZ = (float)(rodTipZ - entityZ);
-
-        Vec3 rodTipPosition = new Vec3(rodTipX, rodTipY + eyeHeightOffset, rodTipZ);
-        Vec3 entityPosition = new Vec3(entityX, entityY, entityZ);
-
-        // Rope Rendering
-        VertexConsumer vertexconsumer1 = buffer.getBuffer(RenderType.leash());
-        PoseStack.Pose posestack$pose1 = matrixStack.last();
+        Vec3 rodTipPosition = state.hookPos;
+        Vec3 entityPosition = state.playerPos;
 
         // Offset so the leash appear at the right thickness
         float scaleFactor = (1.0F / Mth.sqrt(rodOffsetX * rodOffsetX + rodOffsetZ * rodOffsetZ)) * 0.05F / 2.0F;
@@ -148,89 +158,101 @@ public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity> {
 
         float LEASH_THICKNESS = 0.035F;
         int segments = 24;
+        boolean isAttached = state.isAttached;
+        var colors = state.colors;
+        var entityShakeTime = state.shakeTime;
 
-        double hookRelativeVelocity = getRelativeVelocity(rodTipPosition, player.getDeltaMovement(), entityPosition, entity.getDeltaMovement());
+        double hookRelativeVelocity = getRelativeVelocity(rodTipPosition, state.playerMovement, entityPosition, state.hookMovement);
         double negativeRelativeVelocity = Math.min(hookRelativeVelocity, 0);
 
-        for (int segment = 0; segment <= segments; segment++) {
-            addVertexPair(vertexconsumer1, posestack$pose1, rodOffsetX, rodOffsetY, rodOffsetZ, LEASH_THICKNESS, LEASH_THICKNESS,
-                    offsetZ, offsetX, segment, segments,false, packedLight, colors, isAttached, entity.shakeTime - partialTicks, negativeRelativeVelocity);
-        }
-        for (int segment = segments; segment >= 0; segment--) {
-            addVertexPair(vertexconsumer1, posestack$pose1, rodOffsetX, rodOffsetY, rodOffsetZ, LEASH_THICKNESS, 0.0F,
-                    offsetZ, offsetX, segment, segments,true, packedLight, colors, isAttached, entity.shakeTime - partialTicks, negativeRelativeVelocity);
-        }
-
+        // Rope Rendering
+        submitNodeCollector.submitCustomGeometry(matrixStack, RenderTypes.leash(), (pose, vertexConsumer)->{
+            for (int segment = 0; segment <= segments; segment++) {
+                addVertexPair(vertexConsumer, pose, rodOffsetX, rodOffsetY, rodOffsetZ, LEASH_THICKNESS, LEASH_THICKNESS,
+                        offsetZ, offsetX, segment, segments,false, packedLight, colors, isAttached, entityShakeTime - partialTicks, negativeRelativeVelocity);
+            }
+            for (int segment = segments; segment >= 0; segment--) {
+                addVertexPair(vertexConsumer, pose, rodOffsetX, rodOffsetY, rodOffsetZ, LEASH_THICKNESS, 0.0F,
+                        offsetZ, offsetX, segment, segments,true, packedLight, colors, isAttached, entityShakeTime - partialTicks, negativeRelativeVelocity);
+            }
+        });
         matrixStack.popPose();
+
 
         // Hook rendering
         matrixStack.pushPose();
         matrixStack.scale(0.05625F, 0.05625F, 0.05625F);
         matrixStack.translate(0.0, 1, 0.0);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot())));
+        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, state.yRotO, state.yRot) - 90.0F));
+        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, state.xRotO, state.xRot)));
         matrixStack.mulPose(Axis.XP.rotationDegrees(45.0F));
 
-        VertexConsumer vertexConsumer = entity.isSticky() ? buffer.getBuffer(HOOK_STICKY_RENDER) : buffer.getBuffer(HOOK_RENDER);
+        RenderType renderType = state.sticky ? HOOK_STICKY_RENDER : HOOK_RENDER;
 
-        PoseStack.Pose pose = matrixStack.last();
-        Matrix4f matrix4f = pose.pose();
-        Matrix3f matrix3f = pose.normal();
-
-        // Texture
-        float size = 32;
+        int hookOffset = 8;
         int width = 8;
+        float size = 32;
         float offset = 8;
         float height = 7;
-        int hookOffset = 8;
-
         // Front plane
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, -3, -3, offset/size, 0, -1, 0, 0, packedLight);
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, -3, 3, (offset+height)/size, 0, -1, 0, 0, packedLight);
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, 3, 3, (offset+height)/size, height/size, -1, 0, 0, packedLight);
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, 3, -3, offset/size, height/size, -1, 0, 0, packedLight);
+        submitNodeCollector.submitCustomGeometry(matrixStack, renderType, (pose, consumer)->{
+            Matrix4f matrix4f = pose.pose();
+            Matrix3f matrix3f = pose.normal();
 
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, 3, -3, offset/size, 0, 1, 0, 0, packedLight);
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, 3, 3, (offset+height)/size, 0, 1, 0, 0, packedLight);
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, -3, 3, (offset+height)/size, height/size, 1, 0, 0, packedLight);
-        this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-2, -3, -3, offset/size, height/size, 1, 0, 0, packedLight);
+            // Texture
 
-        // Side cross
-        for(int r = 0; r < 4; ++r) {
-            matrixStack.mulPose(Axis.XP.rotationDegrees(90.0F));
-            this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-width, -3, 0, 0.0F, 0.0F, 0, 1, 0, packedLight);
-            this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset, -3, 0, width/size, 0.0F, 0, 1, 0, packedLight);
-            this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset, 3, 0, width/size, height/size, 0, 1, 0, packedLight);
-            this.vertex(matrix4f, matrix3f, vertexConsumer, hookOffset-width, 3, 0, 0.0F, height/size, 0, 1, 0, packedLight);
-        }
+
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, -3, -3, offset/size, 0, -1, 0, 0, packedLight);
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, -3, 3, (offset+height)/size, 0, -1, 0, 0, packedLight);
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, 3, 3, (offset+height)/size, height/size, -1, 0, 0, packedLight);
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, 3, -3, offset/size, height/size, -1, 0, 0, packedLight);
+
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, 3, -3, offset/size, 0, 1, 0, 0, packedLight);
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, 3, 3, (offset+height)/size, 0, 1, 0, 0, packedLight);
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, -3, 3, (offset+height)/size, height/size, 1, 0, 0, packedLight);
+            this.vertex(matrix4f, matrix3f, consumer, hookOffset-2, -3, -3, offset/size, height/size, 1, 0, 0, packedLight);
+
+            // Side cross
+            for(int r = 0; r < 4; ++r) {
+                matrixStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset-width, -3, 0, 0.0F, 0.0F, 0, 1, 0, packedLight);
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset, -3, 0, width/size, 0.0F, 0, 1, 0, packedLight);
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset, 3, 0, width/size, height/size, 0, 1, 0, packedLight);
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset-width, 3, 0, 0.0F, height/size, 0, 1, 0, packedLight);
+            }
+        });
+
 
         // Bobber overlay
-        VertexConsumer bobberOverlayVertex = buffer.getBuffer(BOBBER_OVERLAY_RENDER);
-        float bobberR = 1.0F;
-        float bobberG = 1.0F;
-        float bobberB = 1.0F;
-        if (entity.hasBobber()) {
-            ItemStack bobberStack = entity.getBobber();
-            if (!bobberStack.isEmpty() && bobberStack.has(DataComponents.DYED_COLOR)) {
-                int colorInt = bobberStack.get(DataComponents.DYED_COLOR).rgb();
-                bobberR = (float)(colorInt >> 16 & 255) / 255.0F;
-                bobberG = (float)(colorInt >> 8 & 255) / 255.0F;
-                bobberB = (float)(colorInt & 255) / 255.0F;
+        submitNodeCollector.submitCustomGeometry(matrixStack, BOBBER_OVERLAY_RENDER, (pose, consumer)->{
+            Matrix4f matrix4f = pose.pose();
+            Matrix3f matrix3f = pose.normal();
+            float bobberR = 1.0F;
+            float bobberG = 1.0F;
+            float bobberB = 1.0F;
+            if (state.hasBobber) {
+                ItemStack bobberStack = state.bobber;
+                if (!bobberStack.isEmpty() && bobberStack.has(DataComponents.DYED_COLOR)) {
+                    int colorInt = bobberStack.get(DataComponents.DYED_COLOR).rgb();
+                    bobberR = (float)(colorInt >> 16 & 255) / 255.0F;
+                    bobberG = (float)(colorInt >> 8 & 255) / 255.0F;
+                    bobberB = (float)(colorInt & 255) / 255.0F;
+                }
             }
-        }
-        for(int r = 0; r < 4; ++r) {
-            matrixStack.mulPose(Axis.XP.rotationDegrees(90.0F));
-            this.vertex(matrix4f, matrix3f, bobberOverlayVertex, hookOffset-width, -3, 0, 0.0F, 0.0F, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
-            this.vertex(matrix4f, matrix3f, bobberOverlayVertex, hookOffset, -3, 0, width/size, 0.0F, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
-            this.vertex(matrix4f, matrix3f, bobberOverlayVertex, hookOffset, 3, 0, width/size, height/size, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
-            this.vertex(matrix4f, matrix3f, bobberOverlayVertex, hookOffset-width, 3, 0, 0.0F, height/size, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
-        }
+            for(int r = 0; r < 4; ++r) {
+                matrixStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset-width, -3, 0, 0.0F, 0.0F, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset, -3, 0, width/size, 0.0F, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset, 3, 0, width/size, height/size, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
+                this.vertex(matrix4f, matrix3f, consumer, hookOffset-width, 3, 0, 0.0F, height/size, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
+            }
+        });
+
 
         matrixStack.popPose();
     }
 
-    
-    public ResourceLocation getTextureLocation(GrapplingHookEntity entity) {
+    public Identifier getTextureLocation(GrapplingHookEntity entity) {
         return HOOK;
     }
 

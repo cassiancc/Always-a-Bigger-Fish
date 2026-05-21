@@ -6,7 +6,8 @@
   "client": [
     "BundleMouseActionsMixin",
     "BundleSelectedItemSpecialRendererMixin",
-    "ClientBundleTooltipAccessor"
+    "ClientBundleTooltipAccessor",
+    "FishingRodCastBoolMixin"
   ],
   "mixins": [
     "BundleItemAccessor",

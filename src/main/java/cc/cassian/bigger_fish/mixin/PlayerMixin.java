@@ -95,10 +95,10 @@ public class PlayerMixin implements PlayerWithGrapplingHook {
 
                 player.setDeltaMovement(player.getDeltaMovement().add(pullVector));
 
-                player.hasImpulse = true;
+//                player.hasImpulse = true;
             }
 
-            if (!player.level().isClientSide) {
+            if (!player.level().isClientSide()) {
                 player.resetFallDistance();
                 if (!player.onGround()) player.hurtMarked = false;
             }

@@ -27,13 +27,11 @@ public final class BiggerFishFabricClient implements ClientModInitializer {
 //        });
 
         EntityRenderers.register(BiggerFishEntityTypes.LEECH, ThrownItemRenderer::new);
+        EntityRenderers.register(BiggerFishEntityTypes.GRAPPLING_HOOK, GrapplingHookRenderer::new);
         BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_BARREL_BLOCK_ENTITY, FishContainerRenderer::new);
         BlockEntityRenderers.register(BiggerFishBlockEntityTypes.FISH_TRAP_BLOCK_ENTITY, FishContainerRenderer::new);
-        ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipFlag, list) -> {
-            BiggerFishModClient.addBaitUsageTooltip(stack, list);
-        });
+        ItemTooltipCallback.EVENT.register(BiggerFishModClient::addTooltips);
         ClientTooltipComponentCallback.EVENT.register(BiggerFishModClient::getClientBaitedRodTooltip);
-        ItemComponentTooltipProviderRegistry.addFirst(BiggerFishComponentTypes.SIZE.get());
     }
 }
 //?}

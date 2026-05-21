@@ -51,7 +51,6 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 				.add(COPPER_HOOK);
 		tagBuilder(DURABILITY_ENCHANTABLE)
 				.add(DIAMOND_HOOK, NETHERITE_HOOK, COPPER_ROD, GRAPPLING_HOOK, STICKY_GRAPPLING_HOOK);
-		tagBuilder(DYEABLE).add(GRAPPLING_HOOK, STICKY_GRAPPLING_HOOK);
 		tagBuilder(FISHING_ENCHANTABLE)
 				.add(COPPER_ROD);
 		tagBuilder(CAT_FOOD)

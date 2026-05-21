@@ -8,6 +8,7 @@ import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.components.FishSize;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;

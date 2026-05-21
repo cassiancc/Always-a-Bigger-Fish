@@ -7,10 +7,11 @@ import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
@@ -34,7 +35,7 @@ public record HookEffects(String effect) implements TooltipProvider {
     }
 
 	@Override
-	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter components) {
 		if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
 			if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown()) {
 				String key = "fishing.bigger_fish." + effect;

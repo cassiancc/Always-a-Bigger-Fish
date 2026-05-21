@@ -54,7 +54,6 @@ public class GrapplingHookEntity extends Projectile {
 
     private GrapplingHookEntity(EntityType<? extends GrapplingHookEntity> entityType, Level level, ItemStack bait, boolean isSticky) {
         super(entityType, level);
-        this.noCulling = true;
 
         this.getEntityData().set(DATA_HOOK, bait);
         this.getEntityData().set(DATA_STICKY, isSticky);
@@ -64,7 +63,7 @@ public class GrapplingHookEntity extends Projectile {
     public GrapplingHookEntity(Player player, Level level, ItemStack bait, boolean isSticky) {
         this(BiggerFishEntityTypes.GRAPPLING_HOOK, level, bait, isSticky);
         this.setOwner(player);
-        this.moveTo(player.getX(), player.getEyeY(),  player.getZ(), 0.0F, 0.0F);
+        this.moveOrInterpolateTo(new Vec3(player.getX(), player.getEyeY(),  player.getZ()), 0.0F, 0.0F);
 
         float playerXRot = player.getXRot();
         float playerYRot = player.getYRot();
@@ -157,13 +156,13 @@ public class GrapplingHookEntity extends Projectile {
                     }
 
                     this.onHit(blockEdgeHitResult);
-                    this.hasImpulse = true;
+//                    this.hasImpulse = true;
                 } else {
                     // Check for hook collision with block
                     HitResult blockHitResult = this.level().clip(new ClipContext(currentPosition, movedPosition, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
                     if (blockHitResult.getType() == HitResult.Type.BLOCK) {
                         this.onHit(blockHitResult);
-                        this.hasImpulse = true;
+//                        this.hasImpulse = true;
                     }
                 }
 
@@ -232,14 +231,14 @@ public class GrapplingHookEntity extends Projectile {
                     }
                 }
 
-                this.checkInsideBlocks();
+//                this.checkInsideBlocks();
             }
         }
 
     }
 
     @Override
-    public void lerpTo(double x, double y, double z, float yRot, float xRot, int steps) {
+    protected void lerpPositionAndRotationStep(int stepsToTarget, double targetX, double targetY, double targetZ, double targetYRot, double targetXRot) {
 
     }
 
@@ -261,7 +260,7 @@ public class GrapplingHookEntity extends Projectile {
 
     private void breakRope(Player player) {
         // Play line break sound
-        this.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LEASH_KNOT_BREAK, SoundSource.PLAYERS, 0.25F, 1.0F);
+        this.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LEAD_BREAK, SoundSource.PLAYERS, 0.25F, 1.0F);
         this.discard();
     }
 
@@ -492,7 +491,7 @@ public class GrapplingHookEntity extends Projectile {
     }
 
     @Override
-    public boolean canChangeDimensions(Level oldLevel, Level newLevel) {
+    public boolean canTeleport(Level from, Level to) {
         return false;
     }
 

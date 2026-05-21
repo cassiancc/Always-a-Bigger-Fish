@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "minecraft:iron_ingot"
-    }
+    "C": "minecraft:iron_ingot"
   },
   "pattern": [
     " C",
     "CC"
   ],
   "result": {
-    "count": 1,
     "id": "bigger_fish:grappling_hook"
   }
 }

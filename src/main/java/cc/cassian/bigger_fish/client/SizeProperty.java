@@ -1,7 +1,7 @@
 package cc.cassian.bigger_fish.client;
 
+import cc.cassian.bigger_fish.components.FishSize;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
-import cc.cassian.bigger_fish.registry.FishSize;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;

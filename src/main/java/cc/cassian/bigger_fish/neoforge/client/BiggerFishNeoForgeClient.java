@@ -4,6 +4,7 @@ package cc.cassian.bigger_fish.neoforge.client;
 /*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.client.renderer.GrapplingHookRenderer;
+import cc.cassian.bigger_fish.client.SizeProperty;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
 import cc.cassian.bigger_fish.tooltip.FishContainerTooltip;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
