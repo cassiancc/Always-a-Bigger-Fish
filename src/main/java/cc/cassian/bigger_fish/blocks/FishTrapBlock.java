@@ -31,6 +31,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -96,7 +97,7 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 			LootTable lootTable = ModHelpers.fish(level.getServer().reloadableRegistries(), ItemStack.EMPTY, false, true);
 			if (lootTable == null) return;
 			LootParams params = new LootParams.Builder(level)
-					.withParameter(LootContextParams.ORIGIN, pos.getCenter())
+					.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
 					.withParameter(LootContextParams.TOOL, this.asItem().getDefaultInstance())
 					.withLuck(0)
 					.create(LootContextParamSets.FISHING);
@@ -109,7 +110,7 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 	private void recountWaterBlocks(Level level, BlockPos pos) {
 		AtomicInteger blocks = new AtomicInteger();
 		AtomicInteger waterBlocks = new AtomicInteger();
-		Stream<BlockState> blockStates = level.getBlockStates(new AABB(pos.above().east().north().getCenter(), pos.below().west().south().getCenter()));
+		Stream<BlockState> blockStates = level.getBlockStates(new AABB(Vec3.atCenterOf(pos.above().east().north()), Vec3.atCenterOf(pos.below().west().south())));
 		blockStates.forEach(blockState -> {
 			blocks.getAndIncrement();
 			if (blockState.getFluidState().is(Fluids.WATER)) {

@@ -186,7 +186,7 @@ dependencies {
     runtimeOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("deps.rrv")}")
     compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${property("deps.rei")}")
     compileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-neoforge:${property("deps.rei")}")
-    compileOnly("mezz.jei:jei-1.21.11-neoforge:${property("deps.jei")}")
+    compileOnly("mezz.jei:jei-26.2-fabric:${property("deps.jei")}")
 
     compileOnly("fuzs.iteminteractions:iteminteractions-neoforge:${property("deps.iteminteractions")}")
     // Development QOL

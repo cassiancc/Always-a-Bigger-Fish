@@ -401,7 +401,7 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 
 	public class BiggerFishTagBuilder {
 		//? if >1.21.2 {
-		private TagAppender<Item, Item> valueLookupBuilder;
+		private TagAppender<Item> valueLookupBuilder;
 		//?} else {
 		/*private FabricTagProvider<Item>.FabricTagBuilder valueLookupBuilder;
 		*///?}
@@ -410,7 +410,7 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 
 		public BiggerFishTagBuilder(TagKey<Item> tag) {
 			//? if >1.21.2 {
-			this.valueLookupBuilder = valueLookupBuilder(tag);
+			this.valueLookupBuilder = builder(tag);
 			//?} else {
 			/*this.valueLookupBuilder = getOrCreateTagBuilder(tag);
 			*///?}
@@ -419,12 +419,12 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		}
 
 		public BiggerFishTagBuilder add(Item item) {
-			valueLookupBuilder = valueLookupBuilder.add(item);
+			valueLookupBuilder = valueLookupBuilder.add(item.builtInRegistryHolder().key());
 			return this;
 		}
 
 		public BiggerFishTagBuilder add(Supplier<Item> item) {
-			valueLookupBuilder = valueLookupBuilder.add(item.get());
+			valueLookupBuilder = valueLookupBuilder.add(item.get().builtInRegistryHolder().key());
 			return this;
 		}
 
@@ -434,7 +434,9 @@ public class BiggerFishItemTagProvider extends FabricTagsProvider.ItemTagsProvid
 		}
 
 		public BiggerFishTagBuilder add(Item... items) {
-			valueLookupBuilder = valueLookupBuilder.add(items);
+			for (Item item : items) {
+				add(item);
+			}
 			return this;
 		}
 

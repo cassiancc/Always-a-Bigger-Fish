@@ -8,6 +8,7 @@ import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -39,7 +40,7 @@ public record HookEffects(String effect) implements TooltipProvider {
 		if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
 			if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown()) {
 				String key = "fishing.bigger_fish." + effect;
-				if (I18n.exists(key)) {
+				if (Language.getInstance().has(key)) {
 					consumer.accept(Component.translatable(key));
 				}
 			}
