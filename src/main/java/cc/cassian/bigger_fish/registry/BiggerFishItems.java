@@ -135,29 +135,29 @@ public class BiggerFishItems {
     public static final Item COPPER_ROD = CommonRegistry.registerItem("copper_rod", ()->new BaitedRodItem(getCopperRodProperties()));
 
     public static final Item COPPER_HOOK = createItem("copper_hook", Item::new, new Item.Properties()
-            .repairable(COPPER_TOOL_MATERIALS)
+            .repairable(ItemTags.COPPER_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.COPPER)
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/tier_one_fishing"))
             .durability(64));
 
     public static final Item DIAMOND_HOOK = createItem("diamond_hook", Item::new, new Item.Properties()
-            .repairable(DIAMOND_TOOL_MATERIALS)
+            .repairable(ItemTags.DIAMOND_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.TREASURE)
             .component(BiggerFishComponentTypes.FISHING_LOOT.get(), FishingLoot.parse("bigger_fish:gameplay/treasure_fishing"))
             .durability(128));
 
     public static final Item NETHERITE_HOOK = createItem("netherite_hook", Item::new, new Item.Properties()
-            .repairable(NETHERITE_TOOL_MATERIALS)
+            .repairable(ItemTags.NETHERITE_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.NETHERITE)
             .durability(512));
 
     public static final Item GRAPPLING_HOOK = createItem("grappling_hook", Item::new, new Item.Properties()
-            .repairable(GRAPPLING_HOOK_MATERIALS)
+            .repairable(ItemTags.IRON_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.GRAPPLING)
             .durability(128));
 
     public static final Item STICKY_GRAPPLING_HOOK = createItem("sticky_grappling_hook", Item::new, new Item.Properties()
-            .repairable(GRAPPLING_HOOK_MATERIALS)
+            .repairable(ItemTags.IRON_TOOL_MATERIALS)
             .component(BiggerFishComponentTypes.HOOK_EFFECTS.get(), HookEffects.STICKY_GRAPPLING)
             .durability(128));
 
