@@ -20,7 +20,7 @@ public class FishSizingMixin {
             var hook =  (FishingHook) (Object) this;
             ItemStack fishStack = stackLocalRef.get();
             if (fishStack.is(ItemTags.FISHES)) {
-                stackLocalRef.set(ModHelpers.setRandomFishSize(fishStack, hook));
+                stackLocalRef.set(ModHelpers.setRandomFishSize(fishStack, hook.getRandom()));
             }
         }
     }

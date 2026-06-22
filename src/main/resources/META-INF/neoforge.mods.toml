@@ -8,7 +8,7 @@ displayName = "There's Always a Bigger Fish"
 version = "${version}"
 displayURL = "https://modrinth.com/mod/always-a-bigger-fish"
 logoFile = "assets/bigger_fish/icon.png"
-authors = "cassiancc"
+authors = "cassiancc, malice-and-meat, Kobber"
 description = '''A rework of fishing mechanics, adding new biome-specific fish to catch, a new fishing rod that can have bait attached, and more'''
 rrv_client = "cc.cassian.bigger_fish.compat.rrv.RrvIntegration"
 

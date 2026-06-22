@@ -101,7 +101,7 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 					.withLuck(0)
 					.create(LootContextParamSets.FISHING);
 			ObjectArrayList<ItemStack> randomItems = lootTable.getRandomItems(params);
-			randomItems.forEach(fishTrapBlockEntity::insert);
+			randomItems.forEach(itemStack -> fishTrapBlockEntity.insert(ModHelpers.setRandomFishSize(itemStack, level.getRandom())));
 		}
 
 	}
