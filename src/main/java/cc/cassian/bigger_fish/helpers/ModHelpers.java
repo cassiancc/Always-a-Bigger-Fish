@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.ReloadableServerRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
@@ -32,8 +33,7 @@ import java.util.List;
 
 public class ModHelpers {
 
-    public static FishSize getRandomFishSize(Entity hook) {
-        var random = hook.getRandom();
+    public static FishSize getRandomFishSize(RandomSource random) {
         var size = random.nextIntBetweenInclusive(1, 15)*Math.log(random.nextIntBetweenInclusive(1, 160));
         if (random.nextIntBetweenInclusive(0, 100) > 60) {
             size = size*.5;
@@ -41,8 +41,10 @@ public class ModHelpers {
         return new FishSize((float) (Math.round(size * 10d) / 10d));
     }
 
-    public static ItemStack setRandomFishSize(ItemStack itemStack, Entity hook) {
-        itemStack.set(BiggerFishComponentTypes.SIZE.get(), ModHelpers.getRandomFishSize(hook));
+    public static ItemStack setRandomFishSize(ItemStack itemStack, RandomSource hook) {
+        if (itemStack.is(BiggerFishTags.FISH) && BiggerFishMod.CONFIG.gameplay.fishSizes.value()) {
+			itemStack.set(BiggerFishComponentTypes.SIZE.get(), ModHelpers.getRandomFishSize(hook));
+        }
         return itemStack;
     }
 

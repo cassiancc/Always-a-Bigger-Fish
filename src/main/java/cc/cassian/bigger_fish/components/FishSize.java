@@ -16,7 +16,7 @@ import net.minecraft.world.item.component.TooltipProvider;
 import java.util.function.Consumer;
 
 public record FishSize(float size) implements TooltipProvider {
-	public static final Codec<FishSize> CODEC = ExtraCodecs.POSITIVE_FLOAT.xmap(FishSize::new, FishSize::size);
+	public static final Codec<FishSize> CODEC = Codec.FLOAT.xmap(FishSize::new, FishSize::size);
 	public static final StreamCodec<ByteBuf, FishSize> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.FLOAT, FishSize::size, FishSize::new);
 	public static final FishSize ZERO = new FishSize(0);
 
