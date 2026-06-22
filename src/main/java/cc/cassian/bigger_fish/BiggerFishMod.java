@@ -18,8 +18,6 @@ public final class BiggerFishMod {
     public static final String MOD_ID = "bigger_fish";
     public static final Logger LOGGER = LogManager.getLogger("Always a Bigger Fish");;
     public static final ModConfig CONFIG = ModConfig.createToml(Platform.INSTANCE.getConfigFolder(), "", MOD_ID, ModConfig.class);
-    //FIXME move to config as soon as i figure out how to serialize this
-
 
     public static void init() {
         // Write common init code here.
