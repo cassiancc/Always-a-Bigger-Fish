@@ -18,8 +18,6 @@ import java.util.Map;
 @DisplayName("There's Always a Bigger Fish")
 public class ModConfig extends ReflectiveConfig {
 
-
-
     public final GameplayOptions gameplay = new GameplayOptions();
     public static class GameplayOptions extends Section {
         @Comment("When using a vanilla Fishing Rod, replace vanilla's fishing loot table with biome specific fishing.")
@@ -180,5 +178,10 @@ public class ModConfig extends ReflectiveConfig {
         public final TrackedValue<Boolean> baitUsageTooltip = this.value(true);
         @Comment("Show bait usage always. When disabled, shift is required to show bait usage.")
         public final TrackedValue<Boolean> showBaitUsageAlways = this.value(false);
+    }
+
+    public final ClientOptions client = new ClientOptions();
+    public static class ClientOptions extends Section {
+        public final TrackedValue<Boolean> warnedAboutModefite = this.value(false);
     }
 }

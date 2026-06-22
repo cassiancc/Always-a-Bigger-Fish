@@ -4,6 +4,7 @@ package cc.cassian.bigger_fish.neoforge.client;
 /*import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.client.renderer.GrapplingHookRenderer;
+import cc.cassian.bigger_fish.client.screen.WelcomeMessageScreen;
 import cc.cassian.bigger_fish.registry.BiggerFishEntityTypes;
 import cc.cassian.bigger_fish.tooltip.FishContainerTooltip;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -12,10 +13,16 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 @EventBusSubscriber(modid = BiggerFishMod.MOD_ID, value = Dist.CLIENT)
 public final class BiggerFishNeoForgeClient {
+
+    @SubscribeEvent
+    public static void registerEntityRenderers(ScreenEvent.Init.Pre event) {
+        WelcomeMessageScreen.openWarningScreen(event.getScreen());
+    }
 
     @SubscribeEvent
     public static void registerTooltip(ItemTooltipEvent event) {

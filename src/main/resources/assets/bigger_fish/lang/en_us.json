@@ -1,4 +1,8 @@
 {
+ "gui.bigger_fish.modefite.message": "Before proceeding, please note that Always a Bigger Fish requires the Modefite mod for item models to render correctly on 1.21.1.",
+ "gui.bigger_fish.modefite.suggestions": "Modefite can be found on Modrinth and CurseForge. Click here to download it for this version!",
+ "gui.bigger_fish.modefite.title": "Please install Modefite!",
+ "gui.bigger_fish.modefite.turn_off": "Disable Warning",
  "advancements.bigger_fish.copper_rod.description": "Upgrade your fishing rod - just add bait!",
  "advancements.bigger_fish.copper_rod.title": "Fishing But Better",
  "advancements.bigger_fish.diamond_hook.description": "Craft yourself a Diamond Hook, a treasure bait.",
