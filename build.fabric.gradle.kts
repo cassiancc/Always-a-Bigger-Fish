@@ -186,9 +186,9 @@ dependencies {
     runtimeOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("deps.rrv")}")
     compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${property("deps.rei")}")
     compileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-neoforge:${property("deps.rei")}")
-    compileOnly("mezz.jei:jei-1.21.11-neoforge:${property("deps.jei")}")
+    compileOnly("mezz.jei:jei-26.1.2-fabric:${property("deps.jei")}")
 
-    compileOnly("fuzs.iteminteractions:iteminteractions-neoforge:${property("deps.iteminteractions")}")
+    implementation("fuzs.iteminteractions:iteminteractions-fabric:${property("deps.iteminteractions")}")
     // Development QOL
 //    runtimeOnly("cc.cassian.item-descriptions:item-descriptions-fabric:${property("deps.item_descriptions")}") {
 //        isTransitive = false
@@ -251,7 +251,7 @@ publishMods {
     additionalFiles.from(tasks.named<org.gradle.jvm.tasks.Jar>("sourcesJar").map { it.archiveFile.get() })
 
     // one of BETA, ALPHA, STABLE
-    type = STABLE
+    type = BETA
     displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version} Fabric"
     version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
     changelog = provider { rootProject.file("CHANGELOG-LATEST.md").readText() }
