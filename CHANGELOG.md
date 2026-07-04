@@ -1,3 +1,8 @@
+## [1.2.1]
+
+### Fixed
+- Outdated Easy Shulker Boxes compatibility no longer crashes the game.
+
 ## [1.2.0]
 
 ### Added
