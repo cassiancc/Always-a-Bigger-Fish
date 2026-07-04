@@ -50,16 +50,14 @@ public final class BiggerFishNeoForge {
     @SubscribeEvent
     public static void register(RegisterEvent event) {
         if (event.getRegistryKey().equals(Registries.ITEM)) {
-            BiggerFishItems.touch();
-        } else if (event.getRegistryKey().equals(Registries.DATA_COMPONENT_TYPE)) {
-            BiggerFishComponentTypes.touch();
-        } else if (event.getRegistryKey().equals(Registries.ENTITY_TYPE)) {
-            BiggerFishEntityTypes.touch();
-        } else if (event.getRegistryKey().equals(Registries.SOUND_EVENT)) {
-            BiggerFishSoundEvents.touch();
-        } else if (event.getRegistryKey().equals(Registries.MOB_EFFECT)) {
-            BiggerFishMobEffects.touch();
-        }
+			BiggerFishComponentTypes.touch();
+			BiggerFishBlocks.touch();
+			BiggerFishBlockEntityTypes.touch();
+			BiggerFishItems.touch();
+			BiggerFishEntityTypes.touch();
+			BiggerFishSoundEvents.touch();
+			BiggerFishMobEffects.touch();
+		}
     }
 }
 *///?}

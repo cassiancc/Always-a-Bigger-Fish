@@ -233,5 +233,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("modefite")
         optional("emi")
+        client = true
+        server = true
     }
 }

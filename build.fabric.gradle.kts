@@ -312,5 +312,7 @@ publishMods {
         requires("fabric-api")
         requires("modefite")
         optional("emi")
+        client = true
+        server = true
     }
 }
