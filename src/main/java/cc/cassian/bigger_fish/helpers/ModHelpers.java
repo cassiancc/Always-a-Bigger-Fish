@@ -123,7 +123,7 @@ public class ModHelpers {
         }
     }
 
-    public static void hurtOrRemoveHook(BundleContents.Mutable mutable, Player player, Level level) {
+    public static void hurtOrRemoveHook(BundleContents.Mutable mutable, @Nullable Player player, Level level) {
         ItemStack itemStack = mutable.removeOne();
         if (itemStack != null) {
             if (itemStack.getCount() > 1) {
