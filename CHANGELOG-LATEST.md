@@ -1,2 +1,1 @@
-### Fixed
-- Crash placing fish barrels on NeoForge.
+- Fixed incorrectly formatted loot tables.
