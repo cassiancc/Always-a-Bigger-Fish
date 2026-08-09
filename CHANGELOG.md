@@ -1,3 +1,8 @@
+## [1.2.2]
+
+### Fixed
+- Crash placing fish barrels on NeoForge.
+
 ## [1.2.1]
 
 ### Fixed
