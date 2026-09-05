@@ -23,7 +23,7 @@ public class RemoveBaitMixin {
             var hook = (FishingHook) (Object) this;
             BundleContents bundleContents = fishingRod.get(DataComponents.BUNDLE_CONTENTS);
             if (bundleContents != null && !bundleContents.isEmpty()) {
-                BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+                BundleContents.Mutable mutable = bundleContents.asMutable();
                 ModHelpers.hurtOrRemoveHook(mutable, hook.getPlayerOwner(), hook.level());
                 fishingRod.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
             }

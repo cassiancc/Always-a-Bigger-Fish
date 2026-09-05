@@ -3,7 +3,7 @@
   "criteria": {
     "copper_rod": {
       "conditions": {
-        "recipe_id": "bigger_fish:copper_rod"
+        "recipes": "bigger_fish:copper_rod"
       },
       "trigger": "minecraft:recipe_crafted"
     }

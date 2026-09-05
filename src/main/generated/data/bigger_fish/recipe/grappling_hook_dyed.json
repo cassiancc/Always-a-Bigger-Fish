@@ -1,10 +1,9 @@
 {
   "type": "minecraft:crafting_dye",
-  "category": "misc",
   "dye": "#minecraft:dyes",
   "group": "grappling_hook_dye",
   "result": {
-    "id": "bigger_fish:sticky_grappling_hook"
+    "id": "bigger_fish:grappling_hook"
   },
-  "target": "bigger_fish:sticky_grappling_hook"
+  "target": "bigger_fish:grappling_hook"
 }

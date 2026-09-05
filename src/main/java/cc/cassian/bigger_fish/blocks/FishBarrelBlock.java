@@ -18,7 +18,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
 
 public class FishBarrelBlock extends FishContainerBlock {
-	public static final MapCodec<FishBarrelBlock> CODEC = simpleCodec(FishBarrelBlock::new);
 	private static final VoxelShape SHAPE_INSIDE = Block.column(12.0, 4.0, 16.0);
 	protected static final VoxelShape SHAPE = Util.make(
 			() -> Shapes.join(
@@ -27,11 +26,6 @@ public class FishBarrelBlock extends FishContainerBlock {
 					BooleanOp.ONLY_FIRST
 			)
 	);
-
-	@Override
-	public MapCodec<FishBarrelBlock> codec() {
-		return CODEC;
-	}
 
 	public FishBarrelBlock(final Properties properties) {
 		super(properties, (stack -> stack.is(BiggerFishTags.ALLOWED_IN_FISH_BARREL)));

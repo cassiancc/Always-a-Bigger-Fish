@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:fish_barrel"
+        "recipes": "bigger_fish:fish_barrel"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

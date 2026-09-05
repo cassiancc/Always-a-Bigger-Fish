@@ -42,7 +42,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class FishTrapBlock extends FishContainerBlock implements SimpleWaterloggedBlock {
-	public static final MapCodec<FishTrapBlock> CODEC = simpleCodec(FishTrapBlock::new);
 	private static final VoxelShape SHAPE_INSIDE = Block.column(12.0, 4.0, 16.0);
 	protected static final VoxelShape SHAPE = Util.make(
 			() -> Shapes.join(
@@ -54,11 +53,6 @@ public class FishTrapBlock extends FishContainerBlock implements SimpleWaterlogg
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private int nearbyBlocks = 0;
 	private int nearbyWaterBlocks = 0;
-
-	@Override
-	public MapCodec<FishTrapBlock> codec() {
-		return CODEC;
-	}
 
 	public FishTrapBlock(final Properties properties) {
 		super(properties, (_)->false);

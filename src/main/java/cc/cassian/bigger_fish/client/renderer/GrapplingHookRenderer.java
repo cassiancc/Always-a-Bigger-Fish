@@ -74,7 +74,7 @@ public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity, G
         Player player = entity.getPlayerOwner();
         if (player == null) return;
 
-        float swing = player.getAttackAnim(partialTicks);
+        float swing = player.getAttackStrengthScale(partialTicks);
         float swing2 = Mth.sin((double)(Mth.sqrt(swing) * (float)Math.PI));
         Vec3 playerPos = this.getPlayerHandPos(player, swing2, partialTicks);
         Vec3 hookPos = entity.getPosition(partialTicks).add((double)0.0F, (double)0.25F, (double)0.0F);
@@ -183,9 +183,9 @@ public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity, G
         matrixStack.pushPose();
         matrixStack.scale(0.05625F, 0.05625F, 0.05625F);
         matrixStack.translate(0.0, 1, 0.0);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, state.yRotO, state.yRot) - 90.0F));
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, state.xRotO, state.xRot)));
-        matrixStack.mulPose(Axis.XP.rotationDegrees(45.0F));
+        matrixStack.rotateDegrees(Axis.YP,Mth.lerp(partialTicks, state.yRotO, state.yRot) - 90.0F);
+        matrixStack.rotateDegrees(Axis.ZP,Mth.lerp(partialTicks, state.xRotO, state.xRot));
+        matrixStack.rotateDegrees(Axis.XP,45.0F);
 
         RenderType renderType = state.sticky ? HOOK_STICKY_RENDER : HOOK_RENDER;
 
@@ -214,7 +214,7 @@ public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity, G
 
             // Side cross
             for(int r = 0; r < 4; ++r) {
-                matrixStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                matrixStack.rotateDegrees(Axis.XP,90.0F);
                 this.vertex(matrix4f, matrix3f, consumer, hookOffset-width, -3, 0, 0.0F, 0.0F, 0, 1, 0, packedLight);
                 this.vertex(matrix4f, matrix3f, consumer, hookOffset, -3, 0, width/size, 0.0F, 0, 1, 0, packedLight);
                 this.vertex(matrix4f, matrix3f, consumer, hookOffset, 3, 0, width/size, height/size, 0, 1, 0, packedLight);
@@ -240,7 +240,7 @@ public class GrapplingHookRenderer extends EntityRenderer<GrapplingHookEntity, G
                 }
             }
             for(int r = 0; r < 4; ++r) {
-                matrixStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                matrixStack.rotateDegrees(Axis.XP,90.0F);
                 this.vertex(matrix4f, matrix3f, consumer, hookOffset-width, -3, 0, 0.0F, 0.0F, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
                 this.vertex(matrix4f, matrix3f, consumer, hookOffset, -3, 0, width/size, 0.0F, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);
                 this.vertex(matrix4f, matrix3f, consumer, hookOffset, 3, 0, width/size, height/size, 0, 1, 0, packedLight, bobberR, bobberG, bobberB);

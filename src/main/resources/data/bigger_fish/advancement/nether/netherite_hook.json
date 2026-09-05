@@ -3,7 +3,7 @@
   "criteria": {
     "netherite_hook": {
       "conditions": {
-        "recipe_id": "bigger_fish:netherite_hook"
+        "recipes": "bigger_fish:netherite_hook"
       },
       "trigger": "minecraft:recipe_crafted"
     }

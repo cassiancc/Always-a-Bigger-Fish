@@ -75,7 +75,7 @@ public class CommonEvents {
 				if (fishContainer.has(DataComponents.BUNDLE_CONTENTS)) {
 					BundleContents bundleContents = fishContainer.get(DataComponents.BUNDLE_CONTENTS);
 					assert bundleContents != null;
-					BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+					BundleContents.Mutable mutable = bundleContents.asMutable();
 					int i = mutable.tryInsert(fish);
 					fish.setCount(fish.getCount() - i);
 					fishContainer.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());

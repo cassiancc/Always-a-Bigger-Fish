@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:fish_kebab"
+        "recipes": "bigger_fish:fish_kebab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

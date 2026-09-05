@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "bigger_fish:deep_dark_fish",
+          "items": "#bigger_fish:deep_dark_fish",
           "expand": true
         }
       ],

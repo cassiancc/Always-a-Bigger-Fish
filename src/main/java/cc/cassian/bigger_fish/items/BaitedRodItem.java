@@ -18,6 +18,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
@@ -55,7 +56,7 @@ public class BaitedRodItem extends FishingRodItem {
                 }
             }
 
-            player.swing(usedHand);
+            player.swing(usedHand, SwingAnimation.DEFAULT, true);
             level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
             player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
 

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:iron_nugget_from_can"
+        "recipes": "bigger_fish:iron_nugget_from_can"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

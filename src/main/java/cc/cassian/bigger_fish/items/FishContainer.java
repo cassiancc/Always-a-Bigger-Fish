@@ -37,7 +37,7 @@ public class FishContainer {
 			return false;
 		} else {
 			ItemStack other = slot.getItem();
-			BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+			BundleContents.Mutable mutable = bundleContents.asMutable();
 			if (isPrimary(action) && stackPredicate.test(other)) {
 				if (mutable.tryTransfer(slot, player) > 0) {
 					playInsertSound(player);
@@ -77,7 +77,7 @@ public class FishContainer {
 			if (bundleContents == null) {
 				return false;
 			} else {
-				BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+				BundleContents.Mutable mutable = bundleContents.asMutable();
 				if (isPrimary(action) && stackPredicate.test(other)) {
 					if (slot.allowModification(player) && mutable.tryInsert(other) > 0) {
 						playInsertSound(player);
@@ -111,7 +111,7 @@ public class FishContainer {
 	static void toggleSelectedItem(ItemStack bundle, int selectedItem) {
 		BundleContents bundleContents = bundle.get(DataComponents.BUNDLE_CONTENTS);
 		if (bundleContents != null) {
-			BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+			BundleContents.Mutable mutable = bundleContents.asMutable();
 			mutable.toggleSelectedItem(selectedItem);
 			bundle.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
 		}
@@ -147,7 +147,7 @@ public class FishContainer {
 		BundleContents contents = entity.getItem().get(DataComponents.BUNDLE_CONTENTS);
 		if (contents != null) {
 			entity.getItem().set(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-			ItemUtils.onContainerDestroyed(entity, contents.itemCopyStream());
+			ItemUtils.onContainerDestroyed(entity, contents.itemCopies());
 		}
 	}
 

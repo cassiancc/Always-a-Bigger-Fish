@@ -100,7 +100,7 @@ public class PlayerMixin implements PlayerWithGrapplingHook {
 
             if (!player.level().isClientSide()) {
                 player.resetFallDistance();
-                if (!player.onGround()) player.hurtMarked = false;
+                if (!player.onGround()) player.syncVelocity = false;
             }
         }
     }

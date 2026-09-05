@@ -38,7 +38,7 @@ public class FishingClientRecipe implements ReliableClientRecipe {
     }
 
     @Override
-    public ReliableClientRecipeType getViewType() {
+    public ReliableClientRecipeType getType() {
         return FishingClientRecipeType.INSTANCE; //Here you need your type's instance you created before
     }
 

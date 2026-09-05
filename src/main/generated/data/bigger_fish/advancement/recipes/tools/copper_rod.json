@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:copper_rod"
+        "recipes": "bigger_fish:copper_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

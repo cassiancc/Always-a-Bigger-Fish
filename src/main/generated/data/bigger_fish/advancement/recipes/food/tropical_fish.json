@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:tropical_fish"
+        "recipes": "bigger_fish:tropical_fish"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

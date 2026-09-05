@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "bigger_fish:tier_one_cold_freshwater_fish",
+          "items": "#bigger_fish:tier_one_cold_freshwater_fish",
           "expand": true
         }
       ],

@@ -3,7 +3,7 @@
   "criteria": {
     "diamond_hook": {
       "conditions": {
-        "recipe_id": "bigger_fish:diamond_hook"
+        "recipes": "bigger_fish:diamond_hook"
       },
       "trigger": "minecraft:recipe_crafted"
     }

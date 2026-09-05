@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:netherite_hook"
+        "recipes": "bigger_fish:netherite_hook"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

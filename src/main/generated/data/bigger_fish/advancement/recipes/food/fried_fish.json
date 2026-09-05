@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:fried_fish"
+        "recipes": "bigger_fish:fried_fish"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

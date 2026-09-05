@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sticky_grappling_hook": {
+    "has_grappling_hook": {
       "conditions": {
         "items": [
           {
-            "items": "bigger_fish:sticky_grappling_hook"
+            "items": "bigger_fish:grappling_hook"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:sticky_grappling_hook_dyed"
+        "recipes": "bigger_fish:grappling_hook_dyed"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_sticky_grappling_hook"
+      "has_grappling_hook"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:sticky_grappling_hook_dyed"
+      "bigger_fish:grappling_hook_dyed"
     ]
   }
 }

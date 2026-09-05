@@ -87,7 +87,7 @@ public abstract class FishContainerBlockEntity extends BlockEntity implements Wo
 
 	@Override
 	protected void collectImplicitComponents(DataComponentMap.Builder components) {
-		BundleContents.Mutable mutable = new BundleContents.Mutable(BundleContents.EMPTY);
+		BundleContents.Mutable mutable = new BundleContents.Mutable();
 		for (ItemStack item : items) {
 			mutable.tryInsert(item.copy());
 		}

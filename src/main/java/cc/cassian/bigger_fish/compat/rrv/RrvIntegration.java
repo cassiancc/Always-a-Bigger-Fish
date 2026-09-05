@@ -1,5 +1,5 @@
 package cc.cassian.bigger_fish.compat.rrv;
-//? if >1.21.10 {
+//? if >1.21.5 {
 import cc.cassian.bigger_fish.compat.rrv.bait.BaitUsageClientRecipe;
 import cc.cassian.bigger_fish.compat.rrv.fishing.FishingClientRecipe;
 import cc.cassian.bigger_fish.compat.rrv.lava_fishing.LavaFishingClientRecipe;

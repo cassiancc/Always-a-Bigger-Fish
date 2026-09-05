@@ -42,7 +42,7 @@ public class FishingClientRecipeType implements ReliableClientRecipeType {
 
     @Override
     public void placeSlots(RecipeViewMenu.SlotDefinition slotDefinition) {
-        //Tell EIV where your slots are located by calling slotDefinition.addItemSlot();
+        //Tell RRV where your slots are located by calling slotDefinition.addItemSlot();
         //NOTE: Slot position is relative to your gui texture
 
         slotDefinition.addItemSlot(0, (getDisplayWidth()/2)-5, 65);

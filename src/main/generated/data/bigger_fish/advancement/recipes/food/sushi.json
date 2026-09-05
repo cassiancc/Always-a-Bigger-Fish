@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bigger_fish:sushi"
+        "recipes": "bigger_fish:sushi"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
