@@ -38,13 +38,13 @@ public class FishingClientRecipe implements ReliableClientRecipe {
     }
 
     @Override
-    public ReliableClientRecipeType getViewType() {
+    public ReliableClientRecipeType getType() {
         return FishingClientRecipeType.INSTANCE; //Here you need your type's instance you created before
     }
 
     @Override
     public void bindSlots(RecipeViewMenu.SlotFillContext slotFillContext) {
-        //Tell EIV which SlotContent belongs to which of your previously defined slots
+        //Tell RRV which SlotContent belongs to which of your previously defined slots
         slotFillContext.bindSlot(0, this.output);
     }
 

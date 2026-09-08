@@ -20,7 +20,7 @@ public class LavaFishingClientRecipe extends FishingClientRecipe {
     }
 
     @Override
-    public ReliableClientRecipeType getViewType() {
+    public ReliableClientRecipeType getType() {
         return LavaFishingClientRecipeType.INSTANCE; //Here you need your type's instance you created before
     }
 }
