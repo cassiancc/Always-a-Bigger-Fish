@@ -1,3 +1,7 @@
+## [1.2.3]
+
+- Fixed incorrectly formatted loot tables.
+
 ## [1.2.2]
 
 ### Fixed
