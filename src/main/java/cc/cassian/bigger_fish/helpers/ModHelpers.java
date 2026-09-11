@@ -2,29 +2,29 @@ package cc.cassian.bigger_fish.helpers;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
 import cc.cassian.bigger_fish.Platform;
+import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.components.FishingLoot;
 import cc.cassian.bigger_fish.components.HookEffects;
 import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.registry.BiggerFishLootTables;
 import cc.cassian.bigger_fish.registry.BiggerFishTags;
 import cc.cassian.bigger_fish.components.FishSize;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.locale.Language;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.ReloadableServerRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootTable;
 import org.jspecify.annotations.Nullable;
 
@@ -50,9 +50,9 @@ public class ModHelpers {
 
     public static String getUnit() {
         if (BiggerFishMod.CONFIG.tooltip.centimeters.value()) {
-            return I18n.get("component.bigger_fish.size.cm");
+            return Language.getInstance().getOrDefault("component.bigger_fish.size.cm");
         } else {
-            return I18n.get("component.bigger_fish.size.inch");
+            return Language.getInstance().getOrDefault("component.bigger_fish.size.inch");
         }
     }
 
@@ -89,34 +89,44 @@ public class ModHelpers {
         return Platform.INSTANCE.getHookData(hook).equals("netherite");
     }
 
-    public static boolean hasShiftDown() {
-        return Screen.hasShiftDown();
+    public static boolean hasShiftDown(TooltipFlag tooltipFlag) {
+        return BiggerFishModClient.hasShiftDown() || tooltipFlag.shouldDisplayAllInformation();
     }
 
     public static @Nullable LootTable fish(ReloadableServerRegistries.Holder reloadableRegistries, @Nullable ItemStack bait, boolean isLavaHook, boolean catchesBiggerFish) {
+        ResourceKey<LootTable> lootTable = lootTableByBait(bait, isLavaHook, catchesBiggerFish);
+        if (lootTable != null) {
+            return reloadableRegistries.getLootTable(lootTable);
+        }
+        return null;
+    }
+
+    private static @Nullable ResourceKey<LootTable> lootTableByBait(@Nullable ItemStack bait, boolean isLavaHook, boolean catchesBiggerFish) {
         if (isLavaHook) {
-            return reloadableRegistries.getLootTable(BiggerFishLootTables.LAVA_FISHING);
+            return BiggerFishLootTables.LAVA_FISHING;
         }
         if (BiggerFishMod.CONFIG.gameplay.biomeFishing.value() || catchesBiggerFish) {
             if (bait != null) {
-				// check for the fishing loot table component
-				if (bait.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
-					FishingLoot identifier = bait.get(BiggerFishComponentTypes.FISHING_LOOT.get());
-					assert identifier != null;
-					return reloadableRegistries.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, identifier.lootTable()));
-				}
-				// most fishing is done via components, these are here as fallbacks for modded content
-				else if (bait.is(BiggerFishTags.TIER_ONE_BAIT)) {
-					return reloadableRegistries.getLootTable(BiggerFishLootTables.TIER_ONE_FISHING);
-				} else if (bait.is(BiggerFishTags.TIER_TWO_BAIT)) {
-					return reloadableRegistries.getLootTable(BiggerFishLootTables.TIER_TWO_FISHING);
-				} else if (bait.is(BiggerFishTags.TIER_THREE_BAIT)) {
-					return reloadableRegistries.getLootTable(BiggerFishLootTables.TIER_THREE_FISHING);
-				} else {
-					return reloadableRegistries.getLootTable(BiggerFishLootTables.FISHING);
-				}
-			}
-            return reloadableRegistries.getLootTable(BiggerFishLootTables.FISHING);
+                // check for the fishing loot table component
+                if (bait.has(BiggerFishComponentTypes.FISHING_LOOT.get())) {
+                    FishingLoot identifier = bait.get(BiggerFishComponentTypes.FISHING_LOOT.get());
+                    assert identifier != null;
+                    return ResourceKey.create(Registries.LOOT_TABLE, identifier.lootTable());
+                }
+                // most fishing is done via components, these are here as fallbacks for modded content
+                else if (bait.is(BiggerFishTags.TIER_ONE_BAIT)) {
+                    return BiggerFishLootTables.TIER_ONE_FISHING;
+                } else if (bait.is(BiggerFishTags.TIER_TWO_BAIT)) {
+                    return BiggerFishLootTables.TIER_TWO_FISHING;
+                } else if (bait.is(BiggerFishTags.TIER_THREE_BAIT)) {
+                    return BiggerFishLootTables.TIER_THREE_FISHING;
+                } else {
+                    return BiggerFishLootTables.FISHING;
+                }
+            } else if (BiggerFishMod.CONFIG.gameplay.preventFishingWithoutBait.value()) {
+                return BuiltInLootTables.FISHING_JUNK;
+            }
+            return BiggerFishLootTables.FISHING;
         } else {
             return null;
         }

@@ -5,7 +5,6 @@ import cc.cassian.bigger_fish.helpers.ModHelpers;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -25,7 +24,7 @@ public record FishingLoot(ResourceLocation lootTable) implements TooltipProvider
 	@Override
 	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
 		if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
-			if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown())
+			if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown(tooltipFlag))
 				consumer.accept(Component.translatable("fishing."+ lootTable.toLanguageKey().replace("/", ".")));
 		}
 	}

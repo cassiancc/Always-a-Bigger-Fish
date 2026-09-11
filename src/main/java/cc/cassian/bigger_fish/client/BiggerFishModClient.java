@@ -7,6 +7,8 @@ import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import cc.cassian.bigger_fish.components.FishSize;
 import cc.cassian.bigger_fish.tooltip.FishContainerTooltip;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -41,5 +43,9 @@ public class BiggerFishModClient {
                 ((TooltipProvider) Objects.requireNonNull(baitFromRod.get(component.get()))).addToTooltip(tooltipContext, component1->list.add(1, component1.copy().withStyle(ChatFormatting.GRAY)), tooltipFlag);
             }
         }
+    }
+
+    public static boolean hasShiftDown() {
+        return Screen.hasShiftDown();
     }
 }

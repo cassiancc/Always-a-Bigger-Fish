@@ -17,7 +17,7 @@ config = "bigger_fish.mixins.json"
 [[dependencies.bigger_fish]]
 modId = "neoforge"
 type = "required"
-versionRange = "[1,)"
+versionRange = "[21.1.238,)"
 ordering = "NONE"
 side = "BOTH"
 

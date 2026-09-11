@@ -22,6 +22,8 @@ public class ModConfig extends ReflectiveConfig {
     public static class GameplayOptions extends Section {
         @Comment("When using a vanilla Fishing Rod, replace vanilla's fishing loot table with biome specific fishing.")
         public final TrackedValue<Boolean> biomeFishing = this.value(true);
+        @Comment("Fishing without bait attached to your rod only results in junk. Note this also applies to vanilla fishing rods.")
+        public final TrackedValue<Boolean> preventFishingWithoutBait = this.value(false);
         @Comment("Randomize caught fish sizes")
         public final TrackedValue<Boolean> fishSizes = this.value(true);
         public final TrackedValue<Boolean> baitedRodsHaveDurability = this.value(true);
