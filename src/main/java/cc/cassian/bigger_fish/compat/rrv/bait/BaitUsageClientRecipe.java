@@ -1,7 +1,5 @@
 package cc.cassian.bigger_fish.compat.rrv.bait;
 //? if >1.21.10 {
-import cc.cassian.bigger_fish.compat.rrv.fishing.FishingClientRecipe;
-import cc.cassian.bigger_fish.compat.rrv.fishing.FishingClientRecipeType;
 import cc.cassian.rrv.api.recipe.ReliableClientRecipe;
 import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
 import cc.cassian.rrv.common.recipe.inventory.RecipeViewMenu;
@@ -9,13 +7,11 @@ import cc.cassian.rrv.common.recipe.inventory.RecipeViewScreen;
 import cc.cassian.rrv.common.recipe.inventory.SlotContent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.locale.Language;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 
@@ -52,7 +48,7 @@ public class BaitUsageClientRecipe implements ReliableClientRecipe {
 
     @Override
     public void renderRecipe(RecipeViewScreen screen, RecipePosition recipePosition, GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        guiGraphics.textWithWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, BaitUsageClientRecipeType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
+        guiGraphics.textWithWordWrap(Minecraft.getInstance().font, FormattedText.of(Language.getInstance().getOrDefault(translationKey)), 5, 5, BaitUsageClientRecipeType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
     }
 
     @Override

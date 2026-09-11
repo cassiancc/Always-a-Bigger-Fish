@@ -7,7 +7,7 @@ import cc.cassian.rrv.common.recipe.inventory.RecipeViewScreen;
 import cc.cassian.rrv.common.recipe.inventory.SlotContent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.locale.Language;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -50,7 +50,7 @@ public class FishingClientRecipe implements ReliableClientRecipe {
 
     @Override
     public void renderRecipe(RecipeViewScreen screen, RecipePosition recipePosition, GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        guiGraphics.textWithWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, FishingClientRecipeType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
+        guiGraphics.textWithWordWrap(Minecraft.getInstance().font, FormattedText.of(Language.getInstance().getOrDefault(translationKey)), 5, 5, FishingClientRecipeType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
     }
 
     @Override

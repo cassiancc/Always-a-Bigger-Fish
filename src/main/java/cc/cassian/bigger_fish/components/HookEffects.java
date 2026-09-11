@@ -1,23 +1,18 @@
 package cc.cassian.bigger_fish.components;
 
 import cc.cassian.bigger_fish.BiggerFishMod;
-import cc.cassian.bigger_fish.client.BiggerFishModClient;
 import cc.cassian.bigger_fish.helpers.ModHelpers;
-import cc.cassian.bigger_fish.registry.BiggerFishComponentTypes;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.Identifier;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipProvider;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public record HookEffects(String effect) implements TooltipProvider {
@@ -37,9 +32,9 @@ public record HookEffects(String effect) implements TooltipProvider {
 	@Override
 	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter components) {
 		if (BiggerFishMod.CONFIG.tooltip.baitUsageTooltip.value()) {
-			if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown()) {
+			if (BiggerFishMod.CONFIG.tooltip.showBaitUsageAlways.value() || ModHelpers.hasShiftDown(tooltipFlag)) {
 				String key = "fishing.bigger_fish." + effect;
-				if (I18n.exists(key)) {
+				if (Language.getInstance().has(key)) {
 					consumer.accept(Component.translatable(key));
 				}
 			}

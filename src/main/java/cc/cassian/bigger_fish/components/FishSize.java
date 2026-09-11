@@ -23,7 +23,7 @@ public record FishSize(float size) implements TooltipProvider {
 
 	@Override
 	public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter components) {
-		if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value() && (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || ModHelpers.hasShiftDown()))
+		if (BiggerFishMod.CONFIG.tooltip.fishSizeTooltip.value() && (BiggerFishMod.CONFIG.tooltip.showFishSizesAlways.value() || ModHelpers.hasShiftDown(tooltipFlag)))
 			consumer.accept(getComponent());
 	}
 
