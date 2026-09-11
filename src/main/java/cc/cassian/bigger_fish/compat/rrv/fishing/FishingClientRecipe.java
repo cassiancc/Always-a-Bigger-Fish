@@ -7,7 +7,7 @@ import cc.cassian.rrv.common.recipe.inventory.RecipeViewScreen;
 import cc.cassian.rrv.common.recipe.inventory.SlotContent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.locale.Language;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -38,19 +38,19 @@ public class FishingClientRecipe implements ReliableClientRecipe {
     }
 
     @Override
-    public ReliableClientRecipeType getViewType() {
+    public ReliableClientRecipeType getType() {
         return FishingClientRecipeType.INSTANCE; //Here you need your type's instance you created before
     }
 
     @Override
     public void bindSlots(RecipeViewMenu.SlotFillContext slotFillContext) {
-        //Tell EIV which SlotContent belongs to which of your previously defined slots
+        //Tell RRV which SlotContent belongs to which of your previously defined slots
         slotFillContext.bindSlot(0, this.output);
     }
 
     @Override
     public void renderRecipe(RecipeViewScreen screen, RecipePosition recipePosition, GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        guiGraphics.textWithWordWrap(Minecraft.getInstance().font, FormattedText.of(I18n.get(translationKey)), 5, 5, FishingClientRecipeType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
+        guiGraphics.textWithWordWrap(Minecraft.getInstance().font, FormattedText.of(Language.getInstance().getOrDefault(translationKey)), 5, 5, FishingClientRecipeType.INSTANCE.getDisplayWidth()-8, ARGB.opaque(1842204), false);
     }
 
     @Override
